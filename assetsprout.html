@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="AssetSprout Case Study - Investment App Design"/>
+<meta property="og:title" content="AssetSprout — Case Study · Kaushik"/>
+<meta property="og:description" content="Designing an investment app for beginners — UX research, design systems, and user testing."/>
+<title>AssetSprout — Case Study · Kaushik</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+[data-theme="dark"]{--bg:#0a0a0a;--bg2:#0f0f0f;--bg3:#1a1a1a;--card:#0f0f0f;--text:#ffffff;--text2:#b0b0b0;--text3:#707070;--border:rgba(255,255,255,0.1);--rule:rgba(255,255,255,0.1);--nav-bg:rgba(10,10,10,0.92);}
+[data-theme="light"]{--bg:#ffffff;--bg2:#f8f8f8;--bg3:#efefef;--card:#ffffff;--text:#000000;--text2:#4a4a4a;--text3:#8a8a8a;--border:rgba(0,0,0,0.1);--rule:rgba(0,0,0,0.1);--nav-bg:rgba(255,255,255,0.95);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .3s,color .3s;}
+a{text-decoration:none;color:inherit;}
+::-webkit-scrollbar{width:2px;}::-webkit-scrollbar-thumb{background:var(--text3);}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1.1rem 3rem;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--rule);}
+.nav-links{justify-self:center;list-style:none;display:flex;gap:2.25rem;align-items:center;}
+.nav-links a{font-size:.78rem;font-family:'Space Mono',monospace;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);}
+.nav-links a:hover{color:var(--text);}
+.nav-logo{justify-self:start;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.35rem;color:var(--text);letter-spacing:-.03em;}
+.nav-logo span{font-weight:500;color:var(--text3);}
+.nav-right{justify-self:end;display:flex;align-items:center;gap:1rem;}
+.avail-badge{display:flex;align-items:center;gap:.45rem;font-size:.7rem;font-family:'Space Mono',monospace;font-weight:500;color:#4ade80;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.28);padding:.38rem .95rem;border-radius:999px;}
+.avail-dot{width:6px;height:6px;border-radius:2px;background:#4ade80;animation:pulse-green 2s ease-in-out infinite;}
+@keyframes pulse-green{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.resume-modal[hidden]{display:none;}
+.resume-modal{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:2rem;}
+.resume-modal-card{width:min(960px,96vw);height:min(86vh,980px);background:var(--bg);border:1px solid var(--border);display:flex;flex-direction:column;}
+.resume-modal-head{display:flex;align-items:center;justify-content:space-between;padding:.65rem .9rem;border-bottom:1px solid var(--border);}
+.resume-modal-title{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);}
+.resume-close{width:34px;height:28px;border:1px solid var(--border);background:var(--bg2);color:var(--text);cursor:pointer;font-size:1rem;line-height:1;}
+.resume-frame{flex:1;width:100%;border:0;background:#fff;}
+.toggle{width:38px;height:20px;border-radius:0;background:var(--bg3);border:1px solid var(--border);cursor:pointer;position:relative;}
+.toggle::after{content:'';position:absolute;top:3px;left:3px;width:12px;height:12px;border-radius:0;background:var(--text);transition:transform .3s;}
+[data-theme="light"] .toggle::after{transform:translateX(18px);}
+
+.wrap{max-width:1100px;margin:0 auto;padding:0 3rem;}
+.cs-hero{padding-top:7rem;padding-bottom:4rem;border-bottom:1px solid var(--rule);}
+.back-chip{display:inline-flex;align-items:center;gap:.45rem;font-size:.6rem;font-family:'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);border:1px solid var(--border);padding:.22rem .6rem;margin-bottom:2.5rem;transition:color .2s,border-color .2s;}
+.back-chip:hover{color:var(--text2);border-color:var(--text3);}
+.cs-lbl{font-size:.58rem;font-family:'Space Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:.9rem;}
+.cs-h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:-.04em;line-height:1.0;color:var(--text);margin-bottom:1rem;}
+.cs-sub{font-size:.98rem;font-weight:300;line-height:1.82;color:var(--text2);max-width:620px;margin-bottom:3rem;}
+.meta-row{display:flex;border:1px solid var(--border);}
+.meta-col{flex:1;padding:1.1rem 1.4rem;border-right:1px solid var(--border);}
+.meta-col:last-child{border-right:none;}
+.meta-lbl{font-size:.55rem;font-family:'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:.35rem;}
+.meta-val{font-size:.8rem;font-weight:500;color:var(--text);line-height:1.45;}
+
+.cs-sec{padding:4rem 0;border-bottom:1px solid var(--rule);}
+.cs-sec:last-child{border-bottom:none;}
+.sec-lbl{font-size:.57rem;font-family:'Space Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:.9rem;}
+.sec-h{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(1.35rem,2.4vw,2rem);letter-spacing:-.03em;line-height:1.1;color:var(--text);margin-bottom:1.1rem;}
+.cs-p{font-size:.9rem;font-weight:300;line-height:1.85;color:var(--text2);margin-bottom:.9rem;}
+.cs-p:last-child{margin-bottom:0;}
+.cs-p strong{color:var(--text);font-weight:500;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;}
+
+.box{padding:1.3rem;border:1px solid var(--border);background:var(--card);}
+.box-lbl{font-size:.55rem;font-family:'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.7rem;padding-bottom:.45rem;border-bottom:1px solid var(--rule);}
+.box-body{font-size:.84rem;font-weight:300;line-height:1.72;color:var(--text2);}
+.box-body strong{color:var(--text);font-weight:500;}
+
+.results{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1.4rem;}
+.res-c{padding:1.4rem;border:1px solid var(--border);text-align:center;}
+.res-num{font-size:2.2rem;font-weight:800;letter-spacing:-.05em;color:var(--text);margin-bottom:.25rem;}
+.res-lbl{font-size:.57rem;font-family:'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);}
+.res-sub{font-size:.72rem;font-weight:300;color:var(--text2);margin-top:.35rem;line-height:1.4;}
+
+.next-lbl{font-size:.55rem;font-family:'Space Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);}
+.next-title{font-size:1.15rem;font-weight:700;color:var(--text);letter-spacing:-.02em;margin-top:.35rem;}
+.next-link{display:inline-flex;align-items:center;gap:.38rem;font-size:.68rem;font-family:'Space Mono',monospace;color:var(--text2);border-bottom:1px solid var(--border);padding-bottom:.1rem;transition:gap .2s,color .2s;}
+.next-link:hover{gap:.65rem;color:var(--text);}
+hr.rule{border:none;border-top:1px solid var(--rule);margin:0;}
+
+.fi{opacity:0;transform:translateY(20px);transition:opacity .55s,transform .55s;}
+.fi.vis{opacity:1;transform:none;}
+
+@media(max-width:760px){
+  nav{padding:0 1.2rem;}
+  .nav-links{display:none;}
+  .avail-badge{display:none;}
+  .resume-modal{padding:.8rem;}
+  .resume-modal-card{height:88vh;}
+  .wrap{padding:0 1.2rem;}
+  .two{grid-template-columns:1fr;}
+  .results{grid-template-columns:1fr;}
+}
+
+.music-toggle{
+  position:fixed;
+  bottom:1.25rem;
+  right:1.25rem;
+  z-index:200;
+  width:46px;
+  height:46px;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid var(--border);
+  border-radius:0;
+  background:var(--nav-bg);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  color:var(--text);
+  cursor:pointer;
+  transition:border-color .2s,transform .15s,background .2s,color .2s;
+}
+.music-toggle:hover{border-color:var(--text3);transform:translateY(-2px);}
+.music-toggle:focus-visible{outline:2px solid var(--text);outline-offset:2px;}
+.music-toggle svg{width:20px;height:20px;pointer-events:none;}
+</style>
+</head>
+<body>
+
+<audio id="bgMusic" loop preload="auto" playsinline>
+  <source src="audio/bittersweet-symphony.mp3" type="audio/mpeg"/>
+</audio>
+<button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
+  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
+</button>
+
+<nav>
+  <a href="index.html" class="nav-logo">K<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#keywords">Skills</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="#" data-resume-trigger>Resume</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="avail-badge"><span class="avail-dot"></span>Open to work</div>
+    <button class="toggle" id="themeToggle" aria-label="Toggle theme"></button>
+  </div>
+</nav>
+
+<div class="resume-modal" id="resumeModal" hidden aria-hidden="true">
+  <div class="resume-modal-card" role="dialog" aria-modal="true" aria-label="Resume preview">
+    <div class="resume-modal-head">
+      <span class="resume-modal-title">Resume</span>
+      <button type="button" class="resume-close" id="resumeCloseBtn" aria-label="Close resume popup">×</button>
+    </div>
+    <iframe class="resume-frame" src="kaushik-resume-gd.pdf" title="Kaushik Resume"></iframe>
+  </div>
+</div>
+
+<div class="wrap cs-hero fi">
+  <a href="index.html#projects" class="back-chip">← All Projects</a>
+  <div class="cs-lbl">Case Study · 02</div>
+  <h1 class="cs-h1">AssetSprout</h1>
+  <p class="cs-sub">A mobile investment app designed to make wealth creation accessible to first-time investors in India — demystifying stocks, mutual funds, and portfolio management.</p>
+  <div class="meta-row">
+    <div class="meta-col">
+      <div class="meta-lbl">Role</div>
+      <div class="meta-val">Product Designer</div>
+    </div>
+    <div class="meta-col">
+      <div class="meta-lbl">Timeline</div>
+      <div class="meta-val">Jun 2021 – Dec 2021</div>
+    </div>
+    <div class="meta-col">
+      <div class="meta-lbl">Type</div>
+      <div class="meta-val">Contract · Fintech · Mobile</div>
+    </div>
+    <div class="meta-col">
+      <div class="meta-lbl">Skills</div>
+      <div class="meta-val">UX Research · Product Design · User Testing</div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cs-sec two fi">
+    <div>
+      <div class="sec-lbl">The Brief</div>
+      <p class="cs-p">The founder (a financial advisor) kept saying: "People want to invest but they're terrified of losing money. They don't know where to start." He brought me on for 6 months to design an app that would change that.</p>
+      <p class="cs-p">The hard part wasn't making it pretty. It was making it <strong>trustworthy enough that a 25-year-old would hand us their money</strong>. That's a different kind of design problem.</p>
+    </div>
+    <div>
+      <div class="sec-lbl">Team & Impact</div>
+      <div class="box" style="margin-bottom:.8rem;">
+        <div class="box-lbl">Team</div>
+        <div class="box-body"><strong>Founder/CEO:</strong> Financial advisor background<br/><strong>Design:</strong> Myself (sole designer)<br/><strong>Engineering:</strong> Mobile & backend team</div>
+      </div>
+      <div class="box">
+        <div class="box-lbl">Outcomes</div>
+        <div class="box-body"><strong>Launch:</strong> iOS + Android<br/><strong>Users:</strong> 5K+ in beta<br/><strong>Retention:</strong> 35% monthly active</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-sec fi">
+    <div class="sec-lbl">Research</div>
+    <div class="sec-h">What Actually Stops People From Investing</div>
+    <p class="cs-p">I interviewed 15 people. Most said the same thing: "I'll lose everything." Not because they were dumb. They genuinely didn't understand what risk meant. One guy said he tried an app once, bought a stock, it went down 2%, and he panicked and sold at a loss. Then he never invested again.</p>
+    <p class="cs-p" style="margin-top:1.2rem;">So the app couldn't just show pretty charts. It had to <strong>teach people what volatility actually is</strong>, help them build a plan, and show them they weren't making a casino bet.</p>
+  </div>
+
+  <div class="cs-sec fi">
+    <div class="sec-lbl">Key Features</div>
+    <div class="sec-h">Guided Investment Experience</div>
+    <div class="results">
+      <div class="res-c">
+        <div class="res-num">Micro-Learning</div>
+        <div class="res-lbl">2-Min Lessons</div>
+        <div class="res-sub">Bite-sized education built into the discovery flow</div>
+      </div>
+      <div class="res-c">
+        <div class="res-num">Smart Portfolios</div>
+        <div class="res-lbl">AI-Recommended</div>
+        <div class="res-sub">Customized allocation based on risk profile</div>
+      </div>
+      <div class="res-c">
+        <div class="res-num">Transparent Fees</div>
+        <div class="res-lbl">No Hidden Costs</div>
+        <div class="res-sub">Clear breakdown at every transaction</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-sec fi">
+    <div class="sec-lbl">Results</div>
+    <div class="sec-h">Measurable Impact</div>
+    <p class="cs-p">The app achieved strong engagement metrics through focused UX design and educational content.</p>
+    <div class="results">
+      <div class="res-c">
+        <div class="res-num">↑8.5x</div>
+        <div class="res-lbl">First Investment Rate</div>
+        <div class="res-sub">Users completing their first trade within 48 hours</div>
+      </div>
+      <div class="res-c">
+        <div class="res-num">4.7/5</div>
+        <div class="res-lbl">App Store Rating</div>
+        <div class="res-sub">Rated for ease of use and education quality</div>
+      </div>
+      <div class="res-c">
+        <div class="res-num">₹50Cr+</div>
+        <div class="res-lbl">Assets Under Management</div>
+        <div class="res-sub">Managed through the platform post-launch</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-sec fi">
+    <div class="sec-lbl">Reflection</div>
+    <div class="sec-h">Learning from the Process</div>
+    <p class="cs-p">This project taught me that <strong>financial literacy is a design problem, not just an education problem</strong>. Every element — from language choice to color coding — influences how users perceive risk and opportunity.</p>
+  </div>
+</div>
+
+<hr class="rule"/>
+<div style="padding:3.5rem 3rem;max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+  <div>
+    <div class="next-lbl">Other Work</div>
+    <div class="next-title">Harmoney, Mason App</div>
+  </div>
+  <a href="index.html#projects" class="next-link">Back to All Projects →</a>
+</div>
+
+<script>
+const html = document.documentElement;
+document.getElementById('themeToggle').addEventListener('click', () => {
+  html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+});
+const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('vis'); }), {threshold: 0.08});
+document.querySelectorAll('.fi').forEach(el => io.observe(el));
+
+const bgMusic = document.getElementById('bgMusic');
+const musicToggle = document.getElementById('musicToggle');
+const iconPause = document.getElementById('musicIconPause');
+const iconPlay = document.getElementById('musicIconPlay');
+bgMusic.volume = 0.45;
+const MUSIC_PREF_KEY = 'portfolio_music_paused';
+let userPaused = false;
+try {
+  localStorage.setItem(MUSIC_PREF_KEY, 'false');
+} catch (_) {}
+
+function persistMusicPreference() {
+  try {
+    localStorage.setItem(MUSIC_PREF_KEY, userPaused ? 'true' : 'false');
+  } catch (_) {}
+}
+
+function updateMusicButton(){
+  const playing = !bgMusic.paused;
+  musicToggle.setAttribute('aria-pressed', playing ? 'true' : 'false');
+  musicToggle.setAttribute('aria-label', playing ? 'Pause background music' : 'Play background music');
+  iconPause.hidden = !playing;
+  iconPlay.hidden = playing;
+}
+
+musicToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (bgMusic.paused) {
+    userPaused = false;
+    persistMusicPreference();
+    bgMusic.play().catch(() => {});
+  } else {
+    userPaused = true;
+    persistMusicPreference();
+    bgMusic.pause();
+  }
+  updateMusicButton();
+});
+
+bgMusic.addEventListener('play', updateMusicButton);
+bgMusic.addEventListener('pause', updateMusicButton);
+if (!userPaused) {
+  bgMusic.play().then(() => updateMusicButton()).catch(() => updateMusicButton());
+} else {
+  bgMusic.pause();
+  updateMusicButton();
+}
+
+document.addEventListener('pointerdown', (e) => {
+  if (musicToggle.contains(e.target)) return;
+  if (userPaused) return;
+  if (!userPaused && bgMusic.paused) bgMusic.play().catch(() => {});
+}, { once: true });
+
+const resumeModal = document.getElementById('resumeModal');
+const resumeCloseBtn = document.getElementById('resumeCloseBtn');
+const resumeTriggers = document.querySelectorAll('[data-resume-trigger]');
+
+function openResumeModal(event) {
+  event.preventDefault();
+  resumeModal.hidden = false;
+  resumeModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeResumeModal() {
+  resumeModal.hidden = true;
+  resumeModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+resumeTriggers.forEach((trigger) => trigger.addEventListener('click', openResumeModal));
+resumeCloseBtn.addEventListener('click', closeResumeModal);
+resumeModal.addEventListener('click', (event) => {
+  if (event.target === resumeModal) closeResumeModal();
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && !resumeModal.hidden) closeResumeModal();
+});
+</script>
+</body>
+</html>

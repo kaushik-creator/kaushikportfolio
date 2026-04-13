@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la *.html)",
+      "Bash(grep -E \"\\\\.\\(html|svg|xml|txt\\)$\")",
+      "Bash(curl -s http://localhost:8000/)",
+      "Bash(sort -k5 -h)",
+      "Bash(cp ~/Desktop/story/*.png \"/Users/kaushik/Kaushik Claude Portfolio/\")",
+      "Bash(ls -1 \"/Users/kaushik/Kaushik Claude Portfolio/\"[0-9]*.png)",
+      "Bash(grep \"\\\\.png$\")"
+    ]
+  }
+}

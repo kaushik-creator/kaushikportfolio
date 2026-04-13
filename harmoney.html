@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Harmoney — Case Study · Kaushik</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+[data-theme="dark"]{--bg:#0d0d0d;--bg2:#141414;--bg3:#1e1e1e;--card:#111111;--text:#f2f2f2;--text2:#888888;--text3:#444444;--border:rgba(255,255,255,0.09);--rule:rgba(255,255,255,0.09);--nav-bg:rgba(13,13,13,0.94);--neon:#cfcfcf;--neon-soft:rgba(255,255,255,0.06);--neon-line:rgba(255,255,255,0.22);}
+[data-theme="light"]{--bg:#f5f5f3;--bg2:#eeeeec;--bg3:#e4e4e2;--card:#ffffff;--text:#111111;--text2:#666666;--text3:#aaaaaa;--border:rgba(0,0,0,0.09);--rule:rgba(0,0,0,0.09);--nav-bg:rgba(245,245,243,0.94);--neon:#505050;--neon-soft:rgba(0,0,0,0.04);--neon-line:rgba(0,0,0,0.2);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .3s,color .3s;}
+a{text-decoration:none;color:inherit;}
+::-webkit-scrollbar{width:2px;}::-webkit-scrollbar-thumb{background:var(--text3);}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1.1rem 3rem;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--rule);}
+.nav-links{justify-self:center;list-style:none;display:flex;gap:2.25rem;align-items:center;}
+.nav-links a{font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);}
+.nav-links a:hover{color:var(--text);}
+.nav-logo{justify-self:start;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.35rem;color:var(--text);letter-spacing:-.03em;}
+.nav-logo span{color:var(--text3);font-weight:500;}
+.nav-right{justify-self:end;display:flex;align-items:center;gap:1rem;}
+.avail-badge{display:flex;align-items:center;gap:.45rem;font-size:.7rem;font-family:'Space Mono',monospace;font-weight:500;color:#4ade80;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.28);padding:.38rem .95rem;border-radius:999px;}
+.avail-dot{width:6px;height:6px;border-radius:2px;background:#4ade80;animation:pulse-green 2s ease-in-out infinite;}
+@keyframes pulse-green{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.resume-modal[hidden]{display:none;}
+.resume-modal{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:2rem;}
+.resume-modal-card{width:min(960px,96vw);height:min(86vh,980px);background:var(--bg);border:1px solid var(--border);display:flex;flex-direction:column;}
+.resume-modal-head{display:flex;align-items:center;justify-content:space-between;padding:.65rem .9rem;border-bottom:1px solid var(--border);}
+.resume-modal-title{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);}
+.resume-close{width:34px;height:28px;border:1px solid var(--border);background:var(--bg2);color:var(--text);cursor:pointer;font-size:1rem;line-height:1;}
+.resume-frame{flex:1;width:100%;border:0;background:#fff;}
+.toggle{width:38px;height:20px;border-radius: 0;background:var(--bg3);border:1px solid var(--border);cursor:pointer;position:relative;}
+.toggle::after{content:'';position:absolute;top:3px;left:3px;width:12px;height:12px;border-radius: 0;background:var(--text);transition:transform .3s;}
+[data-theme="light"] .toggle::after{transform:translateX(18px);}
+
+.wrap{max-width:1100px;margin:0 auto;padding:0 3rem;}
+.cs-hero{padding-top:7rem;padding-bottom:4rem;border-bottom:1px solid var(--rule);}
+.back-chip{display:inline-flex;align-items:center;gap:.45rem;font-size:.6rem;font-family:'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);border:1px solid var(--border);padding:.22rem .6rem;margin-bottom:2.5rem;transition:color .2s,border-color .2s;}
+.back-chip:hover{color:var(--text2);border-color:var(--text3);}
+.cs-lbl{font-size:.58rem;font-family:'Space Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:.9rem;}
+.cs-h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:-.04em;line-height:1.0;color:var(--text);margin-bottom:1rem;}
+.cs-sub{font-size:.98rem;font-weight:300;line-height:1.82;color:var(--text2);max-width:620px;margin-bottom:3rem;}
+.meta-row{display:flex;border:1px solid var(--border);}
+.meta-col{flex:1;padding:1.1rem 1.4rem;border-right:1px solid var(--border);}
+.meta-col:last-child{border-right:none;}
+.meta-lbl{font-size:.55rem;font-family:'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--neon);margin-bottom:.35rem;text-shadow:none;}
+.meta-val{font-size:.8rem;font-weight:500;color:var(--text);line-height:1.45;}
+.role-tag{display:inline-block;font-size:.58rem;font-family:'Space Mono',monospace;border:1px solid var(--neon-line);color:var(--neon);padding:.18rem .45rem;margin:.15rem .15rem 0 0;background:var(--neon-soft);box-shadow:0 0 12px var(--neon-soft);}
+
+.dash-wrap{padding:4rem 3rem;border-bottom:1px solid var(--rule);max-width:1100px;margin:0 auto;}
+.dash-frame{border:1px solid var(--border);overflow:hidden;}
+.dash-screen{display:block;width:100%;height:auto;background:#0a0d1a;}
+.dash-titlebar{height:26px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.35rem;padding:0 .7rem;}
+.win-btn{width:7px;height:7px;border-radius: 0;}
+.dash-url{margin-left:.5rem;font-size:.48rem;font-family:'Space Mono',monospace;color:var(--text3);letter-spacing:.06em;}
+.hm-app{display:grid;grid-template-columns:48px 1fr;background:#0a0d1a;min-height:340px;}
+.hm-sb{background:#07091a;border-right:1px solid rgba(255,255,255,.05);padding:.5rem .3rem;display:flex;flex-direction:column;gap:.3rem;}
+.hm-ico{width:30px;height:30px;border-radius: 0;background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;font-size:.65rem;color:rgba(255,255,255,.2);}
+.hm-ico.on{background:rgba(124,58,237,.25);color:rgba(168,139,250,.75);}
+.hm-ico img{width:18px;height:18px;object-fit:contain;display:block;}
+.hm-content{display:flex;flex-direction:column;}
+.hm-topbar{height:34px;background:#090c18;border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:center;justify-content:space-between;padding:0 .9rem;}
+.hm-tb-l{font-size:.55rem;font-family:'Space Mono',monospace;color:rgba(255,255,255,.25);letter-spacing:.06em;}
+.hm-tb-r{display:flex;gap:.4rem;}
+.hm-pill{font-size:.48rem;font-family:'Space Mono',monospace;padding:.12rem .4rem;background:rgba(255,255,255,.05);color:rgba(255,255,255,.22);border-radius: 0;}
+.hm-pill.live{background:rgba(74,222,128,.1);color:rgba(74,222,128,.55);}
+.hm-bd{padding:.7rem .9rem;flex:1;}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-bottom:.7rem;}
+.stat-c{padding:.5rem .6rem;background:#101828;border:1px solid rgba(255,255,255,.05);border-radius: 0;}
+.stat-c-lbl{font-size:.42rem;font-family:'Space Mono',monospace;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem;}
+.stat-c-val{font-size:.85rem;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;color:rgba(255,255,255,.7);}
+.stat-c-val.g{color:rgba(74,222,128,.8);}
+.stat-c-val.a{color:rgba(245,158,11,.8);}
+.tbl{background:#090c18;border:1px solid rgba(255,255,255,.05);border-radius: 0;overflow:hidden;}
+.tbl-head{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 72px;gap:.4rem;padding:.35rem .6rem;background:#0d1122;border-bottom:1px solid rgba(255,255,255,.04);}
+.th{font-size:.4rem;font-family:'Space Mono',monospace;color:rgba(255,255,255,.18);text-transform:uppercase;letter-spacing:.08em;}
+.tbl-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 72px;gap:.4rem;padding:.3rem .6rem;border-bottom:1px solid rgba(255,255,255,.03);align-items:center;}
+.tbl-row:last-child{border-bottom:none;}
+.td{font-size:.45rem;font-family:'Space Mono',monospace;color:rgba(255,255,255,.38);}
+.td.nm{color:rgba(255,255,255,.65);font-weight:700;}
+.td.g{color:rgba(74,222,128,.7);}
+.td.r{color:rgba(239,68,68,.7);}
+.td.a{color:rgba(245,158,11,.7);}
+.bdg{font-size:.38rem;padding:.08rem .28rem;border-radius: 0;font-family:'Space Mono',monospace;}
+.bdg.buy{background:rgba(74,222,128,.12);color:rgba(74,222,128,.75);}
+.bdg.sell{background:rgba(239,68,68,.12);color:rgba(239,68,68,.75);}
+.bdg.pnd{background:rgba(245,158,11,.12);color:rgba(245,158,11,.75);}
+
+.cs-sec{padding:4rem 0;border-bottom:1px solid var(--rule);}
+.cs-sec:last-child{border-bottom:none;}
+.sec-lbl{font-size:.57rem;font-family:'Space Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--neon);margin-bottom:.9rem;text-shadow:0 0 8px var(--neon-soft),0 0 18px var(--neon-soft);}
+.sec-h{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(1.35rem,2.4vw,2rem);letter-spacing:-.03em;line-height:1.1;color:var(--text);margin-bottom:1.1rem;}
+.cs-p{font-size:.9rem;font-weight:300;line-height:1.85;color:var(--text2);margin-bottom:.9rem;}
+.cs-p:last-child{margin-bottom:0;}
+.cs-p strong{color:var(--text);font-weight:500;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;}
+
+.box{padding:1.3rem;border:1px solid var(--border);background:var(--card);}
+.box-lbl{font-size:.55rem;font-family:'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--neon);margin-bottom:.7rem;padding-bottom:.45rem;border-bottom:1px solid var(--neon-line);text-shadow:none;}
+.box-body{font-size:.84rem;font-weight:300;line-height:1.72;color:var(--text2);}
+.box-body strong{color:var(--text);font-weight:500;}
+
+.prob{padding:1.2rem 1.4rem;border-left:2px solid var(--text);background:var(--bg2);margin-bottom:.8rem;}
+.prob p{font-size:.88rem;font-weight:300;line-height:1.75;color:var(--text2);}
+.prob p strong{color:var(--text);font-weight:500;}
+
+.proc{display:grid;grid-template-columns:repeat(5,1fr);margin-top:1.8rem;}
+.proc-step{padding:1rem;border:1px solid var(--neon-line);border-right:none;text-align:center;background:var(--card);position:relative;box-shadow:none;}
+.proc-step:last-child{border-right:1px solid var(--neon-line);}
+.proc-n{font-size:1.4rem;font-weight:800;color:var(--neon);letter-spacing:-.04em;margin-bottom:.35rem;text-shadow:none;}
+.proc-t{font-size:.6rem;font-family:'Space Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--neon);text-shadow:none;}
+.proc-arr{position:absolute;right:-7px;top:50%;transform:translateY(-50%);font-size:.55rem;color:var(--neon);z-index:1;text-shadow:none;}
+
+.rc{padding:1.1rem;border:1px solid var(--border);background:var(--card);}
+.rc h4{font-size:.57rem;font-family:'Space Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem;}
+.rc ul{list-style:none;display:flex;flex-direction:column;gap:.4rem;}
+.rc li{font-size:.8rem;font-weight:300;color:var(--text2);display:flex;gap:.4rem;line-height:1.5;}
+.rc li::before{content:'—';color:var(--text3);flex-shrink:0;}
+
+.persona-row{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem;}
+.persona{padding:.9rem 1.1rem;border:1px solid var(--border);background:var(--card);flex:1;min-width:140px;}
+.persona-lbl{font-size:.52rem;font-family:'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.35rem;}
+.persona-name{font-size:.82rem;font-weight:600;color:var(--text);}
+.persona-desc{font-size:.72rem;font-weight:300;color:var(--text2);margin-top:.2rem;line-height:1.4;}
+
+.idea-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.2rem;}
+.idea-card{padding:1.1rem;background:var(--bg2);border:1px solid var(--border);}
+.idea-card h4{font-size:.58rem;font-family:'Space Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem;}
+.idea-box{height:72px;background:var(--bg3);border:1px solid var(--border);margin-bottom:.5rem;display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.4rem;}
+.idea-el{flex:1;background:var(--bg);border:1px dashed var(--border);height:52px;display:flex;align-items:center;justify-content:center;font-size:.52rem;font-family:'Space Mono',monospace;color:var(--text3);text-align:center;line-height:1.3;}
+.idea-desc{font-size:.75rem;font-weight:300;color:var(--text2);line-height:1.5;}
+
+.screen-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1.3rem;}
+.screen-grid.t3{grid-template-columns:1fr 1fr 1fr;}
+.hm-gif-grid{display:grid;grid-template-columns:1fr;gap:.8rem;margin-top:1.2rem;}
+.hm-gif-card{border:1px solid var(--border);background:var(--bg2);padding:.5rem;}
+.hm-gif-card img{display:block;width:100%;height:auto;}
+.hm-gif-cap{font-size:.56rem;font-family:'Space Mono',monospace;letter-spacing:.08em;color:var(--text3);text-transform:uppercase;margin-top:.4rem;}
+.proto-wrap{margin-top:1.2rem;border:1px solid var(--border);background:var(--bg2);padding:.5rem;}
+.proto-wrap iframe{display:block;width:100%;height:450px;border:1px solid rgba(0,0,0,0.1);}
+.sc-item{border:1px solid var(--border);overflow:hidden;}
+.sc-lbl{padding:.45rem .7rem;background:var(--bg2);border-bottom:1px solid var(--border);font-size:.57rem;font-family:'Space Mono',monospace;letter-spacing:.07em;color:var(--text3);}
+.sc-inner{background:var(--bg3);padding:.8rem;min-height:110px;display:flex;align-items:center;justify-content:center;}
+.mini{width:100%;background:#0a0d1a;border-radius: 0;overflow:hidden;}
+.mbar{height:14px;background:#07091a;border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:center;gap:.25rem;padding:0 .4rem;}
+.mb{width:5px;height:5px;border-radius: 0;background:rgba(255,255,255,.1);}
+.mbody{padding:.3rem;display:flex;flex-direction:column;gap:2px;}
+.mr{display:flex;gap:2px;height:8px;}
+.mc2{flex:1;border-radius: 0;background:rgba(255,255,255,.06);}
+.mc2-hi{background:rgba(255,255,255,.22);}
+.mc2-md{background:rgba(255,255,255,.12);}
+.mc2-g{background:rgba(74,222,128,.2);}
+.mc2-r{background:rgba(239,68,68,.2);}
+.mc2-a{background:rgba(245,158,11,.2);}
+
+.results{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1.4rem;}
+.res-c{padding:1.4rem;border:1px solid var(--border);text-align:center;}
+.res-num{font-size:2.2rem;font-weight:800;letter-spacing:-.05em;color:var(--text);margin-bottom:.25rem;}
+.res-lbl{font-size:.57rem;font-family:'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);}
+.res-sub{font-size:.72rem;font-weight:300;color:var(--text2);margin-top:.35rem;line-height:1.4;}
+
+.tk-list{display:flex;flex-direction:column;gap:.7rem;margin-top:1.1rem;}
+.tk{display:flex;gap:.9rem;padding:.9rem 1.1rem;border:1px solid var(--border);align-items:flex-start;}
+.tk-n{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--text3);flex-shrink:0;margin-top:.05rem;}
+.tk-t{font-size:.84rem;font-weight:300;line-height:1.65;color:var(--text2);}
+.tk-t strong{color:var(--text);font-weight:500;}
+
+.tag-strip{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.9rem;}
+.cs-tag{font-size:.6rem;padding:.2rem .5rem;border:1px solid var(--neon-line);color:var(--neon);font-family:'Space Mono',monospace;background:var(--neon-soft);box-shadow:0 0 12px var(--neon-soft);}
+
+.cs-next{padding:3.5rem 3rem;max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.next-lbl{font-size:.55rem;font-family:'Space Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--neon);text-shadow:none;}
+.next-title{font-size:1.15rem;font-weight:700;color:var(--text);letter-spacing:-.02em;margin-top:.35rem;}
+.next-link{display:inline-flex;align-items:center;gap:.38rem;font-size:.68rem;font-family:'Space Mono',monospace;color:var(--text2);border-bottom:1px solid var(--border);padding-bottom:.1rem;transition:gap .2s,color .2s;}
+.next-link:hover{gap:.65rem;color:var(--text);}
+hr.rule{border:none;border-top:1px solid var(--rule);margin:0;}
+
+.fi{opacity:0;transform:translateY(20px);transition:opacity .55s,transform .55s;}
+.fi.vis{opacity:1;transform:none;}
+
+.story-board{display:grid;grid-template-columns:1.4fr 1fr;gap:1.2rem;align-items:start;margin-top:2rem;}
+.story-image{margin:0;border:1px solid var(--neon-line);box-shadow:0 0 22px var(--neon-soft);background:var(--bg2);}
+.story-image img{display:block;width:100%;height:auto;}
+.story-caption{font-size:.68rem;font-family:'Space Mono',monospace;letter-spacing:.08em;color:var(--neon);text-align:center;padding:.65rem .8rem;border-top:1px solid var(--neon-line);text-transform:uppercase;text-shadow:0 0 6px var(--neon-soft);}
+.story-copy{border:1px solid var(--neon-line);padding:1.15rem;background:var(--card);box-shadow:0 0 20px var(--neon-soft);}
+.story-copy h3{font-size:1.5rem;line-height:1.2;letter-spacing:-.02em;color:var(--neon);margin-bottom:.8rem;text-shadow:0 0 8px var(--neon-soft),0 0 16px var(--neon-soft);}
+.story-copy .cs-p{margin-bottom:.75rem;}
+.story-copy .cs-p:last-child{margin-bottom:0;}
+.story-slider{margin-top:1.1rem;border:1px solid var(--border);background:var(--bg2);overflow:hidden;}
+.story-slider-stage{position:relative;}
+.story-slider-image{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;}
+.story-slider-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:40px;
+  height:40px;
+  border:1px solid var(--border);
+  background:rgba(0,0,0,.56);
+  color:#fff;
+  font-size:1.2rem;
+  line-height:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+.story-slider-btn:hover{border-color:var(--neon-line);background:rgba(0,0,0,.72);}
+.story-slider-btn.prev{left:.65rem;}
+.story-slider-btn.next{right:.65rem;}
+.story-slider-meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.7rem;
+  border-top:1px solid var(--border);
+  padding:.55rem .75rem;
+}
+.story-slider-caption{
+  font-size:.58rem;
+  font-family:'Space Mono',monospace;
+  letter-spacing:.08em;
+  color:var(--text3);
+  text-transform:uppercase;
+}
+.story-slider-count{
+  font-size:.58rem;
+  font-family:'Space Mono',monospace;
+  letter-spacing:.08em;
+  color:var(--text3);
+}
+.ui-stack{display:flex;flex-direction:column;gap:.85rem;margin-top:1.2rem;}
+.ui-card{
+  border:1px solid var(--border);
+  background:var(--card);
+  display:grid;
+  grid-template-columns:140px 1fr;
+  gap:.8rem;
+  align-items:stretch;
+  overflow:hidden;
+}
+.ui-media img{display:block;width:100%;height:100%;object-fit:cover;}
+.ui-body{padding:.75rem .85rem;}
+.ui-name{font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:.45rem;}
+.ui-copy{font-size:.9rem;line-height:1.7;color:var(--text2);}
+.ui-hi{color:#9a7cff;}
+.ui-card.persona{
+  grid-template-columns:1fr 180px;
+  background:var(--card);
+}
+.ui-card.persona .ui-name,
+.ui-card.persona .ui-copy,
+.ui-card.persona .ui-copy strong{color:var(--text);}
+.ui-points{list-style:none;display:flex;flex-direction:column;gap:.45rem;margin-top:.35rem;}
+.ui-points li{font-size:.86rem;line-height:1.6;display:flex;gap:.45rem;}
+.ui-points li::before{content:'•';color:var(--text3);flex-shrink:0;}
+.pre-problem-visual{
+  margin-top:1.1rem;
+  border:1px solid var(--border);
+  background:var(--bg2);
+  padding:.6rem;
+}
+.pre-problem-stack{
+  display:flex;
+  flex-direction:column;
+  gap:.85rem;
+}
+.pre-problem-visual img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+@media(max-width:760px){
+  nav{padding:0 1.2rem;}
+  .nav-links{display:none;}
+  .avail-badge{display:none;}
+  .resume-modal{padding:.8rem;}
+  .resume-modal-card{height:88vh;}
+  .wrap{padding:0 1.2rem;}
+  .dash-wrap{padding:3rem 1.2rem;}
+  .two,.three,.meta-row,.screen-grid,.screen-grid.t3,.results,.idea-grid,.hm-gif-grid{grid-template-columns:1fr;}
+  .story-board{grid-template-columns:1fr;}
+  .ui-card,.ui-card.persona{grid-template-columns:1fr;}
+  .ui-media img{max-height:210px;}
+  .proto-wrap iframe{height:320px;}
+  .story-slider-btn{
+    width:34px;
+    height:34px;
+    font-size:1.05rem;
+  }
+  .meta-col{border-right:none;border-bottom:1px solid var(--border);}
+  .meta-col:last-child{border-bottom:none;}
+  .proc{grid-template-columns:1fr 1fr;}
+  .cs-next{padding:3rem 1.2rem;}
+}
+
+.music-toggle{
+  position:fixed;
+  bottom:1.25rem;
+  right:1.25rem;
+  z-index:200;
+  width:46px;
+  height:46px;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid var(--border);
+  border-radius:0;
+  background:var(--nav-bg);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  color:var(--text);
+  cursor:pointer;
+  transition:border-color .2s,transform .15s,background .2s,color .2s;
+}
+.music-toggle:hover{border-color:var(--text3);transform:translateY(-2px);}
+.music-toggle:focus-visible{outline:2px solid var(--text);outline-offset:2px;}
+.music-toggle svg{width:20px;height:20px;pointer-events:none;}
+</style>
+</head>
+<body>
+
+<audio id="bgMusic" loop preload="auto" playsinline>
+  <source src="audio/bittersweet-symphony.mp3" type="audio/mpeg"/>
+</audio>
+<button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
+  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
+</button>
+
+<nav>
+  <a href="index.html" class="nav-logo">K<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#keywords">Skills</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="#" data-resume-trigger>Resume</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="avail-badge"><span class="avail-dot"></span>Open to work</div>
+    <button class="toggle" id="themeToggle" aria-label="Toggle theme"></button>
+  </div>
+</nav>
+
+<div class="resume-modal" id="resumeModal" hidden aria-hidden="true">
+  <div class="resume-modal-card" role="dialog" aria-modal="true" aria-label="Resume preview">
+    <div class="resume-modal-head">
+      <span class="resume-modal-title">Resume</span>
+      <button type="button" class="resume-close" id="resumeCloseBtn" aria-label="Close resume popup">×</button>
+    </div>
+    <iframe class="resume-frame" src="kaushik-resume-gd.pdf" title="Kaushik Resume"></iframe>
+  </div>
+</div>
+
+<div class="wrap cs-hero fi">
+  <a href="index.html#projects" class="back-chip">← All Projects</a>
+  <div class="cs-lbl">Case Study · 01</div>
+  <h1 class="cs-h1">Harmoney</h1>
+  <p class="cs-sub">India's first digital B2B bond trading platform — streamlining the trading process for institutions, wealth firms, and brokers through a unified, transparent digital marketplace.</p>
+  <div class="meta-row">
+    <div class="meta-col">
+      <div class="meta-lbl">Role</div>
+      <div class="meta-val">Founding Product Designer</div>
+    </div>
+    <div class="meta-col">
+      <div class="meta-lbl">Timeline</div>
+      <div class="meta-val">May 2022 – Mar 2023</div>
+    </div>
+    <div class="meta-col">
+      <div class="meta-lbl">Type</div>
+      <div class="meta-val">Fulltime · Fintech · B2B</div>
+    </div>
+    <div class="meta-col">
+      <div class="meta-lbl">Skills</div>
+      <div class="meta-val">
+        <span class="role-tag">Product Design</span>
+        <span class="role-tag">UX Research</span>
+        <span class="role-tag">Design Systems</span>
+        <span class="role-tag">Mobile & Desktop</span>
+        <span class="role-tag">User Interviews</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dash-wrap fi">
+  <div class="dash-frame">
+    <div class="dash-titlebar">
+      <div class="win-btn" style="background:#f87171;"></div>
+      <div class="win-btn" style="background:#fbbf24;"></div>
+      <div class="win-btn" style="background:#4ade80;"></div>
+      <span class="dash-url">harmoney.io · Bond Market Dashboard</span>
+    </div>
+    <img class="dash-screen" src="harmoney-screen-1.png" alt="Harmoney dashboard screen"/>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="cs-sec two fi">
+    <div>
+      <div class="sec-lbl">What I Did</div>
+      <p class="cs-p">As the founding product designer, I owned the end-to-end UX from discovery to launch. I mapped the offline trading workflow, defined product structure, designed key screens for web and mobile, and translated complex trading logic into clear interactions.</p>
+      <p class="cs-p">I also built the design foundation from scratch: tokens, reusable components, and handoff specs. Alongside design execution, I worked closely with the CEO, CTO, and engineers on scope decisions, usability feedback, and release QA.</p>
+      <div class="proc">
+        <div class="proc-step"><div class="proc-n">01</div><div class="proc-t">Discovery</div><div class="proc-arr">→</div></div>
+        <div class="proc-step"><div class="proc-n">02</div><div class="proc-t">Research</div><div class="proc-arr">→</div></div>
+        <div class="proc-step"><div class="proc-n">03</div><div class="proc-t">Ideation</div><div class="proc-arr">→</div></div>
+        <div class="proc-step"><div class="proc-n">04</div><div class="proc-t">Design</div><div class="proc-arr">→</div></div>
+        <div class="proc-step"><div class="proc-n">05</div><div class="proc-t">Testing</div></div>
+      </div>
+      <div class="tag-strip">
+        <span class="cs-tag">Design System (from zero)</span><span class="cs-tag">User Interviews</span><span class="cs-tag">Information Architecture</span><span class="cs-tag">Web + Mobile</span><span class="cs-tag">Rapid Iteration</span><span class="cs-tag">Design QA</span>
+      </div>
+    </div>
+    <div>
+      <div class="sec-lbl">Team & Timeline</div>
+      <div class="box" style="margin-bottom:.8rem;">
+        <div class="box-lbl">Team Structure</div>
+        <div class="box-body"><strong>Leadership:</strong> CEO (domain strategy) + CTO (platform architecture)<br/><strong>Design:</strong> Kaushik — Founding Product Designer<br/><strong>Engineering:</strong> Frontend + backend team for trading workflows and infrastructure</div>
+      </div>
+      <div class="box">
+        <div class="box-lbl">Project Phases</div>
+        <div class="box-body"><strong>May – Jul 2022:</strong> Discovery, stakeholder alignment, and research<br/><strong>Aug – Nov 2022:</strong> IA, interaction design, and design system setup<br/><strong>Dec 2022 – Mar 2023:</strong> Prototyping, testing, implementation, and launch support</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-sec fi">
+    <div class="sec-lbl">Story</div>
+    <div class="sec-h">From Listing Site to Trading Platform</div>
+    <p class="cs-p">Harmoney was positioned as a bond listing website, not a digital bond trading engine. The challenge was to evolve it into a product traders could use in their everyday workflow. Since bond traders often depend on four to six screens for different tasks, Harmony aimed to reduce this fragmentation and earn a place as one essential screen in their trading environment.</p>
+    <div class="story-slider" id="storySlider">
+      <div class="story-slider-stage">
+        <img class="story-slider-image" id="storySliderImage" src="story/1.jpg" alt="Harmoney story frame 1"/>
+        <button type="button" class="story-slider-btn prev" id="storyPrev" aria-label="Previous story image">‹</button>
+        <button type="button" class="story-slider-btn next" id="storyNext" aria-label="Next story image">›</button>
+      </div>
+      <div class="story-slider-meta">
+        <div class="story-slider-caption" id="storyCaption">Story 01</div>
+        <div class="story-slider-count" id="storyCount">1 / 12</div>
+      </div>
+    </div>
+    <div class="story-board">
+      <figure class="story-image">
+        <img src="story-website.png" alt="Early Harmoney website for bond search"/>
+        <figcaption class="story-caption">Bond Searching Website</figcaption>
+      </figure>
+      <div class="story-copy">
+        <h3>Understanding the Product</h3>
+        <p class="cs-p">At the beginning, Harmoney primarily worked as an informational bond-search website while actual trading happened offline through calls and manual follow-ups.</p>
+        <p class="cs-p">The goal was to transform Harmoney into a complete digital trading platform where users could discover bonds, compare options, place orders, and track execution in one connected workflow.</p>
+        <p class="cs-p">This storyboard became the alignment tool for design and engineering, helping us prioritize the most critical user flows first.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-sec fi">
+    <div class="sec-lbl">The Problem</div>
+    <div class="sec-h">Bond Trading Was Broken</div>
+    <p class="cs-p">Brokers were still making deals over phone calls. Seriously. They'd call each other, negotiate, hang up, and manually record the deal in a spreadsheet. If prices changed while they were on the call with someone else, they had no way to know. Wealth managers had zero visibility into what bonds were available. It was chaos.</p>
+    <p class="cs-p">The CEO (who came from this industry) knew we could digitize this. But designing for institutional traders is hard — they care about speed and data density, not pretty interfaces.</p>
+    <figure class="story-image" style="margin-top:1.35rem;">
+      <img src="story-understanding.png" alt="Understanding the product and transition from informational website to digital bond trading platform"/>
+      <figcaption class="story-caption">Understanding the Product</figcaption>
+    </figure>
+  </div>
+
+  <div class="cs-sec fi">
+    <div class="sec-lbl">User Research</div>
+    <div class="sec-h">User Interview & User Persona</div>
+    <div class="ui-stack">
+      <article class="ui-card">
+        <figure class="ui-media">
+          <img src="story/nilesh-gaikwad.png" alt="Nilesh Gaikwad active trader interview"/>
+        </figure>
+        <div class="ui-body">
+          <h3 class="ui-name">Nilesh Gaikwad (Active Trader)</h3>
+          <p class="ui-copy">An active trader emphasized <span class="ui-hi">a unified platform for bond data</span>, quick pricing, avoiding missed profitable quotes, and the relationship between faster trades and commission. They highlighted the benefit of <span class="ui-hi">minimizing intermediaries</span>.</p>
+        </div>
+      </article>
+
+      <article class="ui-card">
+        <figure class="ui-media">
+          <img src="story/amol.png" alt="Amol Singh institutional investor interview"/>
+        </figure>
+        <div class="ui-body">
+          <h3 class="ui-name">Amol Singh (Institutional Investor)</h3>
+          <p class="ui-copy">An institutional investor stressed efficient data consolidation, <span class="ui-hi">fast deal closure</span>, quick pricing, and capturing <span class="ui-hi">transparent profitable quotes</span>. They emphasized reducing intermediaries and speeding up processes.</p>
+        </div>
+      </article>
+
+      <article class="ui-card persona">
+        <div class="ui-body">
+          <h3 class="ui-name">Actual Customer Persona</h3>
+          <ul class="ui-points">
+            <li>Knows complete information about the bond market.</li>
+            <li>Needs efficient trade execution to capture profitable opportunities.</li>
+            <li>Needs fewer intermediaries and lower execution delays for better outcomes.</li>
+            <li>Needs one screen with all vital current-market information.</li>
+          </ul>
+        </div>
+        <figure class="ui-media">
+          <img src="story/userpersona.png" alt="Bond trader monitors representing customer persona"/>
+        </figure>
+      </article>
+    </div>
+  </div>
+
+  <div class="fi pre-problem-stack">
+    <figure class="pre-problem-visual">
+      <img src="story/stack-1.png" alt="Existing state and preferred state comparison"/>
+    </figure>
+    <figure class="pre-problem-visual">
+      <img src="story/stack-2.png" alt="Goal: develop an efficient bond trading platform"/>
+    </figure>
+    <figure class="pre-problem-visual">
+      <img src="story/stack-3.png" alt="Understanding the operations flow"/>
+    </figure>
+    <figure class="pre-problem-visual">
+      <img src="story/stack-under-3.png" alt="Clustering the components"/>
+    </figure>
+    <figure class="pre-problem-visual">
+      <img src="story/stack-under-5.png" alt="MVP flow and closed deals workflow"/>
+    </figure>
+    <figure class="pre-problem-visual">
+      <img src="story/stack-under-6.png" alt="Customer feedback summary"/>
+    </figure>
+    <figure class="pre-problem-visual">
+      <img src="story/stack-under-7.png" alt="Version four interface and drawbacks"/>
+    </figure>
+  </div>
+
+  <div class="cs-sec fi">
+    <div class="sec-lbl">Final Design</div>
+    <div class="sec-h">Key Screens & Workflows</div>
+    <p class="cs-p">The final design balances information density with usability — desktop optimized for institutional traders, mobile for quick checks and on-the-go trading.</p>
+    <div class="hm-gif-grid">
+      <figure class="hm-gif-card">
+        <img src="harmoney-gif/hg11.gif" alt="Harmoney workflow demo 1"/>
+        <figcaption class="hm-gif-cap">Flow demo 01: A single screen to trade bonds effortlessly</figcaption>
+      </figure>
+      <figure class="hm-gif-card">
+        <img src="harmoney-gif/hg21.gif" alt="Harmoney workflow demo 2"/>
+        <figcaption class="hm-gif-cap">Flow demo 02: A single screen for Market watch and My order</figcaption>
+      </figure>
+      <figure class="hm-gif-card">
+        <img src="harmoney-gif/hg31.gif" alt="Harmoney workflow demo 3"/>
+        <figcaption class="hm-gif-cap">Flow demo 03: Easy way to edit and trade Bonds</figcaption>
+      </figure>
+    </div>
+    <div class="sec-h" style="margin-top:1.5rem;">Prototype for Exploration</div>
+    <div class="proto-wrap">
+      <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/Sxjxac5MQTL9W86Q713Y1H/Interview-Preperation?node-id=5471-764323&viewport=674%2C221%2C0.73&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=5471%3A764323&page-id=4855%3A112691&show-proto-sidebar=1&embed-host=share" allowfullscreen></iframe>
+    </div>
+    <figure class="hm-gif-card" style="margin-top:.9rem;">
+      <img src="harmoney-gif/group-1000002279.png" alt="Additional Harmoney exploration visual"/>
+    </figure>
+  </div>
+
+  <div class="cs-sec fi">
+    <div class="sec-lbl">What I Learned</div>
+    <div class="sec-h">The Hard Way</div>
+    <p class="cs-p">Working at an early-stage startup as the only designer was brutal. No design manager, no design ops, no safety net. But it taught me things a bigger company never would.</p>
+    <div class="tk-list">
+      <div class="tk"><div class="tk-n">01</div><div class="tk-t"><strong>You have to learn the domain.</strong> I spent weeks learning how bond trading actually works. Not just skimming Wikipedia. Actually understanding what the CEO was building. That's when design decisions stopped being guesses.</div></div>
+      <div class="tk"><div class="tk-n">02</div><div class="tk-t"><strong>Systems matter more than screens.</strong> I couldn't design every state of every component. So I built a system that let the engineers extrapolate. That was more valuable than a perfect Figma file.</div></div>
+      <div class="tk"><div class="tk-n">03</div><div class="tk-t"><strong>Shipping beats perfection.</strong> We launched with "good enough" design. Then I fixed things based on how real traders actually used it. It was messy, but it worked better than if I'd obsessed over perfection for 6 months.</div></div>
+    </div>
+  </div>
+
+</div>
+
+<hr class="rule"/>
+<div class="cs-next">
+  <div>
+    <div class="next-lbl">Other Work</div>
+    <div class="next-title">AssetSprout, Mason App</div>
+  </div>
+  <a href="index.html#projects" class="next-link">Back to All Projects →</a>
+</div>
+
+<script>
+const html = document.documentElement;
+document.getElementById('themeToggle').addEventListener('click', () => {
+  html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+});
+const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('vis'); }), {threshold: 0.08});
+document.querySelectorAll('.fi').forEach(el => io.observe(el));
+
+const bgMusic = document.getElementById('bgMusic');
+const musicToggle = document.getElementById('musicToggle');
+const iconPause = document.getElementById('musicIconPause');
+const iconPlay = document.getElementById('musicIconPlay');
+bgMusic.volume = 0.45;
+const MUSIC_PREF_KEY = 'portfolio_music_paused';
+let userPaused = false;
+try {
+  localStorage.setItem(MUSIC_PREF_KEY, 'false');
+} catch (_) {}
+
+function persistMusicPreference() {
+  try {
+    localStorage.setItem(MUSIC_PREF_KEY, userPaused ? 'true' : 'false');
+  } catch (_) {}
+}
+
+function updateMusicButton(){
+  const playing = !bgMusic.paused;
+  musicToggle.setAttribute('aria-pressed', playing ? 'true' : 'false');
+  musicToggle.setAttribute('aria-label', playing ? 'Pause background music' : 'Play background music');
+  iconPause.hidden = !playing;
+  iconPlay.hidden = playing;
+}
+
+musicToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (bgMusic.paused) {
+    userPaused = false;
+    persistMusicPreference();
+    bgMusic.play().catch(() => {});
+  } else {
+    userPaused = true;
+    persistMusicPreference();
+    bgMusic.pause();
+  }
+  updateMusicButton();
+});
+
+bgMusic.addEventListener('play', updateMusicButton);
+bgMusic.addEventListener('pause', updateMusicButton);
+if (!userPaused) {
+  bgMusic.play().then(() => updateMusicButton()).catch(() => updateMusicButton());
+} else {
+  bgMusic.pause();
+  updateMusicButton();
+}
+
+document.addEventListener('pointerdown', (e) => {
+  if (musicToggle.contains(e.target)) return;
+  if (userPaused) return;
+  if (!userPaused && bgMusic.paused) bgMusic.play().catch(() => {});
+}, { once: true });
+
+const storyImages = Array.from({ length: 12 }, (_, i) => ({
+  src: `story/${i + 1}.jpg`,
+  alt: `Harmoney story frame ${i + 1}`,
+  caption: `Story ${String(i + 1).padStart(2, '0')}`
+}));
+let storyIndex = 0;
+const storySliderImage = document.getElementById('storySliderImage');
+const storyCaption = document.getElementById('storyCaption');
+const storyCount = document.getElementById('storyCount');
+const storyPrev = document.getElementById('storyPrev');
+const storyNext = document.getElementById('storyNext');
+const storySlider = document.getElementById('storySlider');
+
+function renderStorySlide() {
+  const slide = storyImages[storyIndex];
+  storySliderImage.src = slide.src;
+  storySliderImage.alt = slide.alt;
+  storyCaption.textContent = slide.caption;
+  storyCount.textContent = `${storyIndex + 1} / ${storyImages.length}`;
+}
+
+function goStory(direction) {
+  storyIndex = (storyIndex + direction + storyImages.length) % storyImages.length;
+  renderStorySlide();
+}
+
+storyPrev.addEventListener('click', () => goStory(-1));
+storyNext.addEventListener('click', () => goStory(1));
+
+storySlider.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft') goStory(-1);
+  if (e.key === 'ArrowRight') goStory(1);
+});
+
+storySlider.setAttribute('tabindex', '0');
+renderStorySlide();
+
+const resumeModal = document.getElementById('resumeModal');
+const resumeCloseBtn = document.getElementById('resumeCloseBtn');
+const resumeTriggers = document.querySelectorAll('[data-resume-trigger]');
+
+function openResumeModal(event) {
+  event.preventDefault();
+  resumeModal.hidden = false;
+  resumeModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeResumeModal() {
+  resumeModal.hidden = true;
+  resumeModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+resumeTriggers.forEach((trigger) => trigger.addEventListener('click', openResumeModal));
+resumeCloseBtn.addEventListener('click', closeResumeModal);
+resumeModal.addEventListener('click', (event) => {
+  if (event.target === resumeModal) closeResumeModal();
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && !resumeModal.hidden) closeResumeModal();
+});
+</script>
+</body>
+</html>
