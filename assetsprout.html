@@ -281,15 +281,30 @@ const iconPause = document.getElementById('musicIconPause');
 const iconPlay = document.getElementById('musicIconPlay');
 bgMusic.volume = 0.45;
 const MUSIC_PREF_KEY = 'portfolio_music_paused';
+const MUSIC_TIME_KEY = 'portfolio_music_time';
 let userPaused = false;
+let lastSavedAt = 0;
 try {
   localStorage.setItem(MUSIC_PREF_KEY, 'false');
+  userPaused = false;
+  const savedTime = parseFloat(localStorage.getItem(MUSIC_TIME_KEY) || '0');
+  if (Number.isFinite(savedTime) && savedTime > 0) {
+    bgMusic.currentTime = savedTime;
+  }
 } catch (_) {}
 
-function persistMusicPreference() {
+function persistMusicState() {
   try {
     localStorage.setItem(MUSIC_PREF_KEY, userPaused ? 'true' : 'false');
+    localStorage.setItem(MUSIC_TIME_KEY, String(bgMusic.currentTime || 0));
+    lastSavedAt = Date.now();
   } catch (_) {}
+}
+
+function maybePersistPlaybackTime() {
+  const now = Date.now();
+  if (now - lastSavedAt < 1000) return;
+  persistMusicState();
 }
 
 function updateMusicButton(){
@@ -304,24 +319,38 @@ musicToggle.addEventListener('click', (e) => {
   e.stopPropagation();
   if (bgMusic.paused) {
     userPaused = false;
-    persistMusicPreference();
     bgMusic.play().catch(() => {});
   } else {
     userPaused = true;
-    persistMusicPreference();
     bgMusic.pause();
   }
+  persistMusicState();
   updateMusicButton();
 });
 
-bgMusic.addEventListener('play', updateMusicButton);
-bgMusic.addEventListener('pause', updateMusicButton);
-if (!userPaused) {
-  bgMusic.play().then(() => updateMusicButton()).catch(() => updateMusicButton());
-} else {
-  bgMusic.pause();
+bgMusic.addEventListener('play', () => {
   updateMusicButton();
+  persistMusicState();
+});
+bgMusic.addEventListener('pause', () => {
+  updateMusicButton();
+  persistMusicState();
+});
+bgMusic.addEventListener('timeupdate', () => {
+  if (!bgMusic.paused && !userPaused) maybePersistPlaybackTime();
+});
+window.addEventListener('pagehide', persistMusicState);
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') persistMusicState();
+});
+function tryAutoPlay() {
+  if (userPaused) return;
+  bgMusic.play().then(() => updateMusicButton()).catch(() => updateMusicButton());
 }
+
+tryAutoPlay();
+window.addEventListener('pageshow', tryAutoPlay);
+window.addEventListener('focus', tryAutoPlay);
 
 document.addEventListener('pointerdown', (e) => {
   if (musicToggle.contains(e.target)) return;

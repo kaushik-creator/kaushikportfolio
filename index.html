@@ -474,6 +474,10 @@ nav {
   line-height: 1.3;
   font-family: 'Space Mono', monospace;
 }
+[data-theme="light"] .hero-img-deco .num,
+[data-theme="light"] .hero-img-deco .lbl {
+  color: #ffffff;
+}
 .marquee-wrap {
   overflow: hidden;
   border-top: 1px solid var(--border);
@@ -662,6 +666,13 @@ section { padding: 7rem 3rem; }
 .exp-group-label {
   position: relative;
   padding: 0 0 1.2rem 2.5rem;
+}
+.exp-group-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
 }
 .exp-group-label::before {
   content: '';
@@ -856,6 +867,9 @@ section { padding: 7rem 3rem; }
   text-decoration: none;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 380px;
+  justify-self: center;
 }
 .proj-card:hover {
   transform: translateY(-6px);
@@ -1089,6 +1103,7 @@ footer {
 @media (max-width: 480px) {
   .hero-name { font-size: 2.5rem; }
   .proj-grid { grid-template-columns: 1fr; }
+  .proj-card { max-width: none; }
 }
 
 .music-toggle {
@@ -1333,7 +1348,7 @@ footer {
       <div class="exp-item">
         <div class="exp-dot"></div>
         <div class="exp-header">
-          <div class="exp-company">Druva <span style="font-size:0.85rem;color:var(--text3);font-weight:400;">— Data backup &amp; cybersecurity</span><a class="exp-go" href="https://www.druva.com/" target="_blank" rel="noopener noreferrer" aria-label="Open Druva website" title="Go to website">↗</a></div>
+          <div class="exp-company">Druva <span style="font-size:0.85rem;color:var(--text3);font-weight:400;">— Data Backup &amp; Cybersecurity</span><a class="exp-go" href="https://www.druva.com/" target="_blank" rel="noopener noreferrer" aria-label="Open Druva website" title="Go to website">↗</a></div>
           <div class="exp-meta">
             <div class="exp-period">July 2024 – Present</div>
             <span class="exp-type fulltime">Fulltime</span>
@@ -1342,7 +1357,7 @@ footer {
         <div class="exp-role">UX Designer</div>
         <ul class="exp-points">
           <li>Redesigned enterprise dashboards for security and backup admins, focusing on clarity, anomaly detection, and system health insights across multi-tenant environments.</li>
-          <li>Improved migration, and cross-product experiences for Druva's enterprise backup.</li>
+          <li>Improved migration and cross-product experiences for Druva's enterprise backup platform.</li>
           <li>Simplified journeys for managed and Druva-provisioned customer models, supporting clearer adoption and ecosystem growth.</li>
           <li>Contributed to a new education-focused licensing model that made it easier for schools and universities to onboard Druva.</li>
         </ul>
@@ -1354,7 +1369,10 @@ footer {
       </div>
 
       <div class="exp-group-label">
-        <div class="exp-group-title">Freelancing</div>
+        <div class="exp-group-head">
+          <div class="exp-group-title">Freelancing</div>
+          <div class="exp-period">May 2023 – May 2024</div>
+        </div>
       </div>
 
       <div class="exp-item">
@@ -1362,15 +1380,14 @@ footer {
         <div class="exp-header">
           <div class="exp-company">AssetSprout <span style="font-size:0.85rem;color:var(--text3);font-weight:400;">— Wealth Management</span><span class="exp-go exp-go-disabled" role="img" aria-label="Operations closed" title="Operations closed" tabindex="0">↗</span></div>
           <div class="exp-meta">
-            <div class="exp-period">May 2023 – April 2024</div>
             <span class="exp-type contract">Contract</span>
           </div>
         </div>
-        <div class="exp-role">product Designer on Contract</div>
+        <div class="exp-role">Product Designer on Contract</div>
         <ul class="exp-points">
-          <li>Designed and Improvised a AssetSprout, which is a US-based SaaS Fintech platform from MVP to a Production ready.</li>
-          <li>Designed and Delivered Mockups to facilitate better financial decision-making, bill generation, and report creation for financial advisors by conducting extensive user research and usability testing.</li>
-          <li>Conducted user interviews and competitive analysis to inform the design of a Dashboard displaying essential performance indices.</li>
+          <li>Designed and improved AssetSprout, a US-based SaaS fintech platform, from MVP to production-ready.</li>
+          <li>Designed and delivered mockups to support better financial decision-making, bill generation, and report creation for financial advisors through extensive user research and usability testing.</li>
+          <li>Conducted user interviews and competitive analysis to inform the design of a dashboard displaying essential performance indices.</li>
         </ul>
         <div class="exp-tools">
           <span class="exp-tool-tag">Figma</span>
@@ -1382,16 +1399,15 @@ footer {
       <div class="exp-item">
         <div class="exp-dot"></div>
         <div class="exp-header">
-          <div class="exp-company">Project Associate IIT Kanpur <span style="font-size:0.85rem;color:var(--text3);font-weight:400;">— HMI Designer</span></div>
+          <div class="exp-company">IIT Kanpur <span style="font-size:0.85rem;color:var(--text3);font-weight:400;">— HMI Designer</span></div>
           <div class="exp-meta">
-            <div class="exp-period">Sep 2023 – Oct 2023</div>
             <span class="exp-type contract">Contract</span>
           </div>
         </div>
         <div class="exp-role">Project Associate IIT Kanpur (HMI Designer)</div>
         <ul class="exp-points">
-          <li>Conducted on-site research through user interviews and site visits to design interfaces for Autonomous Vehicle.</li>
-          <li>Created feature list by conducting user and stakeholder workshops, distilling insights into features and user stories.</li>
+          <li>Conducted on-site research through user interviews and site visits to design interfaces for autonomous vehicles.</li>
+          <li>Created a feature list through user and stakeholder workshops, distilling insights into features and user stories.</li>
         </ul>
         <div class="exp-tools">
           <span class="exp-tool-tag">User Research</span>
@@ -1409,11 +1425,11 @@ footer {
             <span class="exp-type fulltime">Fulltime</span>
           </div>
         </div>
-        <div class="exp-role">Founding product Designer</div>
+        <div class="exp-role">Founding Product Designer</div>
         <ul class="exp-points">
-          <li>Set up design processes including design systems for both Mobile ad Desktop facilitating seamless matching and closure of orders for a Bond traders.</li>
-          <li>Implemented strategic design changes to deliver excellent product for Bond traders by conducting user testing and Interviews resulted in a significant increase in monthly traded volume 6x times.</li>
-          <li>Collaborated with Product managers, engineers and business teams to align the product with company goals.</li>
+          <li>Set up design processes, including design systems for both mobile and desktop, facilitating seamless matching and closure of orders for bond traders.</li>
+          <li>Implemented strategic design changes through user testing and interviews, resulting in a significant 6x increase in monthly traded volume.</li>
+          <li>Collaborated with product managers, engineers, and business teams to align the product with company goals.</li>
         </ul>
         <div class="exp-tools">
           <span class="exp-tool-tag">Figma</span>
@@ -1431,11 +1447,11 @@ footer {
             <span class="exp-type fulltime">Fulltime</span>
           </div>
         </div>
-        <div class="exp-role">product Designer</div>
+        <div class="exp-role">Product Designer</div>
         <ul class="exp-points">
-          <li>Contributed Redesign of ModeMagic app experience which helped in achieving 8x weekly active user. (which helped in winning Shopify Commerce Awards: Best app user interface.)</li>
-          <li>Created flows and Interface for automations which helps e-commerce to scale their customers.</li>
-          <li>Conducted research by doing competitive analysis to create a best onboarding experience and guide to perform their task.</li>
+          <li>Contributed to the redesign of the ModeMagic app experience, helping achieve 8x weekly active users and supporting a Shopify Commerce Award win for Best App User Interface.</li>
+          <li>Created flows and interfaces for automations that helped e-commerce teams scale customer operations.</li>
+          <li>Conducted research and competitive analysis to create a better onboarding experience and guide users through key tasks.</li>
         </ul>
         <div class="exp-tools">
           <span class="exp-tool-tag">Figma</span>
@@ -1472,6 +1488,20 @@ footer {
           <div class="proj-metrics">
             <div class="proj-metric"><span class="m-val">UX</span><span class="m-lbl">Enterprise Flows</span></div>
             <div class="proj-metric"><span class="m-val">B2B</span><span class="m-lbl">Platform Design</span></div>
+          </div>
+        </div>
+      </a>
+      <a href="msc-dashboard.html" class="proj-card" data-project-type="professional">
+        <div class="proj-thumb proj-thumb-dr">
+          <img class="proj-thumb-logo" src="druva-logo.png" alt="Druva logo"/>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">Cybersecurity · Dashboard · Enterprise</div>
+          <div class="proj-title">MSC Operational Dashboard</div>
+          <div class="proj-desc">Designed a new home screen for Druva's MSP partners — backup failures, storage, licenses, and security risks across all customers at once.</div>
+          <div class="proj-metrics">
+            <div class="proj-metric"><span class="m-val">MSP</span><span class="m-lbl">Multi-customer</span></div>
+            <div class="proj-metric"><span class="m-val">0→1</span><span class="m-lbl">Dashboard</span></div>
           </div>
         </div>
       </a>
@@ -1607,15 +1637,31 @@ const iconPause = document.getElementById('musicIconPause');
 const iconPlay = document.getElementById('musicIconPlay');
 bgMusic.volume = 0.45;
 const MUSIC_PREF_KEY = 'portfolio_music_paused';
+const MUSIC_TIME_KEY = 'portfolio_music_time';
 let userPaused = false;
+let lastSavedAt = 0;
+
 try {
   localStorage.setItem(MUSIC_PREF_KEY, 'false');
+  userPaused = false;
+  const savedTime = parseFloat(localStorage.getItem(MUSIC_TIME_KEY) || '0');
+  if (Number.isFinite(savedTime) && savedTime > 0) {
+    bgMusic.currentTime = savedTime;
+  }
 } catch (_) {}
 
-function persistMusicPreference() {
+function persistMusicState() {
   try {
     localStorage.setItem(MUSIC_PREF_KEY, userPaused ? 'true' : 'false');
+    localStorage.setItem(MUSIC_TIME_KEY, String(bgMusic.currentTime || 0));
+    lastSavedAt = Date.now();
   } catch (_) {}
+}
+
+function maybePersistPlaybackTime() {
+  const now = Date.now();
+  if (now - lastSavedAt < 1000) return;
+  persistMusicState();
 }
 
 function updateMusicButton() {
@@ -1630,24 +1676,38 @@ musicToggle.addEventListener('click', (e) => {
   e.stopPropagation();
   if (bgMusic.paused) {
     userPaused = false;
-    persistMusicPreference();
     bgMusic.play().catch(() => {});
   } else {
     userPaused = true;
-    persistMusicPreference();
     bgMusic.pause();
   }
+  persistMusicState();
   updateMusicButton();
 });
 
-bgMusic.addEventListener('play', updateMusicButton);
-bgMusic.addEventListener('pause', updateMusicButton);
-if (!userPaused) {
-  bgMusic.play().then(() => updateMusicButton()).catch(() => updateMusicButton());
-} else {
-  bgMusic.pause();
+bgMusic.addEventListener('play', () => {
   updateMusicButton();
+  persistMusicState();
+});
+bgMusic.addEventListener('pause', () => {
+  updateMusicButton();
+  persistMusicState();
+});
+bgMusic.addEventListener('timeupdate', () => {
+  if (!bgMusic.paused && !userPaused) maybePersistPlaybackTime();
+});
+window.addEventListener('pagehide', persistMusicState);
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') persistMusicState();
+});
+function tryAutoPlay() {
+  if (userPaused) return;
+  bgMusic.play().then(() => updateMusicButton()).catch(() => updateMusicButton());
 }
+
+tryAutoPlay();
+window.addEventListener('pageshow', tryAutoPlay);
+window.addEventListener('focus', tryAutoPlay);
 
 document.addEventListener(
   'pointerdown',

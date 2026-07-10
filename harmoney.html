@@ -424,13 +424,9 @@ hr.rule{border:none;border-top:1px solid var(--rule);margin:0;}
     </div>
     <div>
       <div class="sec-lbl">Team & Timeline</div>
-      <div class="box" style="margin-bottom:.8rem;">
+      <div class="box">
         <div class="box-lbl">Team Structure</div>
         <div class="box-body"><strong>Leadership:</strong> CEO (domain strategy) + CTO (platform architecture)<br/><strong>Design:</strong> Kaushik — Founding Product Designer<br/><strong>Engineering:</strong> Frontend + backend team for trading workflows and infrastructure</div>
-      </div>
-      <div class="box">
-        <div class="box-lbl">Project Phases</div>
-        <div class="box-body"><strong>May – Jul 2022:</strong> Discovery, stakeholder alignment, and research<br/><strong>Aug – Nov 2022:</strong> IA, interaction design, and design system setup<br/><strong>Dec 2022 – Mar 2023:</strong> Prototyping, testing, implementation, and launch support</div>
       </div>
     </div>
   </div>
@@ -438,7 +434,7 @@ hr.rule{border:none;border-top:1px solid var(--rule);margin:0;}
   <div class="cs-sec fi">
     <div class="sec-lbl">Story</div>
     <div class="sec-h">From Listing Site to Trading Platform</div>
-    <p class="cs-p">Harmoney was positioned as a bond listing website, not a digital bond trading engine. The challenge was to evolve it into a product traders could use in their everyday workflow. Since bond traders often depend on four to six screens for different tasks, Harmony aimed to reduce this fragmentation and earn a place as one essential screen in their trading environment.</p>
+    <p class="cs-p">Harmoney was positioned as a bond listing website, not a digital bond trading engine. The challenge was to evolve it into a product traders could use in their everyday workflow. Since bond traders often depend on four to six screens for different tasks, Harmoney aimed to reduce this fragmentation and earn a place as one essential screen in their trading environment.</p>
     <div class="story-slider" id="storySlider">
       <div class="story-slider-stage">
         <img class="story-slider-image" id="storySliderImage" src="story/1.jpg" alt="Harmoney story frame 1"/>
@@ -551,11 +547,11 @@ hr.rule{border:none;border-top:1px solid var(--rule);margin:0;}
       </figure>
       <figure class="hm-gif-card">
         <img src="harmoney-gif/hg21.gif" alt="Harmoney workflow demo 2"/>
-        <figcaption class="hm-gif-cap">Flow demo 02: A single screen for Market watch and My order</figcaption>
+        <figcaption class="hm-gif-cap">Flow Demo 02: A single screen for Market Watch and My Orders</figcaption>
       </figure>
       <figure class="hm-gif-card">
         <img src="harmoney-gif/hg31.gif" alt="Harmoney workflow demo 3"/>
-        <figcaption class="hm-gif-cap">Flow demo 03: Easy way to edit and trade Bonds</figcaption>
+        <figcaption class="hm-gif-cap">Flow Demo 03: Easy way to edit and trade bonds</figcaption>
       </figure>
     </div>
     <div class="sec-h" style="margin-top:1.5rem;">Prototype for Exploration</div>
@@ -603,15 +599,30 @@ const iconPause = document.getElementById('musicIconPause');
 const iconPlay = document.getElementById('musicIconPlay');
 bgMusic.volume = 0.45;
 const MUSIC_PREF_KEY = 'portfolio_music_paused';
+const MUSIC_TIME_KEY = 'portfolio_music_time';
 let userPaused = false;
+let lastSavedAt = 0;
 try {
   localStorage.setItem(MUSIC_PREF_KEY, 'false');
+  userPaused = false;
+  const savedTime = parseFloat(localStorage.getItem(MUSIC_TIME_KEY) || '0');
+  if (Number.isFinite(savedTime) && savedTime > 0) {
+    bgMusic.currentTime = savedTime;
+  }
 } catch (_) {}
 
-function persistMusicPreference() {
+function persistMusicState() {
   try {
     localStorage.setItem(MUSIC_PREF_KEY, userPaused ? 'true' : 'false');
+    localStorage.setItem(MUSIC_TIME_KEY, String(bgMusic.currentTime || 0));
+    lastSavedAt = Date.now();
   } catch (_) {}
+}
+
+function maybePersistPlaybackTime() {
+  const now = Date.now();
+  if (now - lastSavedAt < 1000) return;
+  persistMusicState();
 }
 
 function updateMusicButton(){
@@ -626,24 +637,38 @@ musicToggle.addEventListener('click', (e) => {
   e.stopPropagation();
   if (bgMusic.paused) {
     userPaused = false;
-    persistMusicPreference();
     bgMusic.play().catch(() => {});
   } else {
     userPaused = true;
-    persistMusicPreference();
     bgMusic.pause();
   }
+  persistMusicState();
   updateMusicButton();
 });
 
-bgMusic.addEventListener('play', updateMusicButton);
-bgMusic.addEventListener('pause', updateMusicButton);
-if (!userPaused) {
-  bgMusic.play().then(() => updateMusicButton()).catch(() => updateMusicButton());
-} else {
-  bgMusic.pause();
+bgMusic.addEventListener('play', () => {
   updateMusicButton();
+  persistMusicState();
+});
+bgMusic.addEventListener('pause', () => {
+  updateMusicButton();
+  persistMusicState();
+});
+bgMusic.addEventListener('timeupdate', () => {
+  if (!bgMusic.paused && !userPaused) maybePersistPlaybackTime();
+});
+window.addEventListener('pagehide', persistMusicState);
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') persistMusicState();
+});
+function tryAutoPlay() {
+  if (userPaused) return;
+  bgMusic.play().then(() => updateMusicButton()).catch(() => updateMusicButton());
 }
+
+tryAutoPlay();
+window.addEventListener('pageshow', tryAutoPlay);
+window.addEventListener('focus', tryAutoPlay);
 
 document.addEventListener('pointerdown', (e) => {
   if (musicToggle.contains(e.target)) return;

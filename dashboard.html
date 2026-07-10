@@ -34,6 +34,29 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .toggle{width:38px;height:20px;border-radius:0;background:var(--bg2);border:1px solid var(--border);cursor:pointer;position:relative;}
 .toggle::after{content:'';position:absolute;top:3px;left:3px;width:12px;height:12px;background:var(--text);transition:transform .3s;}
 [data-theme="light"] .toggle::after{transform:translateX(18px);}
+.music-toggle{
+  position:fixed;
+  bottom:1.25rem;
+  right:1.25rem;
+  z-index:200;
+  width:46px;
+  height:46px;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid var(--border);
+  border-radius:0;
+  background:var(--nav-bg);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  color:var(--text);
+  cursor:pointer;
+  transition:border-color .2s,transform .15s,background .2s,color .2s;
+}
+.music-toggle:hover{border-color:var(--text3);transform:translateY(-2px);}
+.music-toggle:focus-visible{outline:2px solid var(--text);outline-offset:2px;}
+.music-toggle svg{width:20px;height:20px;pointer-events:none;}
 .wrap{max-width:1280px;margin:0 auto;padding:5rem 1.25rem 2rem;}
 .title{font-size:1.45rem;font-weight:700;margin-bottom:1rem;}
 .slider{border:1px solid var(--border);background:var(--bg2);padding:.7rem;}
@@ -58,6 +81,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 </style>
 </head>
 <body>
+<audio id="bgMusic" loop preload="auto" playsinline>
+  <source src="audio/bittersweet-symphony.mp3" type="audio/mpeg"/>
+</audio>
+<button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
+  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
+</button>
 <nav>
   <a href="index.html" class="nav-logo">K<span>.</span></a>
   <ul class="nav-links">
@@ -103,6 +133,88 @@ const html = document.documentElement;
 document.getElementById('themeToggle').addEventListener('click', () => {
   html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
 });
+
+const bgMusic = document.getElementById('bgMusic');
+const musicToggle = document.getElementById('musicToggle');
+const iconPause = document.getElementById('musicIconPause');
+const iconPlay = document.getElementById('musicIconPlay');
+bgMusic.volume = 0.45;
+const MUSIC_PREF_KEY = 'portfolio_music_paused';
+const MUSIC_TIME_KEY = 'portfolio_music_time';
+let userPaused = false;
+let lastSavedAt = 0;
+
+try {
+  localStorage.setItem(MUSIC_PREF_KEY, 'false');
+  userPaused = false;
+  const savedTime = parseFloat(localStorage.getItem(MUSIC_TIME_KEY) || '0');
+  if (Number.isFinite(savedTime) && savedTime > 0) {
+    bgMusic.currentTime = savedTime;
+  }
+} catch (_) {}
+
+function persistMusicState() {
+  try {
+    localStorage.setItem(MUSIC_PREF_KEY, userPaused ? 'true' : 'false');
+    localStorage.setItem(MUSIC_TIME_KEY, String(bgMusic.currentTime || 0));
+    lastSavedAt = Date.now();
+  } catch (_) {}
+}
+
+function maybePersistPlaybackTime() {
+  const now = Date.now();
+  if (now - lastSavedAt < 1000) return;
+  persistMusicState();
+}
+
+function updateMusicButton() {
+  const playing = !bgMusic.paused;
+  musicToggle.setAttribute('aria-pressed', playing ? 'true' : 'false');
+  musicToggle.setAttribute('aria-label', playing ? 'Pause background music' : 'Play background music');
+  iconPause.hidden = !playing;
+  iconPlay.hidden = playing;
+}
+
+musicToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (bgMusic.paused) {
+    userPaused = false;
+    bgMusic.play().catch(() => {});
+  } else {
+    userPaused = true;
+    bgMusic.pause();
+  }
+  persistMusicState();
+  updateMusicButton();
+});
+
+bgMusic.addEventListener('play', () => {
+  updateMusicButton();
+  persistMusicState();
+});
+bgMusic.addEventListener('pause', () => {
+  updateMusicButton();
+  persistMusicState();
+});
+bgMusic.addEventListener('timeupdate', () => {
+  if (!bgMusic.paused && !userPaused) maybePersistPlaybackTime();
+});
+window.addEventListener('pagehide', persistMusicState);
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') persistMusicState();
+});
+function tryAutoPlay() {
+  if (userPaused) return;
+  bgMusic.play().then(() => updateMusicButton()).catch(() => updateMusicButton());
+}
+tryAutoPlay();
+window.addEventListener('pageshow', tryAutoPlay);
+window.addEventListener('focus', tryAutoPlay);
+document.addEventListener('pointerdown', (e) => {
+  if (musicToggle.contains(e.target)) return;
+  if (userPaused) return;
+  if (bgMusic.paused) bgMusic.play().catch(() => {});
+}, { once: true });
 
 const images = Array.from({ length: 55 }, (_, i) => `dashboard-images/${i + 1}.jpg`);
 let current = 0;

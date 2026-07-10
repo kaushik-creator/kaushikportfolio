@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="Druva Case Study - Product & UX Design"/>
-<meta property="og:title" content="Druva — Case Study · Kaushik"/>
-<meta property="og:description" content="Designing onboarding, handoff, and provisioning experiences for Druva, MSPs, and customers."/>
-<title>Druva — Case Study · Kaushik</title>
+<meta name="description" content="MSC Operational Dashboard Case Study - Product & UX Design"/>
+<meta property="og:title" content="MSC Operational Dashboard — Case Study · Kaushik"/>
+<meta property="og:description" content="Designing a new home screen for Druva's MSP partners — backup problems, storage, licenses, and security risks across all customers at once."/>
+<title>MSC Operational Dashboard — Case Study · Kaushik</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -67,9 +67,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .persona-col li{margin-bottom:.35rem;line-height:1.65;font-size:.95rem;}
 .row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 .soft{background:var(--bg2);}
-.mini-card{border:1px solid var(--border);background:var(--card);padding:.8rem .9rem;}
-.mini-card h5{font-size:1.15rem;margin-bottom:.35rem;}
-.mini-card p{color:var(--text2);line-height:1.55;}
 .orange{color:#f5a623;}
 .list{margin-left:1.2rem;color:var(--text2);}
 .list li{margin-bottom:.45rem;line-height:1.7;}
@@ -79,32 +76,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .usecase-table th{font-size:1.35rem;font-weight:700;color:var(--text);}
 .usecase-table td{font-size:.98rem;line-height:1.7;color:var(--text2);}
 .usecase-rowhead{white-space:nowrap;font-weight:700;color:var(--text);font-size:1.1rem;}
-.sample-title{font-size:1.95rem;font-weight:800;color:#f5a623;letter-spacing:-.01em;margin-bottom:.7rem;}
-.sample-grid{display:grid;grid-template-columns:1fr;gap:.9rem;}
-.sample-card{border:1px solid var(--border);background:var(--bg2);padding:.45rem;}
-.sample-card img{display:block;width:100%;height:auto;}
-.nda-card{
-  border:1px solid var(--border);
-  background:var(--bg2);
-  padding:1rem 1.1rem;
-}
-.nda-title{
-  font-size:1.25rem;
-  font-weight:700;
-  margin-bottom:.45rem;
-}
-.nda-copy{
-  color:var(--text2);
-  line-height:1.75;
-}
-.nda-copy a{
-  color:#3b82f6;
-  border-bottom:1px solid rgba(59,130,246,.45);
-}
-.nda-copy a:hover{
-  color:#60a5fa;
-  border-bottom-color:rgba(96,165,250,.6);
-}
+.nda-card{border:1px solid var(--border);background:var(--bg2);padding:1rem 1.1rem;}
+.nda-title{font-size:1.25rem;font-weight:700;margin-bottom:.45rem;}
+.nda-copy{color:var(--text2);line-height:1.75;}
 .fi{opacity:0;transform:translateY(18px);transition:opacity .55s,transform .55s;}
 .fi.vis{opacity:1;transform:none;}
 .music-toggle{position:fixed;bottom:1.25rem;right:1.25rem;z-index:200;width:46px;height:46px;border:1px solid var(--border);background:var(--nav-bg);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;}
@@ -157,13 +131,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 
 <div class="wrap hero fi">
   <a href="index.html#projects" class="back-chip">← All Projects</a>
-  <div class="cs-lbl">Case Study · 00</div>
-  <h1 class="cs-h1">Druva</h1>
-  <p class="cs-sub">Designing handoff, licensing, and role-specific workflows between Druva, MSP partners, and end customers while improving privacy, provisioning clarity, and operational scale.</p>
+  <div class="cs-lbl">Case Study · 01</div>
+  <h1 class="cs-h1">MSC Operational Dashboard</h1>
+  <p class="cs-sub">Designing a new home screen for Druva's MSP partners — one page that shows backup problems, storage usage, expiring licenses, customer status, and security risks across all their customers at once, instead of making them check each customer one by one.</p>
   <div class="meta">
-    <div class="meta-c"><div class="meta-l">Role</div><div class="meta-v">UX Designer</div></div>
+    <div class="meta-c"><div class="meta-l">Role</div><div class="meta-v">UX/UI Designer</div></div>
     <div class="meta-c"><div class="meta-l">Domain</div><div class="meta-v">Data Backup & Cybersecurity</div></div>
-    <div class="meta-c"><div class="meta-l">Focus</div><div class="meta-v">Onboarding, Handoff, Provisioning</div></div>
+    <div class="meta-c"><div class="meta-l">Focus</div><div class="meta-v">Dashboards, Multi-customer Visibility, Monitoring</div></div>
     <div class="meta-c"><div class="meta-l">Type</div><div class="meta-v">Enterprise · B2B</div></div>
   </div>
 </div>
@@ -174,15 +148,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
     <div class="grid-3">
       <div class="panel">
         <h3>What is Druva?</h3>
-        <p>Druva is a cloud-native backup and data security platform that helps businesses protect, manage, and recover data across endpoints, SaaS apps, data centers, and cloud workloads.</p>
+        <p>Druva is a cloud backup and data security company. It helps businesses back up and protect their data across laptops, apps, and cloud systems.</p>
       </div>
       <div class="panel">
-        <h3>What is MSP?</h3>
-        <p>MSPs are Druva’s service partners. They are partner companies that use Druva to manage their customers.</p>
+        <h3>What is MSC?</h3>
+        <p>MSC (Managed Services Center) is Druva's portal for partner companies (MSPs) that manage backups for many customers at once, all from a single login.</p>
       </div>
       <div class="panel">
         <h3>What is this project about?</h3>
-        <p>The project focused on creating a smooth handoff between Druva and MSPs. Druva handled the initial setup, and MSPs took over customer management after that.</p>
+        <p>Before this, MSP partners logged in and saw a plain table with no useful information. This project replaced that with a real dashboard — one screen that shows what needs attention right now, across every customer they manage.</p>
       </div>
     </div>
   </section>
@@ -196,41 +170,41 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
           <li>Product Owners</li>
           <li>Product Manager</li>
           <li>Internal Support Team</li>
-          <li>Product Designer (my role)</li>
+          <li>Product Designer (my role — I was the only designer, guided by senior designers)</li>
           <li>Front-end & Back-end Developers</li>
         </ul>
       </div>
       <div class="panel">
         <h3>Project Timeline</h3>
-        <p class="sec-p" style="max-width:none;">Feb - August 2021 (September Launch)</p>
+        <p class="sec-p" style="max-width:none;">Design is complete. Moving into development next.</p>
       </div>
     </div>
   </section>
 
   <section class="sec fi persona-wrap">
-    <div class="persona-title">Persona 1 : MSC Partners</div>
+    <div class="persona-title">Persona: MSP Admin</div>
     <div class="persona-grid">
       <div class="persona-col">
-        <h4>Who They are</h4>
-        <p>A partner-side operations admin who manages multiple customer accounts through Druva’s partner dashboard.</p>
+        <h4>Who they are</h4>
+        <p>The person who manages backups, customer accounts, and security for the MSP, across every customer they support — all from one login.</p>
       </div>
       <div class="persona-col">
         <h4>What they do</h4>
         <ul>
-          <li>Set up new customers</li>
-          <li>Assign products and licenses</li>
-          <li>Manage backup and restore operations</li>
-          <li>Monitor reports and usage</li>
-          <li>Control customer access and operational setup</li>
+          <li>Checks which customers had backup failures and fixes them</li>
+          <li>Watches for missed SLAs and storage limits across all clients</li>
+          <li>Tracks storage and usage trends to catch problems early, like a customer suddenly using way more storage than usual</li>
+          <li>Keeps an eye on which contracts or trials are about to expire, and which customers are still "active" but shouldn't be</li>
+          <li>Looks for customers who don't have security add-ons, as a chance to sell more</li>
+          <li>Checks their own admin accounts and API keys for anything outdated or risky</li>
         </ul>
       </div>
       <div class="persona-col">
         <h4>Goals</h4>
         <ul>
-          <li>Manage multiple customers from one place</li>
-          <li>Complete setup quickly</li>
-          <li>Reduce dependency on Druva support</li>
-          <li>Clearly understand product and access levels available</li>
+          <li>Log in once and see everything that matters, instead of digging through each customer separately</li>
+          <li>Know instantly which customer needs help first</li>
+          <li>Click on any problem and go straight to it — no extra searching</li>
         </ul>
       </div>
     </div>
@@ -238,133 +212,40 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
       <div class="persona-col">
         <h4>Pain Points</h4>
         <ul>
-          <li>Additional products are harder to provision</li>
-          <li>Provisioning rules differ across customer types</li>
-          <li>Access states can be confusing</li>
-          <li>Invalid conversions can disrupt operations</li>
+          <li>Had to open every customer one by one just to check if something was wrong</li>
+          <li>No easy way to see if support was already handling an issue</li>
+          <li>Storage and usage problems were only noticed after they became a real issue</li>
+          <li>Expiring contracts and unused ("zombie") customer accounts were easy to miss</li>
+          <li>No simple way to see who was missing security features</li>
+          <li>Constantly switching between screens just to get a full picture</li>
         </ul>
       </div>
       <div class="persona-col">
         <h4>Needs</h4>
-        <p>I want more product modules in MSC so I can offer more services and attract more customers.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec fi persona-wrap">
-    <div class="persona-title">Persona 2: Customers</div>
-    <div class="persona-grid">
-      <div class="persona-col">
-        <h4>Who They are</h4>
-        <p>The end customer admin whose environment is managed by the MSP.</p>
-      </div>
-      <div class="persona-col">
-        <h4>What they do</h4>
-        <ul>
-          <li>Oversee their organization’s setup</li>
-          <li>Ensure the right products are enabled</li>
-          <li>Review account access and visibility</li>
-          <li>Protect sensitive backup and reporting information</li>
-        </ul>
-      </div>
-      <div class="persona-col">
-        <h4>Goals</h4>
-        <ul>
-          <li>Get required products enabled quickly</li>
-          <li>Maintain privacy and control over the console</li>
-          <li>Avoid giving unnecessary visibility to the MSP</li>
-          <li>Ensure setup works without confusion</li>
-        </ul>
-      </div>
-    </div>
-    <div class="row-2">
-      <div class="persona-col">
-        <h4>Pain Points</h4>
-        <ul>
-          <li>May not want MSPs to view reports or backup details</li>
-          <li>Product availability can depend on backend processes</li>
-          <li>Differences between provisioning models are not always visible</li>
-        </ul>
-      </div>
-      <div class="persona-col">
-        <h4>Needs</h4>
-        <p>I want my data and reports to remain private, without full MSP visibility into my console.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec fi persona-wrap">
-    <div class="persona-title">Persona 3 : Druva Support</div>
-    <div class="persona-grid">
-      <div class="persona-col">
-        <h4>Who They are</h4>
-        <p>An internal Druva team member who supports provisioning, licensing dependencies, and advanced product enablement.</p>
-      </div>
-      <div class="persona-col">
-        <h4>What they do</h4>
-        <ul>
-          <li>Provision customers when licensing requires Druva involvement</li>
-          <li>Support additional products and workloads</li>
-          <li>Resolve account mapping and access issues</li>
-          <li>Handle cases the MSP cannot complete directly</li>
-        </ul>
-      </div>
-      <div class="persona-col">
-        <h4>Goals</h4>
-        <ul>
-          <li>Enable customers quickly and accurately</li>
-          <li>Reduce manual operational effort</li>
-          <li>Support product expansion without creating process bottlenecks</li>
-          <li>Make provisioning dependencies easier to manage</li>
-        </ul>
-      </div>
-    </div>
-    <div class="row-2">
-      <div class="persona-col">
-        <h4>Pain Points</h4>
-        <ul>
-          <li>Adding new products requires extra licensing effort</li>
-          <li>Manual intervention does not scale well</li>
-          <li>Unclear handoffs between Druva and MSPs create delays</li>
-          <li>Unsupported transitions can cause operational issues</li>
-        </ul>
-      </div>
-      <div class="persona-col">
-        <h4>Needs</h4>
-        <p>A scalable model where Druva-led provisioning and MSP-led management work together smoothly.</p>
+        <p>"I want one page that shows me what's broken, what's expiring, what's growing too fast, and who I could sell more to — without clicking into every customer one at a time."</p>
       </div>
     </div>
   </section>
 
   <section class="sec fi">
-    <div class="sec-l">Problem Breakdown: User Needs Card</div>
+    <div class="sec-l">Problem Breakdown</div>
     <div class="row-2">
       <div class="panel soft">
-        <h3>User Needs</h3>
-        <div class="mini-card">
-          <h5>MSP</h5>
-          <p>I want more product modules in MSC so I can offer more services and attract more customers.</p>
-        </div>
-        <div class="mini-card" style="margin-top:.75rem;">
-          <h5>Customer</h5>
-          <p>I want my data and reports to remain private, with full control of my console visibility.</p>
-        </div>
-        <div class="mini-card" style="margin-top:.75rem;">
-          <h5>Druva</h5>
-          <p>Adding more products requires new license types and operational effort, which is difficult to scale quickly.</p>
-        </div>
-      </div>
-      <div class="panel">
         <h3 class="orange">Problem Statement</h3>
         <ul class="list">
-          <li>MSC supported only limited products, restricting MSP offerings and risking customer loss.</li>
-          <li>Customers wanted privacy and did not want MSPs to have full access to their consoles and reports.</li>
+          <li>The old landing page was just a plain table — it didn't show any real problems or risks.</li>
+          <li>MSPs had to manually check each customer to find backup failures, which took time and slowed everyone down.</li>
+          <li>Competitors (Veeam, Acronis, Datto, Commvault) already had dashboards like this, so Druva was behind.</li>
         </ul>
-        <h3 class="orange" style="margin-top:1rem;">Technical Difficulties</h3>
+      </div>
+      <div class="panel">
+        <h3 class="orange">Design Difficulties</h3>
         <ul class="list">
-          <li>Introducing multi-level licensing came with operational and technical complexity, making it difficult to scale quickly within MSC.</li>
-          <li>As a temporary solution, Druva provisioned these products directly on behalf of MSC.</li>
-          <li>The design needed to support an immediate workaround while preparing a future state where the entire flow lives inside MSC.</li>
+          <li>The dashboard needed to show five different kinds of information — failures, SLA/storage alerts, usage trends, account status, and security risks — without the page feeling cluttered.</li>
+          <li>Different types of users (admin vs. limited access) needed to see different amounts of data on the same screen.</li>
+          <li>Filters needed to clearly show when they were "on" so people didn't get confused about what they were looking at.</li>
+          <li>Every number on the dashboard needed to be clickable and lead somewhere useful, not just sit there as a stat.</li>
+          <li>When everything was fine, the page needed to say so clearly, instead of just looking empty or broken.</li>
         </ul>
       </div>
     </div>
@@ -376,54 +257,39 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
       <thead>
         <tr>
           <th></th>
-          <th>Restricted Access</th>
-          <th>Unrestricted Access</th>
+          <th>Full Admin</th>
+          <th>Limited Admin</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="usecase-rowhead">MSC-Provisioned</td>
-          <td>Users can provision licenses for supported core products, but access remains limited to the managed-service model. Additional products and advanced workloads are not available under this setup.</td>
-          <td>MSP admins can provision licenses, access the console, manage customer accounts, perform operational tasks, and view reports for supported core offerings.</td>
+          <td class="usecase-rowhead">Dashboard View</td>
+          <td>Sees data for every customer</td>
+          <td>Only sees their assigned customers</td>
         </tr>
         <tr>
-          <td class="usecase-rowhead">Druva-Provisioned</td>
-          <td>Users can provision licenses and complete provisioning-related steps, but they cannot access the console afterward to manage the account or view reports. This is because provisioning ownership and certain operational controls remain on Druva's side, and the experience depends on Druva-side licensing and technical enablement.</td>
-          <td>Users can provision licenses, access the console, manage the customer account, and view reports once the customer has been fully enabled under the Druva-Provisioned model. This model also supports access to additional workloads and features not available for MSC-Provisioned customers.</td>
+          <td class="usecase-rowhead">Failure Triage Page</td>
+          <td>Can view and fix issues for any customer</td>
+          <td>Can only view their assigned customers</td>
+        </tr>
+        <tr>
+          <td class="usecase-rowhead">Security Widget</td>
+          <td>Can see and dismiss security risks</td>
+          <td>Cannot see this section</td>
+        </tr>
+        <tr>
+          <td class="usecase-rowhead">Upsell/License View</td>
+          <td>Sees license data for all customers</td>
+          <td>Sees license data for their own customers only</td>
         </tr>
       </tbody>
     </table>
   </section>
 
   <section class="sec fi">
-    <div class="sample-title">Sample Process and Screens</div>
-    <div class="sample-grid">
-      <figure class="sample-card">
-        <img src="druva/sample-process-1.png" alt="Druva sample process flow"/>
-      </figure>
-      <figure class="sample-card">
-        <img src="druva/sample-process-2.png" alt="MSC provisioned customers screen"/>
-      </figure>
-      <figure class="sample-card">
-        <img src="druva/sample-process-3.png" alt="Druva provisioned customers screen"/>
-      </figure>
-      <figure class="sample-card">
-        <img src="druva/sample-process-4.png" alt="Mark as MSC provisioned action screen"/>
-      </figure>
-    </div>
-  </section>
-
-  <section class="sec fi">
     <div class="nda-card">
-      <div class="nda-title">Due to NDA, I cannot show the complete project.</div>
-      <p class="nda-copy" style="margin-top:.55rem;">
-        <strong>Link 1:</strong>
-        <a href="https://help.druva.com/en/articles/11882763-about-msc-provisioned-and-druva-provisioned-customers" target="_blank" rel="noopener noreferrer">About MSC-Provisioned and Druva-Provisioned Customers</a>
-      </p>
-      <p class="nda-copy" style="margin-top:.55rem;">
-        <strong>Link 2:</strong>
-        <a href="https://help.druva.com/en/articles/13451943-manage-customer-account-access" target="_blank" rel="noopener noreferrer">Manage Customer Account Access</a>
-      </p>
+      <div class="nda-title">Confidentiality note</div>
+      <p class="nda-copy">This project is under NDA. Design is done and it's moving into development next. Kept high-level here — happy to walk through the full details on a call.</p>
     </div>
   </section>
 </div>
