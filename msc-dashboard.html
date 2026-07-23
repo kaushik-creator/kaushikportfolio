@@ -317,7 +317,7 @@ footer{padding:3rem 0;border-top:1px solid var(--rule);}
 
   <div class="wrap-img">
     <figure>
-      <img src="msc-dashboard/wireframe-blocks.png" alt="Wireframe using empty structural blocks with no data">
+      <img src="msc-dashboard/wireframe-blocks.jpg" alt="Operational dashboard wireframe with empty structural blocks and no chart data">
       <figcaption>
         <b>The Empty Block Pass:</b> Testing structural containers (Usage Trends, Tenant Lifecycle, Security Posture, Support Tickets) based strictly on importance.
       </figcaption>
@@ -361,12 +361,42 @@ footer{padding:3rem 0;border-top:1px solid var(--rule);}
   </div>
 </section>
 
-<section id="solution" style="background: var(--bg2);">
+<section id="minimal" style="background: var(--bg2);">
   <div class="wrap-text">
     <div class="section-header">
-      <span class="mono-tag">Step 04 / The Shipped Solution</span>
+      <span class="mono-tag">Step 04 / Simplification</span>
+      <h2>Stripping it back to five minimal categories</h2>
+      <p class="lede">After the failed high-fidelity passes, we stepped back. Instead of charts and filters, we rebuilt the dashboard as five plain category blocks—each answering one question, with no decorative UI noise.</p>
+    </div>
+  </div>
+
+  <div class="wrap-img">
+    <figure>
+      <img src="msc-dashboard/minimal-categories.png" alt="Minimal five-category operational dashboard wireframe grouped into customer accounts, tenant visibility, product modules, security posture, and usage plus quota">
+      <figcaption>
+        <b>The Five-Category Pass:</b> Customer Accounts Visibility, Tenant Visibility, Product Modules, Security Posture, and Usage + Quota—stripped to labels and structure only. Annotations flagged what to remove (customer-level filters, redundant product-module charts) before any visual design.
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap-text">
+    <p>Reviewing this layout against the four daily workflows made the next decision obvious. <b>These five categories did not belong on one scroll.</b> Account and licensing work (Categories 1–3), consumption monitoring (Category 5), and security auditing (Category 4) operate on different timelines and mental modes.</p>
+    <p>That review is what led directly to the three-tab structure—each tab inheriting the categories that share the same job-to-be-done.</p>
+
+    <ul class="custom-list">
+      <li><b>Tab 01 — Accounts &amp; Licensing:</b> Customer Accounts, Tenant Visibility, Product Modules, Security Posture, and active Support Cases.</li>
+      <li><b>Tab 02 — Usage Monitoring:</b> Usage trends, quota alerts, and storage consumption (Category 5).</li>
+      <li><b>Tab 03 — Backup Triage:</b> Immediate failure triage—the morning workflow that needed its own room.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="solution">
+  <div class="wrap-text">
+    <div class="section-header">
+      <span class="mono-tag">Step 05 / The Shipped Solution</span>
       <h2>Dividing the noise: 3 tabs for 3 distinct jobs</h2>
-      <p class="lede">We abandoned the single-page idea and split the console into three dedicated tabs. Each tab became hyper-focused on answering one specific operational question.</p>
+      <p class="lede">The five-category map became three dedicated tabs. Each one inherited only the blocks that belong to the same operational question—no more scrolling past unrelated charts to reach the job you came for.</p>
     </div>
   </div>
 
