@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="tokens.css"/>
-<link rel="stylesheet" href="shared.css"/>
+<link rel="stylesheet" href="shared.css?v=20260724"/>
 <style>
 [data-theme="dark"]{--card:#101010;}
 [data-theme="light"]{--card:#ffffff;}
@@ -110,7 +110,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .music-toggle{position:fixed;bottom:1.25rem;right:1.25rem;z-index:200;width:46px;height:46px;border:1px solid var(--border);background:var(--canvas);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;}
 .music-toggle svg{width:20px;height:20px;pointer-events:none;}
 @media(max-width:900px){
-  nav{padding:0 1.2rem;}
+  nav{display:flex !important;justify-content:space-between !important;align-items:center;padding:1rem 1.2rem;}
+  .nav-right{margin-left:auto !important;}
   .nav-links{display:none;}
   .avail-badge{display:none;}
   .resume-modal{padding:.8rem;}

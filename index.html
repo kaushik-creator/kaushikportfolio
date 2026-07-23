@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="tokens.css"/>
-<link rel="stylesheet" href="shared.css"/>
+<link rel="stylesheet" href="shared.css?v=20260724"/>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html {
@@ -1018,14 +1018,14 @@ footer {
 
 @media (max-width: 900px) {
   nav {
-    padding: 1rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
+    padding: 1rem 1.2rem;
+    display: flex !important;
+    justify-content: space-between !important;
     align-items: center;
   }
   .nav-logo { justify-self: auto; }
   .nav-links { display: none; }
-  .nav-right { justify-self: auto; }
+  .nav-right { justify-self: auto; margin-left: auto !important; }
   .hamburger { display: flex; }
   .avail-badge { display: none; }
   .resume-modal { padding: 0.8rem; }

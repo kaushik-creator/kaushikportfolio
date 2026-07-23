@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="tokens.css"/>
-<link rel="stylesheet" href="shared.css"/>
+<link rel="stylesheet" href="shared.css?v=20260724"/>
 <style>
 [data-theme="dark"]{--card:#0f0f0f;}
 [data-theme="light"]{--card:#ffffff;}
@@ -94,7 +94,8 @@ hr.rule{border:none;border-top:1px solid var(--rule);margin:0;}
 .fi.vis{opacity:1;transform:none;}
 
 @media(max-width:900px){
-  nav{padding:0 1.2rem;}
+  nav{display:flex !important;justify-content:space-between !important;align-items:center;padding:1rem 1.2rem;}
+  .nav-right{margin-left:auto !important;}
   .nav-links{display:none;}
   .avail-badge{display:none;}
 }

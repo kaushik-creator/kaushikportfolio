@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="tokens.css"/>
-<link rel="stylesheet" href="shared.css"/>
+<link rel="stylesheet" href="shared.css?v=20260724"/>
 <style>
 [data-theme="dark"]{--canvas:#0d0d0d;--bg:#0d0d0d;--bg2:#141414;--bg3:#1e1e1e;--card:#111111;--text-primary:#f2f2f2;--text:#f2f2f2;--text-secondary:#888888;--text2:#888888;--text-tertiary:#444444;--text3:#444444;--hairline:rgba(255,255,255,0.09);--border:rgba(255,255,255,0.09);--rule:rgba(255,255,255,0.09);--glass:rgba(13,13,13,0.94);--nav-bg:#0d0d0d;--neon:#cfcfcf;--neon-soft:rgba(255,255,255,0.06);--neon-line:rgba(255,255,255,0.22);}
 [data-theme="light"]{--canvas:#f5f5f3;--bg:#f5f5f3;--bg2:#eeeeec;--bg3:#e4e4e2;--card:#ffffff;--text-primary:#111111;--text:#111111;--text-secondary:#666666;--text2:#666666;--text-tertiary:#aaaaaa;--text3:#aaaaaa;--hairline:rgba(0,0,0,0.09);--border:rgba(0,0,0,0.09);--rule:rgba(0,0,0,0.09);--glass:rgba(245,245,243,0.94);--nav-bg:#f5f5f3;--neon:#505050;--neon-soft:rgba(0,0,0,0.04);--neon-line:rgba(0,0,0,0.2);}
@@ -267,7 +267,8 @@ hr.rule{border:none;border-top:1px solid var(--rule);margin:0;}
 }
 
 @media(max-width:900px){
-  nav{padding:0 1.2rem;}
+  nav{display:flex !important;justify-content:space-between !important;align-items:center;padding:1rem 1.2rem;}
+  .nav-right{margin-left:auto !important;}
   .nav-links{display:none;}
   .avail-badge{display:none;}
 }
