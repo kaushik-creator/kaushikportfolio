@@ -11,25 +11,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="tokens.css"/>
+<link rel="stylesheet" href="shared.css"/>
 <style>
-[data-theme="dark"]{--bg:#0a0a0a;--bg2:#0f0f0f;--bg3:#1a1a1a;--card:#0f0f0f;--text:#ffffff;--text2:#b0b0b0;--text3:#707070;--border:rgba(255,255,255,0.1);--rule:rgba(255,255,255,0.1);--nav-bg:rgba(10,10,10,0.92);}
-[data-theme="light"]{--bg:#ffffff;--bg2:#f8f8f8;--bg3:#efefef;--card:#ffffff;--text:#000000;--text2:#4a4a4a;--text3:#8a8a8a;--border:rgba(0,0,0,0.1);--rule:rgba(0,0,0,0.1);--nav-bg:rgba(255,255,255,0.95);}
+[data-theme="dark"]{--card:#0f0f0f;}
+[data-theme="light"]{--card:#ffffff;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .3s,color .3s;}
 a{text-decoration:none;color:inherit;}
 ::-webkit-scrollbar{width:2px;}::-webkit-scrollbar-thumb{background:var(--text3);}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1.1rem 3rem;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--rule);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1.1rem 3rem;background:var(--canvas);border-bottom:1px solid var(--rule);}
 .nav-links{justify-self:center;list-style:none;display:flex;gap:2.25rem;align-items:center;}
-.nav-links a{font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);}
+.nav-links a{font-size:.78rem;font-weight:500;font-family:'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);}
 .nav-links a:hover{color:var(--text);}
-.nav-logo{justify-self:start;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.35rem;color:var(--text);letter-spacing:-.03em;}
+.nav-logo{justify-self:start;font-weight:800;font-size:1.35rem;color:var(--text);letter-spacing:-.03em;}
 .nav-logo span{color:var(--text3);font-weight:500;}
 .nav-right{justify-self:end;display:flex;align-items:center;gap:1rem;}
-.avail-badge{display:flex;align-items:center;gap:.45rem;font-size:.7rem;font-family:'Space Mono',monospace;font-weight:500;color:#4ade80;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.28);padding:.38rem .95rem;border-radius:999px;}
-.avail-dot{width:6px;height:6px;border-radius:2px;background:#4ade80;animation:pulse-green 2s ease-in-out infinite;}
-@keyframes pulse-green{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
 .resume-modal[hidden]{display:none;}
 .resume-modal{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:2rem;}
 .resume-modal-card{width:min(960px,96vw);height:min(86vh,980px);background:var(--bg);border:1px solid var(--border);display:flex;flex-direction:column;}
@@ -37,8 +36,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .resume-modal-title{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);}
 .resume-close{width:34px;height:28px;border:1px solid var(--border);background:var(--bg2);color:var(--text);cursor:pointer;font-size:1rem;line-height:1;}
 .resume-frame{flex:1;width:100%;border:0;background:#fff;}
-.toggle{width:38px;height:20px;border-radius:0;background:var(--bg3);border:1px solid var(--border);cursor:pointer;position:relative;}
-.toggle::after{content:'';position:absolute;top:3px;left:3px;width:12px;height:12px;border-radius:0;background:var(--text);transition:transform .3s;}
+.toggle{width:38px;height:20px;background:var(--bg3);border:1px solid var(--border);cursor:pointer;position:relative;}
+.toggle::after{content:'';position:absolute;top:3px;left:3px;width:12px;height:12px;border-radius: var(--radius);background:var(--text);transition:transform .3s;}
 [data-theme="light"] .toggle::after{transform:translateX(18px);}
 
 .wrap{max-width:1100px;margin:0 auto;padding:0 3rem;}
@@ -48,11 +47,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .cs-lbl{font-size:.58rem;font-family:'Space Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:.9rem;}
 .cs-h1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:-.04em;line-height:1.0;color:var(--text);margin-bottom:1rem;}
 .cs-sub{font-size:.98rem;font-weight:300;line-height:1.82;color:var(--text2);max-width:620px;margin-bottom:3rem;}
-.meta-row{display:flex;border:1px solid var(--border);}
-.meta-col{flex:1;padding:1.1rem 1.4rem;border-right:1px solid var(--border);}
+.meta-row{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);margin-top:2.2rem;}
+.meta-col{padding:1rem 1.2rem;border-right:1px solid var(--border);}
 .meta-col:last-child{border-right:none;}
 .meta-lbl{font-size:.55rem;font-family:'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:.35rem;}
-.meta-val{font-size:.8rem;font-weight:500;color:var(--text);line-height:1.45;}
+.meta-val{font-size:.82rem;color:var(--text);line-height:1.45;}
 
 
 .cs-sec{padding:4rem 0;border-bottom:1px solid var(--rule);}
@@ -64,7 +63,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .cs-p strong{color:var(--text);font-weight:500;}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;}
 .mason-seq{display:flex;flex-direction:column;gap:1rem;margin:2rem 0 0;}
-.mason-seq-item{border:1px solid var(--border);background:var(--bg2);padding:.55rem;}
+.mason-seq-item{border:1px solid var(--border);background:var(--card);padding:.55rem;border-radius:var(--radius);}
+.mason-dark-card{border:1px solid var(--border);background:var(--card);padding:1.5rem 1.6rem;border-radius:var(--radius);margin-top:1rem;}
+.mason-cta-card{border:1px solid var(--border);background:var(--card);padding:1.5rem 1.6rem;border-radius:var(--radius);margin-top:1rem;}
+.mason-card-title{font-size:1.35rem;font-weight:800;color:var(--text);letter-spacing:-.02em;margin-bottom:.75rem;}
+.mason-card-title-spaced{margin-top:1.5rem;}
+.mason-impact-list{list-style:disc;padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem;}
+.mason-impact-list li{font-size:.9rem;font-weight:300;line-height:1.75;color:var(--text2);}
+.mason-cta-card .cs-p{margin-bottom:0;}
 .mason-seq-item img{display:block;width:100%;height:auto;}
 
 .box{padding:1.3rem;border:1px solid var(--border);background:var(--card);}
@@ -87,10 +93,13 @@ hr.rule{border:none;border-top:1px solid var(--rule);margin:0;}
 .fi{opacity:0;transform:translateY(20px);transition:opacity .55s,transform .55s;}
 .fi.vis{opacity:1;transform:none;}
 
-@media(max-width:760px){
+@media(max-width:900px){
   nav{padding:0 1.2rem;}
   .nav-links{display:none;}
   .avail-badge{display:none;}
+}
+
+@media(max-width:760px){
   .resume-modal{padding:.8rem;}
   .resume-modal-card{height:88vh;}
   .wrap{padding:0 1.2rem;}
@@ -110,10 +119,8 @@ hr.rule{border:none;border-top:1px solid var(--rule);margin:0;}
   align-items:center;
   justify-content:center;
   border:1px solid var(--border);
-  border-radius:0;
-  background:var(--nav-bg);
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
+  border-radius:var(--radius-pill);
+  background:var(--canvas);
   color:var(--text);
   cursor:pointer;
   transition:border-color .2s,transform .15s,background .2s,color .2s;
@@ -126,7 +133,7 @@ hr.rule{border:none;border-top:1px solid var(--rule);margin:0;}
 <body>
 
 <audio id="bgMusic" loop preload="auto" playsinline>
-  <source src="audio/bittersweet-symphony.mp3" type="audio/mpeg"/>
+  <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
 </audio>
 <button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
   <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
@@ -145,8 +152,19 @@ hr.rule{border:none;border-top:1px solid var(--rule);margin:0;}
   <div class="nav-right">
     <div class="avail-badge"><span class="avail-dot"></span>Open to work</div>
     <button class="toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#about" onclick="closeMobileMenu()">About</a>
+  <a href="index.html#keywords" onclick="closeMobileMenu()">Skills</a>
+  <a href="index.html#experience" onclick="closeMobileMenu()">Experience</a>
+  <a href="index.html#projects" onclick="closeMobileMenu()">Projects</a>
+  <a href="#" data-resume-trigger onclick="closeMobileMenu()">Resume</a>
+</div>
 
 <div class="resume-modal" id="resumeModal" hidden aria-hidden="true">
   <div class="resume-modal-card" role="dialog" aria-modal="true" aria-label="Resume preview">
@@ -199,8 +217,21 @@ hr.rule{border:none;border-top:1px solid var(--rule);margin:0;}
       <figure class="mason-seq-item"><img src="mason-story/k.png" alt="Mason screen K"/></figure>
       <figure class="mason-seq-item"><img src="mason-story/l.png" alt="Mason screen L"/></figure>
       <figure class="mason-seq-item"><img src="mason-story/m.png" alt="Mason screen M"/></figure>
-      <figure class="mason-seq-item"><img src="mason-story/n.png" alt="Mason screen N"/></figure>
-      <figure class="mason-seq-item"><img src="mason-story/o.png" alt="Mason screen O"/></figure>
+    </div>
+
+    <div class="mason-dark-card fi">
+      <h3 class="mason-card-title">Impact</h3>
+      <ul class="mason-impact-list">
+        <li>Achieved 8x weekly active user growth in a year through a marketing overhaul.</li>
+        <li>ModeMagic evolved from experiment to core vertical in a year.</li>
+        <li>Award-winning UI design remains live on app, sites, and channels.</li>
+      </ul>
+      <h3 class="mason-card-title mason-card-title-spaced">Takeaways</h3>
+      <p class="cs-p">Fresh out of college, I found it exhilarating to impact diverse product aspects beyond design. This exposed my work to varied perspectives, broadening my outlook. Within a year of the redesign launch, collaborative, iterative efforts led to an 8-fold increase in weekly active users and ModeMagic's transformation from a badge tool to an automation powerhouse added substantial core value, elevating it to a central business vertical.. I'm excited that the design and experience we crafted continue to thrive.</p>
+    </div>
+
+    <div class="mason-cta-card fi">
+      <p class="cs-p">These are brief snapshots for a quick look. To learn more, let's connect—I'm excited to discuss the process, my role, and insights from the project.</p>
     </div>
   </div>
 
@@ -216,95 +247,19 @@ hr.rule{border:none;border-top:1px solid var(--rule);margin:0;}
 </div>
 
 <script>
+const ham = document.getElementById('hamburger');
+const menu = document.getElementById('mobileMenu');
+function closeMobileMenu() { menu.classList.remove('open'); }
+if (ham && menu) {
+  ham.addEventListener('click', () => menu.classList.toggle('open'));
+}
+
 const html = document.documentElement;
 document.getElementById('themeToggle').addEventListener('click', () => {
   html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
 });
 const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('vis'); }), {threshold: 0.08});
 document.querySelectorAll('.fi').forEach(el => io.observe(el));
-
-const bgMusic = document.getElementById('bgMusic');
-const musicToggle = document.getElementById('musicToggle');
-const iconPause = document.getElementById('musicIconPause');
-const iconPlay = document.getElementById('musicIconPlay');
-bgMusic.volume = 0.45;
-const MUSIC_PREF_KEY = 'portfolio_music_paused';
-const MUSIC_TIME_KEY = 'portfolio_music_time';
-let userPaused = false;
-let lastSavedAt = 0;
-try {
-  localStorage.setItem(MUSIC_PREF_KEY, 'false');
-  userPaused = false;
-  const savedTime = parseFloat(localStorage.getItem(MUSIC_TIME_KEY) || '0');
-  if (Number.isFinite(savedTime) && savedTime > 0) {
-    bgMusic.currentTime = savedTime;
-  }
-} catch (_) {}
-
-function persistMusicState() {
-  try {
-    localStorage.setItem(MUSIC_PREF_KEY, userPaused ? 'true' : 'false');
-    localStorage.setItem(MUSIC_TIME_KEY, String(bgMusic.currentTime || 0));
-    lastSavedAt = Date.now();
-  } catch (_) {}
-}
-
-function maybePersistPlaybackTime() {
-  const now = Date.now();
-  if (now - lastSavedAt < 1000) return;
-  persistMusicState();
-}
-
-function updateMusicButton(){
-  const playing = !bgMusic.paused;
-  musicToggle.setAttribute('aria-pressed', playing ? 'true' : 'false');
-  musicToggle.setAttribute('aria-label', playing ? 'Pause background music' : 'Play background music');
-  iconPause.hidden = !playing;
-  iconPlay.hidden = playing;
-}
-
-musicToggle.addEventListener('click', (e) => {
-  e.stopPropagation();
-  if (bgMusic.paused) {
-    userPaused = false;
-    bgMusic.play().catch(() => {});
-  } else {
-    userPaused = true;
-    bgMusic.pause();
-  }
-  persistMusicState();
-  updateMusicButton();
-});
-
-bgMusic.addEventListener('play', () => {
-  updateMusicButton();
-  persistMusicState();
-});
-bgMusic.addEventListener('pause', () => {
-  updateMusicButton();
-  persistMusicState();
-});
-bgMusic.addEventListener('timeupdate', () => {
-  if (!bgMusic.paused && !userPaused) maybePersistPlaybackTime();
-});
-window.addEventListener('pagehide', persistMusicState);
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'hidden') persistMusicState();
-});
-function tryAutoPlay() {
-  if (userPaused) return;
-  bgMusic.play().then(() => updateMusicButton()).catch(() => updateMusicButton());
-}
-
-tryAutoPlay();
-window.addEventListener('pageshow', tryAutoPlay);
-window.addEventListener('focus', tryAutoPlay);
-
-document.addEventListener('pointerdown', (e) => {
-  if (musicToggle.contains(e.target)) return;
-  if (userPaused) return;
-  if (!userPaused && bgMusic.paused) bgMusic.play().catch(() => {});
-}, { once: true });
 
 const resumeModal = document.getElementById('resumeModal');
 const resumeCloseBtn = document.getElementById('resumeCloseBtn');
@@ -332,5 +287,6 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && !resumeModal.hidden) closeResumeModal();
 });
 </script>
+<script src="audio/music.js"></script>
 </body>
 </html>

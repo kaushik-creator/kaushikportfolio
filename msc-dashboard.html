@@ -1,43 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="MSC Operational Dashboard Case Study - Product & UX Design"/>
-<meta property="og:title" content="MSC Operational Dashboard — Case Study · Kaushik"/>
-<meta property="og:description" content="Designing a new home screen for Druva's MSP partners — backup problems, storage, licenses, and security risks across all customers at once."/>
-<title>MSC Operational Dashboard — Case Study · Kaushik</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="MSC Operational Dashboard — Druva case study by Kaushik"/>
+<meta property="og:title" content="Druva MSC — Operational Dashboard · Kaushik"/>
+<meta property="og:description" content="Hundreds of customers. One control room. Designing a new home screen for Druva's MSP partners."/>
+<title>Druva MSC — Operational Dashboard · Kaushik</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="shared.css">
 <style>
-[data-theme="dark"]{--bg:#0a0a0a;--bg2:#121212;--bg3:#1d1d1d;--card:#101010;--text:#f7f7f7;--text2:#b3b3b3;--text3:#767676;--border:rgba(255,255,255,0.1);--rule:rgba(255,255,255,0.1);--nav-bg:rgba(10,10,10,0.92);}
-[data-theme="light"]{--bg:#ffffff;--bg2:#f8f8f8;--bg3:#efefef;--card:#ffffff;--text:#101010;--text2:#4e4e4e;--text3:#8c8c8c;--border:rgba(0,0,0,0.1);--rule:rgba(0,0,0,0.1);--nav-bg:rgba(255,255,255,0.95);}
+[data-theme="dark"]{--card:#101010;}
+[data-theme="light"]{--card:#ffffff;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .3s,color .3s;}
 a{text-decoration:none;color:inherit;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1.1rem 3rem;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--rule);}
+img{max-width:100%;display:block;height:auto;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1.1rem 3rem;background:var(--canvas);backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom:1px solid var(--rule);}
 .nav-links{justify-self:center;list-style:none;display:flex;gap:2.25rem;align-items:center;}
 .nav-links a{font-size:.78rem;font-weight:500;font-family:'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);}
 .nav-links a:hover{color:var(--text);}
 .nav-logo{justify-self:start;font-weight:800;font-size:1.35rem;letter-spacing:-.03em;}
 .nav-logo span{color:var(--text3);font-weight:500;}
 .nav-right{justify-self:end;display:flex;align-items:center;gap:1rem;}
-.avail-badge{display:flex;align-items:center;gap:.45rem;font-size:.7rem;font-family:'Space Mono',monospace;font-weight:500;color:#4ade80;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.28);padding:.38rem .95rem;border-radius:999px;}
-.avail-dot{width:6px;height:6px;border-radius:2px;background:#4ade80;animation:pulse-green 2s ease-in-out infinite;}
-@keyframes pulse-green{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-.resume-modal[hidden]{display:none;}
-.resume-modal{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:2rem;}
-.resume-modal-card{width:min(960px,96vw);height:min(86vh,980px);background:var(--bg);border:1px solid var(--border);display:flex;flex-direction:column;}
-.resume-modal-head{display:flex;align-items:center;justify-content:space-between;padding:.65rem .9rem;border-bottom:1px solid var(--border);}
-.resume-modal-title{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);}
-.resume-close{width:34px;height:28px;border:1px solid var(--border);background:var(--bg2);color:var(--text);cursor:pointer;font-size:1rem;line-height:1;}
-.resume-frame{flex:1;width:100%;border:0;background:#fff;}
-.toggle{width:38px;height:20px;border-radius:0;background:var(--bg3);border:1px solid var(--border);cursor:pointer;position:relative;}
+.toggle{width:38px;height:20px;background:var(--bg3);border:1px solid var(--border);cursor:pointer;position:relative;}
 .toggle::after{content:'';position:absolute;top:3px;left:3px;width:12px;height:12px;background:var(--text);transition:transform .3s;}
 [data-theme="light"] .toggle::after{transform:translateX(18px);}
+
+.resume-modal[hidden]{display:none;}
+.resume-modal{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:2rem;}
+.resume-modal-card{width:min(960px,96vw);height:min(86vh,980px);background:var(--bg);border:1px solid var(--border);display:flex;flex-direction:column;border-radius:var(--radius);}
+.resume-modal-head{display:flex;align-items:center;justify-content:space-between;padding:.65rem .9rem;border-bottom:1px solid var(--border);}
+.resume-modal-title{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);}
+.resume-close{width:34px;height:28px;border:1px solid var(--border);background:var(--bg2);color:var(--text);cursor:pointer;font-size:1rem;line-height:1;border-radius:var(--radius);}
+.resume-frame{flex:1;width:100%;border:0;background:#fff;}
+
 .wrap{max-width:1180px;margin:0 auto;padding:0 3rem;}
+.wrap-text{max-width:720px;margin:0 auto;padding:0 3rem;}
+.wrap-img{max-width:1180px;margin:0 auto;padding:0 3rem;}
+
 .hero{padding-top:7rem;padding-bottom:3.5rem;border-bottom:1px solid var(--rule);}
 .back-chip{display:inline-flex;align-items:center;gap:.45rem;font-size:.6rem;font-family:'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);border:1px solid var(--border);padding:.22rem .6rem;margin-bottom:2rem;}
 .cs-lbl{font-size:.58rem;font-family:'Space Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:.9rem;}
@@ -48,62 +55,89 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .meta-c:last-child{border-right:none;}
 .meta-l{font-size:.55rem;font-family:'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:.35rem;}
 .meta-v{font-size:.82rem;color:var(--text);}
-.sec{padding:3rem 0;border-bottom:1px solid var(--rule);}
-.sec:last-child{border-bottom:none;}
+
+section{padding:3rem 0;border-bottom:1px solid var(--rule);}
+section:last-of-type{border-bottom:none;}
+.section-header{margin-bottom:2rem;}
+.mono-tag{font-size:.57rem;font-family:'Space Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);display:block;margin-bottom:.8rem;}
+.section-header h2,.sec-h{font-weight:800;font-size:clamp(1.25rem,2.3vw,1.9rem);letter-spacing:-.02em;margin-bottom:1rem;color:var(--text);}
+h3,h4{font-weight:800;letter-spacing:-.02em;color:var(--text);}
+p{margin:0 0 1.5rem 0;font-size:.92rem;font-weight:300;line-height:1.8;color:var(--text2);}
+.lede{font-size:1rem;line-height:1.82;color:var(--text2);max-width:760px;}
+.accent-text{color:var(--text);}
+
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-bottom:2rem;}
 .sec-l{font-size:.57rem;font-family:'Space Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:.8rem;}
-.sec-h{font-weight:800;font-size:clamp(1.25rem,2.3vw,1.9rem);letter-spacing:-.02em;margin-bottom:1rem;}
-.sec-p{font-size:.92rem;font-weight:300;line-height:1.8;color:var(--text2);max-width:850px;}
-.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;}
-.panel{border:1px solid var(--border);background:var(--card);padding:1rem 1.1rem;}
-.panel h3{font-size:1.55rem;line-height:1.25;margin-bottom:.55rem;letter-spacing:-.01em;}
-.panel p{font-size:.96rem;line-height:1.8;color:var(--text2);}
-.persona-wrap{display:flex;flex-direction:column;gap:1rem;}
-.persona-title{font-size:1.95rem;font-weight:800;color:#f5a623;letter-spacing:-.01em;margin-bottom:.4rem;}
-.persona-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
-.persona-col{border:1px solid var(--border);background:var(--card);padding:1rem 1.1rem;}
-.persona-col h4{font-size:1.28rem;margin-bottom:.6rem;}
-.persona-col p{font-size:.96rem;line-height:1.7;color:var(--text2);}
-.persona-col ul{margin-left:1.1rem;color:var(--text2);}
-.persona-col li{margin-bottom:.35rem;line-height:1.65;font-size:.95rem;}
-.row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-.soft{background:var(--bg2);}
-.orange{color:#f5a623;}
-.list{margin-left:1.2rem;color:var(--text2);}
-.list li{margin-bottom:.45rem;line-height:1.7;}
-.usecase-title{font-size:1.95rem;font-weight:800;color:#f5a623;letter-spacing:-.01em;margin-bottom:.6rem;}
-.usecase-table{width:100%;border-collapse:collapse;border:1px solid var(--border);background:var(--card);}
-.usecase-table th,.usecase-table td{border:1px solid var(--border);padding:.95rem 1rem;vertical-align:top;text-align:left;}
-.usecase-table th{font-size:1.35rem;font-weight:700;color:var(--text);}
-.usecase-table td{font-size:.98rem;line-height:1.7;color:var(--text2);}
-.usecase-rowhead{white-space:nowrap;font-weight:700;color:var(--text);font-size:1.1rem;}
-.nda-card{border:1px solid var(--border);background:var(--bg2);padding:1rem 1.1rem;}
-.nda-title{font-size:1.25rem;font-weight:700;margin-bottom:.45rem;}
-.nda-copy{color:var(--text2);line-height:1.75;}
-.fi{opacity:0;transform:translateY(18px);transition:opacity .55s,transform .55s;}
-.fi.vis{opacity:1;transform:none;}
-.music-toggle{position:fixed;bottom:1.25rem;right:1.25rem;z-index:200;width:46px;height:46px;border:1px solid var(--border);background:var(--nav-bg);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.panel{border:1px solid var(--border);background:var(--card);padding:1rem 1.1rem;border-radius:var(--radius);}
+.panel h3{font-size:1.55rem;line-height:1.25;margin-bottom:.55rem;letter-spacing:-.01em;font-weight:800;color:var(--text);}
+.panel p{font-size:.96rem;line-height:1.8;color:var(--text2);margin-bottom:0;}
+
+figure{margin:2.5rem 0;}
+figure img{border:1px solid var(--border);background:var(--card);border-radius:var(--radius);}
+figcaption{margin-top:1rem;font-size:.82rem;color:var(--text2);line-height:1.6;border-left:2px solid var(--border);padding-left:1rem;}
+figcaption b{color:var(--text);font-weight:600;}
+figure.final img{border-color:var(--hairline-strong);}
+figure.failed img{border-color:rgba(229,97,79,.4);}
+
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem;}
+.insight-card{background:var(--card);border:1px solid var(--border);padding:1.5rem;border-radius:var(--radius);margin-bottom:1.5rem;}
+.insight-card h4{font-size:1rem;font-weight:700;margin-bottom:.75rem;}
+.insight-card p{font-size:.92rem;margin-bottom:0;}
+
+.callout{display:block;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border);font-family:'Space Mono',monospace;font-size:.72rem;color:var(--text3);line-height:1.5;}
+.callout.error{color:#e5614f;}
+
+.tradeoff{background:var(--bg2);border:1px solid var(--border);border-left:2px solid #e5614f;padding:1.5rem;border-radius:var(--radius);margin-top:2rem;}
+.tradeoff .mono-tag{color:#e5614f;margin-bottom:.65rem;}
+.tradeoff p{font-size:.92rem;margin-bottom:0;}
+
+ul.custom-list{padding-left:0;list-style:none;margin:0 0 1.5rem 0;}
+ul.custom-list li{position:relative;padding-left:1.5rem;margin-bottom:.75rem;font-size:.92rem;color:var(--text2);line-height:1.7;}
+ul.custom-list li::before{content:"→";position:absolute;left:0;color:var(--text3);font-family:'Space Mono',monospace;}
+ul.custom-list li b{color:var(--text);font-weight:600;}
+
+.data-table{width:100%;border-collapse:collapse;margin:2rem 0;font-size:.88rem;text-align:left;}
+.data-table th{background:var(--card);color:var(--text);padding:1rem;font-weight:600;border-bottom:1px solid var(--border);}
+.data-table td{padding:1rem;color:var(--text2);border-bottom:1px solid var(--border);vertical-align:top;}
+.data-table b{color:var(--text);font-weight:600;}
+.table-scroll{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border);}
+@media(max-width:640px){.data-table{min-width:560px;}}
+
+.tab-block{margin-bottom:3rem;}
+.tab-block:last-child{margin-bottom:0;}
+.tab-question{text-align:center;color:var(--text3);font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2rem;}
+
+footer{padding:3rem 0;border-top:1px solid var(--rule);}
+.legal-note{font-family:'Space Mono',monospace;font-size:.72rem;line-height:1.8;color:var(--text3);margin:0;text-align:center;}
+.legal-note b{color:var(--text2);font-weight:500;}
+
+.music-toggle{position:fixed;bottom:1.25rem;right:1.25rem;z-index:200;width:46px;height:46px;border:1px solid var(--border);background:var(--canvas);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;}
 .music-toggle svg{width:20px;height:20px;pointer-events:none;}
-@media(max-width:860px){
+
+@media(max-width:900px){
   nav{padding:0 1.2rem;}
   .nav-links{display:none;}
   .avail-badge{display:none;}
   .resume-modal{padding:.8rem;}
   .resume-modal-card{height:88vh;}
-  .wrap{padding:0 1.2rem;}
+  .wrap,.wrap-text,.wrap-img{padding:0 1.2rem;}
   .meta{grid-template-columns:1fr 1fr;}
   .meta-c{border-right:none;border-bottom:1px solid var(--border);}
-  .grid-3,.persona-grid,.row-2{grid-template-columns:1fr;}
+  .compare-grid{grid-template-columns:1fr;}
+  .grid-3{grid-template-columns:1fr;}
 }
 </style>
 </head>
 <body>
+
 <audio id="bgMusic" loop preload="auto" playsinline>
-  <source src="audio/bittersweet-symphony.mp3" type="audio/mpeg"/>
+  <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
 </audio>
 <button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
   <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
   <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
 </button>
+
 <nav>
   <a href="index.html" class="nav-logo">K<span>.</span></a>
   <ul class="nav-links">
@@ -116,8 +150,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
   <div class="nav-right">
     <div class="avail-badge"><span class="avail-dot"></span>Open to work</div>
     <button class="toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#about" onclick="closeMobileMenu()">About</a>
+  <a href="index.html#keywords" onclick="closeMobileMenu()">Skills</a>
+  <a href="index.html#experience" onclick="closeMobileMenu()">Experience</a>
+  <a href="index.html#projects" onclick="closeMobileMenu()">Projects</a>
+  <a href="#" data-resume-trigger onclick="closeMobileMenu()">Resume</a>
+</div>
 
 <div class="resume-modal" id="resumeModal" hidden aria-hidden="true">
   <div class="resume-modal-card" role="dialog" aria-modal="true" aria-label="Resume preview">
@@ -129,262 +174,322 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
   </div>
 </div>
 
-<div class="wrap hero fi">
+<div class="wrap hero">
   <a href="index.html#projects" class="back-chip">← All Projects</a>
   <div class="cs-lbl">Case Study · 01</div>
-  <h1 class="cs-h1">MSC Operational Dashboard</h1>
-  <p class="cs-sub">Designing a new home screen for Druva's MSP partners — one page that shows backup problems, storage usage, expiring licenses, customer status, and security risks across all their customers at once, instead of making them check each customer one by one.</p>
+  <h1 class="cs-h1">Hundreds of customers.<br>One control room.</h1>
+  <p class="cs-sub">Designing a new home screen for Druva's Managed Service Providers (MSPs). The goal was to build a single page showing backup problems, storage usage, expiring licenses, and security risks across all their clients—eliminating the need to check each customer individually.</p>
   <div class="meta">
-    <div class="meta-c"><div class="meta-l">Role</div><div class="meta-v">UX/UI Designer</div></div>
-    <div class="meta-c"><div class="meta-l">Domain</div><div class="meta-v">Data Backup & Cybersecurity</div></div>
-    <div class="meta-c"><div class="meta-l">Focus</div><div class="meta-v">Dashboards, Multi-customer Visibility, Monitoring</div></div>
+    <div class="meta-c"><div class="meta-l">Role</div><div class="meta-v">UX/UI Designer (Sole)</div></div>
+    <div class="meta-c"><div class="meta-l">Domain</div><div class="meta-v">Data Backup &amp; Security</div></div>
+    <div class="meta-c"><div class="meta-l">Focus</div><div class="meta-v">Dashboards, Monitoring</div></div>
     <div class="meta-c"><div class="meta-l">Type</div><div class="meta-v">Enterprise · B2B</div></div>
   </div>
 </div>
 
-<div class="wrap">
-  <section class="sec fi">
+<div class="wrap-img">
+    <figure class="final">
+      <img src="msc-dashboard/cover.png" alt="MSC Operational Dashboard — Accounts and Licensing view">
+      <figcaption>
+        <b>The Shipped Dashboard — Tab 01: Accounts &amp; Licensing.</b> Customer summary, workload status, security posture, account distribution, and active support cases in one operational view.
+      </figcaption>
+    </figure>
+  </div>
+
+<section id="context" style="background: var(--bg2);">
+  <div class="wrap">
     <div class="sec-l">Project Context</div>
     <div class="grid-3">
       <div class="panel">
-        <h3>What is Druva?</h3>
-        <p>Druva is a cloud backup and data security company. It helps businesses back up and protect their data across laptops, apps, and cloud systems.</p>
+        <div class="panel-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8.2 7.5 10.5 16M15.8 7.5 13.5 16M8 6h8"/></svg>
+        </div>
+        <h3>What is MSP?</h3>
+        <p>A Managed Service Provider — a partner company that manages backup, security, and IT operations on behalf of multiple end-customers, rather than each customer managing it themselves.</p>
       </div>
       <div class="panel">
+        <div class="panel-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M7 20h10M9 8h2M9 12h6M15 8h2"/></svg>
+        </div>
         <h3>What is MSC?</h3>
-        <p>MSC (Managed Services Center) is Druva's portal for partner companies (MSPs) that manage backups for many customers at once, all from a single login.</p>
+        <p>Druva's Managed Services Center — the operational portal MSPs use to monitor and manage backup health, licensing, and security posture across every customer they support, from a single login.</p>
       </div>
       <div class="panel">
-        <h3>What is this project about?</h3>
-        <p>Before this, MSP partners logged in and saw a plain table with no useful information. This project replaced that with a real dashboard — one screen that shows what needs attention right now, across every customer they manage.</p>
+        <div class="panel-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+        <h3>What does this project solve?</h3>
+        <p>MSPs were checking each customer account individually to spot backup failures, storage spikes, expiring licenses, and security risks. This project replaces that fragmented workflow with one consolidated operational dashboard — a single home screen that surfaces what needs attention across every client at once.</p>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="sec fi">
-    <div class="sec-l">Project Team & Project Timeline</div>
-    <div class="row-2">
-      <div class="panel">
-        <h3>Project Team</h3>
-        <ul class="list">
-          <li>Product Owners</li>
-          <li>Product Manager</li>
-          <li>Internal Support Team</li>
-          <li>Product Designer (my role — I was the only designer, guided by senior designers)</li>
-          <li>Front-end & Back-end Developers</li>
-        </ul>
-      </div>
-      <div class="panel">
-        <h3>Project Timeline</h3>
-        <p class="sec-p" style="max-width:none;">Design is complete. Moving into development next.</p>
-      </div>
+  <div class="wrap-text">
+    <div class="insight-card" style="background: var(--bg); margin-top: 0;">
+      <span class="mono-tag" style="margin-bottom: 8px; display: block;">Target Persona</span>
+      <h4 style="font-size: 1.75rem; margin-bottom: 16px;">Alex, The IT Operations Admin</h4>
+      <p>Alex manages backups, customer accounts, and security for the MSP across every client they support—all from one login.</p>
+      <ul class="custom-list" style="margin-top: 16px;">
+        <li><b>What Alex Needs:</b> A single "bird's-eye view" of all 100 client companies at once, highlighting only the ones with errors or expiring contracts.</li>
+        <li><b>Why it matters:</b> Every extra click scales across hundreds of managed tenants. If Alex misses a failed backup because it was hidden inside a separate account window, the client loses critical data, and the MSP risks losing their contract.</li>
+      </ul>
     </div>
-  </section>
 
-  <section class="sec fi persona-wrap">
-    <div class="persona-title">Persona: MSP Admin</div>
-    <div class="persona-grid">
-      <div class="persona-col">
-        <h4>Who they are</h4>
-        <p>The person who manages backups, customer accounts, and security for the MSP, across every customer they support — all from one login.</p>
-      </div>
-      <div class="persona-col">
-        <h4>What they do</h4>
-        <ul>
-          <li>Checks which customers had backup failures and fixes them</li>
-          <li>Watches for missed SLAs and storage limits across all clients</li>
-          <li>Tracks storage and usage trends to catch problems early, like a customer suddenly using way more storage than usual</li>
-          <li>Keeps an eye on which contracts or trials are about to expire, and which customers are still "active" but shouldn't be</li>
-          <li>Looks for customers who don't have security add-ons, as a chance to sell more</li>
-          <li>Checks their own admin accounts and API keys for anything outdated or risky</li>
-        </ul>
-      </div>
-      <div class="persona-col">
-        <h4>Goals</h4>
-        <ul>
-          <li>Log in once and see everything that matters, instead of digging through each customer separately</li>
-          <li>Know instantly which customer needs help first</li>
-          <li>Click on any problem and go straight to it — no extra searching</li>
-        </ul>
-      </div>
-    </div>
-    <div class="row-2">
-      <div class="persona-col">
-        <h4>Pain Points</h4>
-        <ul>
-          <li>Had to open every customer one by one just to check if something was wrong</li>
-          <li>No easy way to see if support was already handling an issue</li>
-          <li>Storage and usage problems were only noticed after they became a real issue</li>
-          <li>Expiring contracts and unused ("zombie") customer accounts were easy to miss</li>
-          <li>No simple way to see who was missing security features</li>
-          <li>Constantly switching between screens just to get a full picture</li>
-        </ul>
-      </div>
-      <div class="persona-col">
-        <h4>Needs</h4>
-        <p>"I want one page that shows me what's broken, what's expiring, what's growing too fast, and who I could sell more to — without clicking into every customer one at a time."</p>
-      </div>
-    </div>
-  </section>
+    <h3>The Ultimate Constraint: Role-Based Access</h3>
+    <p>Different types of users require different data views on the exact same screen architecture. If a user doesn't have permissions, the layout cannot look broken or empty.</p>
 
-  <section class="sec fi">
-    <div class="sec-l">Problem Breakdown</div>
-    <div class="row-2">
-      <div class="panel soft">
-        <h3 class="orange">Problem Statement</h3>
-        <ul class="list">
-          <li>The old landing page was just a plain table — it didn't show any real problems or risks.</li>
-          <li>MSPs had to manually check each customer to find backup failures, which took time and slowed everyone down.</li>
-          <li>Competitors (Veeam, Acronis, Datto, Commvault) already had dashboards like this, so Druva was behind.</li>
-        </ul>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Full Admin</th>
+            <th>Limited Admin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Dashboard View</b></td>
+            <td>Sees data for <b>every</b> customer</td>
+            <td>Only sees their <b>assigned</b> customers</td>
+          </tr>
+          <tr>
+            <td><b>Failure Triage</b></td>
+            <td>Can view and fix issues for <b>any</b> customer</td>
+            <td>Can only fix their <b>assigned</b> customers</td>
+          </tr>
+          <tr>
+            <td><b>Security Widget</b></td>
+            <td>Can see and dismiss security risks</td>
+            <td><b>Cannot see</b> this section at all</td>
+          </tr>
+          <tr>
+            <td><b>License View</b></td>
+            <td>Sees license data for <b>all</b> customers</td>
+            <td>Sees license data for their <b>own</b> customers only</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="ia">
+  <div class="wrap-text">
+    <div class="section-header">
+      <span class="mono-tag">Step 01 / Information Architecture</span>
+      <h2>Mapping the data before drawing the UI</h2>
+      <p class="lede">In enterprise B2B products, starting with UI boxes leads to feature bloat. Before opening Figma, I mapped every piece of information the system generated into a master tree diagram.</p>
+    </div>
+  </div>
+
+  <div class="wrap-img">
+    <figure>
+      <img src="msc-dashboard/information-map.png" alt="Master information tree mapping every metric the system generates">
+      <figcaption>
+        <b>The Master Information Tree:</b> We categorized everything—from macro groups down to micro-details like API Key Expirations and Quota Violations.
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap-text">
+    <p>Putting every metric on a visual map forced hard conversations early. We reviewed this map with internal Customer Success teams to ensure we weren't missing blind spots. It stopped subjective arguments about "how a chart should look" and forced us to debate "does the user actually need this number?"</p>
+
+    <h3>The 4 Daily Workflows</h3>
+    <p>Reviewing the map against how admins actually described their day surfaced four distinct workflows, each operating on a different timeline:</p>
+    <ul class="custom-list">
+      <li><b>Immediate Triage:</b> "Which customer backups require attention this morning?"</li>
+      <li><b>Daily Monitoring:</b> "Is anyone using an abnormal amount of storage today?"</li>
+      <li><b>Weekly Planning:</b> "Which client trials or contracts expire this week?"</li>
+      <li><b>Periodic Auditing:</b> "Are our own admin accounts safe and secure?"</li>
+    </ul>
+  </div>
+</section>
+
+<section id="wireframes" style="background: var(--bg2);">
+  <div class="wrap-text">
+    <div class="section-header">
+      <span class="mono-tag">Step 02 / Spatial Structure</span>
+      <h2>Testing layouts without visual noise</h2>
+      <p class="lede">When you put real numbers and bright charts into a wireframe too early, people get distracted. To test true hierarchy, I built a "blocks-without-data" layout.</p>
+    </div>
+  </div>
+
+  <div class="wrap-img">
+    <figure>
+      <img src="msc-dashboard/wireframe-blocks.png" alt="Wireframe using empty structural blocks with no data">
+      <figcaption>
+        <b>The Empty Block Pass:</b> Testing structural containers (Usage Trends, Tenant Lifecycle, Security Posture, Support Tickets) based strictly on importance.
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap-text">
+    <p>We paused layout exploration here and reviewed the concepts against the four workflows identified earlier. One pattern kept surfacing: <b>every layout forced unrelated jobs into the same visual hierarchy.</b> If we stacked everything, an admin checking expirations had to scroll past massive storage charts. The structure needed a real test with real data before we committed.</p>
+  </div>
+</section>
+
+<section id="iteration">
+  <div class="wrap-text">
+    <div class="section-header">
+      <span class="mono-tag">Step 03 / Iteration &amp; Failure</span>
+      <h2>Proving it in high fidelity</h2>
+      <p class="lede">We moved into high-fidelity design to see how real data would feel. Running these full screens past engineering and PMs made the friction between different administrative tasks impossible to ignore.</p>
+    </div>
+  </div>
+
+  <div class="wrap-img">
+    <div class="compare-grid">
+      <div class="insight-card">
+        <h4>Scrapped 01 — The Overloaded View</h4>
+        <figure class="failed" style="margin: 16px 0;">
+          <img src="msc-dashboard/scrapped-01-overloaded.png" alt="First scrapped design with usage, licensing, lifecycle and tickets on one screen">
+        </figure>
+        <p>Our first attempt put Usage Charts, Licensing States, Account Lifecycles, and Active Tickets together on a single screen.</p>
+        <span class="callout error">What went wrong: In review, the licensing widgets kept getting skipped—the storage charts dominated the page. Combining monitoring and account management created competing priorities.</span>
       </div>
-      <div class="panel">
-        <h3 class="orange">Design Difficulties</h3>
-        <ul class="list">
-          <li>The dashboard needed to show five different kinds of information — failures, SLA/storage alerts, usage trends, account status, and security risks — without the page feeling cluttered.</li>
-          <li>Different types of users (admin vs. limited access) needed to see different amounts of data on the same screen.</li>
-          <li>Filters needed to clearly show when they were "on" so people didn't get confused about what they were looking at.</li>
-          <li>Every number on the dashboard needed to be clickable and lead somewhere useful, not just sit there as a stat.</li>
-          <li>When everything was fine, the page needed to say so clearly, instead of just looking empty or broken.</li>
-        </ul>
+
+      <div class="insight-card">
+        <h4>Scrapped 02 — The Half-Measure</h4>
+        <figure class="failed" style="margin: 16px 0;">
+          <img src="msc-dashboard/scrapped-02-halfmeasure.png" alt="Second scrapped design grouping account summaries, workloads and security at the top">
+        </figure>
+        <p>We cleaned up the layout by grouping Account Summaries, Workloads, and Security neatly at the top.</p>
+        <span class="callout">Realization: The top half worked perfectly for account management. But analyzing consumption is a dedicated job. Keeping heavy Usage charts at the bottom felt out of place. It required its own room.</span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="sec fi">
-    <div class="usecase-title">Use Cases</div>
-    <table class="usecase-table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Full Admin</th>
-          <th>Limited Admin</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="usecase-rowhead">Dashboard View</td>
-          <td>Sees data for every customer</td>
-          <td>Only sees their assigned customers</td>
-        </tr>
-        <tr>
-          <td class="usecase-rowhead">Failure Triage Page</td>
-          <td>Can view and fix issues for any customer</td>
-          <td>Can only view their assigned customers</td>
-        </tr>
-        <tr>
-          <td class="usecase-rowhead">Security Widget</td>
-          <td>Can see and dismiss security risks</td>
-          <td>Cannot see this section</td>
-        </tr>
-        <tr>
-          <td class="usecase-rowhead">Upsell/License View</td>
-          <td>Sees license data for all customers</td>
-          <td>Sees license data for their own customers only</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section class="sec fi">
-    <div class="nda-card">
-      <div class="nda-title">Confidentiality note</div>
-      <p class="nda-copy">This project is under NDA. Design is done and it's moving into development next. Kept high-level here — happy to walk through the full details on a call.</p>
+<section id="solution" style="background: var(--bg2);">
+  <div class="wrap-text">
+    <div class="section-header">
+      <span class="mono-tag">Step 04 / The Shipped Solution</span>
+      <h2>Dividing the noise: 3 tabs for 3 distinct jobs</h2>
+      <p class="lede">We abandoned the single-page idea and split the console into three dedicated tabs. Each tab became hyper-focused on answering one specific operational question.</p>
     </div>
-  </section>
-</div>
+  </div>
+
+  <div class="wrap-img">
+    <div class="tab-block">
+      <h3 style="text-align: center;">Tab 01 — Accounts &amp; Licensing</h3>
+      <p class="tab-question">QUESTION: WHICH CUSTOMERS NEED COMMERCIAL ATTENTION TODAY?</p>
+      <div class="compare-grid" style="margin-top: 0;">
+        <div>
+          <figure style="margin-top: 0;">
+            <img src="msc-dashboard/tab1-iteration.png" alt="First iteration of the Accounts and Licensing tab">
+            <figcaption><b>First Iteration:</b> Grouped expiring plans into buckets (Today, 7 Days, 30 Days) so admins know exactly who to call first.</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure class="final" style="margin-top: 0;">
+            <img src="msc-dashboard/tab1-final.jpg" alt="Final shipped Accounts and Licensing tab">
+            <figcaption><b>Final Shipped Version:</b> Removed unnecessary borders and compressed the grid. "Account Distribution" cleanly aligns with Support Cases, accelerating scannability.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-block">
+      <h3 style="text-align: center;">Tab 02 — Usage Monitoring</h3>
+      <p class="tab-question">QUESTION: WHICH TENANTS ARE CONSUMING RESOURCES ABNORMALLY?</p>
+      <div class="compare-grid" style="margin-top: 0;">
+        <div>
+          <figure style="margin-top: 0;">
+            <img src="msc-dashboard/tab2-iteration.png" alt="First iteration of the Usage Monitoring tab">
+            <figcaption><b>First Iteration:</b> Moved all heavy charts here. Quota warnings are placed at the very top as a priority action strip.</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure class="final" style="margin-top: 0;">
+            <img src="msc-dashboard/tab2-final.jpg" alt="Final shipped Usage Monitoring tab">
+            <figcaption><b>Final Shipped Version:</b> Placed User Growth trends directly next to Storage Growth. Admins instantly see if a spike in storage is justified by a spike in new users.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="wrap-text" style="padding: 0;">
+        <div class="tradeoff">
+          <span class="mono-tag">Known tradeoff in the shipped design</span>
+          <p>Per-product numbers live inside the hover tooltip rather than as separate cards. It keeps the chart scannable, but it means an admin can't compare two products side by side without moving the mouse twice. Acceptable for spotting the one line that moved—wrong if the job ever shifts to detailed comparison.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-block">
+      <h3 style="text-align: center;">Tab 03 — Backup Triage Centre</h3>
+      <p class="tab-question">QUESTION: WHICH CUSTOMER BACKUPS REQUIRE ATTENTION THIS MORNING?</p>
+      <figure class="final" style="max-width: 900px; margin: 0 auto;">
+        <img src="msc-dashboard/triage-final.jpg" alt="Backup Triage Centre showing ranked list of clients with failed backups">
+        <figcaption>
+          <b>The Shipped Triage Console:</b> A clear, ranked list of clients whose backups failed today versus a 7-day history. Admins click directly on a client's name to enter their isolated compartment and resolve the error.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="reflection">
+  <div class="wrap-text">
+    <div class="section-header">
+      <span class="mono-tag">Outcomes &amp; Reflection</span>
+      <h2>Key takeaways from the project</h2>
+    </div>
+
+    <div class="insight-card">
+      <span class="mono-tag" style="margin-bottom: 8px; display: block;">01. Sequence the design work</span>
+      <p>The biggest lesson wasn't about dashboards—it was about sequencing. Mapping the information architecture first made later UI decisions significantly easier because every screen already had a clear, validated purpose.</p>
+    </div>
+
+    <div class="insight-card">
+      <span class="mono-tag" style="margin-bottom: 8px; display: block;">02. Separate quick actions from slow analysis</span>
+      <p>Quick, daily tasks (like renewing an expiring contract) and slow, analytical tasks (like reading a 90-day storage trend) require different mental states. Separating them into different tabs reduced context switching and uncluttered the entire workflow.</p>
+    </div>
+
+    <div class="insight-card">
+      <span class="mono-tag" style="margin-bottom: 8px; display: block;">03. Tabs solve crowding, but hide context</span>
+      <p>While the 3-tab system fixed our layout problems, it created a new tradeoff: if a client has a broken backup, an expiring plan, and a quota warning all at once, that information is scattered. In a future update, we need to add dynamic notification badges directly onto the tab titles.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap-text">
+    <p class="legal-note">
+      <b>Confidentiality note:</b> This project is under NDA. Design is complete and moving into development.<br>
+      Interface redrawn and figures synthesized for case study presentation.<br>
+      The core architectural logic and UX constraints remain true to production.
+    </p>
+  </div>
+</footer>
 
 <script>
+const ham = document.getElementById('hamburger');
+const menu = document.getElementById('mobileMenu');
+function closeMobileMenu() { menu.classList.remove('open'); }
+if (ham && menu) {
+  ham.addEventListener('click', () => menu.classList.toggle('open'));
+}
+
 const html = document.documentElement;
 document.getElementById('themeToggle').addEventListener('click', () => {
   html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
 });
 
-const io = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('vis'); }), { threshold: 0.08 });
-document.querySelectorAll('.fi').forEach(el => io.observe(el));
-
-const bgMusic = document.getElementById('bgMusic');
-const musicToggle = document.getElementById('musicToggle');
-const iconPause = document.getElementById('musicIconPause');
-const iconPlay = document.getElementById('musicIconPlay');
-bgMusic.volume = 0.45;
-const MUSIC_PREF_KEY = 'portfolio_music_paused';
-const MUSIC_TIME_KEY = 'portfolio_music_time';
-let userPaused = false;
-let lastSavedAt = 0;
-try {
-  localStorage.setItem(MUSIC_PREF_KEY, 'false');
-  userPaused = false;
-  const savedTime = parseFloat(localStorage.getItem(MUSIC_TIME_KEY) || '0');
-  if (Number.isFinite(savedTime) && savedTime > 0) {
-    bgMusic.currentTime = savedTime;
-  }
-} catch (_) {}
-function persistMusicState() {
-  try {
-    localStorage.setItem(MUSIC_PREF_KEY, userPaused ? 'true' : 'false');
-    localStorage.setItem(MUSIC_TIME_KEY, String(bgMusic.currentTime || 0));
-    lastSavedAt = Date.now();
-  } catch (_) {}
-}
-function maybePersistPlaybackTime() {
-  const now = Date.now();
-  if (now - lastSavedAt < 1000) return;
-  persistMusicState();
-}
-function updateMusicButton() {
-  const playing = !bgMusic.paused;
-  musicToggle.setAttribute('aria-pressed', playing ? 'true' : 'false');
-  musicToggle.setAttribute('aria-label', playing ? 'Pause background music' : 'Play background music');
-  iconPause.hidden = !playing;
-  iconPlay.hidden = playing;
-}
-musicToggle.addEventListener('click', (e) => {
-  e.stopPropagation();
-  if (bgMusic.paused) { userPaused = false; bgMusic.play().catch(() => {}); }
-  else { userPaused = true; bgMusic.pause(); }
-  persistMusicState();
-  updateMusicButton();
-});
-bgMusic.addEventListener('play', () => { updateMusicButton(); persistMusicState(); });
-bgMusic.addEventListener('pause', () => { updateMusicButton(); persistMusicState(); });
-bgMusic.addEventListener('timeupdate', () => {
-  if (!bgMusic.paused && !userPaused) maybePersistPlaybackTime();
-});
-window.addEventListener('pagehide', persistMusicState);
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'hidden') persistMusicState();
-});
-function tryAutoPlay() {
-  if (userPaused) return;
-  bgMusic.play().then(() => updateMusicButton()).catch(() => updateMusicButton());
-}
-tryAutoPlay();
-window.addEventListener('pageshow', tryAutoPlay);
-window.addEventListener('focus', tryAutoPlay);
-document.addEventListener('pointerdown', (e) => {
-  if (musicToggle.contains(e.target)) return;
-  if (userPaused) return;
-  if (bgMusic.paused) bgMusic.play().catch(() => {});
-}, { once: true });
-
 const resumeModal = document.getElementById('resumeModal');
 const resumeCloseBtn = document.getElementById('resumeCloseBtn');
 const resumeTriggers = document.querySelectorAll('[data-resume-trigger]');
-
 function openResumeModal(event) {
   event.preventDefault();
   resumeModal.hidden = false;
   resumeModal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
 }
-
 function closeResumeModal() {
   resumeModal.hidden = true;
   resumeModal.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
 }
-
 resumeTriggers.forEach((trigger) => trigger.addEventListener('click', openResumeModal));
 resumeCloseBtn.addEventListener('click', closeResumeModal);
 resumeModal.addEventListener('click', (event) => {
@@ -394,5 +499,6 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && !resumeModal.hidden) closeResumeModal();
 });
 </script>
+<script src="audio/music.js"></script>
 </body>
 </html>

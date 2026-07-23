@@ -1,0 +1,257 @@
+/**
+ * Johnyvino visual skin — colors, radii, shadows, type, motion only.
+ * Loaded after index.html inline styles to override visuals without layout changes.
+ */
+
+/* Theme circular reveal */
+html.theme-transitioning::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  background: var(--theme-prev-canvas, var(--canvas));
+  clip-path: circle(150vmax at var(--reveal-x, 50vw) var(--reveal-y, 50vh));
+  transition: clip-path 0.5s var(--ease-out);
+}
+
+html.theme-transitioning.theme-reveal::after {
+  clip-path: circle(0 at var(--reveal-x, 50vw) var(--reveal-y, 50vh));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.theme-transitioning::after {
+    transition: none;
+    display: none;
+  }
+}
+
+body {
+  background: var(--canvas);
+  color: var(--text-primary);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--canvas);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-tertiary);
+  border-radius: var(--radius-pill);
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+}
+
+.theme-toggle {
+  border-radius: var(--radius-pill);
+  background: var(--glass);
+  border-color: var(--glass-border);
+  transition: all var(--duration-base) var(--ease-spring);
+}
+
+.theme-toggle::after {
+  border-radius: var(--radius-pill);
+}
+
+.avail-badge {
+  color: var(--text-primary);
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  transition: all var(--duration-base) var(--ease-spring);
+}
+
+.avail-dot {
+  background: var(--text-primary);
+  border-radius: var(--radius-pill);
+  animation: none;
+}
+
+.hero-eyebrow {
+  color: var(--text-tertiary);
+  border-color: var(--hairline);
+  border-radius: var(--radius);
+}
+
+.hero-name {
+  font-size: clamp(3rem, 8vw, 5.75rem);
+  letter-spacing: -0.045em;
+  color: var(--text-primary);
+}
+
+.hero-visual {
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.hero-img-wrap {
+  flex-shrink: 0;
+}
+
+.hero-img-frame img {
+  object-fit: cover;
+  object-position: center 20%;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hero-role {
+  border-radius: var(--radius);
+  background: var(--surface-card);
+  border-color: var(--hairline);
+}
+
+.hero-desc,
+.hero-loc {
+  color: var(--text-secondary);
+}
+
+.btn-primary,
+.btn-outline {
+  border-radius: var(--radius);
+  transition: all var(--duration-base) var(--ease-spring);
+}
+
+[data-theme="dark"] .btn-primary {
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+  border-color: var(--glass-border);
+}
+
+[data-theme="light"] .btn-primary {
+  background: var(--text-primary);
+  color: var(--canvas);
+  border-color: var(--text-primary);
+}
+
+.hero-img-frame {
+  border-radius: var(--radius);
+  border-color: var(--hairline);
+  background: var(--surface-card);
+  box-shadow: var(--elevation-2);
+}
+
+.hero-img-deco {
+  border-radius: var(--radius);
+  border-color: var(--glass-border);
+  background: var(--glass);
+  box-shadow: var(--elevation-2);
+}
+
+.section-label {
+  color: var(--text-tertiary);
+  letter-spacing: 0.12em;
+}
+
+.section-title {
+  font-size: var(--text-display);
+  color: var(--text-primary);
+}
+
+.section-sub {
+  color: var(--text-secondary);
+}
+
+.kw-tag,
+.exp-tool-tag,
+.tool-chip {
+  border-radius: var(--radius);
+  background: var(--surface-card);
+  border-color: var(--hairline);
+}
+
+.kw-tag:hover {
+  transition: all var(--duration-base) var(--ease-spring);
+}
+
+.proj-tab {
+  border-radius: var(--radius-pill);
+  background: var(--surface-card);
+  border-color: var(--hairline);
+  transition: all var(--duration-base) var(--ease-spring);
+}
+
+.proj-card {
+  background: var(--surface-card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  box-shadow: var(--elevation-2);
+  transition: all var(--duration-base) var(--ease-spring);
+}
+
+.proj-card:hover {
+  box-shadow: var(--elevation-3);
+  border-color: var(--glass-border);
+}
+
+.proj-empty {
+  background: var(--surface-card);
+  border-color: var(--hairline);
+  border-radius: var(--radius);
+}
+
+.exp-item {
+  transition: opacity var(--duration-slow) var(--ease-out), transform var(--duration-slow) var(--ease-out);
+}
+
+.exp-type {
+  border-radius: var(--radius-pill);
+}
+
+.exp-period {
+  border-radius: var(--radius);
+  background: var(--surface-card);
+  border: 1px solid var(--hairline);
+}
+
+.contact-card {
+  background: var(--surface-card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  box-shadow: var(--elevation-2);
+}
+
+.contact-link {
+  border-radius: var(--radius-pill);
+  background: var(--surface-card);
+  border-color: var(--hairline);
+  transition: all var(--duration-base) var(--ease-spring);
+}
+
+.contact-link:hover {
+  transition: all var(--duration-base) var(--ease-spring);
+}
+
+.resume-modal-card {
+  background: var(--canvas);
+  border-color: var(--hairline);
+  border-radius: var(--radius);
+  box-shadow: var(--elevation-3);
+}
+
+.resume-close {
+  border-radius: var(--radius);
+}
+
+.music-toggle {
+  border-radius: var(--radius-pill);
+  background: var(--canvas);
+  border-color: var(--glass-border);
+  transition: all var(--duration-base) var(--ease-spring);
+}
+
+.fade-in {
+  transition: opacity var(--duration-slow) var(--ease-out), transform var(--duration-slow) var(--ease-out);
+}
+
+.exp-go:hover {
+  transition: all var(--duration-base) var(--ease-spring);
+}

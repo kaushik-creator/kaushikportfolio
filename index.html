@@ -6,7 +6,7 @@
 <meta name="description" content="Kaushik — Product & UX Designer specializing in B2B and enterprise products. Designing digital experiences from concept through launch."/>
 <meta name="keywords" content="Product Designer, UX Designer, UI Design, Enterprise, B2B, Design Systems"/>
 <meta name="author" content="Kaushik D."/>
-<meta name="theme-color" content="#000000"/>
+<meta name="theme-color" content="#09090b"/>
 <meta property="og:title" content="Kaushik — Product & UX Designer"/>
 <meta property="og:description" content="Specializing in B2B and enterprise products. Design systems, user research, and intuitive experiences."/>
 <meta property="og:type" content="website"/>
@@ -19,48 +19,14 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="tokens.css"/>
+<link rel="stylesheet" href="shared.css"/>
 <style>
-:root[data-theme="dark"] {
-  --bg: #000000;
-  --bg2: #070707;
-  --bg3: #121212;
-  --border: rgba(255,255,255,0.12);
-  --text: #ffffff;
-  --text2: #a1a1a1;
-  --text3: #6b6b6b;
-  --accent: #ffffff;
-  --accent2: #e5e5e5;
-  --accent-glow: rgba(255,255,255,0.04);
-  --accent-soft: rgba(255,255,255,0.06);
-  --card: #0a0a0a;
-  --tag-bg: rgba(255,255,255,0.06);
-  --tag-border: rgba(255,255,255,0.14);
-  --nav-bg: rgba(0,0,0,0.88);
-  --avail: #4ade80;
-}
-:root[data-theme="light"] {
-  --bg: #ffffff;
-  --bg2: #f8f8f8;
-  --bg3: #efefef;
-  --border: rgba(0,0,0,0.1);
-  --text: #000000;
-  --text2: #4a4a4a;
-  --text3: #8a8a8a;
-  --accent: #000000;
-  --accent2: #2a2a2a;
-  --accent-glow: rgba(0,0,0,0.15);
-  --accent-soft: rgba(0,0,0,0.06);
-  --card: #ffffff;
-  --tag-bg: rgba(0,0,0,0.08);
-  --tag-border: rgba(0,0,0,0.12);
-  --nav-bg: rgba(255,255,255,0.95);
-}
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: var(--space-xxl);
 }
 body {
   font-family: 'Inter', 'DM Sans', sans-serif;
@@ -130,7 +96,7 @@ body {
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 0px; }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: var(--radius); }
 
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -138,15 +104,12 @@ nav {
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding: 1.1rem 3rem;
-  background: var(--nav-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--canvas);
   border-bottom: 1px solid var(--border);
   transition: all 0.4s;
 }
 .nav-logo {
   justify-self: start;
-  font-family: 'Syne', sans-serif;
   font-weight: 800;
   font-size: 1.35rem;
   color: var(--text);
@@ -197,48 +160,26 @@ nav {
 .resume-frame{flex:1;width:100%;border:0;background:#fff;}
 
 .theme-toggle {
-  width: 44px; height: 24px;
-  border-radius: 0px;
+  width: 38px;
+  height: 20px;
   background: var(--bg3);
   border: 1px solid var(--border);
   cursor: pointer;
   position: relative;
-  /* removed */ transition:background 0.3s;
   flex-shrink: 0;
 }
 .theme-toggle::after {
   content: '';
   position: absolute;
-  top: 3px; left: 3px;
-  width: 16px; height: 16px;
-  border-radius: 0px;
+  top: 3px;
+  left: 3px;
+  width: 12px;
+  height: 12px;
   background: var(--text);
   transition: transform 0.3s, background 0.3s;
 }
 [data-theme="dark"] .theme-toggle::after { background: #fff; }
-[data-theme="light"] .theme-toggle::after { background: #000; transform: translateX(20px); }
-
-.avail-badge {
-  display: flex; align-items: center; gap: 0.45rem;
-  font-size: 0.7rem;
-  font-family: 'Space Mono', monospace;
-  font-weight: 500;
-  color: var(--avail);
-  background: rgba(74,222,128,0.08);
-  border: 1px solid rgba(74,222,128,0.28);
-  padding: 0.38rem 0.95rem;
-  border-radius: 999px;
-}
-.avail-dot {
-  width: 6px; height: 6px;
-  border-radius: 2px;
-  background: var(--avail);
-  animation: pulse-green 2s ease-in-out infinite;
-}
-@keyframes pulse-green {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.8); }
-}
+[data-theme="light"] .theme-toggle::after { background: #000; transform: translateX(18px); }
 
 .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
 .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
@@ -246,19 +187,23 @@ nav {
 .mobile-menu {
   display: none;
   position: fixed; top: 65px; left: 0; right: 0; z-index: 99;
-  background: var(--bg2);
+  background: var(--canvas);
   border-bottom: 1px solid var(--border);
   padding: 1.5rem 2rem;
   flex-direction: column; gap: 1.2rem;
 }
 .mobile-menu.open { display: flex; }
 .mobile-menu a {
-  font-size: 0.9rem; font-weight: 500;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--text2); text-decoration: none;
-  /* removed */ transition:color 0.2s;
+  font-size: 0.78rem;
+  font-weight: 500;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text2);
+  text-decoration: none;
+  transition: color 0.2s;
 }
-.mobile-menu a:hover { color: var(--accent2); }
+.mobile-menu a:hover { color: var(--text); }
 
 .hero {
   min-height: 100vh;
@@ -297,7 +242,7 @@ nav {
   padding: 0.4rem 0.9rem;
   background: transparent;
   border: 1px solid var(--border);
-  border-radius: 0px;
+  border-radius: var(--radius);
 }
 
 .hero-name {
@@ -340,7 +285,7 @@ nav {
   padding: 0.55rem 1rem;
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 0px;
+  border-radius: var(--radius);
   line-height: 1.35;
 }
 
@@ -372,7 +317,7 @@ nav {
   font-size: 0.87rem;
   font-weight: 500;
   border: 1px solid rgba(255,255,255,0.9);
-  border-radius: 0px;
+  border-radius: var(--radius);
   cursor: pointer;
   text-decoration: none;
   transition: background 0.2s, transform 0.15s, border-color 0.2s;
@@ -406,7 +351,7 @@ nav {
   font-size: 0.87rem;
   font-weight: 500;
   border: 1px solid var(--border);
-  border-radius: 0px;
+  border-radius: var(--radius);
   cursor: pointer;
   text-decoration: none;
   transition: border-color 0.2s, transform 0.15s, color 0.2s, background 0.2s;
@@ -432,7 +377,7 @@ nav {
 }
 .hero-img-frame {
   position: absolute; inset: 0;
-  border-radius: 0px;
+  border-radius: var(--radius);
   border: 1px solid var(--border);
   overflow: hidden;
   background: var(--bg3);
@@ -451,7 +396,7 @@ nav {
   position: absolute;
   bottom: -18px; right: -18px;
   width: 132px; height: 132px;
-  border-radius: 0px;
+  border-radius: var(--radius);
   border: 1px solid var(--tag-border);
   background: rgba(0,0,0,0.65);
   backdrop-filter: blur(14px);
@@ -543,7 +488,7 @@ section { padding: 7rem 3rem; }
   grid-template-columns: 1fr 1fr;
   gap: 5rem;
   align-items: center;
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
 }
 .about-quote {
@@ -614,7 +559,7 @@ section { padding: 7rem 3rem; }
   color: var(--text);
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 0px;
+  border-radius: var(--radius);
   /* removed */ transition:none;
   cursor: default;
 }
@@ -642,7 +587,7 @@ section { padding: 7rem 3rem; }
   color: var(--text2);
   background: var(--bg2);
   border: 1px solid var(--border);
-  border-radius: 0px;
+  border-radius: var(--radius);
 }
 
 #experience { background: var(--bg2); }
@@ -660,7 +605,7 @@ section { padding: 7rem 3rem; }
   padding: 0 0 3rem 2.5rem;
   opacity: 0;
   transform: translateY(22px);
-  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.85s var(--ease-out), transform 0.85s var(--ease-out);
 }
 .exp-item.visible { opacity: 1; transform: translateY(0); }
 .exp-group-label {
@@ -699,7 +644,7 @@ section { padding: 7rem 3rem; }
 .exp-dot {
   position: absolute; left: -6px; top: 6px;
   width: 13px; height: 13px;
-  border-radius: 0px;
+  border-radius: var(--radius);
   background: var(--accent);
   border: 2px solid var(--bg2);
   box-shadow: 0 0 0 4px var(--accent-soft);
@@ -712,7 +657,7 @@ section { padding: 7rem 3rem; }
   text-transform: uppercase;
   color: #fff;
   padding: 0.2rem 0.6rem;
-  border-radius: 0px;
+  border-radius: var(--radius);
   line-height: 1.25;
 }
 .exp-type.contract { background: #f59e0b; color: #000; }
@@ -765,7 +710,7 @@ section { padding: 7rem 3rem; }
   color: var(--text3);
   padding: 0.25rem 0.6rem;
   background: var(--bg3);
-  border-radius: 0px;
+  border-radius: var(--radius);
 }
 .exp-meta {
   display: flex;
@@ -810,7 +755,7 @@ section { padding: 7rem 3rem; }
   color: var(--text3);
   padding: 0.2rem 0.5rem;
   background: var(--bg3);
-  border-radius: 0px;
+  border-radius: var(--radius);
 }
 
 #projects { background: var(--bg); }
@@ -830,7 +775,7 @@ section { padding: 7rem 3rem; }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
-  border-radius: 0;
+  border-radius: var(--radius);
   transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 .proj-tab:hover { border-color: var(--tag-border); color: var(--text); }
@@ -843,13 +788,13 @@ section { padding: 7rem 3rem; }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 1.5rem;
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 3rem auto 0;
 }
 .proj-card.is-hidden { display: none !important; }
 .proj-empty {
   margin: 1rem auto 0;
-  max-width: 1200px;
+  max-width: var(--max-width);
   border: 1px solid var(--border);
   background: var(--card);
   padding: 1rem 1.1rem;
@@ -860,9 +805,9 @@ section { padding: 7rem 3rem; }
 .proj-card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 0px;
+  border-radius: var(--radius);
   overflow: hidden;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease;
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out), border-color 0.4s ease;
   cursor: pointer;
   text-decoration: none;
   display: flex;
@@ -873,7 +818,7 @@ section { padding: 7rem 3rem; }
 }
 .proj-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 60px rgba(0,0,0,0.2);
+  box-shadow: var(--elevation-4);
   border-color: var(--tag-border);
 }
 .proj-thumb {
@@ -901,7 +846,7 @@ section { padding: 7rem 3rem; }
 .proj-thumb-icon {
   position: relative; z-index: 1;
   width: 64px; height: 64px;
-  border-radius: 0px;
+  border-radius: var(--radius);
   background: var(--accent-soft);
   border: 1px solid var(--tag-border);
   display: flex; align-items: center; justify-content: center;
@@ -922,6 +867,14 @@ section { padding: 7rem 3rem; }
   height: auto;
   display: block;
   object-fit: contain;
+}
+.proj-thumb-cover {
+  position: relative; z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
 }
 .proj-body { padding: 1.5rem; }
 .proj-cat {
@@ -977,7 +930,7 @@ section { padding: 7rem 3rem; }
 .contact-card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 0px;
+  border-radius: var(--radius);
   padding: 3rem;
   margin-top: 3rem;
   position: relative;
@@ -998,7 +951,7 @@ section { padding: 7rem 3rem; }
   transform: translateX(-50%);
   width: 300px; height: 200px;
   background: var(--accent-glow);
-  border-radius: 0px;
+  border-radius: var(--radius);
   filter: blur(60px);
   pointer-events: none;
 }
@@ -1020,7 +973,7 @@ section { padding: 7rem 3rem; }
   padding: 0.9rem 1.5rem;
   background: var(--bg2);
   border: 1px solid var(--border);
-  border-radius: 0px;
+  border-radius: var(--radius);
   color: var(--text);
   text-decoration: none;
   font-size: 0.9rem;
@@ -1056,7 +1009,7 @@ footer {
 .fade-in {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 1.05s cubic-bezier(0.22, 1, 0.36, 1), transform 1.05s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 1.05s var(--ease-out), transform 1.05s var(--ease-out);
 }
 .fade-in.visible {
   opacity: 1;
@@ -1108,20 +1061,17 @@ footer {
 
 .music-toggle {
   position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
+  bottom: 1.25rem;
+  right: 1.25rem;
   z-index: 200;
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--border);
-  border-radius: 0;
-  background: var(--nav-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--canvas);
   color: var(--text);
   cursor: pointer;
   transition: border-color 0.2s, transform 0.15s, background 0.2s;
@@ -1148,6 +1098,7 @@ footer {
   }
 }
 </style>
+<link rel="stylesheet" href="johnyvino-skin.css"/>
 </head>
 <body>
 
@@ -1157,7 +1108,7 @@ footer {
 </div>
 
 <audio id="bgMusic" loop preload="auto" playsinline>
-  <source src="audio/bittersweet-symphony.mp3" type="audio/mpeg"/>
+  <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
 </audio>
 <button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
   <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
@@ -1477,6 +1428,20 @@ footer {
       </div>
     </div>
     <div class="proj-grid fade-in">
+      <a href="msc-dashboard.html" class="proj-card" data-project-type="professional">
+        <div class="proj-thumb proj-thumb-db">
+          <img class="proj-thumb-cover" src="msc-dashboard/cover.png" alt="MSC Operational Dashboard cover"/>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">Cybersecurity · Dashboard · Enterprise</div>
+          <div class="proj-title">MSC Operational Dashboard</div>
+          <div class="proj-desc">Hundreds of customers, one control room — a new home screen for Druva MSP partners showing backup failures, storage, licenses, and security risks at a glance.</div>
+          <div class="proj-metrics">
+            <div class="proj-metric"><span class="m-val">MSP</span><span class="m-lbl">Multi-customer</span></div>
+            <div class="proj-metric"><span class="m-val">0→1</span><span class="m-lbl">Dashboard</span></div>
+          </div>
+        </div>
+      </a>
       <a href="druva.html" class="proj-card" data-project-type="professional">
         <div class="proj-thumb proj-thumb-dr">
           <img class="proj-thumb-logo" src="druva-logo.png" alt="Druva logo"/>
@@ -1488,20 +1453,6 @@ footer {
           <div class="proj-metrics">
             <div class="proj-metric"><span class="m-val">UX</span><span class="m-lbl">Enterprise Flows</span></div>
             <div class="proj-metric"><span class="m-val">B2B</span><span class="m-lbl">Platform Design</span></div>
-          </div>
-        </div>
-      </a>
-      <a href="msc-dashboard.html" class="proj-card" data-project-type="professional">
-        <div class="proj-thumb proj-thumb-dr">
-          <img class="proj-thumb-logo" src="druva-logo.png" alt="Druva logo"/>
-        </div>
-        <div class="proj-body">
-          <div class="proj-cat">Cybersecurity · Dashboard · Enterprise</div>
-          <div class="proj-title">MSC Operational Dashboard</div>
-          <div class="proj-desc">Designed a new home screen for Druva's MSP partners — backup failures, storage, licenses, and security risks across all customers at once.</div>
-          <div class="proj-metrics">
-            <div class="proj-metric"><span class="m-val">MSP</span><span class="m-lbl">Multi-customer</span></div>
-            <div class="proj-metric"><span class="m-val">0→1</span><span class="m-lbl">Dashboard</span></div>
           </div>
         </div>
       </a>
@@ -1585,8 +1536,45 @@ footer {
 <script>
 const toggle = document.getElementById('themeToggle');
 const html = document.documentElement;
-toggle.addEventListener('click', () => {
-  html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+const body = document.body;
+
+function syncThemeClasses(isLight) {
+  body.classList.toggle('light-mode', isLight);
+  html.dataset.theme = isLight ? 'light' : 'dark';
+  html.style.colorScheme = isLight ? 'light' : 'dark';
+}
+
+function getCanvasColor() {
+  return getComputedStyle(html).getPropertyValue('--canvas').trim();
+}
+
+if (html.dataset.theme === 'light') {
+  syncThemeClasses(true);
+} else {
+  syncThemeClasses(false);
+}
+
+toggle.addEventListener('click', (event) => {
+  const rect = toggle.getBoundingClientRect();
+  const x = rect.left + rect.width / 2;
+  const y = rect.top + rect.height / 2;
+  html.style.setProperty('--reveal-x', x + 'px');
+  html.style.setProperty('--reveal-y', y + 'px');
+  html.style.setProperty('--theme-prev-canvas', getCanvasColor());
+
+  const nextLight = html.dataset.theme !== 'light';
+  syncThemeClasses(nextLight);
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  html.classList.add('theme-transitioning');
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => html.classList.add('theme-reveal'));
+  });
+  window.setTimeout(() => {
+    html.classList.remove('theme-transitioning', 'theme-reveal');
+    html.style.removeProperty('--theme-prev-canvas');
+  }, 520);
 });
 
 const ham = document.getElementById('hamburger');
@@ -1631,94 +1619,6 @@ projTabs.forEach((tab) => {
   });
 });
 
-const bgMusic = document.getElementById('bgMusic');
-const musicToggle = document.getElementById('musicToggle');
-const iconPause = document.getElementById('musicIconPause');
-const iconPlay = document.getElementById('musicIconPlay');
-bgMusic.volume = 0.45;
-const MUSIC_PREF_KEY = 'portfolio_music_paused';
-const MUSIC_TIME_KEY = 'portfolio_music_time';
-let userPaused = false;
-let lastSavedAt = 0;
-
-try {
-  localStorage.setItem(MUSIC_PREF_KEY, 'false');
-  userPaused = false;
-  const savedTime = parseFloat(localStorage.getItem(MUSIC_TIME_KEY) || '0');
-  if (Number.isFinite(savedTime) && savedTime > 0) {
-    bgMusic.currentTime = savedTime;
-  }
-} catch (_) {}
-
-function persistMusicState() {
-  try {
-    localStorage.setItem(MUSIC_PREF_KEY, userPaused ? 'true' : 'false');
-    localStorage.setItem(MUSIC_TIME_KEY, String(bgMusic.currentTime || 0));
-    lastSavedAt = Date.now();
-  } catch (_) {}
-}
-
-function maybePersistPlaybackTime() {
-  const now = Date.now();
-  if (now - lastSavedAt < 1000) return;
-  persistMusicState();
-}
-
-function updateMusicButton() {
-  const playing = !bgMusic.paused;
-  musicToggle.setAttribute('aria-pressed', playing ? 'true' : 'false');
-  musicToggle.setAttribute('aria-label', playing ? 'Pause background music' : 'Play background music');
-  iconPause.hidden = !playing;
-  iconPlay.hidden = playing;
-}
-
-musicToggle.addEventListener('click', (e) => {
-  e.stopPropagation();
-  if (bgMusic.paused) {
-    userPaused = false;
-    bgMusic.play().catch(() => {});
-  } else {
-    userPaused = true;
-    bgMusic.pause();
-  }
-  persistMusicState();
-  updateMusicButton();
-});
-
-bgMusic.addEventListener('play', () => {
-  updateMusicButton();
-  persistMusicState();
-});
-bgMusic.addEventListener('pause', () => {
-  updateMusicButton();
-  persistMusicState();
-});
-bgMusic.addEventListener('timeupdate', () => {
-  if (!bgMusic.paused && !userPaused) maybePersistPlaybackTime();
-});
-window.addEventListener('pagehide', persistMusicState);
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'hidden') persistMusicState();
-});
-function tryAutoPlay() {
-  if (userPaused) return;
-  bgMusic.play().then(() => updateMusicButton()).catch(() => updateMusicButton());
-}
-
-tryAutoPlay();
-window.addEventListener('pageshow', tryAutoPlay);
-window.addEventListener('focus', tryAutoPlay);
-
-document.addEventListener(
-  'pointerdown',
-  (e) => {
-    if (musicToggle.contains(e.target)) return;
-    if (userPaused) return;
-    if (!userPaused && bgMusic.paused) bgMusic.play().catch(() => {});
-  },
-  { once: true }
-);
-
 const resumeModal = document.getElementById('resumeModal');
 const resumeCloseBtn = document.getElementById('resumeCloseBtn');
 const resumeTriggers = document.querySelectorAll('[data-resume-trigger]');
@@ -1745,5 +1645,6 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && !resumeModal.hidden) closeResumeModal();
 });
 </script>
+<script src="audio/music.js"></script>
 </body>
 </html>

@@ -8,9 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="tokens.css"/>
 <style>
-[data-theme="dark"]{--bg:#090909;--bg2:#121212;--text:#f2f2f2;--text2:#9a9a9a;--text3:#6f6f6f;--border:rgba(255,255,255,0.14);--nav-bg:rgba(9,9,9,0.92);}
-[data-theme="light"]{--bg:#ffffff;--bg2:#f5f5f5;--text:#111111;--text2:#555555;--text3:#8a8a8a;--border:rgba(0,0,0,0.16);--nav-bg:rgba(255,255,255,0.95);}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;}
 a{text-decoration:none;color:inherit}
@@ -82,7 +81,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 </head>
 <body>
 <audio id="bgMusic" loop preload="auto" playsinline>
-  <source src="audio/bittersweet-symphony.mp3" type="audio/mpeg"/>
+  <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
 </audio>
 <button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
   <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
@@ -133,88 +132,6 @@ const html = document.documentElement;
 document.getElementById('themeToggle').addEventListener('click', () => {
   html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
 });
-
-const bgMusic = document.getElementById('bgMusic');
-const musicToggle = document.getElementById('musicToggle');
-const iconPause = document.getElementById('musicIconPause');
-const iconPlay = document.getElementById('musicIconPlay');
-bgMusic.volume = 0.45;
-const MUSIC_PREF_KEY = 'portfolio_music_paused';
-const MUSIC_TIME_KEY = 'portfolio_music_time';
-let userPaused = false;
-let lastSavedAt = 0;
-
-try {
-  localStorage.setItem(MUSIC_PREF_KEY, 'false');
-  userPaused = false;
-  const savedTime = parseFloat(localStorage.getItem(MUSIC_TIME_KEY) || '0');
-  if (Number.isFinite(savedTime) && savedTime > 0) {
-    bgMusic.currentTime = savedTime;
-  }
-} catch (_) {}
-
-function persistMusicState() {
-  try {
-    localStorage.setItem(MUSIC_PREF_KEY, userPaused ? 'true' : 'false');
-    localStorage.setItem(MUSIC_TIME_KEY, String(bgMusic.currentTime || 0));
-    lastSavedAt = Date.now();
-  } catch (_) {}
-}
-
-function maybePersistPlaybackTime() {
-  const now = Date.now();
-  if (now - lastSavedAt < 1000) return;
-  persistMusicState();
-}
-
-function updateMusicButton() {
-  const playing = !bgMusic.paused;
-  musicToggle.setAttribute('aria-pressed', playing ? 'true' : 'false');
-  musicToggle.setAttribute('aria-label', playing ? 'Pause background music' : 'Play background music');
-  iconPause.hidden = !playing;
-  iconPlay.hidden = playing;
-}
-
-musicToggle.addEventListener('click', (e) => {
-  e.stopPropagation();
-  if (bgMusic.paused) {
-    userPaused = false;
-    bgMusic.play().catch(() => {});
-  } else {
-    userPaused = true;
-    bgMusic.pause();
-  }
-  persistMusicState();
-  updateMusicButton();
-});
-
-bgMusic.addEventListener('play', () => {
-  updateMusicButton();
-  persistMusicState();
-});
-bgMusic.addEventListener('pause', () => {
-  updateMusicButton();
-  persistMusicState();
-});
-bgMusic.addEventListener('timeupdate', () => {
-  if (!bgMusic.paused && !userPaused) maybePersistPlaybackTime();
-});
-window.addEventListener('pagehide', persistMusicState);
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'hidden') persistMusicState();
-});
-function tryAutoPlay() {
-  if (userPaused) return;
-  bgMusic.play().then(() => updateMusicButton()).catch(() => updateMusicButton());
-}
-tryAutoPlay();
-window.addEventListener('pageshow', tryAutoPlay);
-window.addEventListener('focus', tryAutoPlay);
-document.addEventListener('pointerdown', (e) => {
-  if (musicToggle.contains(e.target)) return;
-  if (userPaused) return;
-  if (bgMusic.paused) bgMusic.play().catch(() => {});
-}, { once: true });
 
 const images = Array.from({ length: 55 }, (_, i) => `dashboard-images/${i + 1}.jpg`);
 let current = 0;
@@ -268,5 +185,6 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && !resumeModal.hidden) closeResumeModal();
 });
 </script>
+<script src="audio/music.js"></script>
 </body>
 </html>

@@ -1,0 +1,233 @@
+/**
+ * Shared cross-page components — nav badge, back-chip, meta grid, mobile menu.
+ * Load after tokens.css on every page.
+ */
+
+/* ── Solid nav (identical, legible at all scroll depths) ── */
+nav {
+  background: var(--canvas) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-menu {
+  background: var(--canvas) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.music-toggle {
+  background: var(--canvas) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-radius: var(--radius-pill);
+}
+
+/* ── Navigation links (identical everywhere) ── */
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 500;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text2);
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+.nav-logo {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+}
+
+.nav-logo span {
+  color: var(--text3);
+  font-weight: 500;
+}
+
+/* ── Open to work badge (identical everywhere) ── */
+.avail-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.7rem;
+  font-family: 'Space Mono', monospace;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  padding: 0.38rem 0.95rem;
+  border-radius: var(--radius-pill);
+}
+
+.avail-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--text-primary);
+  animation: none;
+}
+
+/* ── Case study meta grid (druva .meta + harmoney/mason .meta-row) ── */
+.meta,
+.meta-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 2.2rem;
+}
+
+.meta-c,
+.meta-col {
+  padding: 1rem 1.2rem;
+  border-right: 1px solid var(--border);
+}
+
+.meta-c:last-child,
+.meta-col:last-child {
+  border-right: none;
+}
+
+.meta-l,
+.meta-lbl {
+  font-size: 0.55rem;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 0.35rem;
+}
+
+.meta-v,
+.meta-val {
+  font-size: 0.82rem;
+  color: var(--text);
+  line-height: 1.45;
+}
+
+@media (max-width: 900px) {
+  .meta,
+  .meta-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .meta-c,
+  .meta-col {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+@media (max-width: 768px) {
+  .meta,
+  .meta-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Case study context panels ── */
+.panel {
+  border-radius: var(--radius);
+}
+
+.panel-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--text3);
+  margin-bottom: 0.85rem;
+}
+
+.panel-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Case study back chip ── */
+.back-chip {
+  border-radius: var(--radius-pill);
+  margin-bottom: 2rem;
+}
+
+/* ── Theme toggle (case study .toggle + index .theme-toggle) ── */
+.toggle,
+.theme-toggle {
+  border-radius: var(--radius-pill);
+}
+
+.toggle::after,
+.theme-toggle::after {
+  border-radius: var(--radius-pill);
+}
+
+/* ── Mobile nav (case study pages) ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 65px;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: var(--canvas) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 2rem;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+.mobile-menu a {
+  font-size: 0.78rem;
+  font-weight: 500;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text2);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mobile-menu a:hover {
+  color: var(--text);
+}
+
+@media (max-width: 900px) {
+  nav .hamburger {
+    display: flex;
+  }
+}
