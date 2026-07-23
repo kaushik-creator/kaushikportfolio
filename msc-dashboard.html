@@ -103,7 +103,10 @@ ul.custom-list li b{color:var(--text);font-weight:600;}
 .table-scroll{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border);}
 @media(max-width:640px){.data-table{min-width:560px;}}
 
-.tab-block{margin-bottom:3rem;}
+.tab-split-grid{margin-top:1.5rem;margin-bottom:0;}
+.tab-split-card h3{font-size:1.05rem;line-height:1.35;margin-bottom:.65rem;}
+.tab-split-card p{font-size:.88rem;line-height:1.7;margin-bottom:0;}
+.tab-split-card .mono-tag{margin-bottom:.55rem;}
 .tab-block:last-child{margin-bottom:0;}
 .tab-question{text-align:center;color:var(--text3);font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2rem;}
 
@@ -382,12 +385,26 @@ footer{padding:3rem 0;border-top:1px solid var(--rule);}
   <div class="wrap-text">
     <p>Reviewing this layout against the four daily workflows made the next decision obvious. <b>These five categories did not belong on one scroll.</b> Account and licensing work (Categories 1–3), consumption monitoring (Category 5), and security auditing (Category 4) operate on different timelines and mental modes.</p>
     <p>That review is what led directly to the three-tab structure—each tab inheriting the categories that share the same job-to-be-done.</p>
+  </div>
 
-    <ul class="custom-list">
-      <li><b>Tab 01 — Accounts &amp; Licensing:</b> Customer Accounts, Tenant Visibility, Product Modules, Security Posture, and active Support Cases.</li>
-      <li><b>Tab 02 — Usage Monitoring:</b> Usage trends, quota alerts, and storage consumption (Category 5).</li>
-      <li><b>Tab 03 — Backup Triage:</b> Immediate failure triage—the morning workflow that needed its own room.</li>
-    </ul>
+  <div class="wrap">
+    <div class="grid-3 tab-split-grid">
+      <div class="panel tab-split-card">
+        <span class="mono-tag">Tab 01</span>
+        <h3>Accounts &amp; Licensing</h3>
+        <p>Customer Accounts, Tenant Visibility, Product Modules, Security Posture, and active Support Cases.</p>
+      </div>
+      <div class="panel tab-split-card">
+        <span class="mono-tag">Tab 02</span>
+        <h3>Usage Monitoring</h3>
+        <p>Usage trends, quota alerts, and storage consumption (Category 5).</p>
+      </div>
+      <div class="panel tab-split-card">
+        <span class="mono-tag">Tab 03</span>
+        <h3>Backup Triage</h3>
+        <p>Immediate failure triage—the morning workflow that needed its own room.</p>
+      </div>
+    </div>
   </div>
 </section>
 
