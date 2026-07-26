@@ -21,6 +21,9 @@
 .hero-loc{font-size:14px;color:var(--muted);margin-top:16px;}
 .exp-block{border-left:1px solid var(--line);padding:0 0 40px 24px;margin-bottom:0;}
 .exp-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:flex-start;margin-bottom:6px;}
+.exp-company-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;}
+.exp-go{display:inline-block;font-size:12px;font-weight:500;border:1px solid var(--line);padding:4px 10px;white-space:nowrap;}
+.exp-go:hover{background:var(--active-bg);color:var(--active-ink);border-color:var(--active-bg);}
 .exp-company{font-family:var(--font-display);font-weight:600;font-size:20px;}
 .exp-sub{font-size:14px;color:var(--muted);font-weight:400;}
 .exp-period{font-size:13px;color:var(--muted);}
@@ -42,6 +45,12 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
 .site-footer{padding:40px 0;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:14px;}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--grid-gap);align-items:start;}
 .contact-links{display:flex;flex-direction:column;gap:12px;margin:20px 0;}
+.social-links{display:flex;gap:10px;margin:0 0 20px;}
+.social-link{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--line);color:var(--ink);transition:background .15s,color .15s,border-color .15s;}
+.social-link svg{width:18px;height:18px;}
+.social-link:hover{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);}
+.module--accent .btn{background:var(--accent-ink);color:var(--accent);border-color:var(--accent-ink);}
+.module--accent .btn:hover{background:var(--surface);color:var(--accent-ink);}
 @media(max-width:820px){.hero-grid,.contact-grid{grid-template-columns:1fr;}}
 </style>
 </head>
@@ -118,6 +127,9 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
       <span class="marquee__item">Wireframing</span>
       <span class="marquee__item">3D Modelling</span>
       <span class="marquee__item">Fusion 360</span>
+      <span class="marquee__item">Autodesk Alias</span>
+      <span class="marquee__item">Creo</span>
+      <span class="marquee__item">AutoCAD</span>
       <span class="marquee__item">Industrial Design</span>
       <span class="marquee__item">CAD</span>
       <span class="marquee__item">HMI Design</span>
@@ -144,6 +156,9 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
       <span class="marquee__item">Wireframing</span>
       <span class="marquee__item">3D Modelling</span>
       <span class="marquee__item">Fusion 360</span>
+      <span class="marquee__item">Autodesk Alias</span>
+      <span class="marquee__item">Creo</span>
+      <span class="marquee__item">AutoCAD</span>
       <span class="marquee__item">Industrial Design</span>
       <span class="marquee__item">CAD</span>
       <span class="marquee__item">HMI Design</span>
@@ -206,7 +221,7 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
     </div>
     <div class="chips" style="margin-top:24px;">
       <span class="label" style="margin-right:8px;">Tools:</span>
-      <span class="chip">Figma</span><span class="chip">Codex</span><span class="chip">Cursor</span><span class="chip">Replit</span><span class="chip">Figma Make</span>
+      <span class="chip">Figma</span><span class="chip">Codex</span><span class="chip">Cursor</span><span class="chip">Replit</span><span class="chip">Figma Make</span><span class="chip">Fusion 360</span><span class="chip">Autodesk Alias</span><span class="chip">Creo</span><span class="chip">AutoCAD</span>
     </div>
   </div>
 </section>
@@ -221,7 +236,10 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
 
       <div class="exp-block">
         <div class="exp-head">
-          <div class="exp-company">Druva <span class="exp-sub">— Data Backup &amp; Cybersecurity</span></div>
+          <div class="exp-company-row">
+            <div class="exp-company">Druva <span class="exp-sub">— Data Backup &amp; Cybersecurity</span></div>
+            <a href="https://www.druva.com/" class="exp-go" target="_blank" rel="noopener noreferrer">Go to →</a>
+          </div>
           <div class="exp-period">July 2024 – Present · Fulltime</div>
         </div>
         <div class="exp-role">UX Designer</div>
@@ -272,7 +290,10 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
 
       <div class="exp-block">
         <div class="exp-head">
-          <div class="exp-company">Harmoney <span class="exp-sub">— Bond Trading Platform</span></div>
+          <div class="exp-company-row">
+            <div class="exp-company">Harmoney <span class="exp-sub">— Bond Trading Platform</span></div>
+            <a href="https://www.harmoney.in/" class="exp-go" target="_blank" rel="noopener noreferrer">Go to →</a>
+          </div>
           <div class="exp-period">May 2022 – Mar 2023 · Fulltime</div>
         </div>
         <div class="exp-role">Founding Product Designer</div>
@@ -286,7 +307,10 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
 
       <div class="exp-block">
         <div class="exp-head">
-          <div class="exp-company">Mason <span class="exp-sub">— SaaS App for Shopify</span></div>
+          <div class="exp-company-row">
+            <div class="exp-company">Mason <span class="exp-sub">— SaaS App for Shopify</span></div>
+            <a href="https://getmason.io/" class="exp-go" target="_blank" rel="noopener noreferrer">Go to →</a>
+          </div>
           <div class="exp-period">Feb 2021 – Apr 2022 · Fulltime</div>
         </div>
         <div class="exp-role">Product Designer</div>
@@ -390,7 +414,15 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
         <a href="mailto:kaushikdmdes6015@gmail.com" class="link">kaushikdmdes6015@gmail.com</a>
         <a href="tel:+919176611530" class="link">+91 9176611530</a>
       </div>
-      <a href="mailto:kaushikdmdes6015@gmail.com" class="btn" style="border-color:var(--accent-ink);">Send me a message →</a>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/feed/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a-1.948 1.948 0 1 1 0-3.896 1.948 1.948 0 0 1 0 3.896zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://www.behance.net/kaushikdmdes" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Behance">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 7h-7V5h7v2zm1.726 10c-.442 2.391-2.607 4.008-4.726 4.008-2.833 0-4.726-2.174-4.726-5.012 0-2.925 1.792-5.088 4.558-5.088 2.496 0 4.312 1.708 4.312 4.322 0 .342-.027.684-.082 1.022h-7.244c.164 1.468 1.242 2.438 2.708 2.438 1.066 0 1.816-.533 2.146-1.416h3.432zm-7.028-2.772h-4.478c.192-1.348 1.178-2.228 2.386-2.228 1.316 0 2.092.936 2.092 2.228zm-9.698 2.772H0V5.024h5.228c2.496 0 4.176 1.572 4.176 3.954 0 1.708-.958 2.814-2.3 3.216 1.708.342 2.958 1.572 2.958 3.564 0 2.496-1.926 4.122-4.386 4.122-1.98 0-3.564-.936-4.122-2.352l3.42-.684c.246.684.81 1.122 1.674 1.122.978 0 1.542-.63 1.542-1.674 0-1.152-.81-1.854-2.214-1.854H4.998v3.078z"/></svg>
+        </a>
+      </div>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kaushikdmdes6015@gmail.com" class="btn" target="_blank" rel="noopener noreferrer">Send me a message →</a>
     </div>
   </div>
 </section>

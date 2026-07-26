@@ -163,7 +163,7 @@
   <section class="section">
     <p class="eyebrow">Step 01 / Information Architecture</p>
     <h3 style="margin-top: 0; margin-bottom: 16px;">Mapping the data before drawing the UI</h3>
-    <p>In enterprise B2B products, starting with UI boxes leads to feature bloat. Before opening Figma, I mapped every piece of information the system generated into a master tree diagram.</p>
+    <p>The PRD had multiple sets of information, and some of it collided — the same data pulling toward different places. Before opening Figma, I mapped every piece the system generated into one master tree, so I could see clearly which information belonged in which bucket.</p>
 
     <figure class="plate plate--wide">
       <img class="lightbox-trigger" src="msc-dashboard/information-map.png" alt="Master information tree mapping every metric the system generates">
@@ -185,12 +185,12 @@
   <!-- STEP 02: WIREFRAMES -->
   <section class="section">
     <p class="eyebrow">Step 02 / Spatial Structure</p>
-    <h3 style="margin-top: 0; margin-bottom: 16px;">Testing layouts without visual noise</h3>
-    <p>When you put real numbers and bright charts into a wireframe too early, people get distracted. To test true hierarchy, I built a "blocks-without-data" layout.</p>
+    <h3 style="margin-top: 0; margin-bottom: 16px;">Structure test — low-fidelity hierarchy pass</h3>
+    <p>I first plotted the information into dashboard sections with no real data or charts — just blocks. Stripping out the numbers made it easy to decide what to prioritise, what to push down, and which section should hold which information.</p>
 
     <figure class="plate">
       <img src="msc-dashboard/wireframe-blocks.png" alt="Operational dashboard wireframe with empty structural blocks and no chart data">
-      <figcaption><strong>The Empty Block Pass:</strong> Testing structural containers (Usage Trends, Tenant Lifecycle, Security Posture, Support Tickets) based strictly on importance.</figcaption>
+      <figcaption>Blocks-without-data layout — testing hierarchy before any real data or charts.</figcaption>
     </figure>
 
     <p>We paused layout exploration here and reviewed the concepts against the four workflows identified earlier. One pattern kept surfacing: <strong>every layout forced unrelated jobs into the same visual hierarchy.</strong> If we stacked everything, an admin checking expirations had to scroll past massive storage charts. The structure needed a real test with real data before we committed.</p>
@@ -324,6 +324,27 @@
         <p class="eyebrow">03 · Tabs trade visibility</p>
         <p>Three tabs fixed crowding, but cross-cutting alerts scatter. Tab badges are the likely next step.</p>
       </div>
+    </div>
+  </section>
+
+  <section class="section more-work">
+    <div class="more-work__head">
+      <span class="eyebrow">More work</span>
+      <a href="index.html#projects" class="more-work__all">View all work</a>
+    </div>
+    <div class="more-work__grid">
+      <a class="mw-card" href="druva.html">
+        <span class="mw-card__name">Druva</span>
+        <span class="mw-card__desc">Provisioning &amp; access for service partners</span>
+      </a>
+      <a class="mw-card" href="harmoney.html">
+        <span class="mw-card__name">Harmoney</span>
+        <span class="mw-card__desc">Bond-trading platform, built 0→1</span>
+      </a>
+      <a class="mw-card" href="mason.html">
+        <span class="mw-card__name">Mason</span>
+        <span class="mw-card__desc">Shopify commerce app, 8× weekly active users</span>
+      </a>
     </div>
   </section>
 
