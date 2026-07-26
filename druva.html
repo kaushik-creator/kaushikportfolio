@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="Druva case study — provisioning and access across MSP partners, customers, and Druva by Kaushik, UX Designer."/>
 <meta property="og:title" content="Druva — Case Study · Kaushik"/>
-<meta property="og:description" content="Three parties. One access model. Designing provisioning and access for Druva's partner console within hard licensing limits."/>
+<meta property="og:description" content="Systems and access design for Druva partner provisioning — research-led case study by Kaushik, UX Designer."/>
 <title>Druva — Case Study · Kaushik</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -93,7 +93,7 @@ figcaption b{color:var(--text2);font-weight:600;}
 .table-scroll{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius);margin-top:1rem;}
 @media(max-width:640px){.data-table{min-width:520px;}}
 
-.shipped-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-top:1rem;}
+.shipped-grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:1rem;max-width:820px;}
 .shipped-grid figure{margin:0;}
 
 .ref-btns{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;}
@@ -138,17 +138,19 @@ figcaption b{color:var(--text2);font-weight:600;}
 .perm-yes{color:var(--text);}
 .perm-no{color:var(--text3);opacity:.5;}
 
+.beat{font-size:.57rem;font-family:'Space Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:.65rem;display:block;}
+.trust-triangle{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;margin-top:1rem;}
+.trust-triangle .panel h3{font-size:.88rem;margin-bottom:.35rem;}
+.trust-triangle .panel p{font-size:.82rem;}
+.scoped-out{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--text3);margin-top:.75rem;line-height:1.55;}
+.scoped-out b{color:var(--text2);}
+
 footer{padding:2.5rem 0;text-align:center;}
-
-.music-toggle{position:fixed;bottom:1.25rem;right:1.25rem;z-index:200;width:46px;height:46px;border:1px solid var(--border);background:var(--canvas);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;}
-.music-toggle svg{width:20px;height:20px;pointer-events:none;}
-
-@media(max-width:900px){
   nav{display:flex !important;justify-content:space-between !important;padding:1rem 1.2rem;}
   .nav-right{margin-left:auto !important;}
   .nav-links,.avail-badge{display:none;}
   .wrap{padding:0 1.2rem;}
-  .meta,.grid-2,.grid-3,.shipped-grid,.scenario-grid{grid-template-columns:1fr;}
+  .meta,.grid-2,.grid-3,.shipped-grid,.scenario-grid,.trust-triangle{grid-template-columns:1fr;}
   .meta-c{border-right:none;border-bottom:1px solid var(--border);}
   .persona-split{grid-template-columns:1fr;}
   .context-head{flex-direction:column;align-items:flex-start;}
@@ -157,14 +159,6 @@ footer{padding:2.5rem 0;text-align:center;}
 </head>
 <body>
 
-<audio id="bgMusic" loop preload="auto" playsinline autoplay>
-  <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
-</audio>
-<button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
-  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
-</button>
-
 <nav>
   <a href="index.html" class="nav-logo">K<span>.</span></a>
   <ul class="nav-links">
@@ -172,7 +166,7 @@ footer{padding:2.5rem 0;text-align:center;}
     <li><a href="index.html#keywords">Skills</a></li>
     <li><a href="index.html#experience">Experience</a></li>
     <li><a href="index.html#projects">Projects</a></li>
-    <li><a href="#" data-resume-trigger>Resume</a></li>
+    <li><a href="kaushik-resume-gd.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
   </ul>
   <div class="nav-right">
     <div class="avail-badge"><span class="avail-dot"></span>Open to work</div>
@@ -186,241 +180,87 @@ footer{padding:2.5rem 0;text-align:center;}
   <a href="index.html#keywords" onclick="closeMobileMenu()">Skills</a>
   <a href="index.html#experience" onclick="closeMobileMenu()">Experience</a>
   <a href="index.html#projects" onclick="closeMobileMenu()">Projects</a>
-  <a href="#" data-resume-trigger onclick="closeMobileMenu()">Resume</a>
-</div>
-
-<div class="resume-modal" id="resumeModal" hidden aria-hidden="true">
-  <div class="resume-modal-card" role="dialog" aria-modal="true" aria-label="Resume preview">
-    <div class="resume-modal-head">
-      <span class="resume-modal-title">Resume</span>
-      <button type="button" class="resume-close" id="resumeCloseBtn" aria-label="Close resume popup">×</button>
-    </div>
-    <iframe class="resume-frame" src="kaushik-resume-gd.pdf?v=20260719" title="Kaushik Resume"></iframe>
-  </div>
+  <a href="kaushik-resume-gd.pdf" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()">Resume</a>
 </div>
 
 <div class="wrap hero">
   <a href="index.html#projects" class="back-chip">← All Projects</a>
   <div class="cs-lbl">Case Study · 02</div>
-  <h1 class="cs-h1">Three parties.<br>One access model.</h1>
-  <p class="cs-sub">Druva's partner console could only provision a limited product set, so MSPs lost deals. I designed provisioning and access across partner, customer, and Druva — within hard licensing limits, without exposing customer data.</p>
+  <p class="cs-sub" style="font-size:1.02rem;color:var(--text);max-width:720px;margin-bottom:0;">This project is about how Druva, its service partners (MSPs), and end customers share one system for turning products on and controlling who can see them. The partner console could only offer a limited product set, so partners lost deals when a customer needed something outside it. I researched where the three parties' needs collided, then designed the provisioning and access model that let partners offer more — without breaking licensing rules or exposing a customer's private data to their partner.</p>
   <div class="meta">
     <div class="meta-c"><div class="meta-l">Role</div><div class="meta-v">UX Designer</div></div>
     <div class="meta-c"><div class="meta-l">Domain</div><div class="meta-v">Backup &amp; Cybersecurity</div></div>
-    <div class="meta-c"><div class="meta-l">Focus</div><div class="meta-v">Provisioning &amp; Access</div></div>
-    <div class="meta-c"><div class="meta-l">Timeline</div><div class="meta-v">4+ months · Shipped</div></div>
+    <div class="meta-c"><div class="meta-l">Timeline</div><div class="meta-v">2024 – 2025</div></div>
+    <div class="meta-c"><div class="meta-l">Type</div><div class="meta-v">Enterprise · B2B</div></div>
   </div>
 </div>
 
-<section id="context">
+<section id="question">
   <div class="wrap">
-    <div class="context-head">
-      <div class="context-logo"><img src="druva-logo.png" alt="Druva"/></div>
-      <div class="sec-l" style="margin:0;">Context</div>
-    </div>
-    <div class="grid-3">
-      <div class="panel">
-        <h3>Druva</h3>
-        <p>Cloud-native backup and data security for endpoints, SaaS, data centers, and cloud workloads.</p>
-      </div>
-      <div class="panel">
-        <h3>My scope</h3>
-        <div class="tag-row" style="margin-top:.35rem;">
-          <span class="tag">Security Add-ons</span>
-          <span class="tag">MSP platform</span>
-        </div>
-      </div>
-      <div class="panel">
-        <h3>MSP</h3>
-        <p>An IT partner managing backup and data protection for many clients from one dashboard.</p>
-      </div>
-    </div>
+    <span class="beat">01 · The question</span>
+    <p class="lede">Where do the partner, the customer, and Druva's own needs actually conflict — and can one access model serve all three?</p>
+    <p class="lede">MSPs lost customers when MSC couldn't provision products outside its supported set. Licensing blocked the obvious fix of adding products freely. Customer privacy added a second constraint: partners couldn't get standing visibility into every console.</p>
   </div>
 </section>
 
-<section id="problem">
+<section id="method" style="background:var(--bg2);">
   <div class="wrap">
-    <div class="sec-l">Problem</div>
-    <p class="lede">MSPs lost customers when MSC couldn't provision products outside its supported set. Licensing blocked the obvious fix — just add products.</p>
-    <div class="hmw"><strong>How might we</strong> expand what MSPs can sell within licensing constraints — without breaking customer privacy?</div>
+    <span class="beat">02 · The method</span>
+    <p class="lede">I grounded this work in three inputs — no invented research, only what I actually had access to:</p>
+    <ul class="chip-list panel" style="margin-top:1rem;padding:1rem 1.1rem;">
+      <li><b>Live MSP admin calls</b> — observed how partners onboard customers, assign products, and hit walls when licensing blocked an action.</li>
+      <li><b>Internal docs + Support threads</b> — read licensing rules, provisioning dependencies, and recurring support tickets about access confusion.</li>
+      <li><b>Working sessions with PMs and engineers</b> — mapped which state changes were technically possible, irreversible, or blocked at the API layer.</li>
+    </ul>
+    <p class="lede" style="margin-top:1rem;">The same action — provisioning a product — followed different rules depending on who initiated it and who could see the result. That inconsistency became the research focus.</p>
     <div class="team-chips">
       <span class="team-chip">PM</span>
       <span class="team-chip">Support</span>
-      <span class="team-chip">Designer (me)</span>
+      <span class="team-chip">UX Designer</span>
       <span class="team-chip">FE / BE Dev</span>
-      <span class="team-chip">4+ months</span>
-      <span class="team-chip">Shipped</span>
     </div>
   </div>
 </section>
 
-<section id="trust" style="background:var(--bg2);">
+<section id="synthesis">
   <div class="wrap">
-    <div class="sec-l">Personas</div>
-    <div class="grid-3">
-      <article class="panel persona">
-        <span class="mono-tag">MSC Partner</span>
-        <p class="persona-who">Operations admin managing multiple customer accounts from one dashboard.</p>
-        <div class="persona-does">
-          <span class="do-item"><span>◎</span> Setup</span>
-          <span class="do-item"><span>◎</span> Licenses</span>
-          <span class="do-item"><span>◎</span> Backup</span>
-          <span class="do-item"><span>◎</span> Reports</span>
-          <span class="do-item"><span>◎</span> Access</span>
-        </div>
-        <div class="persona-split">
-          <div>
-            <h4>Goals</h4>
-            <div class="tag-row">
-              <span class="tag">One dashboard</span>
-              <span class="tag">Less support</span>
-              <span class="tag">Clear access</span>
-            </div>
-          </div>
-          <div>
-            <h4>Pain</h4>
-            <div class="tag-row">
-              <span class="tag tag-pain">Hard provisioning</span>
-              <span class="tag tag-pain">Confusing states</span>
-              <span class="tag tag-pain">Bad conversions</span>
-            </div>
-          </div>
-        </div>
-        <p class="quote">"More product modules so I can offer more services."</p>
-      </article>
-      <article class="panel persona">
-        <span class="mono-tag">Customer</span>
-        <p class="persona-who">End admin whose environment is managed by the MSP.</p>
-        <div class="persona-does">
-          <span class="do-item"><span>◎</span> Setup</span>
-          <span class="do-item"><span>◎</span> Products</span>
-          <span class="do-item"><span>◎</span> Access</span>
-          <span class="do-item"><span>◎</span> Privacy</span>
-        </div>
-        <div class="persona-split">
-          <div>
-            <h4>Goals</h4>
-            <div class="tag-row">
-              <span class="tag">Fast enable</span>
-              <span class="tag">Privacy</span>
-              <span class="tag">Control</span>
-            </div>
-          </div>
-          <div>
-            <h4>Pain</h4>
-            <div class="tag-row">
-              <span class="tag tag-pain">Report visibility</span>
-              <span class="tag tag-pain">Hidden backend</span>
-              <span class="tag tag-pain">Opaque models</span>
-            </div>
-          </div>
-        </div>
-        <p class="quote">"Keep my data private — no full MSP console visibility."</p>
-      </article>
-      <article class="panel persona">
-        <span class="mono-tag">Druva Support</span>
-        <p class="persona-who">Internal team for licensing-restricted provisioning and enablement.</p>
-        <div class="persona-does">
-          <span class="do-item"><span>◎</span> Provision</span>
-          <span class="do-item"><span>◎</span> Products</span>
-          <span class="do-item"><span>◎</span> Access</span>
-          <span class="do-item"><span>◎</span> Escalations</span>
-        </div>
-        <div class="persona-split">
-          <div>
-            <h4>Goals</h4>
-            <div class="tag-row">
-              <span class="tag">Fast enable</span>
-              <span class="tag">Scale ops</span>
-              <span class="tag">Clear handoffs</span>
-            </div>
-          </div>
-          <div>
-            <h4>Pain</h4>
-            <div class="tag-row">
-              <span class="tag tag-pain">Licensing effort</span>
-              <span class="tag tag-pain">Manual scale</span>
-              <span class="tag tag-pain">Bad transitions</span>
-            </div>
-          </div>
-        </div>
-        <p class="quote">Druva-led + MSP-led provisioning working together.</p>
-      </article>
-    </div>
-    <div class="grid-2" style="margin-top:1rem;">
+    <span class="beat">03 · The synthesis</span>
+    <p class="lede">Research didn't cluster cleanly — the same provisioning action meant different things to each party. I mapped the conflict as a trust triangle before drawing screens.</p>
+    <div class="trust-triangle">
       <div class="panel">
-        <span class="mono-tag">User needs</span>
-        <div class="synth-needs" style="margin-top:0;">
-          <div class="need-mini" style="border:none;padding:0;background:transparent;">
-            <span class="mono-tag">MSP</span>
-            <p>More product modules to offer more services.</p>
-          </div>
-          <div class="need-mini" style="border:none;padding:0;background:transparent;">
-            <span class="mono-tag">Customer</span>
-            <p>Data and reports private — no full MSP console access.</p>
-          </div>
-          <div class="need-mini" style="border:none;padding:0;background:transparent;">
-            <span class="mono-tag">Druva</span>
-            <p>Scale product expansion without new licensing drag.</p>
-          </div>
-        </div>
+        <h3>Partner wants</h3>
+        <p>More access — sell and manage more products from one dashboard, with less dependency on Druva support.</p>
       </div>
       <div class="panel">
-        <span class="mono-tag">Constraints</span>
-        <div style="margin-top:.5rem;">
-          <h4 style="font-size:.52rem;font-family:'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.35rem;font-weight:500;">Problem</h4>
-          <div class="tag-row" style="margin-bottom:.65rem;">
-            <span class="tag tag-pain">Limited catalogue</span>
-            <span class="tag tag-pain">Privacy resistance</span>
-          </div>
-          <h4 style="font-size:.52rem;font-family:'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.35rem;font-weight:500;">Technical</h4>
-          <div class="tag-row">
-            <span class="tag">Multi-level licensing</span>
-            <span class="tag">Manual workaround now</span>
-            <span class="tag">Full MSC later</span>
-          </div>
-        </div>
+        <h3>Customer wants</h3>
+        <p>Less exposure — data and reports stay private; no standing MSP visibility into their console.</p>
+      </div>
+      <div class="panel">
+        <h3>Druva wants</h3>
+        <p>Less manual work — scale provisioning without adding operational drag for every new product.</p>
       </div>
     </div>
-  </div>
-</section>
-
-<section id="system-map">
-  <div class="wrap">
-    <div class="sec-l">System map</div>
-    <p class="lede">Mapped actors, customer types, access models, and state conversions — including irreversible ones — before drawing screens.</p>
+    <p class="note" style="margin-top:1rem;">Full persona detail (goals, pain, activities) informed the triangle above — kept as research evidence, not as page filler.</p>
+    <p class="lede" style="margin-top:1.25rem;">From those conflicts I built a system map of actors, customer types, access models, and which state conversions were legal — including irreversible ones.</p>
     <figure>
       <div class="scroll-wrap">
         <span class="scroll-hint" aria-hidden="true">→ scroll</span>
         <img src="druva/frames/Frame_1410098092.png" alt="System map of actors, customer types, and seven workflows"/>
       </div>
-      <figcaption><b>System map</b> — seven workflows decomposed to page and step level.</figcaption>
+      <figcaption><b>System map of actors and workflows.</b> Shows seven provisioning and access paths decomposed to page and step level — used to find where partner, customer, and Druva actions collided before any UI was drawn.</figcaption>
     </figure>
-  </div>
-</section>
-
-<section id="flows">
-  <div class="wrap">
-    <div class="sec-l">Flows</div>
-    <p class="lede">Each actor's work as page → action → result, so collisions surfaced before high-fidelity screens.</p>
     <figure>
       <div class="scroll-wrap">
         <span class="scroll-hint" aria-hidden="true">→ scroll</span>
         <img src="druva/frames/Frame_1410098123.png" alt="Eight user-story flowcharts"/>
       </div>
-      <figcaption><b>User-story flows</b> — eight parallel paths to concrete steps.</figcaption>
+      <figcaption><b>Eight user-story flows.</b> Each actor's work mapped as page → action → result so licensing and privacy collisions surfaced before high-fidelity screens.</figcaption>
     </figure>
     <figure>
       <img src="druva/frames/Frame_1000011550.png" alt="Provisioning sequence with Service Plan and User"/>
-      <figcaption><b>Provisioning sequence</b> — built on Service Plan and User primitives.</figcaption>
+      <figcaption><b>Provisioning sequence diagram.</b> Built on Service Plan and User primitives — the shared object model that let one UI pattern serve both MSC- and Druva-initiated paths.</figcaption>
     </figure>
-  </div>
-</section>
-
-<section id="states">
-  <div class="wrap">
-    <div class="sec-l">Four states</div>
-    <p class="lede">MSC- or Druva-provisioned × Restricted or Unrestricted. Partners read state at a glance; invalid conversions blocked before the click.</p>
+    <p class="lede" style="margin-top:1.25rem;">From the map I derived a four-state access model — MSC- or Druva-provisioned × Restricted or Unrestricted — so partners could read customer state at a glance.</p>
     <div class="table-scroll">
       <table class="data-table">
         <thead>
@@ -483,88 +323,90 @@ footer{padding:2.5rem 0;text-align:center;}
         </tbody>
       </table>
     </div>
-    <div class="sec-l" style="margin-top:1.5rem;">Use cases</div>
-    <div class="scenario-grid">
-      <div class="scenario-card">
-        <div class="scenario-n">01</div>
-        <h3>Add products to existing customer</h3>
-        <p>Self-serve expansion without re-creating the account.</p>
-      </div>
-      <div class="scenario-card">
-        <div class="scenario-n">02</div>
-        <h3>New customer onboarding</h3>
-        <p>Create and provision in one connected journey.</p>
-      </div>
-      <div class="scenario-card">
-        <div class="scenario-n">03</div>
-        <h3>Access classification</h3>
-        <p>Managed vs Restricted with clear operational boundaries.</p>
-      </div>
-      <div class="scenario-card">
-        <div class="scenario-n">04</div>
-        <h3>Restricted console access</h3>
-        <p>Temporary MSP access — customer approves or rejects.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="scenarios">
-  <div class="wrap">
-    <div class="sec-l">Scenarios</div>
-    <p class="lede">Every path split across three portals — MSC, S-portal, C-portal — so no responsibility fell through a gap.</p>
-    <ul class="chip-list panel" style="margin-top:1rem;">
-      <li><b>MSC</b> — Create customers, convert provisioning type, switch access level, request temporary access</li>
-      <li><b>S-portal</b> — Verify licenses on new products and edit requests</li>
-      <li><b>C-portal</b> — Accept or reject MSP console access requests</li>
-    </ul>
     <figure>
       <div class="scroll-wrap">
         <span class="scroll-hint" aria-hidden="true">→ scroll</span>
         <img src="druva/frames/Frame_1410098125.png" alt="End-to-end scenario workflows across three portals"/>
       </div>
-      <figcaption><b>End-to-end scenarios</b> — creation, conversion, and approval loops across all three portals.</figcaption>
+      <figcaption><b>End-to-end scenario map across three portals.</b> Creation, conversion, and approval loops split across MSC, S-portal, and C-portal so no responsibility fell through a gap.</figcaption>
     </figure>
+    <p class="scoped-out"><b>Scoped out:</b> Full Limited-Admin role views were specced in research but not designed this round — the four-state model and temporary access flow took priority for launch.</p>
+    <p class="scoped-out"><b>Scoped out:</b> Automated bulk migration of legacy customers — manual migration path shipped first because licensing validation required per-customer review.</p>
   </div>
 </section>
 
-<section id="shipped">
+<section id="decision">
   <div class="wrap">
-    <div class="sec-l">What shipped</div>
-    <p class="lede">The provisioning and access model inside MSC — how partners onboard customers and manage access daily.</p>
+    <span class="beat">04 · The decision</span>
+    <p class="lede">Each design choice tied back to a research finding:</p>
+    <div class="grid-2" style="margin-top:1rem;">
+      <div class="panel">
+        <h3>Four states on the customer list</h3>
+        <p>Research showed partners couldn't tell provisioning type from access level. I made both legible with badges and disabled invalid actions with a reason — not a silent failure.</p>
+      </div>
+      <div class="panel">
+        <h3>Irreversibility via active friction</h3>
+        <p>Some conversions can't be undone. Research flagged support tickets from accidental migrations. I used typed confirmation, not a blind modal, before irreversible state changes.</p>
+      </div>
+      <div class="panel">
+        <h3>Time-boxed customer-approved access</h3>
+        <p>Privacy standoff: partners needed console access; customers resisted standing visibility. I designed 24/48/72-hour requests with customer veto, auto-revoke, and enforcement at the API layer.</p>
+      </div>
+      <div class="panel">
+        <h3>Three-portal handoffs</h3>
+        <p>Each scenario split across MSC, S-portal, and C-portal with explicit ownership — so licensing verification and customer approval never landed on the wrong actor.</p>
+      </div>
+    </div>
+    <p class="lede" style="margin-top:1.5rem;">What shipped in MSC — the provisioning and access model partners use daily:</p>
     <div class="shipped-grid">
       <figure>
         <img src="druva/sample-process-1.png" alt="Sample provisioning flow"/>
-        <figcaption><b>Process flow</b></figcaption>
+        <figcaption><b>Provisioning process flow.</b> The end-to-end path from product selection through license assignment — shows how self-serve expansion replaced ticket-based provisioning for advanced workloads.</figcaption>
       </figure>
       <figure>
         <img src="druva/sample-process-2.png" alt="MSC-provisioned customers"/>
-        <figcaption><b>MSC-provisioned</b></figcaption>
+        <figcaption><b>MSC-provisioned customer list.</b> Partners see provisioning type and access state as badges — the four-state model made legible without opening each account.</figcaption>
       </figure>
       <figure>
         <img src="druva/sample-process-3.png" alt="Druva-provisioned customers"/>
-        <figcaption><b>Druva-provisioned</b></figcaption>
+        <figcaption><b>Druva-provisioned customer view.</b> Shows how Druva-initiated customers differ in available actions — invalid conversions disabled with reason text.</figcaption>
       </figure>
       <figure>
         <img src="druva/sample-process-4.png" alt="Mark as MSC-provisioned"/>
-        <figcaption><b>Migration action</b></figcaption>
+        <figcaption><b>Migration to MSC-provisioned.</b> Irreversible conversion with typed confirmation — research showed accidental migrations were a top support driver.</figcaption>
       </figure>
     </div>
     <p class="note">Some screens withheld or simplified under NDA.</p>
   </div>
 </section>
 
+<section id="validation">
+  <div class="wrap">
+    <span class="beat">05 · The validation</span>
+    <p class="lede">Before launch I checked the design against the research inputs: stakeholder review with PM and engineering confirmed state transitions matched API constraints; Support reviewed the four-state labels against recurring ticket language.</p>
+    <p class="lede">Post-launch, the team observed directional improvement — more partner customers onboarded and higher product adoption — but I can't attribute that to this feature alone. I'd track: support tickets per provisioning action, time-to-enable a new product, and failed conversion attempts.</p>
+  </div>
+</section>
+
 <section id="outcome">
   <div class="wrap">
-    <div class="sec-l">Outcome</div>
+    <span class="beat">06 · The outcome</span>
     <div class="grid-2">
       <div class="panel">
         <h3>Self-serve expansion</h3>
-        <p>Partners request and provision advanced workloads without a support ticket for every addition.</p>
+        <p>Partners request and provision advanced workloads without a support ticket for every addition. The design enabled this — not a measured percentage I can claim alone.</p>
       </div>
       <div class="panel">
         <h3>Clearer customer management</h3>
         <p>Four states legible at a glance. Invalid conversions blocked — partners see what's allowed and where the privacy boundary sits.</p>
+      </div>
+      <div class="panel">
+        <h3>Business result (directional)</h3>
+        <p>After launch, MSC brought on more partner customers and saw higher product adoption — team-observed, not per-feature attributed. I enabled the self-serve path; I didn't isolate the metric.</p>
+      </div>
+      <div class="panel">
+        <h3>Less manual provisioning</h3>
+        <p>Druva Support handled fewer licensing-restricted provisioning requests — the time-boxed access model replaced standing console grants.</p>
       </div>
     </div>
   </div>
@@ -598,18 +440,6 @@ if (ham && menu) ham.addEventListener('click', () => menu.classList.toggle('open
 document.getElementById('themeToggle').addEventListener('click', () => {
   document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
 });
-
-const resumeModal = document.getElementById('resumeModal');
-const resumeCloseBtn = document.getElementById('resumeCloseBtn');
-document.querySelectorAll('[data-resume-trigger]').forEach((t) => t.addEventListener('click', (e) => {
-  e.preventDefault();
-  resumeModal.hidden = false;
-  document.body.style.overflow = 'hidden';
-}));
-resumeCloseBtn.addEventListener('click', () => { resumeModal.hidden = true; document.body.style.overflow = ''; });
-resumeModal.addEventListener('click', (e) => { if (e.target === resumeModal) { resumeModal.hidden = true; document.body.style.overflow = ''; } });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !resumeModal.hidden) { resumeModal.hidden = true; document.body.style.overflow = ''; } });
 </script>
-<script src="audio/music.js"></script>
 </body>
 </html>

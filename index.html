@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0"/>
-<meta name="description" content="Kaushik — Product & UX Designer specializing in B2B and enterprise products. Designing digital experiences from concept through launch."/>
+<meta name="description" content="Kaushik — UX Designer specializing in enterprise B2B systems, research-led product design, and design systems."/>
 <meta name="keywords" content="Product Designer, UX Designer, UI Design, Enterprise, B2B, Design Systems"/>
 <meta name="author" content="Kaushik D."/>
 <meta name="theme-color" content="#09090b"/>
-<meta property="og:title" content="Kaushik — Product & UX Designer"/>
+<meta property="og:title" content="Kaushik — UX Designer"/>
 <meta property="og:description" content="Specializing in B2B and enterprise products. Design systems, user research, and intuitive experiences."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://kaushikportfolio.com"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Kaushik — Product & UX Designer"/>
+<meta name="twitter:title" content="Kaushik — UX Designer"/>
 <meta name="twitter:description" content="Specializing in B2B and enterprise products."/>
-<title>Kaushik — Product & UX Designer | B2B & Enterprise</title>
+<title>Kaushik — UX Designer | Enterprise B2B</title>
 <link rel="canonical" href="https://kaushikportfolio.com"/>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -1059,43 +1059,55 @@ footer {
   .proj-card { max-width: none; }
 }
 
-.music-toggle {
-  position: fixed;
-  bottom: 1.25rem;
-  right: 1.25rem;
-  z-index: 200;
-  width: 46px;
-  height: 46px;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.proj-outcome {
+  font-size: 0.82rem;
+  color: var(--text2);
+  line-height: 1.55;
+  margin-bottom: 0.65rem;
+}
+.proj-tag {
+  display: inline-block;
+  font-size: 0.58rem;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text3);
   border: 1px solid var(--border);
-  background: var(--canvas);
-  color: var(--text);
-  cursor: pointer;
-  transition: border-color 0.2s, transform 0.15s, background 0.2s;
+  padding: 0.22rem 0.5rem;
+  border-radius: var(--radius-pill);
+  margin-top: 0.5rem;
 }
-.music-toggle:hover {
-  border-color: var(--accent2);
-  transform: translateY(-2px);
+.play-strip {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 3rem 0;
 }
-.music-toggle:focus-visible {
-  outline: 2px solid var(--accent2);
-  outline-offset: 2px;
+.play-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.25rem;
 }
-.music-toggle svg {
-  width: 20px;
-  height: 20px;
-  pointer-events: none;
+.play-item {
+  border: 1px solid var(--border);
+  background: var(--card);
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius);
 }
-@media (max-width: 480px) {
-  .music-toggle {
-    bottom: 1.25rem;
-    right: 1.25rem;
-    width: 44px;
-    height: 44px;
-  }
+.play-item h4 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+.play-item p {
+  font-size: 0.82rem;
+  color: var(--text2);
+  line-height: 1.55;
+  margin: 0;
+}
+@media (max-width: 900px) {
+  .play-grid { grid-template-columns: 1fr; }
+  .play-strip { padding: 2rem 1.2rem 0; }
 }
 </style>
 <link rel="stylesheet" href="johnyvino-skin.css"/>
@@ -1107,14 +1119,6 @@ footer {
   <div class="cinematic-vignette"></div>
 </div>
 
-<audio id="bgMusic" loop preload="auto" playsinline autoplay>
-  <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
-</audio>
-<button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
-  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
-</button>
-
 <nav id="navbar">
   <a href="#" class="nav-logo">K<span>.</span></a>
   <ul class="nav-links">
@@ -1122,7 +1126,7 @@ footer {
     <li><a href="#keywords">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#" data-resume-trigger>Resume</a></li>
+    <li><a href="kaushik-resume-gd.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
   </ul>
   <div class="nav-right">
     <div class="avail-badge"><span class="avail-dot"></span>Open to work</div>
@@ -1138,7 +1142,7 @@ footer {
   <a href="#keywords" onclick="closeMobileMenu()">Skills</a>
   <a href="#experience" onclick="closeMobileMenu()">Experience</a>
   <a href="#projects" onclick="closeMobileMenu()">Projects</a>
-  <a href="#" data-resume-trigger onclick="closeMobileMenu()">Resume</a>
+  <a href="kaushik-resume-gd.pdf" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()">Resume</a>
 </div>
 
 <div class="resume-modal" id="resumeModal" hidden aria-hidden="true">
@@ -1155,15 +1159,15 @@ footer {
   <div class="hero-bg"></div>
   <div class="hero-noise"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">+ Product & UX Designer</div>
+    <div class="hero-eyebrow">UX Designer</div>
     <h1 class="hero-name">
       <span class="hero-name-stack">
         <span class="hero-line-hi">Hi,</span>
       </span><br/>
       <span class="hero-line-name">I'm Kaushik</span>
     </h1>
-    <p class="hero-role">Designing systems that think.</p>
-    <p class="hero-desc">I design products that make complex enterprise and B2B workflows actually usable. Experience building from 0→1 at early-stage startups, where speed and clarity matter more than pixel perfection.</p>
+    <p class="hero-role">UX Designer who turns ambiguous, high-stakes enterprise problems into structured systems — grounded in research with the people closest to the problem.</p>
+    <p class="hero-desc">Enterprise B2B, cybersecurity, and fintech — I design systems and flows where licensing rules, access models, and data density make the problem hard.</p>
     <div class="hero-loc">📍 Chennai, India</div>
     <div class="hero-cta">
       <a href="#projects" class="btn-primary">View my work →</a>
@@ -1173,7 +1177,7 @@ footer {
   <div class="hero-visual">
     <div class="hero-img-wrap">
       <div class="hero-img-frame">
-        <img src="profile.jpg" alt="Kaushik — Product & UX Designer" />
+        <img src="profile.jpg" alt="Kaushik — UX Designer" />
       </div>
       <div class="hero-img-deco">
         <span class="num">5+</span>
@@ -1433,13 +1437,10 @@ footer {
           <img class="proj-thumb-cover" src="msc-dashboard/cover.png" alt="MSC Operational Dashboard cover"/>
         </div>
         <div class="proj-body">
-          <div class="proj-cat">Cybersecurity · Dashboard · Enterprise</div>
-          <div class="proj-title">MSC Operational Dashboard</div>
-          <div class="proj-desc">Hundreds of customers, one control room — a new home screen for Druva MSP partners showing backup failures, storage, licenses, and security risks at a glance.</div>
-          <div class="proj-metrics">
-            <div class="proj-metric"><span class="m-val">MSP</span><span class="m-lbl">Multi-customer</span></div>
-            <div class="proj-metric"><span class="m-val">0→1</span><span class="m-lbl">Dashboard</span></div>
-          </div>
+          <div class="proj-cat">Druva · MSC Operational Dashboard</div>
+          <div class="proj-title">Research-led dashboard design</div>
+          <div class="proj-outcome">Restructured a single overloaded screen into three job-focused surfaces. Pre-launch — success measures defined.</div>
+          <span class="proj-tag">Enterprise SaaS · Research-led Dashboard Design</span>
         </div>
       </a>
       <a href="druva.html" class="proj-card" data-project-type="professional">
@@ -1447,13 +1448,10 @@ footer {
           <img class="proj-thumb-logo" src="druva-logo.png" alt="Druva logo"/>
         </div>
         <div class="proj-body">
-          <div class="proj-cat">Cybersecurity · Data Backup · Enterprise</div>
-          <div class="proj-title">Druva</div>
-          <div class="proj-desc">Designed onboarding, migration, and enterprise admin experiences for backup and cybersecurity workflows across complex environments.</div>
-          <div class="proj-metrics">
-            <div class="proj-metric"><span class="m-val">UX</span><span class="m-lbl">Enterprise Flows</span></div>
-            <div class="proj-metric"><span class="m-val">B2B</span><span class="m-lbl">Platform Design</span></div>
-          </div>
+          <div class="proj-cat">Druva · Provisioning &amp; Access</div>
+          <div class="proj-title">Systems &amp; access design</div>
+          <div class="proj-outcome">Let partners self-serve product expansion; helped MSC grow its customer base and product adoption.</div>
+          <span class="proj-tag">Enterprise B2B · Systems &amp; Access Design</span>
         </div>
       </a>
       <a href="harmoney.html" class="proj-card" data-project-type="professional">
@@ -1500,6 +1498,25 @@ footer {
       </a>
     </div>
     <div class="proj-empty" id="projEmpty" hidden>No projects in this category yet.</div>
+
+    <div class="play-strip fade-in">
+      <div class="section-label">Play / Making</div>
+      <h2 class="section-title" style="font-size:clamp(1.4rem,2.5vw,2rem);">Investigator &amp; maker range</h2>
+      <div class="play-grid">
+        <div class="play-item">
+          <h4>IIT Delhi · Industrial Design</h4>
+          <p>Physical product design foundation — form, material, and human factors before digital work.</p>
+        </div>
+        <div class="play-item">
+          <h4>Fusion 360 · Prototyping</h4>
+          <p>CAD modeling and fabrication — making ideas tangible before committing to a direction.</p>
+        </div>
+        <div class="play-item">
+          <h4>IIT Kanpur · Autonomous Vehicle HMI</h4>
+          <p>Research on driver–vehicle interaction for autonomous systems — investigation-led, not screen-first.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1529,7 +1546,7 @@ footer {
 </section>
 
 <footer>
-  <div class="footer-copy">© 2025 Kaushik D. — Product & UX Designer</div>
+  <div class="footer-copy">© 2025 Kaushik D. — UX Designer</div>
   <div class="footer-built">Designed &amp; built with <span>♥</span> in Chennai</div>
 </footer>
 
@@ -1645,6 +1662,5 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && !resumeModal.hidden) closeResumeModal();
 });
 </script>
-<script src="audio/music.js"></script>
 </body>
 </html>
