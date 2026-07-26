@@ -69,8 +69,8 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
   <nav id="nav">
     <a href="#about" data-nav="about">About</a>
     <a href="#keywords" data-nav="keywords">Skills</a>
-    <a href="#experience" data-nav="experience">Experience</a>
     <a href="#projects" data-nav="projects">Projects</a>
+    <a href="#experience" data-nav="experience">Experience</a>
     <a href="kaushik-resume-gd.pdf">Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
       <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
@@ -226,6 +226,81 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
   </div>
 </section>
 
+<section class="section" id="projects">
+  <div class="wrap">
+    <p class="eyebrow">Case Studies</p>
+    <h2>Selected work</h2>
+    <p>Deep dives into products I've designed from concept through launch.</p>
+    <div class="filter-row" role="tablist" aria-label="Project filters">
+      <button class="tab-btn active" type="button" data-filter="all">All</button>
+      <button class="tab-btn" type="button" data-filter="professional">Professional</button>
+      <button class="tab-btn" type="button" data-filter="personal">Personal</button>
+    </div>
+    <div class="row-3" id="projGrid">
+      <a href="msc-dashboard.html" class="tile" data-project-type="professional">
+        <div class="tile__media"><img src="msc-dashboard/cover.png" alt="MSC Operational Dashboard cover"/></div>
+        <div class="tile__body">
+          <div class="tile__company">Druva · MSC Operational Dashboard</div>
+          <div class="tile__outcome">Restructured a single overloaded screen into three job-focused surfaces. Pre-launch — success measures defined.</div>
+          <span class="chip">Enterprise SaaS · Research-led Dashboard Design</span>
+        </div>
+      </a>
+      <a href="druva.html" class="tile" data-project-type="professional">
+        <div class="tile__media tile__media--logo"><img src="druva-logo.png" alt="Druva logo"/></div>
+        <div class="tile__body">
+          <div class="tile__company">Druva · Provisioning &amp; Access</div>
+          <div class="tile__outcome">Let partners self-serve product expansion; helped MSC grow its customer base and product adoption.</div>
+          <span class="chip">Enterprise B2B · Systems &amp; Access Design</span>
+        </div>
+      </a>
+      <a href="harmoney.html" class="tile" data-project-type="professional">
+        <div class="tile__media tile__media--logo"><img src="harmoney-logo-card.png" alt="Harmoney logo"/></div>
+        <div class="tile__body">
+          <div class="tile__company">Harmoney</div>
+          <div class="tile__outcome">India's first digital bond trading platform. Built design system and product experience as founding designer, achieving 6× volume growth.</div>
+          <span class="chip">Fintech · Bond Trading · 0→1</span>
+        </div>
+      </a>
+      <a href="mason.html" class="tile" data-project-type="professional">
+        <div class="tile__media tile__media--logo"><img src="mason-logo-card.png" alt="Mason logo"/></div>
+        <div class="tile__body">
+          <div class="tile__company">Mason App</div>
+          <div class="tile__outcome">Redesigned ModeMagic app winning Shopify Commerce Award. Achieved 8× weekly active users through thoughtful UI/UX improvements.</div>
+          <span class="chip">E-commerce · SaaS · Shopify</span>
+        </div>
+      </a>
+      <a href="dashboard.html" class="tile" data-project-type="personal">
+        <div class="tile__media tile__media--logo"><img src="dashboard-cover.png" alt="Dashboard cover"/></div>
+        <div class="tile__body">
+          <div class="tile__company">Dashboard</div>
+          <div class="tile__outcome">A personal learning project focused on designing a dashboard that helps users consume information quickly and clearly.</div>
+          <span class="chip">Personal · Dashboard · Learning</span>
+        </div>
+      </a>
+    </div>
+    <p id="projEmpty" hidden style="color:var(--muted);margin-top:16px;">No projects in this category yet.</p>
+
+    <div style="margin-top:64px;">
+      <p class="eyebrow">Play / Making</p>
+      <h2>Investigator &amp; maker range</h2>
+      <div class="row-3" style="margin-top:24px;">
+        <div class="module">
+          <h3>IIT Delhi · Industrial Design</h3>
+          <p style="margin:0;">Physical product design foundation — form, material, and human factors before digital work.</p>
+        </div>
+        <div class="module">
+          <h3>Anna University · Mechanical Engineering</h3>
+          <p style="margin:0;">Strong in CAD modeling and fabrication — Fusion 360, Creo, and Autodesk — making ideas tangible before committing to a direction.</p>
+        </div>
+        <div class="module">
+          <h3>IIT Kanpur · Autonomous Vehicle HMI</h3>
+          <p style="margin:0;">Research on driver–vehicle interaction for autonomous systems — investigation-led, not screen-first.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="experience">
   <div class="wrap">
     <p class="eyebrow">Experience</p>
@@ -326,77 +401,44 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
   </div>
 </section>
 
-<section class="section" id="projects">
+<section class="section" id="education">
   <div class="wrap">
-    <p class="eyebrow">Case Studies</p>
-    <h2>Selected work</h2>
-    <p>Deep dives into products I've designed from concept through launch.</p>
-    <div class="filter-row" role="tablist" aria-label="Project filters">
-      <button class="tab-btn active" type="button" data-filter="all">All</button>
-      <button class="tab-btn" type="button" data-filter="professional">Professional</button>
-      <button class="tab-btn" type="button" data-filter="personal">Personal</button>
-    </div>
-    <div class="row-3" id="projGrid">
-      <a href="msc-dashboard.html" class="tile" data-project-type="professional">
-        <div class="tile__media"><img src="msc-dashboard/cover.png" alt="MSC Operational Dashboard cover"/></div>
-        <div class="tile__body">
-          <div class="tile__company">Druva · MSC Operational Dashboard</div>
-          <div class="tile__outcome">Restructured a single overloaded screen into three job-focused surfaces. Pre-launch — success measures defined.</div>
-          <span class="chip">Enterprise SaaS · Research-led Dashboard Design</span>
-        </div>
-      </a>
-      <a href="druva.html" class="tile" data-project-type="professional">
-        <div class="tile__media tile__media--logo"><img src="druva-logo.png" alt="Druva logo"/></div>
-        <div class="tile__body">
-          <div class="tile__company">Druva · Provisioning &amp; Access</div>
-          <div class="tile__outcome">Let partners self-serve product expansion; helped MSC grow its customer base and product adoption.</div>
-          <span class="chip">Enterprise B2B · Systems &amp; Access Design</span>
-        </div>
-      </a>
-      <a href="harmoney.html" class="tile" data-project-type="professional">
-        <div class="tile__media tile__media--logo"><img src="harmoney-logo-card.png" alt="Harmoney logo"/></div>
-        <div class="tile__body">
-          <div class="tile__company">Harmoney</div>
-          <div class="tile__outcome">India's first digital bond trading platform. Built design system and product experience as founding designer, achieving 6× volume growth.</div>
-          <span class="chip">Fintech · Bond Trading · 0→1</span>
-        </div>
-      </a>
-      <a href="mason.html" class="tile" data-project-type="professional">
-        <div class="tile__media tile__media--logo"><img src="mason-logo-card.png" alt="Mason logo"/></div>
-        <div class="tile__body">
-          <div class="tile__company">Mason App</div>
-          <div class="tile__outcome">Redesigned ModeMagic app winning Shopify Commerce Award. Achieved 8× weekly active users through thoughtful UI/UX improvements.</div>
-          <span class="chip">E-commerce · SaaS · Shopify</span>
-        </div>
-      </a>
-      <a href="dashboard.html" class="tile" data-project-type="personal">
-        <div class="tile__media tile__media--logo"><img src="dashboard-cover.png" alt="Dashboard cover"/></div>
-        <div class="tile__body">
-          <div class="tile__company">Dashboard</div>
-          <div class="tile__outcome">A personal learning project focused on designing a dashboard that helps users consume information quickly and clearly.</div>
-          <span class="chip">Personal · Dashboard · Learning</span>
-        </div>
-      </a>
-    </div>
-    <p id="projEmpty" hidden style="color:var(--muted);margin-top:16px;">No projects in this category yet.</p>
+    <p class="eyebrow">Education</p>
+    <h2>Where I built my foundation</h2>
+    <p>Product design training on a mechanical engineering base.</p>
 
-    <div style="margin-top:64px;">
-      <p class="eyebrow">Play / Making</p>
-      <h2>Investigator &amp; maker range</h2>
-      <div class="row-3" style="margin-top:24px;">
-        <div class="module">
-          <h3>IIT Delhi · Industrial Design</h3>
-          <p style="margin:0;">Physical product design foundation — form, material, and human factors before digital work.</p>
-        </div>
-        <div class="module">
-          <h3>Anna University · Mechanical Engineering</h3>
-          <p style="margin:0;">Strong in CAD modeling and fabrication — Fusion 360, Creo, and Autodesk — making ideas tangible before committing to a direction.</p>
-        </div>
-        <div class="module">
-          <h3>IIT Kanpur · Autonomous Vehicle HMI</h3>
-          <p style="margin:0;">Research on driver–vehicle interaction for autonomous systems — investigation-led, not screen-first.</p>
+    <div style="margin-top:48px;display:flex;flex-direction:column;gap:40px;">
+
+      <div class="exp-block">
+        <div class="exp-head">
+          <div class="exp-company-row">
+            <div class="exp-company">Indian Institute of Technology, Delhi <span class="exp-sub">— Master of Design, Product Design</span></div>
+            <a href="https://design.iitd.ac.in/" class="exp-go" target="_blank" rel="noopener noreferrer">Go to →</a>
+          </div>
+          <div class="exp-period">Jul 2018 – Aug 2020</div>
         </div>
       </div>
+
+      <div class="exp-block">
+        <div class="exp-head">
+          <div class="exp-company-row">
+            <div class="exp-company">Mantra Academy <span class="exp-sub">— Automotive Design &amp; Research</span></div>
+            <a href="https://www.mantraacademy.com/" class="exp-go" target="_blank" rel="noopener noreferrer">Go to →</a>
+          </div>
+          <div class="exp-period">Jan 2017 – Oct 2017</div>
+        </div>
+      </div>
+
+      <div class="exp-block">
+        <div class="exp-head">
+          <div class="exp-company-row">
+            <div class="exp-company">Anna University, Chennai <span class="exp-sub">— B.E, Mechanical Engineering</span></div>
+            <a href="https://www.annauniv.edu/" class="exp-go" target="_blank" rel="noopener noreferrer">Go to →</a>
+          </div>
+          <div class="exp-period">Jul 2012 – Aug 2016</div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
