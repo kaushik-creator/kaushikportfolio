@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
+<script src="js/theme-init.js"></script>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Dashboard — Personal Project · Kaushik</title>
@@ -129,9 +130,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 
 <script>
 const html = document.documentElement;
-document.getElementById('themeToggle').addEventListener('click', () => {
-  html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
-});
 
 const images = Array.from({ length: 55 }, (_, i) => `dashboard-images/${i + 1}.jpg`);
 let current = 0;
@@ -185,6 +183,7 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && !resumeModal.hidden) closeResumeModal();
 });
 </script>
+<script src="js/theme-toggle.js"></script>
 <script src="audio/music.js"></script>
 </body>
 </html>

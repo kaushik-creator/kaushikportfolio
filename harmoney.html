@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
+<script src="js/theme-init.js"></script>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Harmoney — Case Study · Kaushik</title>
@@ -600,9 +601,6 @@ if (ham && menu) {
 }
 
 const html = document.documentElement;
-document.getElementById('themeToggle').addEventListener('click', () => {
-  html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
-});
 const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('vis'); }), {threshold: 0.08});
 document.querySelectorAll('.fi').forEach(el => io.observe(el));
 
@@ -669,6 +667,7 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && !resumeModal.hidden) closeResumeModal();
 });
 </script>
+<script src="js/theme-toggle.js"></script>
 <script src="audio/music.js"></script>
 </body>
 </html>
