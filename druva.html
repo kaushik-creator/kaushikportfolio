@@ -100,6 +100,44 @@ figcaption b{color:var(--text2);font-weight:600;}
 .ref-btn{display:inline-flex;font-size:.58rem;font-family:'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--text);border:1px solid var(--border);background:var(--bg2);padding:.45rem .75rem;border-radius:var(--radius-pill);transition:border-color .2s;}
 .ref-btn:hover{border-color:var(--text3);}
 
+.context-head{display:flex;align-items:center;gap:1.25rem;margin-bottom:1rem;}
+.context-logo{width:72px;flex-shrink:0;padding:.65rem;border:1px solid var(--border);background:var(--card);border-radius:var(--radius);}
+.context-logo img{width:100%;}
+
+.team-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem;}
+.team-chip{font-size:.58rem;font-family:'Space Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);border:1px solid var(--border);padding:.28rem .55rem;border-radius:var(--radius-pill);}
+
+.persona{display:flex;flex-direction:column;gap:.55rem;}
+.persona-who{font-size:.84rem;line-height:1.55;color:var(--text2);margin:0;}
+.persona-does{display:flex;flex-wrap:wrap;gap:.35rem;}
+.do-item{display:inline-flex;align-items:center;gap:.3rem;font-size:.68rem;font-family:'Space Mono',monospace;color:var(--text2);border:1px solid var(--border);padding:.22rem .45rem;border-radius:var(--radius-pill);}
+.do-item span{opacity:.75;}
+.persona-split{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
+.persona-split h4{font-size:.52rem;font-family:'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.35rem;font-weight:500;}
+.tag-row{display:flex;flex-wrap:wrap;gap:.3rem;}
+.tag{font-size:.62rem;font-family:'Space Mono',monospace;color:var(--text2);border:1px solid var(--border);padding:.18rem .42rem;border-radius:var(--radius-pill);line-height:1.35;}
+.tag-pain{color:var(--text3);border-style:dashed;}
+
+.synth-needs{display:flex;flex-direction:column;gap:.55rem;margin-top:1.25rem;}
+.need-mini{padding:.75rem .85rem;border:1px solid var(--border);background:var(--card);border-radius:var(--radius);}
+.need-mini .mono-tag{margin-bottom:.35rem;}
+.need-mini p{font-size:.8rem;line-height:1.5;color:var(--text2);margin:0;}
+
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-top:1rem;}
+.scenario-card{padding:.85rem 1rem;border:1px solid var(--border);background:var(--card);border-radius:var(--radius);}
+.scenario-n{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--text3);margin-bottom:.35rem;}
+.scenario-card h3{font-size:.88rem;font-weight:700;margin-bottom:.35rem;line-height:1.3;}
+.scenario-card p{font-size:.78rem;line-height:1.5;color:var(--text2);margin:0;}
+
+.perm-mini{margin-top:1rem;}
+.perm-mini .sec-h{font-size:1rem;margin-bottom:.65rem;}
+.perm-table{width:100%;border-collapse:collapse;font-size:.78rem;font-family:'Space Mono',monospace;}
+.perm-table th,.perm-table td{padding:.55rem .65rem;border-bottom:1px solid var(--border);text-align:center;}
+.perm-table th:first-child,.perm-table td:first-child{text-align:left;font-family:'Plus Jakarta Sans',sans-serif;font-size:.8rem;font-weight:600;color:var(--text);}
+.perm-table th{background:var(--card);color:var(--text3);font-weight:500;font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;}
+.perm-yes{color:var(--text);}
+.perm-no{color:var(--text3);opacity:.5;}
+
 footer{padding:2.5rem 0;text-align:center;}
 
 .music-toggle{position:fixed;bottom:1.25rem;right:1.25rem;z-index:200;width:46px;height:46px;border:1px solid var(--border);background:var(--canvas);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;}
@@ -110,8 +148,10 @@ footer{padding:2.5rem 0;text-align:center;}
   .nav-right{margin-left:auto !important;}
   .nav-links,.avail-badge{display:none;}
   .wrap{padding:0 1.2rem;}
-  .meta,.grid-2,.grid-3,.shipped-grid{grid-template-columns:1fr;}
+  .meta,.grid-2,.grid-3,.shipped-grid,.scenario-grid{grid-template-columns:1fr;}
   .meta-c{border-right:none;border-bottom:1px solid var(--border);}
+  .persona-split{grid-template-columns:1fr;}
+  .context-head{flex-direction:column;align-items:flex-start;}
 }
 </style>
 </head>
@@ -174,7 +214,10 @@ footer{padding:2.5rem 0;text-align:center;}
 
 <section id="context">
   <div class="wrap">
-    <div class="sec-l">Context</div>
+    <div class="context-head">
+      <div class="context-logo"><img src="druva-logo.png" alt="Druva"/></div>
+      <div class="sec-l" style="margin:0;">Context</div>
+    </div>
     <div class="grid-3">
       <div class="panel">
         <h3>Druva</h3>
@@ -182,7 +225,10 @@ footer{padding:2.5rem 0;text-align:center;}
       </div>
       <div class="panel">
         <h3>My scope</h3>
-        <p>MSP partner console — provisioning, access boundaries, and onboarding flows.</p>
+        <div class="tag-row" style="margin-top:.35rem;">
+          <span class="tag">Security Add-ons</span>
+          <span class="tag">MSP platform</span>
+        </div>
       </div>
       <div class="panel">
         <h3>MSP</h3>
@@ -197,27 +243,143 @@ footer{padding:2.5rem 0;text-align:center;}
     <div class="sec-l">Problem</div>
     <p class="lede">MSPs lost customers when MSC couldn't provision products outside its supported set. Licensing blocked the obvious fix — just add products.</p>
     <div class="hmw"><strong>How might we</strong> expand what MSPs can sell within licensing constraints — without breaking customer privacy?</div>
+    <div class="team-chips">
+      <span class="team-chip">PM</span>
+      <span class="team-chip">Support</span>
+      <span class="team-chip">Designer (me)</span>
+      <span class="team-chip">FE / BE Dev</span>
+      <span class="team-chip">4+ months</span>
+      <span class="team-chip">Shipped</span>
+    </div>
   </div>
 </section>
 
 <section id="trust" style="background:var(--bg2);">
   <div class="wrap">
-    <div class="sec-l">Trust triangle</div>
+    <div class="sec-l">Personas</div>
     <div class="grid-3">
-      <div class="panel">
+      <article class="panel persona">
         <span class="mono-tag">MSC Partner</span>
-        <p>Operations admin managing many customers from one console.</p>
-        <p class="quote">"I want more product modules so I can offer more services."</p>
-      </div>
-      <div class="panel">
+        <p class="persona-who">Operations admin managing multiple customer accounts from one dashboard.</p>
+        <div class="persona-does">
+          <span class="do-item"><span>◎</span> Setup</span>
+          <span class="do-item"><span>◎</span> Licenses</span>
+          <span class="do-item"><span>◎</span> Backup</span>
+          <span class="do-item"><span>◎</span> Reports</span>
+          <span class="do-item"><span>◎</span> Access</span>
+        </div>
+        <div class="persona-split">
+          <div>
+            <h4>Goals</h4>
+            <div class="tag-row">
+              <span class="tag">One dashboard</span>
+              <span class="tag">Less support</span>
+              <span class="tag">Clear access</span>
+            </div>
+          </div>
+          <div>
+            <h4>Pain</h4>
+            <div class="tag-row">
+              <span class="tag tag-pain">Hard provisioning</span>
+              <span class="tag tag-pain">Confusing states</span>
+              <span class="tag tag-pain">Bad conversions</span>
+            </div>
+          </div>
+        </div>
+        <p class="quote">"More product modules so I can offer more services."</p>
+      </article>
+      <article class="panel persona">
         <span class="mono-tag">Customer</span>
-        <p>End admin whose environment the MSP manages.</p>
-        <p class="quote">"Keep my data private — no full MSP visibility into my console."</p>
+        <p class="persona-who">End admin whose environment is managed by the MSP.</p>
+        <div class="persona-does">
+          <span class="do-item"><span>◎</span> Setup</span>
+          <span class="do-item"><span>◎</span> Products</span>
+          <span class="do-item"><span>◎</span> Access</span>
+          <span class="do-item"><span>◎</span> Privacy</span>
+        </div>
+        <div class="persona-split">
+          <div>
+            <h4>Goals</h4>
+            <div class="tag-row">
+              <span class="tag">Fast enable</span>
+              <span class="tag">Privacy</span>
+              <span class="tag">Control</span>
+            </div>
+          </div>
+          <div>
+            <h4>Pain</h4>
+            <div class="tag-row">
+              <span class="tag tag-pain">Report visibility</span>
+              <span class="tag tag-pain">Hidden backend</span>
+              <span class="tag tag-pain">Opaque models</span>
+            </div>
+          </div>
+        </div>
+        <p class="quote">"Keep my data private — no full MSP console visibility."</p>
+      </article>
+      <article class="panel persona">
+        <span class="mono-tag">Druva Support</span>
+        <p class="persona-who">Internal team for licensing-restricted provisioning and enablement.</p>
+        <div class="persona-does">
+          <span class="do-item"><span>◎</span> Provision</span>
+          <span class="do-item"><span>◎</span> Products</span>
+          <span class="do-item"><span>◎</span> Access</span>
+          <span class="do-item"><span>◎</span> Escalations</span>
+        </div>
+        <div class="persona-split">
+          <div>
+            <h4>Goals</h4>
+            <div class="tag-row">
+              <span class="tag">Fast enable</span>
+              <span class="tag">Scale ops</span>
+              <span class="tag">Clear handoffs</span>
+            </div>
+          </div>
+          <div>
+            <h4>Pain</h4>
+            <div class="tag-row">
+              <span class="tag tag-pain">Licensing effort</span>
+              <span class="tag tag-pain">Manual scale</span>
+              <span class="tag tag-pain">Bad transitions</span>
+            </div>
+          </div>
+        </div>
+        <p class="quote">Druva-led + MSP-led provisioning working together.</p>
+      </article>
+    </div>
+    <div class="grid-2" style="margin-top:1rem;">
+      <div class="panel">
+        <span class="mono-tag">User needs</span>
+        <div class="synth-needs" style="margin-top:0;">
+          <div class="need-mini" style="border:none;padding:0;background:transparent;">
+            <span class="mono-tag">MSP</span>
+            <p>More product modules to offer more services.</p>
+          </div>
+          <div class="need-mini" style="border:none;padding:0;background:transparent;">
+            <span class="mono-tag">Customer</span>
+            <p>Data and reports private — no full MSP console access.</p>
+          </div>
+          <div class="need-mini" style="border:none;padding:0;background:transparent;">
+            <span class="mono-tag">Druva</span>
+            <p>Scale product expansion without new licensing drag.</p>
+          </div>
+        </div>
       </div>
       <div class="panel">
-        <span class="mono-tag">Druva Support</span>
-        <p>Internal team for licensing-restricted provisioning.</p>
-        <p class="quote">Scale Druva-led provisioning without manual bottlenecks.</p>
+        <span class="mono-tag">Constraints</span>
+        <div style="margin-top:.5rem;">
+          <h4 style="font-size:.52rem;font-family:'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.35rem;font-weight:500;">Problem</h4>
+          <div class="tag-row" style="margin-bottom:.65rem;">
+            <span class="tag tag-pain">Limited catalogue</span>
+            <span class="tag tag-pain">Privacy resistance</span>
+          </div>
+          <h4 style="font-size:.52rem;font-family:'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.35rem;font-weight:500;">Technical</h4>
+          <div class="tag-row">
+            <span class="tag">Multi-level licensing</span>
+            <span class="tag">Manual workaround now</span>
+            <span class="tag">Full MSC later</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -272,15 +434,77 @@ footer{padding:2.5rem 0;text-align:center;}
           <tr>
             <th><b>MSC-Provisioned</b></th>
             <td>Core products only. No advanced workloads.</td>
-            <td>Full MSP access to console, accounts, and reports for supported offerings.</td>
+            <td>Full MSP access to console, accounts, and reports.</td>
           </tr>
           <tr>
             <th><b>Druva-Provisioned</b></th>
             <td>Licenses provisioned; no console access afterward.</td>
-            <td>Full access plus workloads unavailable to MSC-provisioned customers.</td>
+            <td>Full access plus workloads unavailable to MSC customers.</td>
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="perm-mini panel">
+      <h3 class="sec-h" style="font-size:1rem;margin-bottom:.65rem;">Permissions at a glance</h3>
+      <table class="perm-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Console</th>
+            <th>Reports</th>
+            <th>Advanced</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>MSC · Restricted</td>
+            <td class="perm-no">—</td>
+            <td class="perm-no">—</td>
+            <td class="perm-no">—</td>
+          </tr>
+          <tr>
+            <td>MSC · Unrestricted</td>
+            <td class="perm-yes">✓</td>
+            <td class="perm-yes">✓</td>
+            <td class="perm-no">—</td>
+          </tr>
+          <tr>
+            <td>Druva · Restricted</td>
+            <td class="perm-no">—</td>
+            <td class="perm-no">—</td>
+            <td class="perm-no">—</td>
+          </tr>
+          <tr>
+            <td>Druva · Unrestricted</td>
+            <td class="perm-yes">✓</td>
+            <td class="perm-yes">✓</td>
+            <td class="perm-yes">✓</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sec-l" style="margin-top:1.5rem;">Use cases</div>
+    <div class="scenario-grid">
+      <div class="scenario-card">
+        <div class="scenario-n">01</div>
+        <h3>Add products to existing customer</h3>
+        <p>Self-serve expansion without re-creating the account.</p>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-n">02</div>
+        <h3>New customer onboarding</h3>
+        <p>Create and provision in one connected journey.</p>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-n">03</div>
+        <h3>Access classification</h3>
+        <p>Managed vs Restricted with clear operational boundaries.</p>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-n">04</div>
+        <h3>Restricted console access</h3>
+        <p>Temporary MSP access — customer approves or rejects.</p>
+      </div>
     </div>
   </div>
 </section>
