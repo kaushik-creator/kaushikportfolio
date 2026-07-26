@@ -1,26 +1,50 @@
 /**
- * Johnyvino design tokens — Kaushik portfolio
- * Consumed by tailwind.config.ts, johnyvino-skin.css, and legacy CSS aliases.
+ * UID-inspired editorial tokens — Kaushik portfolio
+ * Color lives in the work; UI chrome stays near-monochrome.
  */
 
-:root {
-  --canvas: #09090b;
-  --text-primary: #ffffff;
-  --text-secondary: #e6e6e6;
-  --text-tertiary: #999999;
-  --muted-soft: #666666;
-  --link: #c3d9f3;
+:root,
+html[data-theme="light"] {
+  --bg: #FBFBF9;
+  --ink: #1A1A1A;
+  --muted: #6E6E68;
+  --line: #E4E3DE;
+  --accent: #E8642A;
+  --dark: #17171A;
 
-  --glass: rgba(255, 255, 255, 0.06);
-  --glass-hover: rgba(255, 255, 255, 0.08);
-  --glass-active: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.15);
-  --surface-card: rgba(255, 255, 255, 0.05);
-  --surface-elevated: rgba(255, 255, 255, 0.08);
-  --hairline: rgba(255, 255, 255, 0.12);
-  --hairline-strong: rgba(255, 255, 255, 0.18);
+  /* Legacy aliases (consumed by existing page CSS) */
+  --canvas: var(--bg);
+  --text: var(--ink);
+  --text-primary: var(--ink);
+  --text2: var(--muted);
+  --text-secondary: var(--muted);
+  --text3: var(--muted);
+  --text-tertiary: var(--muted);
+  --muted-soft: var(--muted);
+  --border: var(--line);
+  --rule: var(--line);
+  --hairline: var(--line);
+  --hairline-strong: #D4D3CD;
+  --nav-bg: var(--bg);
+  --card: transparent;
+  --bg2: var(--bg);
+  --bg3: var(--bg);
+  --link: var(--ink);
+  --avail: var(--ink);
 
-  --radius: 16px;
+  --glass: transparent;
+  --glass-hover: transparent;
+  --glass-active: transparent;
+  --glass-border: var(--line);
+  --surface-card: transparent;
+  --surface-elevated: transparent;
+  --tag-bg: transparent;
+  --tag-border: var(--line);
+  --accent2: var(--muted);
+  --accent-glow: transparent;
+  --accent-soft: transparent;
+
+  --radius: 0;
   --radius-pill: 9999px;
 
   --space-xs: 8px;
@@ -29,93 +53,74 @@
   --space-lg: 24px;
   --space-xl: 40px;
   --space-xxl: 64px;
-  --space-section: 5rem;
+  --space-section: 5.5rem;
   --page-gutter: 1.5rem;
 
-  --elevation-1: 0 4px 12px -4px rgba(0, 0, 0, 0.3);
-  --elevation-2: 0 20px 60px -20px rgba(0, 0, 0, 0.5);
-  --elevation-3: 0 20px 60px -10px rgba(0, 0, 0, 0.6);
-  --elevation-4: 0 40px 120px -40px rgba(0, 0, 0, 0.6);
+  --elevation-1: none;
+  --elevation-2: none;
+  --elevation-3: none;
+  --elevation-4: none;
 
-  --duration-fast: 0.2s;
-  --duration-base: 0.4s;
-  --duration-slow: 0.6s;
+  --duration-fast: 0.18s;
+  --duration-base: 0.22s;
+  --duration-slow: 0.35s;
   --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-bounce: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: var(--ease-out);
+  --ease-bounce: var(--ease-out);
 
-  --text-hero: clamp(48px, 12vw, 180px);
-  --text-display: clamp(32px, 6vw, 60px);
-  --max-width: 75rem;
+  --font-display: "Space Grotesk", system-ui, sans-serif; /* UID grotesque */
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-meta: 'Inter', system-ui, sans-serif;
+
+  --text-hero: clamp(44px, 7vw, 88px);
+  --text-display: clamp(28px, 4vw, 44px);
+  --text-h3: clamp(20px, 2vw, 24px);
+  --text-body: 17px;
+  --text-meta: 12px;
+  --leading-body: 1.6;
+  --measure-wide: 1100px;
+  --measure-narrow: 680px;
+  --max-width: 1200px;
 }
 
-body.light-mode,
-html[data-theme="light"] {
-  --canvas: #f2f2f2;
-  --text-primary: #000000;
-  --text-secondary: #1a1a1a;
-  --text-tertiary: #666666;
-  --muted-soft: #888888;
-  --link: #0066cc;
+html[data-theme="dark"] {
+  --bg: #17171A;
+  --ink: #F4F3EE;
+  --muted: #8A8A84;
+  --line: #2C2C2A;
+  --accent: #E8642A;
+  --dark: #0E0E10;
 
-  --glass: rgba(0, 0, 0, 0.03);
-  --glass-hover: rgba(0, 0, 0, 0.05);
-  --glass-active: rgba(0, 0, 0, 0.06);
-  --glass-border: rgba(0, 0, 0, 0.12);
-  --surface-card: rgba(0, 0, 0, 0.03);
-  --surface-elevated: rgba(0, 0, 0, 0.05);
-  --hairline: rgba(0, 0, 0, 0.1);
-  --hairline-strong: rgba(0, 0, 0, 0.14);
-
-  --elevation-1: 0 4px 12px -4px rgba(0, 0, 0, 0.08);
-  --elevation-2: 0 20px 60px -20px rgba(0, 0, 0, 0.12);
-  --elevation-3: 0 20px 60px -10px rgba(0, 0, 0, 0.16);
-  --elevation-4: 0 40px 120px -40px rgba(0, 0, 0, 0.18);
+  --canvas: var(--bg);
+  --text: var(--ink);
+  --text-primary: var(--ink);
+  --text2: var(--muted);
+  --text-secondary: var(--muted);
+  --text3: var(--muted);
+  --text-tertiary: var(--muted);
+  --muted-soft: var(--muted);
+  --border: var(--line);
+  --rule: var(--line);
+  --hairline: var(--line);
+  --hairline-strong: #3A3A38;
+  --nav-bg: var(--bg);
+  --card: transparent;
+  --bg2: var(--bg);
+  --bg3: var(--bg);
+  --link: var(--ink);
+  --avail: var(--ink);
+  --glass: transparent;
+  --glass-hover: transparent;
+  --glass-active: transparent;
+  --glass-border: var(--line);
+  --surface-card: transparent;
+  --surface-elevated: transparent;
+  --tag-bg: transparent;
+  --tag-border: var(--line);
 }
 
 @media (min-width: 768px) {
   :root {
     --page-gutter: 3rem;
   }
-}
-
-/* Legacy portfolio aliases */
-body.light-mode,
-html[data-theme="light"],
-html[data-theme="dark"],
-:root {
-  --bg: var(--canvas);
-  --text: var(--text-primary);
-  --text2: var(--text-secondary);
-  --text3: var(--text-tertiary);
-  --border: var(--hairline);
-  --rule: var(--hairline);
-  --nav-bg: var(--canvas);
-  --card: var(--surface-card);
-}
-
-html[data-theme="dark"],
-body:not(.light-mode) {
-  --bg2: rgba(255, 255, 255, 0.03);
-  --bg3: rgba(255, 255, 255, 0.05);
-  --accent: #ffffff;
-  --accent2: var(--text-secondary);
-  --accent-glow: rgba(255, 255, 255, 0.04);
-  --accent-soft: var(--glass-hover);
-  --tag-bg: var(--glass);
-  --tag-border: var(--glass-border);
-  --avail: var(--text-primary);
-}
-
-body.light-mode,
-html[data-theme="light"] {
-  --bg2: rgba(0, 0, 0, 0.03);
-  --bg3: rgba(0, 0, 0, 0.05);
-  --accent: #000000;
-  --accent2: var(--text-secondary);
-  --accent-glow: rgba(0, 0, 0, 0.06);
-  --accent-soft: var(--glass-hover);
-  --tag-bg: var(--glass);
-  --tag-border: var(--glass-border);
-  --avail: var(--text-primary);
 }

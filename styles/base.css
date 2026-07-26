@@ -1,0 +1,315 @@
+/**
+ * UID editorial base — type, measures, figures, links, quiet motion.
+ * Load after tokens.css on every page.
+ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body) !important;
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; height: auto; }
+a { color: inherit; text-decoration: none; transition: color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out), opacity var(--duration-fast) var(--ease-out); }
+
+/* ── Type hierarchy ── */
+h1, h2, h3, h4,
+.cs-h1, .sec-h, .nav-logo,
+.proj-title, .hero-name, .display {
+  font-family: var(--font-display) !important;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+h1, .cs-h1 {
+  font-size: var(--text-hero);
+  line-height: 1.02;
+  margin: 0 0 1rem;
+}
+
+h2, .sec-h {
+  font-size: var(--text-display);
+  line-height: 1.12;
+  margin: 0 0 0.85rem;
+}
+
+h3 {
+  font-size: var(--text-h3);
+  line-height: 1.2;
+  margin: 0 0 0.65rem;
+}
+
+p {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  max-width: 68ch;
+}
+
+p:last-child { margin-bottom: 0; }
+
+/* Exhibition wall-label texture */
+.label, .eyebrow, .cs-lbl, .sec-l, .sec-lbl, .meta-l, .meta-lbl,
+.back, .back-chip, .strapline, .persona-ground, .scoped, .legal,
+.tab-q, .mono-tag, .scroll-hint, .hedge {
+  font-family: var(--font-meta);
+  font-size: var(--text-meta);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hedge { text-transform: none; letter-spacing: 0; font-style: italic; font-size: 0.88rem; }
+
+/* ── Layout measures ── */
+.wrap {
+  max-width: var(--measure-wide);
+  margin: 0 auto;
+  padding: 0 var(--page-gutter);
+}
+
+.wrap-narrow {
+  max-width: var(--measure-narrow);
+  margin: 0 auto;
+  padding: 0 var(--page-gutter);
+}
+
+.hero {
+  padding: 7.5rem 0 3.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+section {
+  padding: var(--space-section) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+section:last-of-type { border-bottom: none; }
+
+/* Neutralize tinted section bands — paper stays paper */
+section[style*="background"],
+.method-block,
+.persona-block,
+.scrapped,
+.tab-card,
+.outcome-item,
+.panel {
+  background: transparent !important;
+}
+
+/* ── Figures: image-forward, quiet captions ── */
+/* Hairline + white plate so light screenshots stay visible on --bg paper */
+figure { margin: 2.5rem 0; }
+figure img,
+.scroll-wrap,
+.persona-thumbs img,
+.shipped-grid img,
+.decision-fig img {
+  border: 1px solid var(--line) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: #ffffff !important;
+}
+.scroll-wrap img {
+  border: none !important;
+  background: #ffffff !important;
+}
+figcaption,
+.story-caption,
+.hm-gif-cap {
+  margin-top: 0.65rem;
+  font-family: var(--font-meta);
+  font-size: var(--text-meta);
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  line-height: 1.45;
+  text-transform: none;
+  text-shadow: none !important;
+  border: none !important;
+  background: transparent !important;
+  text-align: left;
+  padding: 0 !important;
+}
+
+/* ── Meta credit row ── */
+.meta, .meta-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: none;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  overflow: visible;
+  margin-top: 2rem;
+  background: transparent;
+}
+
+.meta-c, .meta-col {
+  padding: 1rem 0;
+  border-right: none;
+  padding-right: 1.25rem;
+}
+
+.meta-c + .meta-c,
+.meta-col + .meta-col {
+  padding-left: 1.25rem;
+  border-left: 1px solid var(--line);
+}
+
+.meta-l, .meta-lbl {
+  margin-bottom: 0.35rem;
+}
+
+.meta-v, .meta-val {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+/* ── Links (quiet) ── */
+.back:hover, .back-chip:hover,
+.ref-list a:hover, .next-link:hover,
+.nav-links a:hover, .mobile-menu a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+.ref-list a {
+  color: var(--ink);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+}
+.ref-list a:hover { border-bottom-color: var(--accent); color: var(--ink); }
+
+a:focus-visible,
+button:focus-visible,
+.toggle:focus-visible,
+.theme-toggle:focus-visible,
+.music-toggle:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ── Signature dark block (one bold moment) ── */
+.trust, .signature-block {
+  background: var(--dark) !important;
+  color: var(--bg);
+  padding: 2rem 2.25rem;
+  border-radius: 0;
+  margin: 1.75rem 0;
+}
+.trust-col h3 { color: rgba(251, 251, 249, 0.55); font-family: var(--font-meta); font-size: var(--text-meta); letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500; }
+.trust-col p { color: rgba(251, 251, 249, 0.9); max-width: none; }
+
+/* ── Quiet chips / tags ── */
+.team-chip, .tag, .role-tag, .cs-tag, .avail-badge {
+  background: transparent !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: var(--muted) !important;
+  font-family: var(--font-meta);
+  font-size: var(--text-meta);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: none !important;
+}
+.avail-dot {
+  background: var(--ink) !important;
+  animation: none !important;
+}
+
+/* ── Kill glass / glow / card chrome sitewide ── */
+.cinematic-layers,
+.cinematic-vignette,
+.cinematic-grain { display: none !important; }
+
+.proj-card, .story-image, .hm-gif-card, .proto-wrap, .idea-card,
+.panel, .scrapped, .tab-card, .outcome-item, .resume-modal-card {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.story-image, .hm-gif-card, .proto-wrap, .idea-card, .story-slider {
+  border: 1px solid var(--line) !important;
+  background: transparent !important;
+}
+
+/* Harmoney / Mason: strip neon glow & SaaS card chrome */
+.sec-lbl, .box-lbl, .next-lbl, .role-tag, .cs-tag, .story-caption,
+.meta-lbl, .proc-t {
+  text-shadow: none !important;
+  box-shadow: none !important;
+  color: var(--muted) !important;
+}
+.prob, .idea-card, .rc, .persona-card {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.cs-h1, .sec-h {
+  font-size: inherit;
+}
+.cs-h1 { font-size: var(--text-hero) !important; line-height: 1.02 !important; }
+.sec-h { font-size: var(--text-display) !important; line-height: 1.12 !important; }
+
+/* ── Nav logo editorial ── */
+.nav-logo {
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+}
+
+.nav-links a,
+.mobile-menu a,
+.back-chip, .back {
+  font-family: var(--font-meta) !important;
+  font-size: var(--text-meta) !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* ── Fade-in: gentle only ── */
+.fade-in, .vis {
+  transition: opacity var(--duration-slow) var(--ease-out), transform var(--duration-slow) var(--ease-out) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .meta, .meta-row { grid-template-columns: 1fr 1fr; }
+  .meta-c + .meta-c,
+  .meta-col + .meta-col {
+    border-left: none;
+    padding-left: 0;
+  }
+  .meta-c, .meta-col {
+    border-bottom: 1px solid var(--line);
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .meta, .meta-row { grid-template-columns: 1fr; }
+}

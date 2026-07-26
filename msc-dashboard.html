@@ -1,127 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-<script src="js/theme-init.js"></script>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="MSC Operational Dashboard — Druva case study by Kaushik, UX Designer"/>
-<meta property="og:title" content="Druva MSC — Operational Dashboard · Kaushik"/>
-<meta property="og:description" content="Restructuring an overloaded MSP dashboard into three job-focused surfaces."/>
-<title>Druva MSC — Operational Dashboard · Kaushik</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="MSC Operational Dashboard — case study by Kaushik, UX Designer."/>
+<meta property="og:title" content="MSC Dashboard — Case Study · Kaushik"/>
+<meta property="og:description" content="Hundreds of customers. One control room. Designing a new home screen for Druva's MSP partners."/>
+<meta name="theme-color" content="#0A0A0A"/>
+<title>MSC Dashboard — Case Study · Kaushik</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="tokens.css">
-<link rel="stylesheet" href="shared.css?v=20260726">
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles/system.css"/>
 <style>
-:root,[data-theme="light"]{
-  --bg:#FAFAF8;--text:#16161A;--text2:#6B6B72;--text3:#6B6B72;
-  --border:#E7E7E2;--rule:#E7E7E2;--card:#fff;--canvas:#FAFAF8;
-  --accent:#E8642A;--deep:#1B2A4A;--bg2:#F3F3EF;
-}
-[data-theme="dark"]{
-  --bg:#0e0e0e;--text:#f2f2f0;--text2:#a8a8ae;--text3:#787880;
-  --border:#2a2a2c;--rule:#2a2a2c;--card:#161618;--canvas:#0e0e0e;
-  --accent:#E8642A;--deep:#1B2A4A;--bg2:#141416;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.65;overflow-x:hidden;transition:background .3s,color .3s}
-a{text-decoration:none;color:inherit}
-img{max-width:100%;display:block;height:auto}
-h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:700;letter-spacing:-.02em;color:var(--text)}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1rem 3rem;background:var(--canvas);border-bottom:1px solid var(--rule)}
-.nav-links{justify-self:center;list-style:none;display:flex;gap:2rem;align-items:center}
-.nav-links a{font-size:.72rem;font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--text2)}
-.nav-links a:hover{color:var(--text)}
-.nav-logo{justify-self:start;font-family:'Fraunces',serif;font-weight:700;font-size:1.25rem}
-.nav-logo span{color:var(--text2);font-weight:600}
-.nav-right{justify-self:end;display:flex;align-items:center;gap:1rem}
-.toggle{width:36px;height:20px;background:var(--bg2);border:1px solid var(--border);cursor:pointer;position:relative;border-radius:999px}
-.toggle::after{content:'';position:absolute;top:3px;left:3px;width:12px;height:12px;background:var(--text);border-radius:50%;transition:transform .3s}
-[data-theme="light"] .toggle::after{transform:translateX(16px)}
-
-.wrap{max-width:1040px;margin:0 auto;padding:0 2.5rem}
-.wrap-narrow{max-width:640px;margin:0 auto;padding:0 2.5rem}
-.hero{padding:7rem 0 3rem;border-bottom:1px solid var(--rule)}
-.back{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);display:inline-block;margin-bottom:1.75rem}
-.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text2);margin-bottom:.75rem}
-h1{font-size:clamp(2rem,4vw,2.75rem);line-height:1.1;margin-bottom:1rem}
-.intro{color:var(--text2);max-width:52ch;margin-bottom:.75rem}
-.strapline{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--text2);margin-bottom:2rem}
-.meta{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);margin-top:.5rem}
-.meta-c{padding:.85rem 1rem;border-right:1px solid var(--border)}
-.meta-c:last-child{border-right:none}
-.meta-l{font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);margin-bottom:.25rem}
-.meta-v{font-size:.85rem}
-.meta-note{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--text2);margin-top:.75rem}
-
-section{padding:3.5rem 0;border-bottom:1px solid var(--rule)}
-section:last-of-type{border-bottom:none}
-.label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text2);margin-bottom:.65rem;display:block}
-p{margin:0 0 1rem;color:var(--text2)}
-p:last-child{margin-bottom:0}
-.one-line{max-width:58ch}
-
-figure{margin:2rem 0}
-figure img{border:1px solid var(--border);background:var(--card);border-radius:2px}
-figcaption{margin-top:.65rem;font-size:.82rem;color:var(--text2);line-height:1.5}
-figure.final img{border-color:var(--text)}
-figure.failed img{opacity:.85}
-
-.context-lines{display:grid;gap:.5rem;margin-bottom:0}
-.method-block{background:var(--bg2);border:1px solid var(--border);padding:1.25rem 1.35rem;border-radius:2px;margin:1.5rem 0}
-.persona-block{border:1px solid var(--border);padding:1.25rem 1.35rem;border-radius:2px;margin:1.5rem 0}
-.persona-ground{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--text2);margin-top:.75rem}
-
-.rbac-table{width:100%;border-collapse:collapse;font-size:.85rem;margin:1rem 0}
-.rbac-table th,.rbac-table td{padding:.75rem 1rem;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
-.rbac-table th{background:var(--bg2);font-weight:500;color:var(--text)}
-.rbac-table td{color:var(--text2)}
-.scoped{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--text2);margin-top:1rem;line-height:1.55}
-
-.workflows{list-style:none;padding:0;margin:1rem 0}
-.workflows li{position:relative;padding-left:1.25rem;margin-bottom:.5rem;color:var(--text2);font-size:.92rem}
-.workflows li::before{content:"→";position:absolute;left:0;color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:.75rem}
-.workflows b{color:var(--text);font-weight:500}
-
-.compare{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:2rem 0}
-.scrapped-section{display:grid;gap:2.5rem;margin:2rem 0}
-.scrapped{border:1px solid var(--border);padding:1.5rem;border-radius:2px;background:var(--card)}
-.scrapped h3{font-size:1.05rem;margin-bottom:1rem}
-.scrapped figure{margin:0 0 1rem}
-.scrapped figure img{width:100%}
-.scrapped p{font-size:.88rem;margin-bottom:.5rem}
-.scrapped .fail-note{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--accent);margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--border);line-height:1.5}
-
-.tabs-intro{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0}
-.tab-card{border:1px solid var(--border);padding:1rem;border-radius:2px}
-.tab-card .label{margin-bottom:.35rem}
-.tab-card h3{font-size:.95rem;margin-bottom:.35rem}
-.tab-card p{font-size:.82rem;color:var(--text2);margin:0}
-
-.tab-block{margin:3rem 0}
-.tab-block h2{font-size:1.35rem;text-align:center;margin-bottom:.5rem}
-.tab-q{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);text-align:center;margin-bottom:1.5rem}
-.tradeoff{border-left:2px solid var(--accent);padding:.75rem 0 .75rem 1rem;margin:1.5rem 0;font-size:.85rem;color:var(--text2)}
-
-.outcomes{display:grid;gap:1.25rem}
-.outcome-item{border:1px solid var(--border);padding:1.15rem 1.25rem;border-radius:2px}
-.outcome-item .label{color:var(--accent);margin-bottom:.4rem}
-.outcome-item p{font-size:.88rem;margin:0}
-
-footer{padding:2.5rem 0;text-align:center}
-.legal{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--text2);line-height:1.6}
-
-@media(max-width:900px){
-  nav{display:flex!important;justify-content:space-between;padding:1rem 1.25rem}
-  .nav-links,.avail-badge{display:none}
-  .wrap,.wrap-narrow{padding:0 1.25rem}
-  .meta{grid-template-columns:1fr 1fr}
-  .meta-c{border-right:none;border-bottom:1px solid var(--border)}
-  .compare,.tabs-intro{grid-template-columns:1fr}
-}
+.lightbox-modal{display:none;position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,.95);overflow:auto;}
+.lightbox-close{position:fixed;top:20px;right:35px;color:var(--surface);font-size:40px;cursor:pointer;line-height:1;}
+.lightbox-close:hover{color:var(--muted);}
+.lightbox-content{margin:auto;display:block;max-width:1600px;max-height:90vh;width:auto;}
+.matrix-table{width:100%;border-collapse:collapse;font-size:14px;text-align:left;}
+.matrix-table th,.matrix-table td{padding:16px;border-bottom:1px solid var(--line);}
+.matrix-table th{border-bottom-width:2px;color:var(--ink);}
+.matrix-table td{color:var(--ink-soft);}
+.matrix-table tr:last-child td{border-bottom:none;}
+.callout{display:block;margin-top:16px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-soft);line-height:1.5;}
+.callout--error{border-top-color:var(--accent);color:var(--ink);}
+.tradeoff{border:1px solid var(--line);border-left:2px solid var(--accent);padding:24px;margin-top:32px;background:var(--surface);}
 </style>
 </head>
 <body>
@@ -134,238 +38,343 @@ footer{padding:2.5rem 0;text-align:center}
   <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
 </button>
 
-<nav>
-  <a href="index.html" class="nav-logo">K<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="index.html#about">About</a></li>
-    <li><a href="index.html#keywords">Skills</a></li>
-    <li><a href="index.html#experience">Experience</a></li>
-    <li><a href="index.html#projects">Projects</a></li>
-    <li><a href="kaushik-resume-gd.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
-  </ul>
-  <div class="nav-right">
-    <div class="avail-badge"><span class="avail-dot"></span>Open to work</div>
-    <button class="toggle" id="themeToggle" aria-label="Toggle theme"></button>
-    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
-</nav>
+<header class="site-header"><div class="wrap">
+  <a href="index.html" style="font-family:var(--font-display);font-weight:700;font-size:20px;">K.</a>
+  <nav id="nav">
+    <a href="index.html#about">About</a>
+    <a href="index.html#keywords">Skills</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#projects" class="active" aria-current="page">Projects</a>
+    <a href="kaushik-resume-gd.pdf">Resume</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
+      <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+</div></header>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html#about" onclick="closeMobileMenu()">About</a>
-  <a href="index.html#keywords" onclick="closeMobileMenu()">Skills</a>
-  <a href="index.html#experience" onclick="closeMobileMenu()">Experience</a>
-  <a href="index.html#projects" onclick="closeMobileMenu()">Projects</a>
-  <a href="kaushik-resume-gd.pdf" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()">Resume</a>
-</div>
+<main class="wrap">
+  <a href="index.html#projects" class="link">← All Projects</a>
 
-<div class="wrap hero">
-  <a href="index.html#projects" class="back">← All Projects</a>
-  <div class="eyebrow">Case Study · 01</div>
-  <h1>MSC — the operations dashboard for MSP partners</h1>
-  <p class="intro">MSPs manage backups for hundreds of customers from one console. I designed the home screen that shows what needs attention — failures, storage, licenses, security — across every client at once.</p>
-  <p class="strapline">Research question — what does an admin need to see first, and what can wait?</p>
-  <div class="meta">
-    <div class="meta-c"><div class="meta-l">Role</div><div class="meta-v">UX Designer</div></div>
-    <div class="meta-c"><div class="meta-l">Domain</div><div class="meta-v">Data Backup &amp; Security</div></div>
-    <div class="meta-c"><div class="meta-l">Focus</div><div class="meta-v">Dashboards, Monitoring</div></div>
-    <div class="meta-c"><div class="meta-l">Type</div><div class="meta-v">Enterprise · B2B</div></div>
-  </div>
-  <p class="meta-note">Only designer on the project</p>
-</div>
-
-<div class="wrap">
-  <figure class="final">
-    <img src="msc-dashboard/cover.png" alt="MSC Operational Dashboard — Accounts and Licensing view">
-    <figcaption>The shipped dashboard — Accounts &amp; Licensing surface (redrawn from the shipped design).</figcaption>
-  </figure>
-</div>
-
-<section>
-  <div class="wrap-narrow">
-    <span class="label">Context</span>
-    <div class="context-lines">
-      <p><strong style="color:var(--text)">MSP</strong> — a partner company that manages backup and IT operations for many end-customers from one login.</p>
-      <p><strong style="color:var(--text)">MSC</strong> — Druva's Managed Services Center, the portal MSPs use to monitor every customer they support.</p>
+  <!-- HERO -->
+  <section class="section">
+    <p class="eyebrow">Case Study · 01</p>
+    <h1 style="margin-bottom: 16px;">Hundreds of customers.<br>One control room.</h1>
+    <p>Designing a new home screen for Druva's Managed Service Providers (MSPs). The goal was to build a single page showing backup problems, storage usage, expiring licenses, and security risks across all their clients—eliminating the need to check each customer individually.</p>
+    <div class="meta">
+      <div>
+        <span class="k">Role</span>
+        <span class="v">UX/UI Designer (Sole)</span>
+      </div>
+      <div>
+        <span class="k">Domain</span>
+        <span class="v">Data Backup &amp; Security</span>
+      </div>
+      <div>
+        <span class="k">Focus</span>
+        <span class="v">Dashboards, Monitoring</span>
+      </div>
+      <div>
+        <span class="k">Type</span>
+        <span class="v">Enterprise · B2B</span>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section style="background:var(--bg2)">
-  <div class="wrap-narrow">
-    <span class="label">Method</span>
-    <div class="method-block">
-      <p class="one-line" style="margin:0;color:var(--text)">I grounded this in three inputs, not assumptions: sitting in on live MSP admin calls, going through internal docs and Support Slack threads, and working sessions with PMs and engineering. That's where "what admins get stuck on" came from.</p>
-    </div>
-    <div class="persona-block">
-      <span class="label">Alex — IT Operations Admin</span>
-      <p>Manages backups and security for every client the MSP supports — all from one login. Needs a single view of 100+ companies, highlighting only errors and expiring contracts.</p>
-      <p>If Alex misses a failed backup hidden inside a separate account window, the client loses data and the MSP risks losing the contract.</p>
-      <p class="persona-ground">Built from the admin calls and Support threads — not a template.</p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap-narrow">
-    <span class="label">The hardest constraint — role-based access</span>
-    <p class="one-line">Different users need different data on the same screen architecture — without the layout looking broken or empty.</p>
-    <div style="overflow-x:auto;border:1px solid var(--border);border-radius:2px">
-      <table class="rbac-table">
-        <thead><tr><th>Component</th><th>Full Admin</th><th>Limited Admin</th></tr></thead>
-        <tbody>
-          <tr><td><b>Dashboard</b></td><td>Every customer</td><td>Assigned customers only</td></tr>
-          <tr><td><b>Failure Triage</b></td><td>Fix any customer</td><td>Assigned customers only</td></tr>
-          <tr><td><b>Security Widget</b></td><td>See and dismiss risks</td><td>Hidden entirely</td></tr>
-          <tr><td><b>License View</b></td><td>All customers</td><td>Own customers only</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="scoped">Scoped out of this phase: the Limited-Admin view was specced, not visually designed this round. The architecture supports it.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap-narrow">
-    <span class="label">Synthesis — information map</span>
-    <p class="one-line">Mapping every metric turned the research into structure.</p>
-  </div>
-  <div class="wrap">
-    <figure>
-      <img src="msc-dashboard/information-map.png" alt="Master information tree">
-      <figcaption>Information architecture map — every system metric from macro groups down to API Key Expirations, categorized before any UI was drawn.</figcaption>
+  <!-- COVER -->
+  <section class="section">
+    <figure class="plate" style="padding: 0; overflow: hidden; border: none; background: transparent;">
+      <img src="msc-dashboard/cover.png" alt="MSC Operational Dashboard — Accounts and Licensing view" style="border-radius: 8px; width: 100%;">
+      <figcaption><strong>The Shipped Dashboard — Tab 01: Accounts &amp; Licensing.</strong> Customer summary, workload status, security posture, account distribution, and active support cases in one operational view.</figcaption>
     </figure>
-  </div>
-  <div class="wrap-narrow">
-    <span class="label">The 4 daily workflows</span>
-    <ul class="workflows">
-      <li><b>Immediate Triage:</b> "Which customer backups require attention this morning?"</li>
-      <li><b>Daily Monitoring:</b> "Is anyone using an abnormal amount of storage today?"</li>
-      <li><b>Weekly Planning:</b> "Which client trials or contracts expire this week?"</li>
-      <li><b>Periodic Auditing:</b> "Are our own admin accounts safe and secure?"</li>
+  </section>
+
+  <!-- PROJECT CONTEXT -->
+  <section class="section">
+    <p class="eyebrow">Project Context</p>
+    <div class="row-3">
+      <div class="module">
+        <h4 style="margin-top: 0;">What is MSP?</h4>
+        <p>A Managed Service Provider — a partner company that manages backup, security, and IT operations on behalf of multiple end-customers, rather than each customer managing it themselves.</p>
+      </div>
+      <div class="module">
+        <h4 style="margin-top: 0;">What is MSC?</h4>
+        <p>Druva's Managed Services Center — the operational portal MSPs use to monitor and manage backup health, licensing, and security posture across every customer they support, from a single login.</p>
+      </div>
+      <div class="module">
+        <h4 style="margin-top: 0;">What does this project solve?</h4>
+        <p>MSPs were checking each customer account individually to spot backup failures, storage spikes, expiring licenses, and security risks. This project replaces that fragmented workflow with one consolidated operational dashboard — a single home screen that surfaces what needs attention across every client at once.</p>
+      </div>
+    </div>
+
+    <div class="module" style="margin-top: 32px;">
+      <p class="eyebrow">Target Persona</p>
+      <h3 style="margin-top: 0; margin-bottom: 16px;">Alex, The IT Operations Admin</h3>
+      <p>Alex manages backups, customer accounts, and security for the MSP across every client they support—all from one login.</p>
+      <ul style="margin-top: 16px;">
+        <li><strong>What Alex Needs:</strong> A single "bird's-eye view" of all 100 client companies at once, highlighting only the ones with errors or expiring contracts.</li>
+        <li><strong>Why it matters:</strong> Every extra click scales across hundreds of managed tenants. If Alex misses a failed backup because it was hidden inside a separate account window, the client loses critical data, and the MSP risks losing their contract.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top: 48px;">
+      <h3 style="margin-top: 0; margin-bottom: 16px;">The Ultimate Constraint: Role-Based Access</h3>
+      <p>Different types of users require different data views on the exact same screen architecture. If a user doesn't have permissions, the layout cannot look broken or empty.</p>
+      <div class="module" style="padding: 0; overflow-x: auto;">
+        <table class="matrix-table" style="width: 100%; min-width: 560px;">
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Full Admin</th>
+              <th>Limited Admin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Dashboard View</strong></td>
+              <td>Sees data for <strong>every</strong> customer</td>
+              <td>Only sees their <strong>assigned</strong> customers</td>
+            </tr>
+            <tr>
+              <td><strong>Failure Triage</strong></td>
+              <td>Can view and fix issues for <strong>any</strong> customer</td>
+              <td>Can only fix their <strong>assigned</strong> customers</td>
+            </tr>
+            <tr>
+              <td><strong>Security Widget</strong></td>
+              <td>Can see and dismiss security risks</td>
+              <td><strong>Cannot see</strong> this section at all</td>
+            </tr>
+            <tr>
+              <td><strong>License View</strong></td>
+              <td>Sees license data for <strong>all</strong> customers</td>
+              <td>Sees license data for their <strong>own</strong> customers only</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 01: IA -->
+  <section class="section">
+    <p class="eyebrow">Step 01 / Information Architecture</p>
+    <h3 style="margin-top: 0; margin-bottom: 16px;">Mapping the data before drawing the UI</h3>
+    <p>In enterprise B2B products, starting with UI boxes leads to feature bloat. Before opening Figma, I mapped every piece of information the system generated into a master tree diagram.</p>
+
+    <figure class="plate plate--wide">
+      <img class="lightbox-trigger" src="msc-dashboard/information-map.png" alt="Master information tree mapping every metric the system generates">
+      <figcaption><strong>The Master Information Tree:</strong> We categorized everything—from macro groups down to micro-details like API Key Expirations and Quota Violations.</figcaption>
+    </figure>
+
+    <p>Putting every metric on a visual map forced hard conversations early. We reviewed this map with internal Customer Success teams to ensure we weren't missing blind spots. It stopped subjective arguments about "how a chart should look" and forced us to debate "does the user actually need this number?"</p>
+
+    <h3 style="margin-top: 32px; margin-bottom: 16px;">The 4 Daily Workflows</h3>
+    <p>Reviewing the map against how admins actually described their day surfaced four distinct workflows, each operating on a different timeline:</p>
+    <ul>
+      <li><strong>Immediate Triage:</strong> "Which customer backups require attention this morning?"</li>
+      <li><strong>Daily Monitoring:</strong> "Is anyone using an abnormal amount of storage today?"</li>
+      <li><strong>Weekly Planning:</strong> "Which client trials or contracts expire this week?"</li>
+      <li><strong>Periodic Auditing:</strong> "Are our own admin accounts safe and secure?"</li>
     </ul>
-  </div>
-</section>
+  </section>
 
-<section style="background:var(--bg2)">
-  <div class="wrap-narrow">
-    <span class="label">Decision — structure first</span>
-    <p class="one-line">I tested structure with empty blocks so data and colour couldn't bias the hierarchy.</p>
-  </div>
-  <div class="wrap">
-    <figure>
-      <img src="msc-dashboard/wireframe-blocks.png" alt="Empty block wireframe">
-      <figcaption>Empty block wireframe — hierarchy tested without chart data or colour noise.</figcaption>
+  <!-- STEP 02: WIREFRAMES -->
+  <section class="section">
+    <p class="eyebrow">Step 02 / Spatial Structure</p>
+    <h3 style="margin-top: 0; margin-bottom: 16px;">Testing layouts without visual noise</h3>
+    <p>When you put real numbers and bright charts into a wireframe too early, people get distracted. To test true hierarchy, I built a "blocks-without-data" layout.</p>
+
+    <figure class="plate">
+      <img src="msc-dashboard/wireframe-blocks.png" alt="Operational dashboard wireframe with empty structural blocks and no chart data">
+      <figcaption><strong>The Empty Block Pass:</strong> Testing structural containers (Usage Trends, Tenant Lifecycle, Security Posture, Support Tickets) based strictly on importance.</figcaption>
     </figure>
-  </div>
-  <div class="wrap-narrow">
-    <p class="one-line">I checked these against the four workflows — every layout forced unrelated jobs into the same visual hierarchy.</p>
-  </div>
-</section>
 
-<section>
-  <div class="wrap-narrow">
-    <span class="label">Iteration &amp; failure — scrapped directions</span>
-    <p class="one-line">I moved into high fidelity to see how real data felt — these two directions failed stakeholder and workflow review.</p>
-  </div>
-  <div class="wrap">
-    <div class="scrapped-section">
-      <article class="scrapped">
-        <h3>Scrapped 01 — The Overloaded View</h3>
-        <figure class="failed">
-          <img src="msc-dashboard/scrapped-01-overloaded.png" alt="First scrapped design — usage, licensing, lifecycle and tickets on one screen">
-          <figcaption>First pass — usage charts, licensing states, account lifecycles, and active tickets on a single screen.</figcaption>
-        </figure>
-        <p>First pass put usage, licensing, lifecycle and tickets on one screen.</p>
-        <p class="fail-note">How I knew it failed: in stakeholder and engineering reviews, and against the four workflows, the licensing widgets kept getting skipped — storage charts dominated.</p>
-      </article>
-      <article class="scrapped">
-        <h3>Scrapped 02 — The Half-Measure</h3>
-        <figure class="failed">
-          <img src="msc-dashboard/scrapped-02-halfmeasure.png" alt="Second scrapped design — accounts, workloads and security grouped at top">
-          <figcaption>Second pass — account summaries, workloads, and security grouped at the top; usage charts pushed to the bottom.</figcaption>
-        </figure>
-        <p>Grouping accounts/workloads/security at the top fixed the top half.</p>
-        <p class="fail-note">How I knew: walking it through with PMs — account management and consumption analysis are two different mental modes; usage charts felt orphaned at the bottom.</p>
-      </article>
+    <p>We paused layout exploration here and reviewed the concepts against the four workflows identified earlier. One pattern kept surfacing: <strong>every layout forced unrelated jobs into the same visual hierarchy.</strong> If we stacked everything, an admin checking expirations had to scroll past massive storage charts. The structure needed a real test with real data before we committed.</p>
+  </section>
+
+  <!-- STEP 03: ITERATION -->
+  <section class="section">
+    <p class="eyebrow">Step 03 / Iteration &amp; Failure</p>
+    <h3 style="margin-top: 0; margin-bottom: 16px;">Proving it in high fidelity</h3>
+    <p>We moved into high-fidelity design to see how real data would feel. Running these full screens past engineering and PMs made the friction between different administrative tasks impossible to ignore.</p>
+
+    <div class="row-2">
+      <div class="module">
+        <h4 style="margin-top: 0;">Scrapped 01 — The Overloaded View</h4>
+        <div class="plate" style="margin: 16px 0;">
+          <img src="msc-dashboard/scrapped-01-overloaded.png" alt="First scrapped design with usage, licensing, lifecycle and tickets on one screen">
+        </div>
+        <p>Our first attempt put Usage Charts, Licensing States, Account Lifecycles, and Active Tickets together on a single screen.</p>
+        <span class="callout callout--error"><strong>What went wrong:</strong> In review, the licensing widgets kept getting skipped—the storage charts dominated the page. Combining monitoring and account management created competing priorities.</span>
+      </div>
+
+      <div class="module">
+        <h4 style="margin-top: 0;">Scrapped 02 — The Half-Measure</h4>
+        <div class="plate" style="margin: 16px 0;">
+          <img src="msc-dashboard/scrapped-02-halfmeasure.png" alt="Second scrapped design grouping account summaries, workloads and security at the top">
+        </div>
+        <p>We cleaned up the layout by grouping Account Summaries, Workloads, and Security neatly at the top.</p>
+        <span class="callout"><strong>Realization:</strong> The top half worked perfectly for account management. But analyzing consumption is a dedicated job. Keeping heavy Usage charts at the bottom felt out of place. It required its own room.</span>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section style="background:var(--bg2)">
-  <div class="wrap-narrow">
-    <span class="label">Decision — five categories</span>
-    <p class="one-line">I stripped it to five labelled categories to see the structure with no UI noise.</p>
-  </div>
-  <div class="wrap">
-    <figure>
-      <img src="msc-dashboard/minimal-categories.png" alt="Five category strip">
-      <figcaption>Five-category structure — Customer Accounts, Tenant Visibility, Product Modules, Security Posture, Usage + Quota, stripped to labels only.</figcaption>
+  <!-- STEP 04: SIMPLIFICATION -->
+  <section class="section">
+    <p class="eyebrow">Step 04 / Simplification</p>
+    <h3 style="margin-top: 0; margin-bottom: 16px;">Stripping it back to five minimal categories</h3>
+    <p>After the failed high-fidelity passes, we stepped back. Instead of charts and filters, we rebuilt the dashboard as five plain category blocks—each answering one question, with no decorative UI noise.</p>
+
+    <figure class="plate">
+      <img src="msc-dashboard/minimal-categories.png" alt="Minimal five-category operational dashboard wireframe">
+      <figcaption><strong>The Five-Category Pass:</strong> Customer Accounts Visibility, Tenant Visibility, Product Modules, Security Posture, and Usage + Quota—stripped to labels and structure only. Annotations flagged what to remove (customer-level filters, redundant product-module charts) before any visual design.</figcaption>
     </figure>
-  </div>
-  <div class="wrap-narrow">
-    <p class="one-line">These five categories did not belong on one scroll — that led directly to three tabs.</p>
-    <div class="tabs-intro">
-      <div class="tab-card"><span class="label">Tab 01</span><h3>Accounts &amp; Licensing</h3><p>Commercial attention and support cases.</p></div>
-      <div class="tab-card"><span class="label">Tab 02</span><h3>Usage Monitoring</h3><p>Consumption and quota alerts.</p></div>
-      <div class="tab-card"><span class="label">Tab 03</span><h3>Backup Triage</h3><p>Morning failure triage.</p></div>
-    </div>
-  </div>
-</section>
 
-<section>
-  <div class="wrap">
-    <div class="tab-block">
-      <h2>Tab 01 — Accounts &amp; Licensing</h2>
-      <p class="tab-q">Which customers need commercial attention today?</p>
-      <div class="compare">
-        <figure><img src="msc-dashboard/tab1-iteration.png" alt="Tab 01 iteration"><figcaption>Iteration — expiring plans grouped into Today, 7 Days, 30 Days buckets.</figcaption></figure>
-        <figure class="final"><img src="msc-dashboard/tab1-final.png" alt="Tab 01 final"><figcaption>Final — Account Distribution aligned with Support Cases for one-scan triage.</figcaption></figure>
+    <p>Reviewing this layout against the four daily workflows made the next decision obvious. <strong>These five categories did not belong on one scroll.</strong> Account and licensing work (Categories 1–3), consumption monitoring (Category 5), and security auditing (Category 4) operate on different timelines and mental modes.</p>
+    <p>That review is what led directly to the three-tab structure—each tab inheriting the categories that share the same job-to-be-done.</p>
+
+    <div class="row-3" style="margin-top: 40px;">
+      <div class="module">
+        <p class="eyebrow">Tab 01</p>
+        <h4 style="margin-top: 0;">Accounts &amp; Licensing</h4>
+        <p>Customer Accounts, Tenant Visibility, Product Modules, Security Posture, and active Support Cases.</p>
+      </div>
+      <div class="module">
+        <p class="eyebrow">Tab 02</p>
+        <h4 style="margin-top: 0;">Usage Monitoring</h4>
+        <p>Usage trends, quota alerts, and storage consumption (Category 5).</p>
+      </div>
+      <div class="module">
+        <p class="eyebrow">Tab 03</p>
+        <h4 style="margin-top: 0;">Backup Triage</h4>
+        <p>Immediate failure triage—the morning workflow that needed its own room.</p>
       </div>
     </div>
-    <div class="tab-block">
-      <h2>Tab 02 — Usage Monitoring</h2>
-      <p class="tab-q">Which tenants are consuming resources abnormally?</p>
-      <div class="compare">
-        <figure><img src="msc-dashboard/tab2-iteration.png" alt="Tab 02 iteration"><figcaption>Iteration — quota warnings as a priority action strip at the top.</figcaption></figure>
-        <figure class="final"><img src="msc-dashboard/tab2-final.png" alt="Tab 02 final"><figcaption>Final — User Growth next to Storage Growth to spot unjustified spikes.</figcaption></figure>
-      </div>
-      <div class="wrap-narrow" style="padding:0">
-        <div class="tradeoff"><strong style="color:var(--text)">Known tradeoff:</strong> per-product numbers live in the hover tooltip, not separate cards — scannable for one line that moved, wrong for side-by-side comparison.</div>
-      </div>
-    </div>
-    <div class="tab-block">
-      <h2>Tab 03 — Backup Triage</h2>
-      <p class="tab-q">Which customer backups require attention this morning?</p>
-      <p class="one-line" style="text-align:center;margin-bottom:1rem">Triage was structurally simple — it went straight to final.</p>
-      <figure class="final" style="max-width:820px;margin:0 auto"><img src="msc-dashboard/triage-final.png" alt="Backup Triage final"><figcaption>Final — ranked list of failed backups today vs 7-day history; click a client to resolve.</figcaption></figure>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section style="background:var(--bg2)">
-  <div class="wrap-narrow">
-    <span class="label">Outcomes</span>
-    <div class="outcomes">
-      <div class="outcome-item"><span class="label">01 · Sequence the work</span><p>Mapping information architecture first made every later UI decision easier — each screen already had a validated purpose.</p></div>
-      <div class="outcome-item"><span class="label">02 · Separate quick from slow</span><p>Daily tasks (renew a contract) and analytical tasks (read a 90-day trend) need different mental states. Tabs reduced context switching.</p></div>
-      <div class="outcome-item"><span class="label">03 · Tabs hide context</span><p>Three tabs fixed crowding but scatter alerts — a broken backup, expiring plan, and quota warning now live on three surfaces.</p></div>
-      <div class="outcome-item"><span class="label">04 · Validation</span><p>Defined, not yet measured — pre-launch, no before/after yet. Every tab maps to a workflow admins described; scrapped directions were cut for reasons I can point to. Post-launch I'd track time-to-triage and missed license expirations.</p></div>
-    </div>
-  </div>
-</section>
+  <!-- STEP 05: SHIPPED SOLUTION -->
+  <section class="section">
+    <p class="eyebrow">Step 05 / The Shipped Solution</p>
+    <h3 style="margin-top: 0; margin-bottom: 16px;">Dividing the noise: 3 tabs for 3 distinct jobs</h3>
+    <p>The five-category map became three dedicated tabs. Each one inherited only the blocks that belong to the same operational question—no more scrolling past unrelated charts to reach the job you came for.</p>
 
-<footer>
-  <div class="wrap-narrow">
-    <p class="legal">Under NDA — interface redrawn for presentation; logic and constraints true to production.</p>
+    <div style="margin-bottom: 80px;">
+      <h3 style="text-align: center; margin-bottom: 8px;">Tab 01 — Accounts &amp; Licensing</h3>
+      <p style="text-align: center;">Question: Which customers need commercial attention today?</p>
+      <div class="row-2">
+        <figure class="plate">
+          <img src="msc-dashboard/tab1-iteration.png" alt="First iteration of the Accounts and Licensing tab">
+          <figcaption><strong>First Iteration:</strong> Grouped expiring plans into buckets (Today, 7 Days, 30 Days) so admins know exactly who to call first.</figcaption>
+        </figure>
+        <figure class="plate">
+          <img src="msc-dashboard/tab1-final.png" alt="Final shipped Accounts and Licensing tab">
+          <figcaption><strong>Final Shipped Version:</strong> Removed unnecessary borders and compressed the grid. "Account Distribution" cleanly aligns with Support Cases, accelerating scannability.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 80px;">
+      <h3 style="text-align: center; margin-bottom: 8px;">Tab 02 — Usage Monitoring</h3>
+      <p style="text-align: center;">Question: Which tenants are consuming resources abnormally?</p>
+      <div class="row-2">
+        <figure class="plate">
+          <img src="msc-dashboard/tab2-iteration.png" alt="First iteration of the Usage Monitoring tab">
+          <figcaption><strong>First Iteration:</strong> Moved all heavy charts here. Quota warnings are placed at the very top as a priority action strip.</figcaption>
+        </figure>
+        <figure class="plate">
+          <img src="msc-dashboard/tab2-final.png" alt="Final shipped Usage Monitoring tab">
+          <figcaption><strong>Final Shipped Version:</strong> Placed User Growth trends directly next to Storage Growth. Admins instantly see if a spike in storage is justified by a spike in new users.</figcaption>
+        </figure>
+      </div>
+      <div class="tradeoff">
+        <p class="eyebrow" style="margin-bottom: 8px;">Known tradeoff in the shipped design</p>
+        <p>Per-product numbers live inside the hover tooltip rather than as separate cards. It keeps the chart scannable, but it means an admin can't compare two products side by side without moving the mouse twice. Acceptable for spotting the one line that moved—wrong if the job ever shifts to detailed comparison.</p>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 80px;">
+      <h3 style="text-align: center; margin-bottom: 8px;">Tab 03 — Backup Triage Centre</h3>
+      <p style="text-align: center;">Question: Which customer backups require attention this morning?</p>
+      <figure class="plate plate--wide" style="max-width: 900px; margin: 0 auto;">
+        <img class="lightbox-trigger" src="msc-dashboard/triage-final.png" alt="Backup Triage Centre showing ranked list of clients with failed backups">
+        <figcaption><strong>The Shipped Triage Console:</strong> A clear, ranked list of clients whose backups failed today versus a 7-day history. Admins click directly on a client's name to enter their isolated compartment and resolve the error.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section class="section">
+    <p class="eyebrow">Outcomes &amp; Reflection</p>
+    <h3>Key takeaways from the project</h3>
+
+    <div class="row-3 grid-gap-top">
+      <div class="module">
+        <p class="eyebrow">01 · Sequence first</p>
+        <p>Map information architecture before UI. Every screen had a validated purpose before visual design started.</p>
+      </div>
+      <div class="module">
+        <p class="eyebrow">02 · Split mental modes</p>
+        <p>Daily triage and slow analysis are different jobs. Tabs separated them and cut context switching.</p>
+      </div>
+      <div class="module">
+        <p class="eyebrow">03 · Tabs trade visibility</p>
+        <p>Three tabs fixed crowding, but cross-cutting alerts scatter. Tab badges are the likely next step.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <section class="section">
+    <footer style="text-align: center;">
+      <p style="font-size: 12px; max-width: none; margin: 0;">
+        <strong>Confidentiality note:</strong> This project is under NDA. Design is complete and moving into development.<br>
+        Interface redrawn and figures synthesized for case study presentation.<br>
+        The core architectural logic and UX constraints remain true to production.
+      </p>
+    </footer>
+  </section>
+</main>
+
+<div id="imageModal" class="lightbox-modal">
+  <span class="lightbox-close">&times;</span>
+  <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 40px; box-sizing: border-box;">
+    <img class="lightbox-content" id="lightboxImg" alt="">
   </div>
-</footer>
+</div>
 
 <script>
-const ham=document.getElementById('hamburger'),menu=document.getElementById('mobileMenu');
-function closeMobileMenu(){menu.classList.remove('open')}
-if(ham&&menu)ham.addEventListener('click',()=>menu.classList.toggle('open'));
+document.addEventListener('DOMContentLoaded',function(){
+  const modal=document.getElementById('imageModal');
+  const modalImg=document.getElementById('lightboxImg');
+  const triggers=document.querySelectorAll('.lightbox-trigger');
+  const closeBtn=document.querySelector('.lightbox-close');
+  triggers.forEach(function(img){
+    img.addEventListener('click',function(){
+      modal.style.display='block';
+      document.body.style.overflow='hidden';
+      modalImg.src=this.src;
+      modalImg.alt=this.alt;
+    });
+  });
+  function closeLightbox(){
+    modal.style.display='none';
+    document.body.style.overflow='auto';
+    modalImg.src='';
+  }
+  closeBtn.addEventListener('click',closeLightbox);
+  modal.addEventListener('click',function(e){
+    if(e.target!==modalImg) closeLightbox();
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&modal.style.display==='block') closeLightbox();
+  });
+});
 </script>
-<script src="js/theme-toggle.js"></script>
+<script src="js/system-theme.js"></script>
 <script src="audio/music.js"></script>
 </body>
 </html>

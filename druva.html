@@ -1,109 +1,60 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-<script src="js/theme-init.js"></script>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="Druva provisioning and access — case study by Kaushik, UX Designer."/>
 <meta property="og:title" content="Druva — Case Study · Kaushik"/>
 <meta property="og:description" content="Provisioning and access design for Druva service partners — research-led case study."/>
+<meta name="theme-color" content="#0A0A0A"/>
 <title>Druva — Case Study · Kaushik</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="tokens.css"/>
-<link rel="stylesheet" href="shared.css?v=20260726"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles/system.css"/>
 <style>
-:root,[data-theme="light"]{
-  --bg:#FAFAF8;--text:#16161A;--text2:#6B6B72;--text3:#6B6B72;
-  --border:#E7E7E2;--rule:#E7E7E2;--card:#fff;--canvas:#FAFAF8;
-  --accent:#E8642A;--deep:#1B2A4A;--bg2:#F3F3EF;
+.module--table { padding: 0; overflow-x: auto; }
+.matrix-table { width: 100%; border-collapse: collapse; font-size: 14px; text-align: left; min-width: 600px; }
+.matrix-table th { padding: 20px; border-bottom: 2px solid var(--line); color: var(--ink); font-weight: 600; }
+.matrix-table td { padding: 20px; border-bottom: 1px solid var(--line); color: var(--ink-soft); }
+.matrix-table tr:last-child td { border-bottom: none; }
+.plate--wide img { min-width: 1200px; cursor: zoom-in; }
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  overflow: auto;
 }
-[data-theme="dark"]{
-  --bg:#0e0e0e;--text:#f2f2f0;--text2:#a8a8ae;--text3:#787880;
-  --border:#2a2a2c;--rule:#2a2a2c;--card:#161618;--canvas:#0e0e0e;
-  --accent:#E8642A;--deep:#1B2A4A;--bg2:#141416;
+.lightbox-modal__inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  box-sizing: border-box;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.65;overflow-x:hidden}
-a{text-decoration:none;color:inherit}
-img{max-width:100%;display:block;height:auto}
-h1,h2,h3{font-family:'Fraunces',serif;font-weight:700;letter-spacing:-.02em;color:var(--text)}
-
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1rem 3rem;background:var(--canvas);border-bottom:1px solid var(--rule)}
-.nav-links{justify-self:center;list-style:none;display:flex;gap:2rem;align-items:center}
-.nav-links a{font-size:.72rem;font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--text2)}
-.nav-logo{justify-self:start;font-family:'Fraunces',serif;font-weight:700;font-size:1.25rem}
-.nav-logo span{color:var(--text2);font-weight:600}
-.nav-right{justify-self:end;display:flex;align-items:center;gap:1rem}
-.toggle{width:36px;height:20px;background:var(--bg2);border:1px solid var(--border);cursor:pointer;position:relative;border-radius:999px}
-.toggle::after{content:'';position:absolute;top:3px;left:3px;width:12px;height:12px;background:var(--text);border-radius:50%;transition:transform .3s}
-[data-theme="light"] .toggle::after{transform:translateX(16px)}
-
-.wrap{max-width:1040px;margin:0 auto;padding:0 2.5rem}
-.wrap-narrow{max-width:640px;margin:0 auto;padding:0 2.5rem}
-.hero{padding:7rem 0 3rem;border-bottom:1px solid var(--rule)}
-.back{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);display:inline-block;margin-bottom:1.75rem}
-.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text2);margin-bottom:.75rem}
-h1{font-size:clamp(2rem,4vw,2.75rem);line-height:1.1;margin-bottom:1rem}
-.intro{color:var(--text2);max-width:58ch}
-.meta{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);margin-top:2rem}
-.meta-c{padding:.85rem 1rem;border-right:1px solid var(--border)}
-.meta-c:last-child{border-right:none}
-.meta-l{font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);margin-bottom:.25rem}
-.meta-v{font-size:.85rem}
-.team-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
-.team-chip{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text2);border:1px solid var(--border);padding:.25rem .5rem;border-radius:999px}
-
-section{padding:3.5rem 0;border-bottom:1px solid var(--rule)}
-.label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text2);margin-bottom:.65rem;display:block}
-p{margin:0 0 1rem;color:var(--text2)}
-.one-line{max-width:58ch}
-
-.trust{background:var(--deep);color:#e8eaef;padding:1.5rem 1.75rem;border-radius:2px;margin:1.5rem 0}
-.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
-.trust-col h3{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.4rem;font-weight:500}
-.trust-col p{font-size:.88rem;color:rgba(255,255,255,.88);margin:0;line-height:1.5}
-
-.persona-thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:1.25rem}
-.persona-thumbs img{border:1px solid var(--border);border-radius:2px;opacity:.85}
-.persona-thumbs figcaption{font-size:.65rem;color:var(--text2);margin-top:.35rem;font-family:'IBM Plex Mono',monospace}
-
-figure{margin:2rem 0}
-figure img{border:1px solid var(--border);background:var(--card);border-radius:2px}
-figcaption{margin-top:.65rem;font-size:.82rem;color:var(--text2);line-height:1.5}
-.scroll-wrap{position:relative;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:2px;background:var(--card)}
-.scroll-hint{position:absolute;top:.45rem;right:.55rem;z-index:2;font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);background:var(--canvas);border:1px solid var(--border);padding:.12rem .35rem;pointer-events:none}
-.scroll-wrap img{width:auto;min-width:920px;max-width:none;height:auto;border:none;border-radius:0}
-
-.decision{margin:2.5rem 0;padding-top:2rem;border-top:1px solid var(--rule)}
-.decision:first-of-type{border-top:none;padding-top:0;margin-top:0}
-.decision h2{font-size:1.2rem;margin-bottom:.5rem}
-.decision p{font-size:.9rem;max-width:58ch}
-.decision-fig{margin-top:1.25rem}
-
-.scoped{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--text2);margin:.75rem 0;line-height:1.55}
-
-.outcome-list{list-style:none;padding:0;margin:1rem 0}
-.outcome-list li{position:relative;padding-left:1rem;margin-bottom:.45rem;color:var(--text2);font-size:.9rem}
-.outcome-list li::before{content:"—";position:absolute;left:0;color:var(--accent)}
-.hedge{font-style:italic;font-size:.82rem;color:var(--text2);margin-top:1.25rem}
-
-.ref-btns{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem}
-.ref-btn{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text);border:1px solid var(--border);padding:.4rem .65rem;border-radius:999px}
-.ref-btn:hover{border-color:var(--text2)}
-
-footer{padding:2.5rem 0;text-align:center}
-.legal{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--text2);line-height:1.6}
-
-@media(max-width:900px){
-  nav{display:flex!important;justify-content:space-between;padding:1rem 1.25rem}
-  .nav-links,.avail-badge{display:none}
-  .wrap,.wrap-narrow{padding:0 1.25rem}
-  .meta,.trust-grid,.persona-thumbs{grid-template-columns:1fr}
-  .meta-c{border-right:none;border-bottom:1px solid var(--border)}
+.lightbox-content {
+  max-height: 90vh;
+  width: auto;
+  max-width: 95%;
+}
+.lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 40px;
+  color: #f1f1f1;
+  font-size: 40px;
+  cursor: pointer;
+  z-index: 1;
+  line-height: 1;
+}
+.lightbox-close:hover { color: #bbb; }
+@media (max-width: 820px) {
+  .split-row { align-items: start; }
 }
 </style>
 </head>
@@ -117,185 +68,355 @@ footer{padding:2.5rem 0;text-align:center}
   <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
 </button>
 
-<nav>
-  <a href="index.html" class="nav-logo">K<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="index.html#about">About</a></li>
-    <li><a href="index.html#keywords">Skills</a></li>
-    <li><a href="index.html#experience">Experience</a></li>
-    <li><a href="index.html#projects">Projects</a></li>
-    <li><a href="kaushik-resume-gd.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
-  </ul>
-  <div class="nav-right">
-    <div class="avail-badge"><span class="avail-dot"></span>Open to work</div>
-    <button class="toggle" id="themeToggle" aria-label="Toggle theme"></button>
-    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
-</nav>
+<header class="site-header"><div class="wrap">
+  <a href="index.html" style="font-family:var(--font-display);font-weight:700;font-size:20px;">K.</a>
+  <nav id="nav">
+    <a href="index.html#about">About</a>
+    <a href="index.html#keywords">Skills</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#projects" class="active" aria-current="page">Projects</a>
+    <a href="kaushik-resume-gd.pdf">Resume</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
+      <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+</div></header>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html#about" onclick="closeMobileMenu()">About</a>
-  <a href="index.html#keywords" onclick="closeMobileMenu()">Skills</a>
-  <a href="index.html#experience" onclick="closeMobileMenu()">Experience</a>
-  <a href="index.html#projects" onclick="closeMobileMenu()">Projects</a>
-  <a href="kaushik-resume-gd.pdf" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()">Resume</a>
-</div>
+<main class="wrap">
+  <a href="index.html#projects" class="link">← All Projects</a>
 
-<div class="wrap hero">
-  <a href="index.html#projects" class="back">← All Projects</a>
-  <div class="eyebrow">Case Study · 02</div>
-  <h1>Druva — provisioning &amp; access for service partners</h1>
-  <p class="intro">Druva, its partners (MSPs), and end customers share one system for turning products on and controlling who can see them. I designed the provisioning and access model that let partners offer more products — without breaking licensing rules or exposing a customer's data to their partner.</p>
-  <div class="meta">
-    <div class="meta-c"><div class="meta-l">Role</div><div class="meta-v">UX Designer</div></div>
-    <div class="meta-c"><div class="meta-l">Domain</div><div class="meta-v">Backup &amp; Cybersecurity</div></div>
-    <div class="meta-c"><div class="meta-l">Timeline</div><div class="meta-v">Feb – Aug 2025</div></div>
-    <div class="meta-c"><div class="meta-l">Type</div><div class="meta-v">Enterprise · B2B</div></div>
-  </div>
-  <div class="team-chips">
-    <span class="team-chip">PM</span>
-    <span class="team-chip">Support</span>
-    <span class="team-chip">UX Designer</span>
-    <span class="team-chip">FE / BE Dev</span>
-  </div>
-</div>
-
-<section>
-  <div class="wrap-narrow">
-    <span class="label">Context</span>
-    <p><strong style="color:var(--text)">Druva</strong> — cloud-native backup and data security for endpoints, SaaS, data centers, and cloud workloads.</p>
-    <p><strong style="color:var(--text)">MSP</strong> — an IT partner managing backup and data protection for many clients from one dashboard.</p>
-  </div>
-</section>
-
-<section style="background:var(--bg2)">
-  <div class="wrap-narrow">
-    <span class="label">The question</span>
-    <p class="one-line" style="color:var(--text)">Research question — where do the partner, the customer, and Druva's own needs conflict, and can one access model serve all three?</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap-narrow">
-    <span class="label">Method</span>
-    <p class="one-line" style="color:var(--text)">I started from where the three parties collided: MSP onboarding and provisioning calls, Druva's licensing docs and Support Slack threads, and sessions with PMs and engineering. The pattern: the same action — provisioning a product — followed different rules depending on who started it and who could see the result.</p>
-    <div class="trust">
-      <div class="trust-grid">
-        <div class="trust-col"><h3>Partner</h3><p>Wants more access, to sell and manage more.</p></div>
-        <div class="trust-col"><h3>Customer</h3><p>Wants less exposure; won't show its reports to the partner.</p></div>
-        <div class="trust-col"><h3>Druva</h3><p>Wants less manual provisioning work.</p></div>
+  <!-- HERO & CONTEXT -->
+  <section class="section">
+    <p class="eyebrow">Case Study · 02</p>
+    <h1>Druva — provisioning &amp; access for service partners</h1>
+    <div class="meta">
+      <div>
+        <span class="k">Role</span>
+        <span class="v">UX Designer</span>
+      </div>
+      <div>
+        <span class="k">Timeline</span>
+        <span class="v">Feb – Aug 2025</span>
+      </div>
+      <div>
+        <span class="k">Platform</span>
+        <span class="v">Enterprise Web Portal</span>
       </div>
     </div>
-    <div class="persona-thumbs">
-      <figure><img src="druva/3-msc-partners.png" alt="MSP partner research"><figcaption>Partner</figcaption></figure>
-      <figure><img src="druva/2-customer.png" alt="Customer research"><figcaption>Customer</figcaption></figure>
-      <figure><img src="druva/5-support.png" alt="Druva support research"><figcaption>Druva</figcaption></figure>
+  </section>
+
+  <section class="section">
+    <div class="row-3">
+      <div>
+        <p class="eyebrow">Druva</p>
+        <p style="font-size:14px;">Cloud data protection and management for enterprise.</p>
+      </div>
+      <div>
+        <p class="eyebrow">MSP (Partners)</p>
+        <p style="font-size:14px;">Managed Service Providers who sell and manage Druva for their own client base.</p>
+      </div>
+      <div>
+        <p class="eyebrow">MSC (Managed Services Center)</p>
+        <p style="font-size:14px;">The portal MSPs use to provision and manage backup, licensing, and security across every customer from one login.</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section>
-  <div class="wrap-narrow">
-    <span class="label">Synthesis</span>
-    <p class="one-line">Before it was a clean model it was a mess — three actor types, overlapping workflows, and edge cases where provisioning, access and privacy rules contradicted each other.</p>
-  </div>
-  <div class="wrap">
-    <figure>
-      <div class="scroll-wrap"><span class="scroll-hint">→ scroll</span><img src="druva/frames/Frame_1410098092.png" alt="System map"></div>
-      <figcaption>System map — seven workflows decomposed to find where partner, customer, and Druva actions collided.</figcaption>
-    </figure>
-    <figure>
-      <img src="druva/frames/Frame_1000011550.png" alt="Provisioning flow">
-      <figcaption>Provisioning flow — built on Service Plan and User primitives shared across both provisioning paths.</figcaption>
-    </figure>
-    <figure>
-      <div class="scroll-wrap"><span class="scroll-hint">→ scroll</span><img src="druva/frames/Frame_1410098123.png" alt="Ideation flows"></div>
-      <figcaption>Initial ideation flows — eight parallel paths mapped before high-fidelity screens.</figcaption>
-    </figure>
-    <figure>
-      <img src="druva/frames/Frame_1000011547.png" alt="Needs and constraints">
-      <figcaption>Needs, problems, and technical difficulty — research inputs that shaped the access model.</figcaption>
-    </figure>
-    <figure>
-      <img src="druva/frames/Frame_1000011548.png" alt="Four-state access table">
-      <figcaption>Four-state access table — MSC- or Druva-provisioned × Restricted or Unrestricted, the model partners read at a glance.</figcaption>
-    </figure>
-    <p class="scoped wrap-narrow" style="padding:0">Scoped out: automated bulk migration of legacy customers — manual path shipped first because licensing validation required per-customer review.</p>
-  </div>
-</section>
+  <!-- THE PROBLEM -->
+  <section class="section">
+    <p class="eyebrow">The Problem</p>
+    <h3>MSPs lost customers when MSC couldn't provision products outside its supported set.</h3>
+    <p style="color:var(--ink-soft);">Licensing blocked the obvious fix — just add products. How might we expand what MSPs can sell within licensing constraints — without breaking customer privacy?</p>
+  </section>
 
-<section style="background:var(--bg2)">
-  <div class="wrap">
-    <span class="label">Decisions</span>
+  <!-- PERSONAS / TRUST TRIANGLE -->
+  <section class="section">
+    <p class="eyebrow">The Actors</p>
+    <h3>Three parties with conflicting goals.</h3>
 
-    <div class="decision">
-      <h2>Decision 1 — Legibility</h2>
-      <p>Research showed partners couldn't read state at a glance → I designed four states as badges on the customer list; invalid actions disabled with the reason, not hidden.</p>
-      <div class="decision-fig">
-        <figure><img src="druva/frames/Frame_1000011548.png" alt="Four states"><figcaption>Four-state model — provisioning origin and access level visible without opening each account.</figcaption></figure>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-          <figure><img src="druva/sample-process-2.png" alt="MSC-provisioned"><figcaption>MSC-provisioned list — badges show state; invalid actions disabled with reason.</figcaption></figure>
-          <figure><img src="druva/sample-process-3.png" alt="Druva-provisioned"><figcaption>Druva-provisioned list — different available actions per provisioning type.</figcaption></figure>
+    <div class="row-3 grid-gap-top">
+      <div class="module">
+        <h4>Partner (MSP)</h4>
+        <p><strong>Goal:</strong> Wants more access to sell and manage products autonomously.</p>
+        <ul>
+          <li>Create new tenants (Discrete &amp; Managed)</li>
+          <li>Request licenses and product upgrades</li>
+          <li>Request temporary view access</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <h4>Customer</h4>
+        <p><strong>Goal:</strong> Wants less exposure; will not expose compliance reports to partners.</p>
+        <ul>
+          <li>Maintain absolute data privacy</li>
+          <li>Hold the veto power on partner access</li>
+          <li>Approve/reject temporary console access</li>
+        </ul>
+      </div>
+
+      <div class="module">
+        <h4>Druva Support</h4>
+        <p><strong>Goal:</strong> Wants less manual provisioning work and fewer support tickets.</p>
+        <ul>
+          <li>Approve Discrete tenant creation</li>
+          <li>Handle complex backend conversions</li>
+          <li>Reduce manual mapping requests</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- USE CASES -->
+  <section class="section">
+    <p class="eyebrow">User Needs &amp; Core Use Cases</p>
+    <div class="row-4 grid-gap-top">
+      <div class="module">
+        <p class="eyebrow" style="margin-bottom:8px;">01</p>
+        <h4>Add products to existing customer</h4>
+        <p>Self-serve expansion without re-creating the account.</p>
+      </div>
+      <div class="module">
+        <p class="eyebrow" style="margin-bottom:8px;">02</p>
+        <h4>New customer onboarding</h4>
+        <p>Create and provision in one connected journey.</p>
+      </div>
+      <div class="module">
+        <p class="eyebrow" style="margin-bottom:8px;">03</p>
+        <h4>Access classification</h4>
+        <p>Managed vs Restricted with clear operational boundaries.</p>
+      </div>
+      <div class="module">
+        <p class="eyebrow" style="margin-bottom:8px;">04</p>
+        <h4>Restricted console access</h4>
+        <p>Temporary MSP access — customer approves or rejects.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUR STATES MATRIX -->
+  <section class="section">
+    <p class="eyebrow">Four States</p>
+    <h3>MSC- or Druva-provisioned × Restricted or Unrestricted. Partners read state at a glance; invalid conversions blocked before the click.</h3>
+
+    <div class="module module--table">
+      <table class="matrix-table">
+        <tr>
+          <th></th>
+          <th>Restricted</th>
+          <th>Unrestricted</th>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--ink);">MSC-Provisioned</strong></td>
+          <td>Core products only. No advanced workloads.</td>
+          <td>Full MSP access to console, accounts, and reports.</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--ink);">Druva-Provisioned</strong></td>
+          <td>Licenses provisioned; no console access afterward.</td>
+          <td>Full access plus workloads unavailable to MSC customers.</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- SYSTEM ARCHITECTURE -->
+  <section class="section">
+    <p class="eyebrow">System Architecture</p>
+    <h3>Every path split across three portals — MSC, S-portal, C-portal — so no responsibility fell through a gap.</h3>
+
+    <div class="module">
+      <ul style="margin:0;padding-left:16px;color:var(--ink-soft);line-height:1.8;">
+        <li><strong style="color:var(--ink);">MSC:</strong> Create customers, convert provisioning type, switch access level, request temporary access</li>
+        <li><strong style="color:var(--ink);">S-portal:</strong> Verify licenses on new products and edit requests</li>
+        <li><strong style="color:var(--ink);">C-portal:</strong> Accept or reject MSP console access requests</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DIAGRAMS -->
+  <section class="section">
+    <p style="margin-bottom:16px;font-size:15px;"><strong>1. Plotting Actors &amp; Actions:</strong> Identifying where the three portals collided based on who initiated the request.</p>
+    <figure class="plate plate--wide">
+      <img class="lightbox-trigger" src="druva/frames/Frame_1410098092.png" alt="Plotting Actors">
+      <figcaption>Scroll horizontally or click to expand artifact.</figcaption>
+    </figure>
+
+    <p style="margin-bottom:16px;font-size:15px;margin-top:var(--space-section);"><strong>2. Initial Ideation:</strong> Mapping the 8 distinct workflows that were previously being forced through a single rigid path.</p>
+    <figure class="plate plate--wide">
+      <img class="lightbox-trigger" src="druva/frames/Frame_1410098123.png" alt="Initial Ideation">
+      <figcaption>Scroll horizontally or click to expand artifact.</figcaption>
+    </figure>
+
+    <p style="margin-bottom:16px;font-size:15px;margin-top:var(--space-section);"><strong>3. End-to-end Scenarios:</strong> Creation, conversion, and approval loops mapped strictly across all three portals to validate logic.</p>
+    <figure class="plate plate--wide">
+      <img class="lightbox-trigger" src="druva/frames/Frame_1410098125.png" alt="Scenarios">
+      <figcaption>Scroll horizontally or click to expand artifact.</figcaption>
+    </figure>
+  </section>
+
+  <!-- FINAL UI -->
+  <section class="section">
+    <p class="eyebrow">Final UI</p>
+    <h3>What I Designed</h3>
+
+    <div class="row-2 split-row grid-gap-top">
+      <div class="split-row__text">
+        <h4>01. Make four states legible at a glance</h4>
+        <p>Badges on the customer list show provisioning origin and access state. Actions that don't apply are disabled with a reason, not hidden, so partners learn the rules without a manual.</p>
+      </div>
+      <figure>
+        <div class="plate"><img src="druva/sample-process-2.png" alt="Customer list"></div>
+        <figcaption>The customer list — provisioning origin and access state read straight off each row.</figcaption>
+      </figure>
+    </div>
+
+    <div class="row-2 split-row grid-gap-top" style="margin-top:var(--space-section);">
+      <div class="split-row__text">
+        <h4>02. Handle irreversible actions safely</h4>
+        <p>Marking a tenant 'Discrete' cannot be undone. I used a typed confirmation dialog and blocked invalid conversions before the click, rather than throwing an error afterward.</p>
+      </div>
+      <figure>
+        <div class="plate"><img src="druva/sample-process-4.png" alt="State conversion UI"></div>
+        <figcaption>State conversion — blocking invalid actions upfront and requiring typed confirmation.</figcaption>
+      </figure>
+    </div>
+
+    <div class="row-2 split-row grid-gap-top" style="margin-top:var(--space-section);">
+      <div class="split-row__text">
+        <h4>03. Resolve privacy with time-boxed access</h4>
+        <p>Restricted customers give the partner no standing access. The partner requests a 24-72 hour window, the customer admin approves it, and access auto-revokes precisely at the API layer.</p>
+      </div>
+      <figure>
+        <div class="plate"><img src="druva/frames/Frame_1410098162.png" alt="Access request flow"></div>
+        <figcaption>Time-boxed access — the partner requests a window, but the customer admin holds the final veto.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- WHAT SHIPPED -->
+  <section class="section">
+    <p class="eyebrow">What Shipped</p>
+    <h3>The provisioning and access model inside MSC — how partners onboard customers and manage access daily.</h3>
+
+    <div class="row-2 grid-gap-top">
+      <figure>
+        <div class="plate"><img src="druva/sample-process-1.png" alt="Process flow"></div>
+        <figcaption><strong>Process flow:</strong> Visualizing the onboarding sequence.</figcaption>
+      </figure>
+      <figure>
+        <div class="plate"><img src="druva/sample-process-2.png" alt="MSC-provisioned UI"></div>
+        <figcaption><strong>MSC-provisioned:</strong> Managing standard tenants.</figcaption>
+      </figure>
+      <figure>
+        <div class="plate"><img src="druva/sample-process-3.png" alt="Druva-provisioned UI"></div>
+        <figcaption><strong>Druva-provisioned:</strong> State badges read clearly at a glance.</figcaption>
+      </figure>
+      <figure>
+        <div class="plate"><img src="druva/sample-process-4.png" alt="Migration action UI"></div>
+        <figcaption><strong>Migration action:</strong> Handling state conversions safely.</figcaption>
+      </figure>
+    </div>
+    <p style="margin-top:var(--grid-gap);font-size:13px;color:var(--muted);max-width:none;">Some screens withheld or simplified under NDA.</p>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section class="section">
+    <p class="eyebrow">Outcomes</p>
+    <h3>The Business Impact</h3>
+
+    <div class="row-3 grid-gap-top">
+      <div class="module">
+        <h4>Self-serve expansion</h4>
+        <p>Partners provision advanced workloads directly. No support ticket is needed per addition.</p>
+      </div>
+      <div class="module">
+        <h4>Easier management</h4>
+        <p>The four access states read at a glance. Irreversible and invalid conversions are handled deliberately.</p>
+      </div>
+      <div class="module">
+        <h4>Business result</h4>
+        <p>By removing the provisioning ceiling, the design helped MSC bring on more partner customers and drove higher product adoption.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:24px;font-size:13px;color:var(--muted);max-width:none;">Validated qualitatively with Support and PMs post-launch; growth and adoption are directional outcomes the design enabled, not metrics I measured in isolation.</p>
+  </section>
+
+  <!-- REFERENCES & DOCS -->
+  <section class="section">
+    <p class="eyebrow">References &amp; Documentation</p>
+
+    <div class="row-3 grid-gap-top">
+      <div class="module">
+        <h4>MSC vs Druva Provisioned</h4>
+        <p>Explains the fundamental difference between states and their access boundaries.</p>
+        <div class="module__foot">
+          <a href="https://help.druva.com/en/articles/11882763-about-msc-provisioned-and-druva-provisioned-customers" target="_blank" rel="noopener noreferrer" class="link">View Documentation</a>
+        </div>
+      </div>
+
+      <div class="module">
+        <h4>Migrate Customers to MSC</h4>
+        <p>Details the workflow for migrating existing customers into the new MSC model.</p>
+        <div class="module__foot">
+          <a href="https://help.druva.com/en/articles/8806044-migrate-customers-to-msc" target="_blank" rel="noopener noreferrer" class="link">View Documentation</a>
+        </div>
+      </div>
+
+      <div class="module">
+        <h4>Manage MSC Customers</h4>
+        <p>Outlines how MSPs manage ongoing access and product provisioning daily.</p>
+        <div class="module__foot">
+          <a href="https://help.druva.com/en/articles/8806037-manage-msc-provisioned-customers" target="_blank" rel="noopener noreferrer" class="link">View Documentation</a>
         </div>
       </div>
     </div>
+  </section>
+</main>
 
-    <div class="decision">
-      <h2>Decision 2 — Irreversibility</h2>
-      <p>Support tickets flagged accidental migrations → marking a tenant irreversible uses typed confirmation; invalid conversions blocked before the click, not errored after.</p>
-      <div class="decision-fig">
-        <figure><img src="druva/frames/Frame_1000011551.png" alt="Irreversible conversion flow"><figcaption>Irreversible conversion flow — deliberate friction before state changes that can't be undone.</figcaption></figure>
-        <figure><img src="druva/sample-process-4.png" alt="Migration action"><figcaption>Migration to MSC-provisioned — typed confirmation before irreversible conversion.</figcaption></figure>
-      </div>
-    </div>
-
-    <div class="decision">
-      <h2>Decision 3 — The privacy standoff</h2>
-      <p>Restricted customers give no standing access → partner requests a 24/48/72h window, customer admin holds the veto, access auto-revokes; limit enforced at the API layer, not just the button.</p>
-      <div class="decision-fig">
-        <figure><img src="druva/frames/Frame_1410098124.png" alt="Temporary access request"><figcaption>Temporary access request — time-boxed window with customer approval and auto-revoke.</figcaption></figure>
-        <figure>
-          <div class="scroll-wrap"><span class="scroll-hint">→ scroll</span><img src="druva/frames/Frame_1410098125.png" alt="Three-portal scenarios"></div>
-          <figcaption>Three-portal scenario map — MSC, S-portal, and C-portal handoffs with explicit ownership.</figcaption>
-        </figure>
-        <figure><img src="druva/sample-process-1.png" alt="Provisioning flow"><figcaption>Self-serve provisioning flow — partners expand a customer's catalogue without a support ticket per addition.</figcaption></figure>
-      </div>
-      <p class="scoped">Scoped out: full Limited-Admin role views were specced but not designed this round — four-state model and temporary access took priority.</p>
-    </div>
+<div id="imageModal" class="lightbox-modal">
+  <span class="lightbox-close" aria-label="Close">&times;</span>
+  <div class="lightbox-modal__inner">
+    <img class="lightbox-content" id="lightboxImg" alt="">
   </div>
-</section>
-
-<section>
-  <div class="wrap-narrow">
-    <span class="label">Outcome</span>
-    <p class="one-line" style="color:var(--text)">Before, a partner hit a wall the moment a customer needed a product the console didn't support — they lost the deal or waited on a manual workaround. After, partners expand a customer's catalogue themselves and manage every access state from one place.</p>
-    <ul class="outcome-list">
-      <li>Self-serve expansion — partners provision advanced workloads directly, no support ticket per addition.</li>
-      <li>Easier management — four access states read at a glance; irreversible/invalid conversions handled deliberately.</li>
-      <li>Business result — by removing the provisioning ceiling, the design helped MSC bring on more partner customers and drove higher product adoption.</li>
-    </ul>
-    <p class="hedge">Validated qualitatively with Support and PMs post-launch; growth and adoption are directional outcomes the design enabled, not metrics I measured in isolation.</p>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap-narrow">
-    <p class="label" style="margin-bottom:.5rem">References</p>
-    <div class="ref-btns">
-      <a class="ref-btn" href="https://help.druva.com/en/articles/11882763-about-msc-provisioned-and-druva-provisioned-customers" target="_blank" rel="noopener noreferrer">MSC vs Druva-provisioned ↗</a>
-      <a class="ref-btn" href="https://help.druva.com/en/articles/8806037-manage-msc-provisioned-customers" target="_blank" rel="noopener noreferrer">Manage MSC customers ↗</a>
-      <a class="ref-btn" href="https://help.druva.com/en/articles/8806044-migrate-customers-to-msc" target="_blank" rel="noopener noreferrer">Migrate to MSC ↗</a>
-    </div>
-    <p class="legal" style="margin-top:1.25rem">Some screens are withheld or simplified under NDA; the maps and flows are working artifacts.</p>
-  </div>
-</footer>
+</div>
 
 <script>
-const ham=document.getElementById('hamburger'),menu=document.getElementById('mobileMenu');
-function closeMobileMenu(){menu.classList.remove('open')}
-if(ham&&menu)ham.addEventListener('click',()=>menu.classList.toggle('open'));
+document.addEventListener('DOMContentLoaded', function(){
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('lightboxImg');
+  const closeBtn = document.querySelector('.lightbox-close');
+
+  document.querySelectorAll('.lightbox-trigger').forEach(function(img){
+    img.addEventListener('click', function(){
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      modalImg.src = this.src;
+      modalImg.alt = this.alt;
+    });
+  });
+
+  function closeLightbox(){
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+    modalImg.src = '';
+  }
+
+  closeBtn.addEventListener('click', closeLightbox);
+  modal.addEventListener('click', function(e){
+    if(e.target !== modalImg) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.style.display === 'block') closeLightbox();
+  });
+});
 </script>
-<script src="js/theme-toggle.js"></script>
+<script src="js/system-theme.js"></script>
 <script src="audio/music.js"></script>
 </body>
 </html>

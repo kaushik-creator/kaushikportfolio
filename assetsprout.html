@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <script src="js/theme-init.js"></script>
 <meta charset="UTF-8"/>
@@ -11,11 +11,14 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="tokens.css"/>
+<link rel="stylesheet" href="styles/base.css?v=20260726b"/>
+<link rel="stylesheet" href="shared.css?v=20260726r"/>
+<link rel="stylesheet" href="styles/uid.css?v=20260726r"/>
 <style>
-[data-theme="dark"]{--card:#0f0f0f;}
-[data-theme="light"]{--card:#ffffff;}
+[data-theme="dark"]{--card:transparent;}
+[data-theme="light"]{--card:transparent;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .3s,color .3s;}
@@ -123,7 +126,7 @@ hr.rule{border:none;border-top:1px solid var(--rule);margin:0;}
 </head>
 <body>
 
-<audio id="bgMusic" loop preload="auto" playsinline autoplay>
+<audio id="bgMusic" loop preload="auto" playsinline>
   <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
 </audio>
 <button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
@@ -142,9 +145,18 @@ hr.rule{border:none;border-top:1px solid var(--rule);margin:0;}
   </ul>
   <div class="nav-right">
     <div class="avail-badge"><span class="avail-dot"></span>Open to work</div>
-    <button class="toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#about" onclick="closeMobileMenu()">About</a>
+  <a href="index.html#keywords" onclick="closeMobileMenu()">Skills</a>
+  <a href="index.html#experience" onclick="closeMobileMenu()">Experience</a>
+  <a href="index.html#projects" onclick="closeMobileMenu()">Projects</a>
+  <a href="#" data-resume-trigger onclick="closeMobileMenu()">Resume</a>
+</div>
 
 <div class="resume-modal" id="resumeModal" hidden aria-hidden="true">
   <div class="resume-modal-card" role="dialog" aria-modal="true" aria-label="Resume preview">
@@ -159,7 +171,7 @@ hr.rule{border:none;border-top:1px solid var(--rule);margin:0;}
 <div class="wrap cs-hero fi">
   <a href="index.html#projects" class="back-chip">← All Projects</a>
   <div class="cs-lbl">Case Study · 02</div>
-  <h1 class="cs-h1">AssetSprout</h1>
+  <h1 class="cs-h1">AssetSprout — Wealth Management</h1>
   <p class="cs-sub">A mobile investment app designed to make wealth creation accessible to first-time investors in India — demystifying stocks, mutual funds, and portfolio management.</p>
   <div class="meta-row">
     <div class="meta-col">
@@ -273,33 +285,8 @@ hr.rule{border:none;border-top:1px solid var(--rule);margin:0;}
 const html = document.documentElement;
 const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('vis'); }), {threshold: 0.08});
 document.querySelectorAll('.fi').forEach(el => io.observe(el));
-
-const resumeModal = document.getElementById('resumeModal');
-const resumeCloseBtn = document.getElementById('resumeCloseBtn');
-const resumeTriggers = document.querySelectorAll('[data-resume-trigger]');
-
-function openResumeModal(event) {
-  event.preventDefault();
-  resumeModal.hidden = false;
-  resumeModal.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeResumeModal() {
-  resumeModal.hidden = true;
-  resumeModal.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-}
-
-resumeTriggers.forEach((trigger) => trigger.addEventListener('click', openResumeModal));
-resumeCloseBtn.addEventListener('click', closeResumeModal);
-resumeModal.addEventListener('click', (event) => {
-  if (event.target === resumeModal) closeResumeModal();
-});
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && !resumeModal.hidden) closeResumeModal();
-});
 </script>
+<script src="js/site-shell.js"></script>
 <script src="js/theme-toggle.js"></script>
 <script src="audio/music.js"></script>
 </body>
