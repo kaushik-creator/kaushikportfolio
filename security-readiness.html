@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Security Readiness Score — case study by Kaushik, UX Designer."/>
+<meta property="og:title" content="Security Readiness Score — Case Study · Kaushik"/>
+<meta property="og:description" content="Six scattered security settings. One widget. Designing the Cyber Resiliency Readiness Score for Druva Cloud Administrators."/>
+<meta name="theme-color" content="#0A0A0A"/>
+<title>Security Readiness Score — Case Study · Kaushik</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles/system.css"/>
+<style>
+.lightbox-modal{display:none;position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,.95);overflow:auto;}
+.lightbox-close{position:fixed;top:20px;right:35px;color:var(--surface);font-size:40px;cursor:pointer;line-height:1;}
+.lightbox-close:hover{color:var(--muted);}
+.lightbox-content{margin:auto;display:block;max-width:1600px;max-height:90vh;width:auto;}
+.callout{display:block;margin-top:16px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-soft);line-height:1.5;}
+.callout--error{border-top-color:var(--accent);color:var(--ink);}
+.tradeoff{border:1px solid var(--line);border-left:2px solid var(--accent);padding:24px;margin-top:32px;background:var(--surface);}
+.btn{display:inline-block;font-size:14px;font-weight:500;border:1px solid var(--accent-ink);padding:10px 18px;margin-top:16px;}
+.btn:hover{background:var(--surface);color:var(--accent-ink);}
+.module--accent .btn{background:var(--accent-ink);color:var(--accent);border-color:var(--accent-ink);}
+.module--accent .btn:hover{background:var(--surface);color:var(--accent-ink);}
+</style>
+</head>
+<body>
+
+<audio id="bgMusic" loop preload="auto" playsinline>
+  <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
+</audio>
+<button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
+  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
+</button>
+
+<header class="site-header"><div class="wrap">
+  <a href="index.html" style="font-family:var(--font-display);font-weight:700;font-size:20px;">K.</a>
+  <nav id="nav">
+    <a href="index.html#about">About</a>
+    <a href="index.html#keywords">Skills</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#projects" class="active" aria-current="page">Projects</a>
+    <a href="kaushik-resume-gd.pdf">Resume</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
+      <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+</div></header>
+
+<main class="wrap">
+  <a href="index.html#projects" class="link">← All Projects</a>
+
+  <!-- HERO -->
+  <section class="section">
+    <p class="eyebrow">Case Study · Druva</p>
+    <h1 style="margin-bottom: 16px;">Six settings scattered.<br>One readiness score.</h1>
+    <p>Designing the Cyber Resiliency Readiness Score — a unified widget inside Druva's Security Center that tells Cloud Administrators whether baseline controls are actually configured, and routes them to fix what's missing without hunting across six separate settings pages.</p>
+    <div class="meta">
+      <div>
+        <span class="k">Role</span>
+        <span class="v">UX Designer</span>
+      </div>
+      <div>
+        <span class="k">Domain</span>
+        <span class="v">Cybersecurity · B2B SaaS</span>
+      </div>
+      <div>
+        <span class="k">Focus</span>
+        <span class="v">Dashboard widget, Security UX</span>
+      </div>
+      <div>
+        <span class="k">Type</span>
+        <span class="v">Enterprise · Cloud Admin</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- COVER -->
+  <section class="section">
+    <figure class="plate" style="padding: 0; overflow: hidden; border: none; background: transparent;">
+      <img class="lightbox-trigger" src="security-readiness/cover.png" alt="Druva Security Center dashboard with Cyber Resiliency Readiness Score, Backup Risks, New Location Events, Access Risks, and Threat Summary panels" style="border-radius: 8px; width: 100%;">
+      <figcaption><strong>The Shipped Security Center.</strong> Readiness Score and Backup Risks on the top row; New Location Events and Access Risks on the second; Threat Summary full-width at the bottom — each card tied to a distinct question Jordan asks when opening this page.</figcaption>
+    </figure>
+  </section>
+
+  <!-- PERSONA -->
+  <section class="section">
+    <p class="eyebrow">Target Persona</p>
+    <div class="module">
+      <h3 style="margin-top: 0; margin-bottom: 16px;">Meet Jordan — Cloud Administrator</h3>
+      <p>Jordan manages the security posture of their organization's Druva tenant as one part of a broader backup/IT admin role — not as a dedicated security specialist. Jordan is periodically accountable to an internal compliance/InfoSec team for proving baseline controls (like MFA) are actually enabled, not just assumed.</p>
+      <p style="margin-top: 16px;">Every time Jordan opens the Security Center, they are asking three things:</p>
+      <ol style="margin-top: 12px; padding-left: 20px; color: var(--ink-soft);">
+        <li style="margin-bottom: 8px;"><strong style="color: var(--ink);">Is my environment actually protected right now?</strong></li>
+        <li style="margin-bottom: 8px;"><strong style="color: var(--ink);">Did anything suspicious happen since I last checked?</strong></li>
+        <li><strong style="color: var(--ink);">What's the fastest thing I can fix to reduce risk today?</strong></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- STEP 01: PROBLEM -->
+  <section class="section">
+    <p class="eyebrow">Step 01 / Problem &amp; Context</p>
+    <h3 style="margin-top: 0; margin-bottom: 16px;">Six settings, six pages, no single view</h3>
+    <p><strong>The Problem:</strong> Administrators had to navigate to six different pages across the platform to configure baseline security controls (MFA, SSO, Geofencing, etc.).</p>
+    <p style="margin-top: 16px;"><strong>The Impact:</strong> High friction led to missed settings, leaving organizations vulnerable and failing compliance audits.</p>
+    <div class="tradeoff" style="margin-top: 32px;">
+      <p style="margin: 0;"><strong>The Hypothesis:</strong> Consolidating these scattered actions into a single widget will eliminate navigation fatigue, provide instant risk visibility, and increase security adoption.</p>
+    </div>
+  </section>
+
+  <!-- STEP 02: PAGE ARCHITECTURE -->
+  <section class="section">
+    <p class="eyebrow">Step 02 / Page Architecture</p>
+    <h3 style="margin-top: 0; margin-bottom: 16px;">Finding a home for the Readiness Score</h3>
+    <p>The existing Security Center dashboard already answered:</p>
+    <ul style="margin-top: 12px; padding-left: 20px; color: var(--ink-soft);">
+      <li style="margin-bottom: 8px;"><strong style="color: var(--ink);">"Did anything suspicious happen?"</strong> (Threat Summary, New Location Events)</li>
+      <li><strong style="color: var(--ink);">"Is my backup infrastructure failing?"</strong> (Backup Risks, Access Risks)</li>
+    </ul>
+    <p style="margin-top: 16px;">But it lacked a macro view of the organization's proactive security posture.</p>
+
+    <div class="row-2" style="margin-top: 32px;">
+      <div class="module">
+        <p class="eyebrow">The missing piece</p>
+        <p style="margin: 0;">We needed a new widget in the top-left anchor position to answer one critical new question: <strong>"What is the fastest thing I can fix to reduce risk today?"</strong></p>
+      </div>
+      <div class="module">
+        <p class="eyebrow">The challenge</p>
+        <p style="margin: 0;">Visually differentiating between <strong>Mandatory</strong> (audit-blocking) and <strong>Recommended</strong> (risk-reducing) controls, without fighting the rest of the dashboard for visual dominance.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 03: ITERATION -->
+  <section class="section">
+    <p class="eyebrow">Step 03 / Iteration &amp; Failure</p>
+    <h3 style="margin-top: 0; margin-bottom: 16px;">Evolving the Readiness widget</h3>
+    <p>The core tension running through every iteration: <strong>Mandatory and Recommended controls cannot have equal visual weight.</strong> Mandatory settings are audit-blocking; Recommended settings reduce risk but won't fail a compliance review. Every design pass was judged against whether that distinction stayed visible at a glance.</p>
+
+    <div class="row-2" style="margin-top: 40px;">
+      <div class="module">
+        <h4 style="margin-top: 0;">Iteration 1 — Side-by-side split donut charts</h4>
+        <div class="plate" style="margin: 16px 0;">
+          <img class="lightbox-trigger" src="security-readiness/iteration-02-split-donuts.png" alt="Configuration Status widget with separate Required and Optional donut charts side by side and a three-column security controls checklist">
+        </div>
+        <p>Two separate donut charts — one for Required (Mandatory) and one for Optional (Recommended) — each with its own checklist column.</p>
+        <span class="callout callout--error"><strong>What went wrong:</strong> Placing two identical donut charts side-by-side visually implied that Recommended controls held equal operational importance to Mandatory controls.</span>
+      </div>
+
+      <div class="module">
+        <h4 style="margin-top: 0;">Iteration 2 — Single arc gauge with side-by-side breakdown</h4>
+        <div class="plate" style="margin: 16px 0;">
+          <img class="lightbox-trigger" src="security-readiness/iteration-01-semi-gauge.png" alt="Cyber Security Readiness widget with a single semi-circular gauge showing 3 of 7 configured and a side-by-side checklist of security controls">
+        </div>
+        <p>Single arc showing total configured controls alongside a static breakdown list — Jordan could see every control status at once.</p>
+        <span class="callout callout--error"><strong>What went wrong:</strong> Used equal arc segments for all controls, completely obscuring the mandatory audit distinction. Mandatory items relied solely on an asterisk (*).</span>
+      </div>
+    </div>
+
+    <div class="module" style="margin-top: 40px;">
+      <h4 style="margin-top: 0;">Iteration 3 — Concentric dual-arc gauge visual</h4>
+      <div class="plate" style="margin: 16px 0;">
+        <img class="lightbox-trigger" src="security-readiness/iteration-03-nested-ring.png" alt="Cyber Resiliency Readiness nested concentric gauge with inner Mandatory arc and outer Recommended arc showing 3 of 7 total controls">
+      </div>
+      <p>Nested arcs — an inner thick arc for Mandatory, and an outer thin arc for Recommended — designed to visually anchor score weight and make audit-blocking gaps readable without opening a list.</p>
+      <span class="callout callout--error"><strong>What went wrong as standalone:</strong> Adding the full list alongside the double ring in a four-panel grid overwhelmed the card layout with visual density.</span>
+    </div>
+  </section>
+
+  <!-- STEP 04: SHIPPED -->
+  <section class="section">
+    <p class="eyebrow">Step 04 / The Shipped Solution</p>
+    <h3 style="margin-top: 0; margin-bottom: 16px;">Nested concentric gauge + Gauge/List toggle + direct edit affordances</h3>
+    <p>The shipped widget resolves the core tension: the inner arc tracks Mandatory progress, while the outer arc tracks Recommended progress. A Gauge/List toggle lets Jordan switch between a macro compliance view and a granular action list.</p>
+
+    <div class="row-2" style="margin-top: 32px;">
+      <figure class="plate">
+        <img class="lightbox-trigger" src="security-readiness/shipped-gauge.png" alt="Shipped Cyber Resiliency Readiness Score in gauge view with inner Mandatory ring and outer Recommended ring, tooltip on incomplete Cyber Resiliency Reports control, and 1 of 6 controls configured">
+        <figcaption><strong>Gauge view:</strong> Nested concentric arcs — Mandatory inner, Recommended outer. Hover tooltip surfaces the specific gap without leaving the Security Center.</figcaption>
+      </figure>
+      <figure class="plate">
+        <img class="lightbox-trigger" src="security-readiness/shipped-list.png" alt="Shipped Cyber Resiliency Readiness Score in list view showing Mandatory and Recommended controls with pass-fail icons and pencil edit affordance per row">
+        <figcaption><strong>List view:</strong> Full control checklist with pass/fail status, Mandatory asterisks, subscription minimums, and a pencil edit icon per row.</figcaption>
+      </figure>
+    </div>
+
+    <figure class="plate" style="margin-top: 48px;">
+      <img class="lightbox-trigger" src="security-readiness/cover.png" alt="Full Security Center page layout with Readiness Score and Backup Risks on top row, New Location Events and Access Risks on middle row, and Threat Summary full-width at bottom">
+      <figcaption><strong>Full four-panel page layout:</strong> Top row — Readiness Score + Backup Risks. Middle row — New Location Events + Access Risks. Bottom row — Threat Summary full-width.</figcaption>
+    </figure>
+
+    <h3 style="margin-top: 48px; margin-bottom: 16px;">Control breakdown</h3>
+    <div class="row-2">
+      <div class="module">
+        <p class="eyebrow">Mandatory *</p>
+        <h4 style="margin-top: 0;">Audit-blocking controls</h4>
+        <ul style="margin: 0; padding-left: 18px; color: var(--ink-soft);">
+          <li>Multi-Factor Authentication</li>
+          <li>Cyber Resiliency Reports (minimum 3 subscriptions)</li>
+          <li>Cyber Resiliency Alerts (minimum 3 subscriptions)</li>
+        </ul>
+      </div>
+      <div class="module">
+        <p class="eyebrow">Recommended</p>
+        <h4 style="margin-top: 0;">Risk-reducing controls</h4>
+        <ul style="margin: 0; padding-left: 18px; color: var(--ink-soft);">
+          <li>Single Sign-On</li>
+          <li>Geofencing</li>
+          <li>Restore Scan</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 48px; margin-bottom: 16px;">Key design decisions</h3>
+    <div class="row-3" style="margin-top: 24px;">
+      <div class="module">
+        <p class="eyebrow">01</p>
+        <h4 style="margin-top: 0;">Gauge / List toggle</h4>
+        <p><strong>Two mental modes:</strong> Scan the score at a glance (gauge) or act on a specific control (list).</p>
+      </div>
+      <div class="module">
+        <p class="eyebrow">02</p>
+        <h4 style="margin-top: 0;">In-context pop-ups</h4>
+        <p><strong>No more page hopping.</strong> Clicking the pencil icon opens the configuration in a local modal. <strong>Visual hierarchy win:</strong> The edit icon is permanently visible for unconfigured items, but tucks away on hover for completed ones to reduce clutter.</p>
+      </div>
+      <div class="module">
+        <p class="eyebrow">03</p>
+        <h4 style="margin-top: 0;">Page layout</h4>
+        <p><strong>Scan → Investigate → Act.</strong> The layout naturally guides the eye from macro readiness (top) down to granular threat hunting (bottom).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT -->
+  <section class="section">
+    <p class="eyebrow">Outcomes &amp; Reflection</p>
+    <h3>Impact &amp; takeaways</h3>
+
+    <div class="row-3" style="margin-top: 32px;">
+      <div class="module">
+        <p class="eyebrow">01 / Workflow impact</p>
+        <h4 style="margin-top: 0;">Fixing gaps without losing context</h4>
+        <p>We turned a scattered, six-page hunt into a centralized widget. Because all setting adjustments now open in local pop-up modals, Cloud Admins can fix security gaps on the spot without ever leaving the Security Center dashboard.</p>
+      </div>
+      <div class="module">
+        <p class="eyebrow">02 / User impact</p>
+        <h4 style="margin-top: 0;">Instant risk visibility</h4>
+        <p>We eliminated the guesswork. Instead of assuming their environment is secure, administrators can now see exactly what is misconfigured or missing at a single glance, turning abstract compliance rules into clear, immediate action items.</p>
+      </div>
+      <div class="module">
+        <p class="eyebrow">03 / Business value</p>
+        <h4 style="margin-top: 0;">Strengthened security posture</h4>
+        <p>At its core, this widget drives adoption. By removing the friction of finding and fixing these settings, we encourage higher configuration rates. The more baseline controls an organization enables, the better and more resilient the security Druva can provide to its customers.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="module module--accent">
+      <p class="eyebrow">Product demo</p>
+      <h3 style="margin-top: 0; margin-bottom: 16px;">See the Security Center in action</h3>
+      <p style="margin: 0;">Druva's official walkthrough of the Security Center — real-time visibility into backup security risks, readiness scoring, and threat triage in one unified dashboard.</p>
+      <a href="https://www.druva.com/learning-center/resources/media/product-demos/security-center" class="btn" target="_blank" rel="noopener noreferrer">Watch product demo →</a>
+    </div>
+  </section>
+
+  <section class="section more-work">
+    <div class="more-work__head">
+      <span class="eyebrow">More work</span>
+      <a href="index.html#projects" class="more-work__all">View all work</a>
+    </div>
+    <div class="more-work__grid">
+      <a class="mw-card" href="msc-dashboard.html">
+        <span class="mw-card__name">MSC Dashboard</span>
+        <span class="mw-card__desc">Operations dashboard for MSP partners</span>
+      </a>
+      <a class="mw-card" href="druva.html">
+        <span class="mw-card__name">Druva</span>
+        <span class="mw-card__desc">Provisioning &amp; access for service partners</span>
+      </a>
+      <a class="mw-card" href="harmoney.html">
+        <span class="mw-card__name">Harmoney</span>
+        <span class="mw-card__desc">Bond-trading platform, built 0→1</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <footer style="text-align: center;">
+      <p style="font-size: 12px; max-width: none; margin: 0;">
+        <strong>Confidentiality note:</strong> This project is under NDA. Design is complete and moving into development.<br>
+        Interface redrawn and figures synthesized for case study presentation.<br>
+        The core architectural logic and UX constraints remain true to production.
+      </p>
+    </footer>
+  </section>
+</main>
+
+<div id="imageModal" class="lightbox-modal">
+  <span class="lightbox-close" aria-label="Close">&times;</span>
+  <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 40px; box-sizing: border-box;">
+    <img class="lightbox-content" id="lightboxImg" alt="">
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  const modal=document.getElementById('imageModal');
+  const modalImg=document.getElementById('lightboxImg');
+  const triggers=document.querySelectorAll('.lightbox-trigger');
+  const closeBtn=document.querySelector('.lightbox-close');
+  triggers.forEach(function(img){
+    img.addEventListener('click',function(){
+      modal.style.display='block';
+      document.body.style.overflow='hidden';
+      modalImg.src=this.src;
+      modalImg.alt=this.alt;
+    });
+  });
+  function closeLightbox(){
+    modal.style.display='none';
+    document.body.style.overflow='auto';
+    modalImg.src='';
+  }
+  closeBtn.addEventListener('click',closeLightbox);
+  modal.addEventListener('click',function(e){
+    if(e.target!==modalImg) closeLightbox();
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&modal.style.display==='block') closeLightbox();
+  });
+});
+</script>
+<script src="js/system-theme.js"></script>
+<script src="audio/music.js"></script>
+</body>
+</html>
