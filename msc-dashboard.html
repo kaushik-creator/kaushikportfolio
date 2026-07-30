@@ -299,10 +299,41 @@
     <div style="margin-bottom: 80px;">
       <h3 style="text-align: center; margin-bottom: 8px;">Tab 03 — Backup Triage Centre</h3>
       <p style="text-align: center;">Question: Which customer backups require attention this morning?</p>
-      <figure class="plate plate--wide" style="max-width: 900px; margin: 0 auto;">
-        <img class="lightbox-trigger" src="msc-dashboard/triage-final.png" alt="Backup Triage Centre showing ranked list of clients with failed backups">
-        <figcaption><strong>The Shipped Triage Console:</strong> A clear, ranked list of clients whose backups failed today versus a 7-day history. Admins click directly on a client's name to enter their isolated compartment and resolve the error.</figcaption>
-      </figure>
+    </div>
+  </section>
+
+  <!-- STEP 06: TRIAGE TABLE EVOLUTION -->
+  <section class="section">
+    <p class="eyebrow">Step 06 / Iteration Evolution</p>
+    <h3 style="margin-top: 0; margin-bottom: 16px;">Evolving the Triage Table</h3>
+    <p>How the Backup Triage Centre's per-customer failure table evolved through three design passes before shipping.</p>
+
+    <div style="margin-top: 40px; display: flex; flex-direction: column; gap: 40px;">
+
+      <div class="module">
+        <h4 style="margin-top: 0;">Iteration 1 — Single filtered table</h4>
+        <div class="plate plate--wide" style="margin: 16px 0;">
+          <img class="lightbox-trigger" src="msc-dashboard/triage-iteration-1.png" alt="Backup Triage Centre with Select Workload dropdown, Starred Accounts card, and a single flat customer failure table">
+        </div>
+        <p>The idea is to make a single consolidated failures page which gives overall failures for the past 7 days, but the customer also wanted it for the past 30 days so we felt we needed to minimize it almost like a heat map.</p>
+      </div>
+
+      <div class="module">
+        <h4 style="margin-top: 0;">Iteration 2 — Combined Customer × Day matrix</h4>
+        <div class="plate plate--wide" style="margin: 16px 0;">
+          <img class="lightbox-trigger" src="msc-dashboard/triage-iteration-2.png" alt="Backup Failure Triage Customer by Day heat map with inSync and Phoenix sub-labels per cell and 7d 30d 45d time toggle">
+        </div>
+        <p>But with this, we made it simple but we were not able to fetch data for enterprise workloads and SaaS apps at the same time, so we moved to the last one which is scalable and easy to consume information.</p>
+      </div>
+
+      <div class="module">
+        <h4 style="margin-top: 0;">Iteration 3 — Split into independent workload tabs (shipped)</h4>
+        <div class="plate plate--wide" style="margin: 16px 0;">
+          <img class="lightbox-trigger" src="msc-dashboard/triage-iteration-3.png" alt="Shipped Backup Triage Centre with Enterprise Workloads and SaaS Apps and Endpoints toggle tabs above separate failure tables">
+        </div>
+        <p>Instead of merging or filtering, Enterprise Workloads and SaaS Apps and Endpoints became two persistent, one-click toggle tabs above the table, each with its own full table, own sync timestamp, and own severity scale. This removed the false equivalence between two differently-timed data sources, kept switching faster than the Iteration 1 dropdown, and preserved the important-customer star/pin identically in both tabs.</p>
+      </div>
+
     </div>
   </section>
 
