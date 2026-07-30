@@ -3,56 +3,15 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="Kaushik — UX Designer specializing in enterprise B2B systems, research-led product design, and design systems."/>
-<meta name="author" content="Kaushik D."/>
+<meta name="description" content="Kaushik Dayalan — UX Designer specializing in enterprise SaaS, RBAC, multi-tenant systems, and data-dense dashboards across cybersecurity and fintech."/>
+<meta name="author" content="Kaushik Dayalan"/>
 <meta name="theme-color" content="#FFFFFF"/>
-<title>Kaushik — UX Designer | Enterprise B2B</title>
+<title>Kaushik Dayalan — UX Designer | Enterprise SaaS</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css"/>
-<style>
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--grid-gap);align-items:center;}
-.hero-grid img{width:100%;border:1px solid var(--line);}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;}
-.btn{display:inline-block;font-size:14px;font-weight:500;border:1px solid var(--ink);padding:10px 18px;}
-.btn:hover{background:var(--active-bg);color:var(--active-ink);border-color:var(--active-bg);}
-.hero-loc{font-size:14px;color:var(--muted);margin-top:16px;}
-.exp-block{border-left:1px solid var(--line);padding:0 0 40px 24px;margin-bottom:0;}
-.exp-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:flex-start;margin-bottom:6px;}
-.exp-company-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;}
-.exp-go{display:inline-block;font-size:12px;font-weight:500;border:1px solid var(--line);padding:4px 10px;white-space:nowrap;}
-.exp-go:hover{background:var(--active-bg);color:var(--active-ink);border-color:var(--active-bg);}
-.exp-company{font-family:var(--font-display);font-weight:600;font-size:20px;}
-.exp-sub{font-size:14px;color:var(--muted);font-weight:400;}
-.exp-period{font-size:13px;color:var(--muted);}
-.exp-role{font-style:italic;color:var(--ink-soft);margin-bottom:14px;}
-.exp-block ul{margin:0 0 16px;padding-left:18px;color:var(--ink-soft);}
-.exp-block ul li{margin-bottom:8px;line-height:1.65;}
-details.exp-acc{border-left:1px solid var(--line);padding:0 0 40px 24px;margin-bottom:0;}
-details.exp-acc summary{cursor:pointer;list-style:none;display:flex;align-items:flex-start;gap:12px;}
-details.exp-acc summary::-webkit-details-marker{display:none;}
-details.exp-acc summary::after{content:'';width:7px;height:7px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);margin-left:auto;margin-top:8px;flex-shrink:0;transition:transform .2s;}
-details.exp-acc[open] summary::after{transform:rotate(-135deg);}
-.exp-nested{margin-top:32px;padding-top:32px;border-top:1px solid var(--line);}
-.exp-nested + .exp-nested{margin-top:32px;}
-.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
-.tile{display:flex;flex-direction:column;height:100%;color:inherit;}
-.tile.is-hidden{display:none!important;}
-.tile:hover{border-color:var(--ink);}
-.filter-row{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0;}
-.site-footer{padding:40px 0;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:14px;}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--grid-gap);align-items:start;}
-.contact-links{display:flex;flex-direction:column;gap:12px;margin:20px 0;}
-.social-links{display:flex;gap:10px;margin:0 0 20px;}
-.social-link{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--line);color:var(--ink);transition:background .15s,color .15s,border-color .15s;}
-.social-link svg{width:18px;height:18px;}
-.social-link:hover{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);}
-.module--accent .btn{background:var(--accent-ink);color:var(--accent);border-color:var(--accent-ink);}
-.module--accent .btn:hover{background:var(--surface);color:var(--accent-ink);}
-@media(max-width:820px){.hero-grid,.contact-grid{grid-template-columns:1fr;}}
-</style>
+<link rel="stylesheet" href="styles/system.css?v=20260806"/>
 </head>
 <body>
 
@@ -65,13 +24,13 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
 </button>
 
 <header class="site-header"><div class="wrap">
-  <a href="index.html" style="font-family:var(--font-display);font-weight:700;font-size:20px;">K.</a>
+  <a href="index.html" class="site-logo">K.</a>
   <nav id="nav">
     <a href="#about" data-nav="about">About</a>
     <a href="#keywords" data-nav="keywords">Skills</a>
-    <a href="#projects" data-nav="projects">Projects</a>
     <a href="#experience" data-nav="experience">Experience</a>
-    <a href="kaushik-resume-gd.pdf">Resume</a>
+    <a href="#projects" data-nav="projects">Projects</a>
+    <a href="kaushik-resume-gd.pdf?v=20260730">Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
       <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
       <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -85,11 +44,11 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
 <section class="section" id="home">
   <div class="wrap hero-grid">
     <div>
-      <p class="eyebrow">UX Designer</p>
+      <p class="eyebrow">UX Designer · Enterprise SaaS</p>
       <h1>Hi,<br/>I'm Kaushik</h1>
-      <p>UX Designer who turns ambiguous, high-stakes enterprise problems into structured systems — grounded in research with the people closest to the problem.</p>
-      <p>Enterprise B2B, cybersecurity, and fintech — I design systems and flows where licensing rules, access models, and data density make the problem hard.</p>
-      <p class="hero-loc">📍 Chennai, India</p>
+      <p>5+ years designing high-stakes, data-dense enterprise products — cybersecurity, fintech, e-commerce, and healthtech — from 0→1 through production.</p>
+      <p>I work where licensing rules, RBAC, and multi-tenant architecture make the problem hard: MSP dashboards, security readiness, provisioning flows, and the interaction patterns other designers and engineers build on.</p>
+      <p class="hero-loc">📍 Chennai, India · +91 91766 11530</p>
       <div class="hero-actions">
         <a href="#projects" class="btn">View my work →</a>
         <a href="#contact" class="btn">Get in touch</a>
@@ -139,26 +98,26 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
 <section class="section" id="about">
   <div class="wrap">
     <p class="eyebrow">About me</p>
-    <h2>"Curious. Initiator.<br/>Process Enthusiast."</h2>
+    <h2>Enterprise SaaS.<br/>Complex systems.</h2>
     <div class="row-2" style="margin-top:32px;">
       <div>
-        <p>I'm a UX and systems designer specializing in B2B SaaS, focused on creating simple, intuitive, and meaningful experiences that solve complex business problems with clarity and scale.</p>
+        <p>UX Designer with hands-on depth in design systems, role-based access, and multi-tenant architecture. At Druva, I run design workshops, present decisions to senior leadership and engineering, and shape the interaction patterns the MSP team ships against.</p>
       </div>
       <div class="row-2">
         <div class="module">
           <h3>How I work</h3>
           <ul style="margin:0;padding-left:18px;color:var(--ink-soft);">
-            <li>I start with the constraint, not the screen — licensing rules, access models, who gets blocked when someone clicks Save.</li>
-            <li>I map actors before pixels — three portals, three owners, one action. If I can't name who does what, the UI isn't ready.</li>
-            <li>I write outcomes honestly — what we validated with users vs. what the design enabled directionally.</li>
+            <li>Workshops and leadership reviews before pixels — align engineering, product, and design on the constraint, not just the mockup.</li>
+            <li>Map actors and access paths first — who can provision, who gets blocked, which portal owns the action.</li>
+            <li>Validate through partner research, usability testing, and iterative A/B testing — honest about what we measured vs. what the design enabled.</li>
           </ul>
         </div>
         <div class="module">
           <h3>Where I'm strongest</h3>
           <ul style="margin:0;padding-left:18px;color:var(--ink-soft);">
-            <li>Enterprise B2B flows where policy is harder than layout</li>
-            <li>Data-dense dashboards — triage, not decoration</li>
-            <li>0→1 products where the design system and the product ship together</li>
+            <li>Data-dense operational dashboards — backup triage, security posture, license status at a glance</li>
+            <li>Provisioning and access models that let partners self-serve without a support ticket ceiling</li>
+            <li>0→1 design systems as founding or sole designer — Harmoney, AssetSprout, early-stage products</li>
           </ul>
         </div>
       </div>
@@ -175,7 +134,7 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
       <div class="module">
         <h3>Professional</h3>
         <div class="chips">
-          <span class="chip">B2B Design</span><span class="chip">Enterprise</span><span class="chip">SaaS Products</span><span class="chip">0→1 Designer</span><span class="chip">Design Systems</span><span class="chip">UX Research</span><span class="chip">Product Design</span><span class="chip">Problem-Driven Design</span>
+          <span class="chip">B2B Design</span><span class="chip">Enterprise SaaS</span><span class="chip">RBAC &amp; Multi-tenant</span><span class="chip">0→1 Designer</span><span class="chip">Design Systems</span><span class="chip">UX Research</span><span class="chip">Data-Dense Dashboards</span><span class="chip">MVP → Production</span><span class="chip">Healthtech PRD</span>
         </div>
       </div>
       <div class="module">
@@ -187,7 +146,7 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
     </div>
     <div class="chips" style="margin-top:24px;">
       <span class="label" style="margin-right:8px;">Tools:</span>
-      <span class="chip">Figma</span><span class="chip">Codex</span><span class="chip">Cursor</span><span class="chip">Replit</span><span class="chip">Figma Make</span><span class="chip">Fusion 360</span><span class="chip">Autodesk Alias</span><span class="chip">Creo</span><span class="chip">AutoCAD</span>
+      <span class="chip">Figma</span><span class="chip">FigJam</span><span class="chip">Notion</span><span class="chip">Cursor</span><span class="chip">Replit</span><span class="chip">Fusion 360</span><span class="chip">Autodesk Alias</span><span class="chip">Creo</span><span class="chip">AutoCAD</span>
     </div>
   </div>
 </section>
@@ -203,52 +162,81 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
       <button class="tab-btn" type="button" data-filter="personal">Personal</button>
     </div>
     <div class="row-3" id="projGrid">
-      <a href="msc-dashboard.html" class="tile" data-project-type="professional">
-        <div class="tile__media"><img src="msc-dashboard/cover.png" alt="MSC Operational Dashboard cover"/></div>
-        <div class="tile__body">
-          <div class="tile__company">Druva · MSC Operational Dashboard</div>
-          <div class="tile__outcome">Restructured a single overloaded screen into three job-focused surfaces. Pre-launch — success measures defined.</div>
-          <span class="chip">Enterprise SaaS · Research-led Dashboard Design</span>
+      <a href="msc-dashboard.html" class="tile-wrap" data-project-type="professional">
+        <div class="tile">
+          <span class="tile__type">Professional</span>
+          <div class="tile__media"><img src="msc-dashboard/cover.png" alt="MSC Operational Dashboard cover"/></div>
+          <div class="tile__body">
+            <div class="tile__company">Druva · MSC Operational Dashboard</div>
+            <div class="tile__outcome">Restructured a single overloaded screen into three job-focused surfaces. Pre-launch — success measures defined.</div>
+            <p class="label tile__keywords">Enterprise SaaS · Research-led Dashboard Design</p>
+          </div>
         </div>
       </a>
-      <a href="security-readiness.html" class="tile" data-project-type="professional">
-        <div class="tile__media"><img src="security-readiness/cover.png" alt="Druva Security Center with Cyber Resiliency Readiness Score widget"/></div>
-        <div class="tile__body">
-          <div class="tile__company">Druva · Security Readiness Score</div>
-          <div class="tile__outcome">Consolidated six scattered security settings into one widget — giving Cloud Administrators compliance visibility and a single-click path to fix gaps.</div>
-          <span class="chip">Enterprise SaaS · Security UX · Dashboard Design</span>
+      <a href="security-readiness.html" class="tile-wrap" data-project-type="professional">
+        <div class="tile">
+          <span class="tile__type">Professional</span>
+          <div class="tile__media"><img src="security-readiness/cover.png" alt="Druva Security Center with Cyber Resiliency Readiness Score widget"/></div>
+          <div class="tile__body">
+            <div class="tile__company">Druva · Security Readiness Score</div>
+            <div class="tile__outcome">Consolidated six scattered security settings into one widget — giving Cloud Administrators compliance visibility and a single-click path to fix gaps.</div>
+            <p class="label tile__keywords">Enterprise SaaS · Security UX · Dashboard Design</p>
+          </div>
         </div>
       </a>
-      <a href="druva.html" class="tile" data-project-type="professional">
-        <div class="tile__media"><img src="druva/cover.png" alt="Druva provisioning and access workflow — Plan, Approve, Initiate, Migrate, and Validate across Partner, Druva, and MSP Admin"/></div>
-        <div class="tile__body">
-          <div class="tile__company">Druva · Provisioning &amp; Access</div>
-          <div class="tile__outcome">Let partners self-serve product expansion; helped MSC grow its customer base and product adoption.</div>
-          <span class="chip">Enterprise B2B · Systems &amp; Access Design</span>
+      <a href="druva.html" class="tile-wrap" data-project-type="professional">
+        <div class="tile">
+          <span class="tile__type">Professional</span>
+          <div class="tile__media"><img src="druva/cover.png" alt="Druva provisioning and access workflow — Plan, Approve, Initiate, Migrate, and Validate across Partner, Druva, and MSP Admin"/></div>
+          <div class="tile__body">
+            <div class="tile__company">Druva · Provisioning &amp; Access</div>
+            <div class="tile__outcome">Let partners self-serve product expansion; helped MSC grow its customer base and product adoption.</div>
+            <p class="label tile__keywords">Enterprise B2B · Systems &amp; Access Design</p>
+          </div>
         </div>
       </a>
-      <a href="harmoney.html" class="tile" data-project-type="professional">
-        <div class="tile__media"><img src="harmoney-screen-1.png" alt="Harmoney bond trading dashboard"/></div>
-        <div class="tile__body">
-          <div class="tile__company">Harmoney</div>
-          <div class="tile__outcome">India's first digital bond trading platform. Built design system and product experience as founding designer, achieving 6× volume growth.</div>
-          <span class="chip">Fintech · Bond Trading · 0→1</span>
+      <a href="harmoney.html" class="tile-wrap" data-project-type="professional">
+        <div class="tile">
+          <span class="tile__type">Professional</span>
+          <div class="tile__media"><img src="harmoney-screen-1.png" alt="Harmoney bond trading dashboard"/></div>
+          <div class="tile__body">
+            <div class="tile__company">Harmoney</div>
+            <div class="tile__outcome">India's first digital bond trading platform. Built design system and product experience as founding designer, achieving 6× volume growth.</div>
+            <p class="label tile__keywords">Fintech · Bond Trading · 0→1</p>
+          </div>
         </div>
       </a>
-      <a href="mason.html" class="tile" data-project-type="professional">
-        <div class="tile__media"><img src="mason-story/e.png" alt="ModeMagic Shopify badge automation interface"/></div>
-        <div class="tile__body">
-          <div class="tile__company">Mason · ModeMagic</div>
-          <div class="tile__outcome">Redesigned ModeMagic app winning Shopify Commerce Award. Achieved 8× weekly active users through thoughtful UI/UX improvements.</div>
-          <span class="chip">E-commerce · SaaS · Shopify</span>
+      <a href="mason.html" class="tile-wrap" data-project-type="professional">
+        <div class="tile">
+          <span class="tile__type">Professional</span>
+          <div class="tile__media"><img src="mason-story/e.png" alt="ModeMagic Shopify badge automation interface"/></div>
+          <div class="tile__body">
+            <div class="tile__company">Mason · ModeMagic</div>
+            <div class="tile__outcome">Redesigned ModeMagic app winning Shopify Commerce Award. Achieved 8× weekly active users through thoughtful UI/UX improvements.</div>
+            <p class="label tile__keywords">E-commerce · SaaS · Shopify</p>
+          </div>
         </div>
       </a>
-      <a href="dashboard.html" class="tile" data-project-type="personal">
-        <div class="tile__media"><img src="dashboard-images/1.jpg" alt="Personal dashboard design exploration"/></div>
-        <div class="tile__body">
-          <div class="tile__company">Dashboard</div>
-          <div class="tile__outcome">Personal learning project — exploring how to make dense information scannable without decoration.</div>
-          <span class="chip">Personal · Quick look · Dashboard</span>
+      <a href="theraxis.html" class="tile-wrap" data-project-type="personal">
+        <div class="tile">
+          <span class="tile__type">Personal</span>
+          <div class="tile__media tile__media--label">Theraxis</div>
+          <div class="tile__body">
+            <div class="tile__company">Theraxis · Clinical Management</div>
+            <div class="tile__outcome">Multi-tenant SaaS PRD for pediatric therapy centers — clinical care, billing, and scheduling unified with database-enforced gates.</div>
+            <p class="label tile__keywords">Healthtech · PRD</p>
+          </div>
+        </div>
+      </a>
+      <a href="dashboard.html" class="tile-wrap" data-project-type="personal">
+        <div class="tile">
+          <span class="tile__type">Personal</span>
+          <div class="tile__media"><img src="dashboard-images/1.jpg" alt="Personal dashboard design exploration"/></div>
+          <div class="tile__body">
+            <div class="tile__company">Dashboard</div>
+            <div class="tile__outcome">Personal learning project — exploring how to make dense information scannable without decoration.</div>
+            <p class="label tile__keywords">Quick look · Dashboard</p>
+          </div>
         </div>
       </a>
     </div>
@@ -293,10 +281,11 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
         </div>
         <div class="exp-role">UX Designer</div>
         <ul>
-          <li>Designed a consolidated operational view for MSP partners that brings backup failures, storage usage, license status, and security risks across every customer they manage into a single screen — reducing a workflow that spanned 15–20 screens across separate pages and tenants down to 3, cutting the time needed to spot and triage at-risk customers. Validated the design through partner research and A/B testing.</li>
-          <li>Designed a Security Readiness Score with a custom graph visualization built from scratch, and a guided flow within the Security Command Center that nudges admins to configure commonly missed security features — such as MFA, SSO, and geofencing — from a single widget, since leaving them unconfigured left accounts without that protection.</li>
-          <li>Streamlined migration and cross-product journeys for managed and Druva-provisioned models, reducing setup friction and supporting clearer onboarding and adoption.</li>
-          <li>Designed the Education License model and tenant-provisioning flow for Druva MSP, introducing a 1:4 faculty-to-student licensing ratio so schools and universities pay only for faculty seats while covering their much larger student base — with license calculation, storage allocation, and billing automated end-to-end through the Managed Services Center.</li>
+          <li>Handle UX for Druva's MSP experience — running design workshops, presenting design decisions to senior leadership and engineering, and shaping the interaction patterns other designers and engineers build on.</li>
+          <li>Designed the complete operational dashboard for MSP partners — consolidating backup failures, storage usage, license status, and security risks into a single view — cutting a workflow that spanned 15–20 screens across separate pages and tenants down to 3 and speeding up how fast partners spot and triage at-risk accounts. Validated through partner research and iterative A/B testing.</li>
+          <li>Designed a Security Readiness Score widget in the dashboard, with a custom graph visualization built from scratch and a guided flow that lets admins configure commonly missed security features — such as MFA, SSO, and geofencing — directly from that widget instead of hunting across multiple pages, since leaving them unconfigured left accounts exposed with no safety net.</li>
+          <li>Designed a scalable provisioning and access model — covering MSC-provisioned and Druva-provisioned paths — that lets partners self-serve product expansion, including future products, without filing a support ticket each time, removing the ceiling that had been limiting MSC's customer growth.</li>
+          <li>Designed the Education License model that helped Druva MSP expand into educational institutions as a new customer segment — a 1:4 faculty-to-student licensing ratio with license calculation, storage allocation, and billing automated end-to-end through the Managed Services Center.</li>
         </ul>
         <div class="tag-row"><span class="chip">Figma</span><span class="chip">B2B SaaS</span><span class="chip">Enterprise UX</span></div>
       </div>
@@ -312,14 +301,13 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
         </summary>
         <div class="exp-nested">
           <div class="exp-head">
-            <div class="exp-company">AssetSprout <span class="exp-sub">— Wealth Management</span></div>
+            <div class="exp-company">AssetSprout <span class="exp-sub">— US-based Fintech SaaS</span></div>
             <div class="exp-period">Contract</div>
           </div>
-          <div class="exp-role">Product Designer on Contract</div>
+          <div class="exp-role">Product Designer</div>
           <ul>
-            <li>Designed and improved AssetSprout, a US-based SaaS wealth management platform, from MVP to production-ready.</li>
-            <li>Delivered mockups for financial decision-making, bill generation, and advisor reporting through user research and usability testing.</li>
-            <li>Conducted user interviews and competitive analysis to inform a dashboard surfacing essential performance indices.</li>
+            <li>Took AssetSprout from MVP to a production-ready platform, designing the bill-generation, reporting, and decision-support flows financial advisors use day to day.</li>
+            <li>Ran user interviews and competitive analysis to design a performance dashboard surfacing the metrics advisors track most often.</li>
           </ul>
           <div class="tag-row"><span class="chip">Figma</span><span class="chip">Notion</span><span class="chip">FigJam</span></div>
         </div>
@@ -328,10 +316,9 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
             <div class="exp-company">IIT Kanpur <span class="exp-sub">— HMI Designer</span></div>
             <div class="exp-period">Contract</div>
           </div>
-          <div class="exp-role">Project Associate (HMI Designer)</div>
+          <div class="exp-role">Project Associate</div>
           <ul>
-            <li>Conducted on-site research through user interviews and site visits to design interfaces for autonomous vehicles.</li>
-            <li>Created a feature list through user and stakeholder workshops, distilling insights into features and user stories.</li>
+            <li>Ran on-site interviews, field visits, and stakeholder workshops to ground an autonomous vehicle's interface design in real operator behavior patterns.</li>
           </ul>
           <div class="tag-row"><span class="chip">User Research</span><span class="chip">Workshops</span><span class="chip">HMI Design</span></div>
         </div>
@@ -340,16 +327,16 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
       <div class="exp-block">
         <div class="exp-head">
           <div class="exp-company-row">
-            <div class="exp-company">Harmoney <span class="exp-sub">— Bond Trading Platform</span></div>
+            <div class="exp-company">Harmoney <span class="exp-sub">— Bond Trading Platform · Y Combinator W22</span></div>
             <a href="https://www.harmoney.in/" class="exp-go" target="_blank" rel="noopener noreferrer">Go to →</a>
           </div>
           <div class="exp-period">May 2022 – Mar 2023 · Fulltime</div>
         </div>
         <div class="exp-role">Founding Product Designer</div>
         <ul>
-          <li>Set up design processes, including design systems for both mobile and desktop, facilitating seamless matching and closure of orders for bond traders.</li>
-          <li>Implemented strategic design changes through user testing and interviews, resulting in a significant 6x increase in monthly traded volume.</li>
-          <li>Collaborated with product managers, engineers, and business teams to align the product with company goals.</li>
+          <li>Designed end-to-end order-matching and closure flows for bond traders — user testing and interviews that supported a 6× rise in monthly traded volume.</li>
+          <li>Architected the design system and UX foundations across mobile and desktop from scratch as the sole founding designer.</li>
+          <li>Translated trader workflows and business requirements into wireframes, prototypes, and final UI alongside product and engineering.</li>
         </ul>
         <div class="tag-row"><span class="chip">Figma</span><span class="chip">Notion</span><span class="chip">FigJam</span></div>
       </div>
@@ -364,11 +351,27 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
         </div>
         <div class="exp-role">Product Designer</div>
         <ul>
-          <li>Contributed to the redesign of the ModeMagic app experience, helping achieve 8x weekly active users and supporting a Shopify Commerce Award win for Best App User Interface.</li>
-          <li>Created flows and interfaces for automations that helped e-commerce teams scale customer operations.</li>
-          <li>Conducted research and competitive analysis to create a better onboarding experience and guide users through key tasks.</li>
+          <li>Won a Shopify Commerce Award for Best App User Interface by redesigning the ModeMagic app — reworking core flows, UI, and usability, contributing to 8× weekly active users.</li>
+          <li>Designed interaction patterns and interfaces for automation features, making complex e-commerce setup simple enough for sellers to complete on their own.</li>
+          <li>Ran competitive analysis and usability research to redesign onboarding and in-app guidance, helping new sellers ramp up faster.</li>
         </ul>
         <div class="tag-row"><span class="chip">Figma</span><span class="chip">Notion</span><span class="chip">User Testing</span></div>
+      </div>
+
+      <div class="exp-block">
+        <div class="exp-head">
+          <div class="exp-company-row">
+            <div class="exp-company">Theraxis <span class="exp-sub">— Clinic Management Platform · Healthtech</span></div>
+            <a href="theraxis.html" class="exp-go">Case study →</a>
+          </div>
+          <div class="exp-period">Self-initiated · Personal project</div>
+        </div>
+        <div class="exp-role">Independent Product Builder</div>
+        <ul>
+          <li>Scoped and wrote the PRD for a multi-location clinic management platform — scheduling, billing, patient management, and role-based admin dashboards — to build a second design domain in healthtech, without a team defining scope upfront.</li>
+          <li>Used AI-assisted design and prototyping tools to take it from requirements to a working, testable experience, then tested and iterated on the core workflows and access model with representative users.</li>
+        </ul>
+        <div class="tag-row"><span class="chip">PRD</span><span class="chip">RBAC</span><span class="chip">Multi-tenant</span><span class="chip">Cursor</span></div>
       </div>
 
     </div>
@@ -444,7 +447,7 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
 </section>
 
 <footer class="site-footer wrap">
-  <p>© 2025 Kaushik D. — UX Designer · Designed &amp; built in Chennai</p>
+  <p>© 2025 Kaushik Dayalan — UX Designer · Designed &amp; built in Chennai</p>
 </footer>
 
 <script src="js/system-theme.js"></script>
@@ -452,7 +455,7 @@ details.exp-acc[open] summary::after{transform:rotate(-135deg);}
 <script>
 (function(){
   var tabs=document.querySelectorAll('.tab-btn');
-  var tiles=document.querySelectorAll('.tile');
+  var tiles=document.querySelectorAll('.tile-wrap');
   var empty=document.getElementById('projEmpty');
   tabs.forEach(function(tab){
     tab.addEventListener('click',function(){

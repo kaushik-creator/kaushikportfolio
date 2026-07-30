@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Theraxis — Clinical Management Platform PRD case study by Kaushik Dayalan."/>
+<meta property="og:title" content="Theraxis — Case Study · Kaushik"/>
+<meta property="og:description" content="A multi-tenant SaaS PRD unifying clinical care, billing, and scheduling for pediatric therapy centers — gates enforced at the database layer."/>
+<meta name="theme-color" content="#0A0A0A"/>
+<title>Theraxis — Clinical Management Platform · Case Study · Kaushik</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles/system.css?v=20260801"/>
+<style>
+.tx .dek{font-size:18px;color:var(--ink-soft);max-width:680px;margin:0 0 28px;}
+.tx .meta-row{display:flex;gap:36px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px;margin-top:28px;}
+.tx .meta-row div{display:flex;flex-direction:column;gap:4px;}
+.tx .meta-row span.k{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
+.tx .meta-row span.v{font-size:15px;font-weight:600;}
+.tx .callout-prd{background:var(--surface);border:1px solid var(--line);padding:26px 28px;margin:8px 0 44px;}
+.tx .callout-prd h3{margin:0 0 10px;font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent-ink);}
+.tx .callout-prd p{margin:0 0 12px;color:var(--ink-soft);}
+.tx .callout-prd p:last-child{margin-bottom:0;}
+.tx .num{color:var(--accent-ink);font-weight:800;margin-right:8px;}
+.tx h2{font-size:26px;letter-spacing:-0.01em;margin:0 0 22px;font-weight:800;}
+.tx h2 small{display:block;font-size:13px;color:var(--ink-soft);font-weight:500;text-transform:none;margin-top:6px;}
+.tx .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0 0 44px;}
+.tx .stat{background:var(--ink);color:var(--bg);padding:26px 22px;}
+.tx .stat .n{font-size:38px;font-weight:800;color:var(--accent);}
+.tx .stat .l{font-size:13px;color:var(--muted);margin-top:4px;}
+[data-theme="dark"] .tx .stat .l{color:#a9b6d6;}
+.tx .problems{display:grid;gap:14px;}
+.tx .problem{display:flex;gap:16px;border:1px solid var(--line);padding:18px 20px;background:var(--surface);}
+.tx .problem .pn{font-size:22px;font-weight:800;color:var(--accent-ink);flex:0 0 34px;}
+.tx .problem h4{margin:0 0 6px;font-size:16px;}
+.tx .problem p{margin:0;color:var(--ink-soft);font-size:14.5px;}
+.tx ul.goals{list-style:none;margin:0;padding:0;display:grid;gap:10px;}
+.tx ul.goals li{border:1px solid var(--line);padding:14px 16px 14px 40px;font-size:14.5px;position:relative;background:var(--surface);}
+.tx ul.goals li:before{content:"✓";position:absolute;left:14px;top:13px;color:#1f7a4d;font-weight:800;}
+.tx .table-wrap{overflow-x:auto;border:1px solid var(--line);-webkit-overflow-scrolling:touch;}
+.tx table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px;}
+.tx th,.tx td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+.tx th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700;background:var(--surface);}
+.tx tr:last-child td{border-bottom:none;}
+.tx .table-wrap th:first-child,.tx .table-wrap td:first-child{position:sticky;left:0;background:var(--bg);}
+.tx .table-wrap th:first-child{background:var(--surface);}
+.tx .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--ink);}
+.tx .dash{color:var(--muted);}
+.tx .persona-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.tx .persona{border:1px solid var(--line);padding:22px;background:var(--surface);}
+.tx .persona .role{font-weight:800;font-size:17px;}
+.tx .persona .sub{font-size:12.5px;color:var(--muted);margin:2px 0 14px;}
+.tx .persona blockquote{margin:0 0 16px;font-style:italic;color:var(--ink-soft);border-left:3px solid var(--accent);padding-left:14px;font-size:14.5px;}
+.tx .persona .label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700;margin:14px 0 6px;}
+.tx .persona ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink-soft);}
+.tx .persona ul li{margin-bottom:4px;}
+.tx .modgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.tx .mod{border:1px solid var(--line);padding:16px;font-size:13.5px;background:var(--surface);}
+.tx .mod .mn{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--bg);font-size:12px;font-weight:800;margin-bottom:10px;}
+.tx .principle{background:var(--ink);color:var(--bg);padding:20px 22px;margin-top:18px;font-size:14.5px;}
+.tx .principle b{color:var(--accent);}
+.tx .flow{display:flex;overflow-x:auto;gap:0;margin:10px 0;padding-bottom:6px;-webkit-overflow-scrolling:touch;}
+.tx .fstep{flex:1 1 0;min-width:110px;text-align:center;position:relative;padding:0 4px;}
+.tx .fstep .circ{width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:800;margin:0 auto 8px;font-size:12px;}
+.tx .fstep .stage{font-weight:700;font-size:12.5px;}
+.tx .fstep .role{font-size:10.5px;color:var(--muted);margin:2px 0 7px;}
+.tx .fstep .gate{font-size:10px;background:var(--accent);color:var(--accent-ink);padding:3px 7px;display:inline-block;white-space:nowrap;}
+.tx .fstep:after{content:"";position:absolute;top:15px;right:-4px;width:100%;height:1px;background:var(--line);}
+.tx .fstep:last-child:after{display:none;}
+.tx .loop{margin-top:20px;border:1px solid var(--line);padding:16px 20px;font-size:13.5px;color:var(--ink-soft);background:var(--surface);}
+.tx .usecase{border:1px solid var(--line);padding:24px 26px;margin-bottom:20px;background:var(--surface);}
+.tx .usecase h3{margin:0 0 4px;font-size:18px;}
+.tx .usecase .lede{color:var(--muted);font-size:13.5px;margin-bottom:18px;}
+.tx .steps{list-style:none;margin:0;padding:0;counter-reset:step;display:grid;gap:12px;}
+.tx .steps li{counter-increment:step;position:relative;padding-left:38px;font-size:14px;color:var(--ink-soft);}
+.tx .steps li:before{content:counter(step);position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--bg);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.tx .steps li b{display:block;font-size:14.5px;margin-bottom:2px;color:var(--ink);}
+.tx .steps li .who{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent-ink);font-weight:700;}
+.tx .decisions{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.tx .dec{border:1px solid var(--line);padding:18px 20px;background:var(--surface);}
+.tx .dec .dn{font-size:12px;color:var(--accent-ink);font-weight:800;letter-spacing:.05em;}
+.tx .dec h4{margin:6px 0 8px;font-size:15px;}
+.tx .dec p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+.tx .dec .why{margin-top:8px;font-size:13px;color:var(--ink-soft);}
+.tx .dec .why b{color:var(--ink);}
+.tx .archgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.tx .arch{padding:20px;background:var(--ink);color:var(--bg);}
+.tx .arch h4{margin:0 0 4px;font-size:15px;}
+.tx .arch .who{font-size:12px;color:var(--muted);margin-bottom:12px;}
+[data-theme="dark"] .tx .arch .who{color:#a9b6d6;}
+.tx .arch ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink-soft);}
+[data-theme="dark"] .tx .arch ul{color:#dbe3f6;}
+.tx .arch ul li{margin-bottom:6px;}
+.tx .data-note{margin-top:16px;border:1px solid var(--line);padding:16px 20px;font-size:13.5px;color:var(--ink-soft);background:var(--surface);}
+.tx .tx-footer{padding:40px 0 0;color:var(--muted);font-size:13px;}
+@media(max-width:720px){
+  .tx .stat-row,.tx .modgrid,.tx .archgrid,.tx .persona-grid,.tx .decisions{grid-template-columns:1fr;}
+  .tx .meta-row{gap:20px;}
+  .tx .fstep{min-width:118px;}
+}
+</style>
+</head>
+<body>
+
+<audio id="bgMusic" loop preload="auto" playsinline>
+  <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
+</audio>
+<button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
+  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
+</button>
+
+<header class="site-header"><div class="wrap">
+  <a href="index.html" class="site-logo">K.</a>
+  <nav id="nav">
+    <a href="index.html#about">About</a>
+    <a href="index.html#keywords">Skills</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#projects" class="active" aria-current="page">Projects</a>
+    <a href="kaushik-resume-gd.pdf?v=20260730">Resume</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
+      <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+</div></header>
+
+<main class="wrap tx">
+  <a href="index.html#projects" class="link">← All Projects</a>
+
+  <section class="section">
+    <p class="eyebrow">Case Study · Personal Project · Written as a PRD</p>
+    <h1 style="margin-bottom: 16px;">Theraxis — Clinical Management Platform</h1>
+    <p class="dek">A multi-tenant SaaS system that unifies clinical care, billing, and scheduling for pediatric therapy centers — where every downstream action is gated by a verified upstream state, enforced at the database layer, not the UI.</p>
+    <div class="meta-row">
+      <div><span class="k">Role</span><span class="v">Product &amp; Systems Design</span></div>
+      <div><span class="k">Domain</span><span class="v">Pediatric Therapy Center Ops</span></div>
+      <div><span class="k">Product Type</span><span class="v">Multi-tenant B2B SaaS</span></div>
+      <div><span class="k">Format</span><span class="v">PRD-style Case Study</span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="callout-prd">
+      <h3>Why this is written as a PRD, not a visual UX case study</h3>
+      <p>Most of the work behind Theraxis wasn't pixel decisions — it was defining what a therapy center actually needs to be true before a session can happen: what counts as sufficient clinical evidence, when money has to change hands before a service is delivered, who is allowed to see what, and how a mistake in one of those rules turns into a compliance or revenue problem instead of just an ugly screen.</p>
+      <p>That's product management work as much as it's UX work — requirements definition, business-rule specification, role/permission modeling, and cross-functional workflow design across clinical, billing, and scheduling domains. Writing this up as a PRD represents the work more honestly than forcing it into a "here's the wireframe" format would, and demonstrates a different muscle than a visual-design piece: turning an ambiguous, multi-stakeholder operational problem into an unambiguous system spec.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2><span class="num">01</span>Overview</h2>
+    <div class="stat-row">
+      <div class="stat"><div class="n">6</div><div class="l">User roles</div></div>
+      <div class="stat"><div class="n">14</div><div class="l">Clinical assessment domains</div></div>
+      <div class="stat"><div class="n">5</div><div class="l">Hard gates enforced end-to-end</div></div>
+    </div>
+    <p style="color:var(--ink-soft);font-size:14.5px;">Theraxis unifies three domains that normally run as disconnected systems in a therapy center: <strong>clinical care</strong> (screenings, assessments, care plans, sessions), <strong>billing</strong> (enrollment, invoicing, payment), and <strong>scheduling</strong> (therapist availability, session booking).</p>
+    <div class="loop"><strong>Current status —</strong> In process and research. This case study documents the PRD and system design; build and validation are ongoing.</div>
+  </section>
+
+  <section class="section">
+    <h2><span class="num">02</span>The Problem</h2>
+    <div class="problems">
+      <div class="problem"><div class="pn">01</div><div><h4>No unified workflow</h4><p>Clinical decisions — screenings, assessments, care plans — are made independently of scheduling and billing. A child's care plan has no connection to their invoice or their session calendar.</p></div></div>
+      <div class="problem"><div class="pn">02</div><div><h4>Billing is manual and error-prone</h4><p>Therapy pricing, GST calculations, pack sessions, and invoices live in spreadsheets. Revenue leaks from unbilled enrollments — there's no gate between clinical admission and financial confirmation.</p></div></div>
+      <div class="problem"><div class="pn">03</div><div><h4>Progress is anecdotal</h4><p>Goals are written without linking them to assessment results. Session outcomes aren't structured. Care plan revisions have no audit trail and no clinical justification.</p></div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2><span class="num">03</span>Goals &amp; Success Criteria</h2>
+    <ul class="goals">
+      <li>Eliminate unbilled/under-billed enrollments by making financial confirmation a hard prerequisite for clinical resource commitment.</li>
+      <li>Make every care plan traceable to the assessment evidence that produced it — zero care plans issued without sufficient domain evidence.</li>
+      <li>Collapse clinical, billing, and scheduling into one system of record so no downstream action can exist without a valid upstream state.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2><span class="num">04</span>Non-Goals</h2>
+    <p style="color:var(--ink-soft);font-size:14.5px;margin:0;">Multi-currency billing and non-INR pricing are out of scope — the spec targets Indian therapy centers on GST-based pricing. Insurance claims processing, non-pediatric therapy types, and a dedicated mobile app were deliberately deferred to keep the first version focused on the three-domain integration — clinical, billing, scheduling — the problem statement calls for.</p>
+  </section>
+
+  <section class="section">
+    <h2><span class="num">05</span>Users &amp; Roles</h2>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Role</th><th>Data Scope</th><th>Core Capability</th><th>Cannot Do</th></tr>
+        <tr><td><strong>Receptionist</strong></td><td>Own center only</td><td>Intake, appointment booking, session reschedule/cancel</td><td>Clinical records, billing, care plans</td></tr>
+        <tr><td><strong>Center Manager</strong></td><td>Own center only</td><td>Admissions, enrollment, invoicing, session scheduling</td><td>Clinical notes, care plan approval</td></tr>
+        <tr><td><strong>Senior Therapist</strong></td><td>Center + supervisees</td><td>Care plan generation/approval, pre-session tasks, session review</td><td>Billing, staff management</td></tr>
+        <tr><td><strong>Therapist</strong></td><td>Assigned children only</td><td>Assessments, care plan drafts, session conduct, MCQ submission</td><td>Billing, scheduling, unapproved plans</td></tr>
+        <tr><td><strong>Tenant Admin</strong></td><td>All centers</td><td>Everything across all centers</td><td>Nothing — full access</td></tr>
+        <tr><td><strong>Parent</strong></td><td>Own child only</td><td>Progress view, session calendar, home carryover</td><td>Clinical data, billing, staff info</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2><span class="num">06</span>Personas</h2>
+    <div class="persona-grid">
+      <div class="persona">
+        <div class="role">Receptionist</div>
+        <div class="sub">Front desk · Own center · No clinical access</div>
+        <blockquote>"I need to register a new child and get them booked in under five minutes."</blockquote>
+        <div class="label">Goals</div>
+        <ul><li>Register children quickly at intake</li><li>Book and reschedule sessions</li><li>Cancel with reason, notify parents</li></ul>
+        <div class="label">Friction</div>
+        <ul><li>No view of therapist availability</li><li>Billing coordination is manual</li><li>Cannot see session status in real time</li></ul>
+      </div>
+      <div class="persona">
+        <div class="role">Center Manager</div>
+        <div class="sub">Operations · Own center · Billing + scheduling authority</div>
+        <blockquote>"I need to turn a care plan into a running therapy schedule the same day the family says yes."</blockquote>
+        <div class="label">Goals</div>
+        <ul><li>Confirm enrollment, auto-generate invoices</li><li>Schedule recurring sessions with no conflicts</li><li>Monitor center revenue and pending invoices</li></ul>
+        <div class="label">Friction</div>
+        <ul><li>Pricing inconsistencies across therapists</li><li>Double-bookings discovered late</li><li>No clear view of billed vs. conducted</li></ul>
+      </div>
+      <div class="persona">
+        <div class="role">Senior Therapist</div>
+        <div class="sub">Clinical supervisor · Center + supervisees' children</div>
+        <blockquote>"I approve care plans. I need the full picture before I can sign off."</blockquote>
+        <div class="label">Goals</div>
+        <ul><li>Review and approve care plans rigorously</li><li>Add task checklists before each session</li><li>Read notes and plan the next session</li></ul>
+        <div class="label">Friction</div>
+        <ul><li>Task assignment has no structured flow</li><li>Notes disconnected from care plan goals</li><li>No approval audit trail</li></ul>
+      </div>
+      <div class="persona">
+        <div class="role">Therapist</div>
+        <div class="sub">Clinical delivery · Assigned children only · No billing access</div>
+        <blockquote>"I open a session, work through the checklist, write my notes, and submit."</blockquote>
+        <div class="label">Goals</div>
+        <ul><li>See sessions with clear task checklists</li><li>Submit MCQ outcomes after each session</li><li>Track goal progress across sessions</li></ul>
+        <div class="label">Friction</div>
+        <ul><li>Tasks communicated informally</li><li>No structured place to write linked notes</li><li>No visibility into what's next</li></ul>
+      </div>
+      <div class="persona">
+        <div class="role">Tenant Admin</div>
+        <div class="sub">Platform oversight · All centers · Full access</div>
+        <blockquote>"I need to see across every center I run, not just one — and I need to be the fallback when something's stuck."</blockquote>
+        <div class="label">Goals</div>
+        <ul><li>Onboard and configure new centers</li><li>Resolve access or approval issues escalated from center staff</li><li>Monitor billing and compliance health across the whole tenant</li></ul>
+        <div class="label">Friction</div>
+        <ul><li>No single view of risk across centers before this system</li><li>Escalations required jumping into individual center data with no shortcuts</li></ul>
+      </div>
+      <div class="persona">
+        <div class="role">Parent</div>
+        <div class="sub">Family · Own child only · No clinical or billing access</div>
+        <blockquote>"I just want to know my child is improving, and what I should be doing at home."</blockquote>
+        <div class="label">Goals</div>
+        <ul><li>Check upcoming session times</li><li>See progress without needing to ask staff</li><li>Follow through on take-home activities between sessions</li></ul>
+        <div class="label">Friction</div>
+        <ul><li>Progress updates came informally, if at all</li><li>No visibility into whether a session actually happened as scheduled</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2><span class="num">07</span>Functional Requirements</h2>
+    <div class="modgrid">
+      <div class="mod"><div class="mn">1</div>Child intake &amp; family information</div>
+      <div class="mod"><div class="mn">2</div>Screenings &amp; standardised assessments</div>
+      <div class="mod"><div class="mn">3</div>Evidence-synthesised care plans (AI-assisted + human governance)</div>
+      <div class="mod"><div class="mn">4</div>Therapy enrollment &amp; invoice billing</div>
+      <div class="mod"><div class="mn">5</div>Session scheduling — availability-aware</div>
+      <div class="mod"><div class="mn">6</div>Session conduct — tasks, notes, MCQ outcomes</div>
+    </div>
+    <div class="principle">"Nothing downstream happens until the thing upstream of it is valid. <b>Every gate is enforced at the database layer — not the UI.</b>" This is the single most important requirement in the system.</div>
+  </section>
+
+  <section class="section">
+    <h2><span class="num">08</span>Core Clinical Flow <small>Seven gated stages — nothing proceeds until the upstream condition is met</small></h2>
+    <div class="flow">
+      <div class="fstep"><div class="circ">1</div><div class="stage">Intake</div><div class="role">Receptionist</div></div>
+      <div class="fstep"><div class="circ">2</div><div class="stage">Assessment</div><div class="role">Therapist</div><div class="gate">Invoice paid</div></div>
+      <div class="fstep"><div class="circ">3</div><div class="stage">Care Plan</div><div class="role">Sr. Therapist</div><div class="gate">Evidence sufficient</div></div>
+      <div class="fstep"><div class="circ">4</div><div class="stage">Enrollment</div><div class="role">Center Manager</div><div class="gate">Plan approved</div></div>
+      <div class="fstep"><div class="circ">5</div><div class="stage">Scheduling</div><div class="role">Center Manager</div><div class="gate">Invoice paid</div></div>
+      <div class="fstep"><div class="circ">6</div><div class="stage">Sessions</div><div class="role">Therapist</div><div class="gate">Tasks added</div></div>
+      <div class="fstep"><div class="circ">7</div><div class="stage">Progress</div><div class="role">All roles</div><div class="gate">MCQs submitted</div></div>
+    </div>
+    <div class="loop"><strong>Closed feedback loop —</strong> session notes and MCQ outcomes automatically become evidence for the next care plan cycle. Progress compounds; the system improves its own clinical input over time.</div>
+  </section>
+
+  <section class="section">
+    <h2><span class="num">09</span>Core Workflows</h2>
+
+    <div class="usecase">
+      <h3>Use Case 1 — Intake to Published Care Plan</h3>
+      <div class="lede">Five steps, three roles, before a single session can be scheduled.</div>
+      <ol class="steps">
+        <li><span class="who">Receptionist</span><b>Add Student wizard</b>Two-step form: child info (name, DOB, center, contact, referral) and family info. Student created with status: New.</li>
+        <li><span class="who">Therapist</span><b>Run assessment</b>Assessment type selected from the service catalogue, invoice issued. Family pays → "Yet to take." Therapist conducts → "Completed." Results enter the evidence engine.</li>
+        <li><span class="who">Sr. Therapist</span><b>Generate care plan</b>Evidence engine synthesizes finalized assessments across 14 clinical domains; low-confidence domains flagged. Sr. Therapist reviews the AI-generated draft and edits all six sections.</li>
+        <li><span class="who">Sr. Therapist</span><b>Approve care plan</b>Four gates must all pass: 5P formulation complete, ≥1 goal with an evidence link, therapy recommendations present, no unacknowledged gaps. Draft → Reviewed → Approved → Published.</li>
+        <li><span class="who">Center Manager</span><b>Confirm enrollment</b>Therapies selected from billing menu, live invoice preview. On confirm: one invoice auto-created. Family pays → therapy start date unlocks → therapist notified.</li>
+      </ol>
+    </div>
+
+    <div class="usecase">
+      <h3>Use Case 2 — Billing to First Session</h3>
+      <div class="lede">Payment is the gate. Scheduling only happens on genuinely free slots.</div>
+      <ol class="steps">
+        <li><span class="who">Center Manager</span><b>Open scheduling wizard</b>From the student's therapy tab; therapies selected, session counts auto-filled from the care plan, live invoice preview with GST.</li>
+        <li><span class="who">System</span><b>Draft invoice created</b>All therapies on a single invoice. Price and GST are snapshotted at this moment and never change retroactively.</li>
+        <li><span class="who">Center Manager</span><b>Issue &amp; collect payment</b>Invoice issued, family pays, payment recorded with method and reference. Invoice paid → enrollment status → Active.</li>
+        <li><span class="who">Therapist</span><b>Set therapy start date</b>Notified in-app, opens the student, sets the start date — session slots become schedulable.</li>
+        <li><span class="who">Receptionist</span><b>Book on the availability grid</b>Booked slots are disabled and greyed out with the conflicting child shown — only genuinely free slots are selectable. Duration and end time compute automatically.</li>
+        <li><span class="who">System</span><b>Sessions created</b>Preview shows all N sessions with dates/times — no conflicts, since slots were validated before selection. Confirm → sessions created with status: "Needs tasks."</li>
+      </ol>
+    </div>
+
+    <div class="usecase">
+      <h3>Use Case 3 — Session Conduct Workflow</h3>
+      <div class="lede">A repeating loop between Senior Therapist and Therapist for every session in the therapy.</div>
+      <ol class="steps">
+        <li><span class="who">Sr. Therapist</span><b>Before session</b>Reviews the previous session's completed tasks and notes, adds the checklist for the upcoming session. Status: "Needs tasks" → "Ready."</li>
+        <li><span class="who">Therapist</span><b>During session</b>Opens the session, sees the checklist (cannot add tasks), checks off completed items, marks skipped ones with a reason.</li>
+        <li><span class="who">Therapist</span><b>After session</b>Submits MCQ outcomes — performance level, accuracy, generalisation, behaviour interference, caregiver carryover. Status → Completed. Notes sent to the Senior Therapist.</li>
+        <li><span class="who">Sr. Therapist</span><b>Review &amp; plan next</b>Reads notes and MCQ data, marks the session Reviewed, adds tasks for Session N+1 — which unlocks for the Therapist, restarting the loop.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2><span class="num">10</span>Design &amp; Product Decisions <small>Every decision traces to a stated clinical or business rule — not a UX convention</small></h2>
+    <div class="decisions">
+      <div class="dec"><div class="dn">01</div><h4>Evidence gates the care plan</h4><p>The system refuses to generate a plan if domain evidence is insufficient.</p><div class="why"><b>Why:</b> a plan without evidence is clinical fabrication — a clinical integrity requirement, not a UX choice.</div></div>
+      <div class="dec"><div class="dn">02</div><h4>Payment gates session start</h4><p>Centers can't commit clinical resources before financial confirmation. Enforced at the API layer; Center Manager can override with a recorded reason.</p><div class="why"><b>Why:</b> closes the exact revenue-leak problem, with a controlled exception path.</div></div>
+      <div class="dec"><div class="dn">03</div><h4>Conflict slots are disabled, not warned</h4><p>A slot is either selectable or it isn't — no warnings to dismiss, no overrides to design.</p><div class="why"><b>Why:</b> the grid prevents conflicts by construction, not by hoping someone reads a warning.</div></div>
+      <div class="dec"><div class="dn">04</div><h4>Row-Level Security at the database</h4><p>Role permissions are Supabase RLS policies — a direct API query still only returns a therapist's assigned children.</p><div class="why"><b>Why:</b> the UI is downstream of enforcement, never a substitute for it.</div></div>
+      <div class="dec"><div class="dn">05</div><h4>Clinical and financial domains separated by role</h4><p>Therapists never see prices; Center Managers never touch session notes or care plans.</p><div class="why"><b>Why:</b> insulates clinical judgment from commercial pressure.</div></div>
+      <div class="dec"><div class="dn">06</div><h4>Session notes become future evidence</h4><p>Completed notes and MCQ data automatically feed the evidence engine for the next cycle.</p><div class="why"><b>Why:</b> progress compounds instead of each cycle being isolated.</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2><span class="num">11</span>Access Control — Role Matrix</h2>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Capability</th><th>Recept.</th><th>Ctr Mgr</th><th>Sr. Ther.</th><th>Therapist</th><th>Tenant Admin</th><th>Parent</th></tr>
+        <tr><td>Create students</td><td><span class="dot"></span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dot"></span></td><td><span class="dash">—</span></td></tr>
+        <tr><td>Run assessments</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dash">—</span></td></tr>
+        <tr><td>Generate care plans</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dash">—</span></td></tr>
+        <tr><td>Approve care plans</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dot"></span></td><td><span class="dash">—</span></td><td><span class="dot"></span></td><td><span class="dash">—</span></td></tr>
+        <tr><td>Create admissions &amp; invoices</td><td><span class="dash">—</span></td><td><span class="dot"></span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dot"></span></td><td><span class="dash">—</span></td></tr>
+        <tr><td>Schedule sessions</td><td><span class="dash">—</span></td><td><span class="dot"></span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dot"></span></td><td><span class="dash">—</span></td></tr>
+        <tr><td>Conduct sessions + MCQs</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dash">—</span></td></tr>
+        <tr><td>View billing &amp; invoices</td><td><span class="dash">—</span></td><td><span class="dot"></span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dot"></span></td><td><span class="dash">—</span></td></tr>
+        <tr><td>Manage staff &amp; centers</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dot"></span></td><td><span class="dash">—</span></td></tr>
+        <tr><td>View child progress</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2><span class="num">12</span>System Architecture</h2>
+    <div class="archgrid">
+      <div class="arch"><h4>Internal Platform</h4><div class="who">Theraxis staff</div><ul><li>Tenant management</li><li>License &amp; credit ledger</li><li>Service catalogue configuration</li><li>Platform billing &amp; reconciliation</li></ul></div>
+      <div class="arch"><h4>Tenant Platform</h4><div class="who">Clinic staff — all 5 roles</div><ul><li>Students, assessments, care plans</li><li>Enrollment &amp; billing</li><li>Session scheduling &amp; conduct</li><li>Center &amp; staff management</li></ul></div>
+      <div class="arch"><h4>Parent Portal</h4><div class="who">Families</div><ul><li>Child progress summary</li><li>Session calendar (read-only)</li><li>Home carryover activities</li><li>Therapy notifications</li></ul></div>
+    </div>
+    <div class="data-note"><strong>Data layer:</strong> Supabase with Row-Level Security. All data is tenant-scoped; every role has a database-level policy. UI filtering is downstream of enforcement — never a substitute for it.</div>
+  </section>
+
+  <section class="section">
+    <h2><span class="num">13</span>Project Status</h2>
+    <div class="loop" style="margin-top:0;">
+      <strong>In process &amp; research.</strong> Theraxis is an active personal project — not a shipped product yet. The PRD, role model, gated workflows, and architecture documented in this case study are complete; implementation, user research, and success metrics are still underway.
+    </div>
+    <p style="color:var(--ink-soft);font-size:14.5px;margin-top:18px;">Read this case study as a systems-design spec: the product thinking and requirements are real; the live platform is still being built and tested.</p>
+  </section>
+
+  <section class="section">
+    <h2><span class="num">14</span>Reflections</h2>
+    <p style="color:var(--ink-soft);font-size:14.5px;">The sharpest tension in this project was between the AI-assisted care plan draft and clinical governance: an evidence engine that synthesizes 14 assessment domains into a draft plan is only useful if a Senior Therapist can trust it, and trust required making every gap and low-confidence domain visible rather than letting the draft look more finished than the evidence supported. That's why the draft is never auto-published — a human reviews and edits all six sections before anything moves to Approved.</p>
+    <p style="color:var(--ink-soft);font-size:14.5px;">Enforcing the five hard gates at the database layer rather than in the UI changed how the rest of the spec was written: a rule that only lives in a screen is a suggestion, not a guarantee. Writing gates as Row-Level Security policies forced every requirement to be stated precisely enough for a database to enforce it, not just precisely enough for a designer to explain it.</p>
+    <p style="color:var(--ink-soft);font-size:14.5px;margin-bottom:0;">With more time, the next area to pressure-test is the override path on payment gating — a Center Manager can unlock a session before payment clears, with a recorded reason. That's the one place the system trades a hard rule for judgment, and it deserves the same scrutiny the other four gates got before this goes further.</p>
+  </section>
+
+  <section class="section more-work">
+    <div class="more-work__head">
+      <span class="eyebrow">More work</span>
+      <a href="index.html#projects" class="more-work__all">View all work</a>
+    </div>
+    <div class="more-work__grid">
+      <a class="mw-card" href="druva.html">
+        <span class="mw-card__name">Druva</span>
+        <span class="mw-card__desc">Provisioning &amp; access for service partners</span>
+      </a>
+      <a class="mw-card" href="security-readiness.html">
+        <span class="mw-card__name">Security Readiness Score</span>
+        <span class="mw-card__desc">Six settings, one readiness widget</span>
+      </a>
+      <a class="mw-card" href="msc-dashboard.html">
+        <span class="mw-card__name">MSC Dashboard</span>
+        <span class="mw-card__desc">Operations dashboard for MSP partners</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<script src="js/system-theme.js"></script>
+<script src="audio/music.js"></script>
+</body>
+</html>

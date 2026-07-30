@@ -1,0 +1,109 @@
+<div class="diagram-artifact diagram-artifact--plotting">
+  <h2>Plotting Who, What, When, Where and How?</h2>
+
+  <div class="plot-grid-3">
+    <div class="plot-card">
+      <h3>Users</h3>
+      <ul>
+        <li>MSP Admin</li>
+        <li>Druva SE Team</li>
+        <li>MSP Customer DCP Admin</li>
+      </ul>
+    </div>
+    <div class="plot-card">
+      <h3>Customer Type</h3>
+      <ul>
+        <li>MSC — Direct MSC Tenant</li>
+        <li>Elite — MSC Tenant for selling products</li>
+        <li>Organic — Direct DCP Tenant</li>
+      </ul>
+    </div>
+    <div class="plot-card">
+      <h3>Managed Type</h3>
+      <p><strong>Managed Customer:</strong> MSP Admin will have direct access to customer tenant Console.</p>
+      <p><strong>Un-Managed Customer:</strong> MSP Admin will not have direct access to customer tenant Console.</p>
+    </div>
+  </div>
+
+  <div class="plot-grid-3">
+    <div class="plot-card">
+      <h3>Use Cases — MSP Admin</h3>
+      <ul>
+        <li>Creating a New Tenant as a Discrete Tenant</li>
+        <li>Request for products for a certain time for adding product license</li>
+        <li>Marking a managed tenant as a Unmanaged Tenant</li>
+        <li>Requesting View access for a certain time</li>
+        <li>Requesting Unmanaged tenant on a managed tenant</li>
+      </ul>
+    </div>
+    <div class="plot-card">
+      <h3>Use Cases — Druva SE Team</h3>
+      <ul>
+        <li>Allocating the Tenant to certain implementation</li>
+        <li>Converting the organic tenant to a discrete tenant</li>
+        <li>Convert unmanaged tenant to managed tenant</li>
+        <li>View access for a certain time</li>
+      </ul>
+    </div>
+    <div class="plot-card">
+      <h3>Use Cases — MSP customer DCP Admin</h3>
+      <ul>
+        <li>Allowing the MSP admin access the console for a certain time</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="plot-grid-7">
+    <div class="plot-card plot-card--step">
+      <h3>Creating a New Tenant as a Discrete Tenant</h3>
+      <span class="plot-meta">User: MSP Admin · Console: MSC</span>
+      <p>Step 1: Create a tenant</p>
+      <p>Step 2: Fill details like tenant name, Email ID, Status: New/Evaluation etc.</p>
+      <p>Will be reflected in the MSP Customer listing page.</p>
+    </div>
+    <div class="plot-card plot-card--step">
+      <h3>Marking an organic tenant to a discrete tenant</h3>
+      <span class="plot-meta">User: SE Team · Console: Druva Central</span>
+      <p>Step 1: Search the tenant</p>
+      <p>Step 2: Mark as Discrete Tenant</p>
+      <p>Step 3: Map MSP</p>
+      <p>Step 4: Add confirmation</p>
+      <p>Will be reflected in the MSP Customer listing page.</p>
+    </div>
+    <div class="plot-card plot-card--step">
+      <h3>Adding products</h3>
+      <span class="plot-meta">User: MSP Admin · Console: MSC</span>
+      <p>Step 1: Customer list page</p>
+      <p>Step 2: Request for products alone with User count etc.</p>
+      <p>It should wait for the SE team approval</p>
+    </div>
+    <div class="plot-card plot-card--step">
+      <h3>Marking a tenant as a Unmanaged Tenant</h3>
+      <span class="plot-meta">User: MSP Admin · Console: MSC</span>
+      <p>Step 1: Customer info page</p>
+      <p>Step 2: Mark as Unmanaged Tenant (this will remove view access from this)</p>
+      <p>Will be reflected in the MSP Customer listing page.</p>
+    </div>
+    <div class="plot-card plot-card--step">
+      <h3>Requesting Unmanaged tenant on a managed tenant</h3>
+      <span class="plot-meta">User: MSP Admin · Console: MSC</span>
+      <p>Step 1: Customer info page</p>
+      <p>Step 2: Request to be part to (set to unmanaged)</p>
+      <p>Will be reflected in the MSP Customer listing page.</p>
+    </div>
+    <div class="plot-card plot-card--step">
+      <h3>Requesting view access for a certain time</h3>
+      <span class="plot-meta">User: MSP Admin · Console: MSC</span>
+      <p>Step 1: Customer info page</p>
+      <p>Step 2: Request for access for a certain time</p>
+      <p>It should wait for the customer approval</p>
+    </div>
+    <div class="plot-card plot-card--step">
+      <h3>Allowing the DCP admin access the console for a certain time</h3>
+      <span class="plot-meta">User: DCP Admin · Console: Druva Cloud Platform</span>
+      <p>Step 1: Notification</p>
+      <p>Step 2: Approve / reject request</p>
+      <p>It should wait for the customer approval</p>
+    </div>
+  </div>
+</div>

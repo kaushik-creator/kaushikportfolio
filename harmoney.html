@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css"/>
+<link rel="stylesheet" href="styles/system.css?v=20260801"/>
 <style>
 /* Harmoney-specific UI — design tokens only */
 .dash-frame{border:1px solid var(--line);overflow:hidden;background:var(--surface);}
@@ -43,22 +43,12 @@
 .ui-points li{font-size:15px;line-height:1.6;display:flex;gap:.45rem;color:var(--ink-soft);}
 .ui-points li::before{content:'•';color:var(--muted);flex-shrink:0;}
 .stack{display:flex;flex-direction:column;gap:.85rem;}
-.proto-wrap{margin-top:1.2rem;border:1px solid var(--line);background:var(--surface);padding:.5rem;}
-.proto-wrap iframe{display:block;width:100%;height:450px;border:1px solid var(--line);}
 .gif-stack{display:flex;flex-direction:column;gap:.8rem;margin-top:1.2rem;}
-.learn-list{display:flex;flex-direction:column;gap:.7rem;margin-top:1.1rem;}
-.learn-item{display:flex;gap:.9rem;padding:clamp(16px,2vw,24px);border:1px solid var(--line);background:var(--surface);align-items:flex-start;}
-.learn-n{font-size:12px;font-weight:600;color:var(--muted);flex-shrink:0;margin-top:.05rem;}
-.learn-t{font-size:15px;line-height:1.65;color:var(--ink-soft);}
-.learn-t strong{color:var(--ink);font-weight:600;}
-.module--accent .learn-item{background:transparent;border-color:var(--accent-ink);}
-.module--accent .learn-n,.module--accent .learn-t,.module--accent .learn-t strong{color:var(--accent-ink);}
 @media(max-width:820px){
   .proc{grid-template-columns:1fr 1fr;}
   .story-board{grid-template-columns:1fr;}
   .ui-card,.ui-card.persona{grid-template-columns:1fr;}
   .ui-media img{max-height:210px;}
-  .proto-wrap iframe{height:320px;}
   .story-slider-btn{width:34px;height:34px;font-size:1.05rem;}
 }
 </style>
@@ -74,13 +64,13 @@
 </button>
 
 <header class="site-header"><div class="wrap">
-  <a href="index.html" style="font-family:var(--font-display);font-weight:700;font-size:20px;">K.</a>
+  <a href="index.html" class="site-logo">K.</a>
   <nav id="nav">
     <a href="index.html#about">About</a>
     <a href="index.html#keywords">Skills</a>
     <a href="index.html#experience">Experience</a>
     <a href="index.html#projects" class="active" aria-current="page">Projects</a>
-    <a href="kaushik-resume-gd.pdf">Resume</a>
+    <a href="kaushik-resume-gd.pdf?v=20260730">Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
       <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
       <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -151,8 +141,8 @@
     <div class="row-2">
       <div>
         <p class="eyebrow">Step 02 / What I Did</p>
-        <p>As the founding product designer, I owned the end-to-end UX from discovery to launch. I mapped the offline trading workflow, defined product structure, designed key screens for web and mobile, and translated complex trading logic into clear interactions.</p>
-        <p>I also built the design foundation from scratch: tokens, reusable components, and handoff specs. Alongside design execution, I worked closely with the CEO, CTO, and engineers on scope decisions, usability feedback, and release QA.</p>
+        <p>Scope covered end-to-end UX from discovery through launch: offline trading workflow mapping, product structure, key screens for web and mobile, and translation of complex trading logic into clear interactions.</p>
+        <p>The design foundation was built from scratch — tokens, reusable components, and handoff specs — with ongoing alignment alongside the CEO, CTO, and engineers on scope decisions, usability feedback, and release QA.</p>
         <div class="proc">
           <div class="proc-step"><div class="proc-n">01</div><div class="proc-t">Discovery</div><div class="proc-arr">→</div></div>
           <div class="proc-step"><div class="proc-n">02</div><div class="proc-t">Research</div><div class="proc-arr">→</div></div>
@@ -182,7 +172,7 @@
   <section class="section">
     <p class="eyebrow">Story</p>
     <h2>From Listing Site to Trading Platform</h2>
-    <p>Harmoney was positioned as a bond listing website, not a digital bond trading engine. The challenge was to evolve it into a product traders could use in their everyday workflow. Since bond traders often depend on four to six screens for different tasks, Harmoney aimed to reduce this fragmentation and earn a place as one essential screen in their trading environment.</p>
+    <p>Harmoney started as a bond listing site; the product goal was a single trading environment where discovery, comparison, order placement, and execution tracking share one workflow — replacing the four-to-six-screen setup traders used daily.</p>
     <div class="story-slider" id="storySlider">
       <div class="story-slider-stage">
         <img class="story-slider-image" id="storySliderImage" src="story/1.jpg" alt="Harmoney story frame 1"/>
@@ -201,9 +191,7 @@
       </figure>
       <div class="story-copy">
         <h3>Understanding the Product</h3>
-        <p>At the beginning, Harmoney primarily worked as an informational bond-search website while actual trading happened offline through calls and manual follow-ups.</p>
-        <p>The goal was to transform Harmoney into a complete digital trading platform where users could discover bonds, compare options, place orders, and track execution in one connected workflow.</p>
-        <p style="margin-bottom:0;">This storyboard became the alignment tool for design and engineering, helping us prioritize the most critical user flows first.</p>
+        <p>At launch, Harmoney functioned as a bond-search site while trading still ran offline through calls and manual follow-ups. The target state was one connected workflow: discover bonds, compare options, place orders, and track execution without leaving the platform.</p>
       </div>
     </div>
   </section>
@@ -211,8 +199,8 @@
   <section class="section">
     <p class="eyebrow">The Problem</p>
     <h2>Bond Trading Was Broken</h2>
-    <p>Brokers were still making deals over phone calls. Seriously. They'd call each other, negotiate, hang up, and manually record the deal in a spreadsheet. If prices changed while they were on the call with someone else, they had no way to know. Wealth managers had zero visibility into what bonds were available. It was chaos.</p>
-    <p>The CEO (who came from this industry) knew we could digitize this. But designing for institutional traders is hard — they care about speed and data density, not pretty interfaces.</p>
+    <p>Bond trades were still closed over phone calls — brokers negotiated verbally, hung up, and recorded the deal manually in a spreadsheet. If a price moved while a broker was mid-call with someone else, there was no way to know. Wealth managers had no visibility into what bonds were even available.</p>
+    <p>The CEO, who came from the bond trading industry, knew this could be digitized. The design challenge was different from most consumer products: institutional traders optimize for speed and data density, not visual polish.</p>
     <figure class="plate" style="margin-top:1.35rem;">
       <img src="story-understanding.png" alt="Understanding the product and transition from informational website to digital bond trading platform"/>
       <figcaption>Understanding the Product</figcaption>
@@ -311,24 +299,24 @@
         <figcaption>Flow Demo 03: Easy way to edit and trade bonds</figcaption>
       </figure>
     </div>
-    <h3 style="margin-top:1.5rem;">Prototype for Exploration</h3>
-    <div class="proto-wrap">
-      <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/Sxjxac5MQTL9W86Q713Y1H/Interview-Preperation?node-id=5471-764323&viewport=674%2C221%2C0.73&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=5471%3A764323&page-id=4855%3A112691&show-proto-sidebar=1&embed-host=share" allowfullscreen></iframe>
-    </div>
-    <figure class="plate" style="margin-top:.9rem;">
-      <img src="harmoney-gif/group-1000002279.png" alt="Additional Harmoney exploration visual"/>
-    </figure>
   </section>
 
   <section class="section">
-    <div class="module module--accent">
-      <p class="eyebrow">What I Learned</p>
-      <h2>The Hard Way</h2>
-      <p>Working at an early-stage startup as the only designer was brutal. No design manager, no design ops, no safety net. But it taught me things a bigger company never would.</p>
-      <div class="learn-list">
-        <div class="learn-item"><div class="learn-n">01</div><div class="learn-t"><strong>You have to learn the domain.</strong> I spent weeks learning how bond trading actually works. Not just skimming Wikipedia. Actually understanding what the CEO was building. That's when design decisions stopped being guesses.</div></div>
-        <div class="learn-item"><div class="learn-n">02</div><div class="learn-t"><strong>Systems matter more than screens.</strong> I couldn't design every state of every component. So I built a system that let the engineers extrapolate. That was more valuable than a perfect Figma file.</div></div>
-        <div class="learn-item"><div class="learn-n">03</div><div class="learn-t"><strong>Shipping beats perfection.</strong> We launched with "good enough" design. Then I fixed things based on how real traders actually used it. It was messy, but it worked better than if I'd obsessed over perfection for 6 months.</div></div>
+    <p class="eyebrow">Reflections</p>
+    <h3>Key takeaways from the project</h3>
+    <p>As the sole designer at an early-stage startup, there was no design manager or design ops function to lean on — every decision had to hold up on its own.</p>
+    <div class="row-3 grid-gap-top">
+      <div class="module">
+        <p class="eyebrow">01 · Learn the domain first</p>
+        <p>Design decisions stayed guesses until bond trading mechanics were understood — not a surface read, but the actual workflows the CEO was building around. Domain fluency, not visual polish, made the interaction design defensible.</p>
+      </div>
+      <div class="module">
+        <p class="eyebrow">02 · Systems outlast screens</p>
+        <p>No single designer can specify every state of every component by hand. Building a reusable system — tokens, components, patterns — let engineering extrapolate correctly to states not personally drawn.</p>
+      </div>
+      <div class="module">
+        <p class="eyebrow">03 · Ship, then correct with real usage</p>
+        <p>Harmoney launched with a deliberately scoped first version, then improved based on how real traders actually used it. That feedback loop produced a better product faster than holding the release for a more complete design would have.</p>
       </div>
     </div>
   </section>
@@ -348,7 +336,7 @@
         <span class="mw-card__desc">Operations dashboard for MSP partners</span>
       </a>
       <a class="mw-card" href="mason.html">
-        <span class="mw-card__name">Mason</span>
+        <span class="mw-card__name">Mason · ModeMagic</span>
         <span class="mw-card__desc">Shopify commerce app, 8× weekly active users</span>
       </a>
     </div>

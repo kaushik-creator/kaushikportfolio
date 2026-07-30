@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css"/>
+<link rel="stylesheet" href="styles/system.css?v=20260801"/>
 <style>
 .slider{border:1px solid var(--line);background:var(--surface);padding:12px;}
 .stage{position:relative;display:flex;justify-content:center;align-items:center;min-height:60vh;}
@@ -31,13 +31,13 @@
 </button>
 
 <header class="site-header"><div class="wrap">
-  <a href="index.html" style="font-family:var(--font-display);font-weight:700;font-size:20px;">K.</a>
+  <a href="index.html" class="site-logo">K.</a>
   <nav id="nav">
     <a href="index.html#about">About</a>
     <a href="index.html#keywords">Skills</a>
     <a href="index.html#experience">Experience</a>
     <a href="index.html#projects" class="active" aria-current="page">Projects</a>
-    <a href="kaushik-resume-gd.pdf">Resume</a>
+    <a href="kaushik-resume-gd.pdf?v=20260730">Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
       <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
       <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -54,6 +54,7 @@
     <p class="eyebrow" style="margin-top:24px;">Personal Project</p>
     <h1>Dashboard</h1>
     <p>A personal learning project focused on designing a dashboard that helps users consume information quickly and clearly.</p>
+    <p style="color:var(--ink-soft);">This exploration uses a drone fleet management template — fleet status, live telemetry, mission planning, and alert triage — to practice information density, visual hierarchy, and scannable layout without decorative chrome. Each screen in the carousel tests a different slice of that problem: how much data belongs above the fold, how severity reads at a glance, and how navigation stays stable when the underlying metrics change.</p>
 
     <div class="slider" style="margin-top:32px;">
       <div class="stage">
@@ -62,7 +63,7 @@
         <button class="slide-nav next" id="nextBtn" aria-label="Next image">›</button>
       </div>
       <div class="slider-meta">
-        <span>Desktop Dron Template</span>
+        <span>Desktop Drone Template</span>
         <span id="slideCount">1 / 55</span>
       </div>
     </div>

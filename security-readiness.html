@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css"/>
+<link rel="stylesheet" href="styles/system.css?v=20260801"/>
 <style>
 .lightbox-modal{display:none;position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,.95);overflow:auto;}
 .lightbox-close{position:fixed;top:20px;right:35px;color:var(--surface);font-size:40px;cursor:pointer;line-height:1;}
@@ -21,10 +21,6 @@
 .callout{display:block;margin-top:16px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-soft);line-height:1.5;}
 .callout--error{border-top-color:var(--accent);color:var(--ink);}
 .tradeoff{border:1px solid var(--line);border-left:2px solid var(--accent);padding:24px;margin-top:32px;background:var(--surface);}
-.btn{display:inline-block;font-size:14px;font-weight:500;border:1px solid var(--accent-ink);padding:10px 18px;margin-top:16px;}
-.btn:hover{background:var(--surface);color:var(--accent-ink);}
-.module--accent .btn{background:var(--accent-ink);color:var(--accent);border-color:var(--accent-ink);}
-.module--accent .btn:hover{background:var(--surface);color:var(--accent-ink);}
 </style>
 </head>
 <body>
@@ -38,13 +34,13 @@
 </button>
 
 <header class="site-header"><div class="wrap">
-  <a href="index.html" style="font-family:var(--font-display);font-weight:700;font-size:20px;">K.</a>
+  <a href="index.html" class="site-logo">K.</a>
   <nav id="nav">
     <a href="index.html#about">About</a>
     <a href="index.html#keywords">Skills</a>
     <a href="index.html#experience">Experience</a>
     <a href="index.html#projects" class="active" aria-current="page">Projects</a>
-    <a href="kaushik-resume-gd.pdf">Resume</a>
+    <a href="kaushik-resume-gd.pdf?v=20260730">Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
       <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
       <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -269,7 +265,7 @@
       <p class="eyebrow">Product demo</p>
       <h3 style="margin-top: 0; margin-bottom: 16px;">See the Security Center in action</h3>
       <p style="margin: 0;">Druva's official walkthrough of the Security Center — real-time visibility into backup security risks, readiness scoring, and threat triage in one unified dashboard.</p>
-      <a href="https://www.druva.com/learning-center/resources/media/product-demos/security-center" class="btn" target="_blank" rel="noopener noreferrer">Watch product demo →</a>
+      <a href="https://www.druva.com/learning-center/resources/media/product-demos/security-center" class="btn btn--demo" target="_blank" rel="noopener noreferrer">Watch product demo →</a>
     </div>
   </section>
 
