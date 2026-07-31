@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260801"/>
+<link rel="stylesheet" href="styles/system.css?v=20260809"/>
 <style>
 .lightbox-modal{display:none;position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,.95);overflow:auto;}
 .lightbox-close{position:fixed;top:20px;right:35px;color:var(--surface);font-size:40px;cursor:pointer;line-height:1;}
@@ -43,9 +43,9 @@
   <nav id="nav">
     <a href="index.html#about">About</a>
     <a href="index.html#keywords">Skills</a>
-    <a href="index.html#experience">Experience</a>
     <a href="index.html#projects" class="active" aria-current="page">Projects</a>
-    <a href="kaushik-resume-gd.pdf?v=20260730">Resume</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="kaushik-resume-gd.pdf?v=20260731">Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
       <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
       <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -322,6 +322,11 @@
         <h4 style="margin-top: 0;">Iteration 2 — Combined Customer × Day matrix</h4>
         <div class="plate plate--wide" style="margin: 16px 0;">
           <img class="lightbox-trigger" src="msc-dashboard/triage-iteration-2.png" alt="Backup Failure Triage Customer by Day heat map with inSync and Phoenix sub-labels per cell and 7d 30d 45d time toggle">
+        </div>
+        <div class="chart-legend" aria-label="Heat map severity key">
+          <span class="chart-legend__item"><span class="chart-legend__swatch chart-legend__swatch--high" aria-hidden="true"></span>High failure count</span>
+          <span class="chart-legend__item"><span class="chart-legend__swatch chart-legend__swatch--med" aria-hidden="true"></span>Moderate failures</span>
+          <span class="chart-legend__item"><span class="chart-legend__swatch chart-legend__swatch--low" aria-hidden="true"></span>Low / no failures</span>
         </div>
         <p>The second pass rebuilt this as a true per-day heat map — customers as rows, days as columns, severity-coded cells — with a toggle for product and time range. This solved the at-a-glance scanning problem, but merged Enterprise Workloads (Phoenix) and SaaS/Endpoints (inSync) into the same cell, each with its own sync cadence. A day's combined total wasn't a true apples-to-apples number, and spotting which product family drove a spike meant reading small sub-labels inside every cell — defeating the point of a heat map built for scanning.</p>
       </div>

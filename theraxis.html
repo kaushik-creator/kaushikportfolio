@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260801"/>
+<link rel="stylesheet" href="styles/system.css?v=20260809"/>
 <style>
 .tx .dek{font-size:18px;color:var(--ink-soft);max-width:680px;margin:0 0 28px;}
 .tx .meta-row{display:flex;gap:36px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px;margin-top:28px;}
@@ -117,9 +117,9 @@
   <nav id="nav">
     <a href="index.html#about">About</a>
     <a href="index.html#keywords">Skills</a>
-    <a href="index.html#experience">Experience</a>
     <a href="index.html#projects" class="active" aria-current="page">Projects</a>
-    <a href="kaushik-resume-gd.pdf?v=20260730">Resume</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="kaushik-resume-gd.pdf?v=20260731">Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
       <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
       <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -343,6 +343,10 @@
 
   <section class="section">
     <h2><span class="num">11</span>Access Control — Role Matrix</h2>
+    <div class="chart-legend" aria-label="Matrix permission key">
+      <span class="chart-legend__item"><span class="chart-legend__dot" aria-hidden="true"></span>Permitted</span>
+      <span class="chart-legend__item"><span class="dash" aria-hidden="true">—</span> Not permitted</span>
+    </div>
     <div class="table-wrap">
       <table>
         <tr><th>Capability</th><th>Recept.</th><th>Ctr Mgr</th><th>Sr. Ther.</th><th>Therapist</th><th>Tenant Admin</th><th>Parent</th></tr>

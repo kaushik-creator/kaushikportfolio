@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260801"/>
+<link rel="stylesheet" href="styles/system.css?v=20260809"/>
 <style>
 .lightbox-modal{display:none;position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,.95);overflow:auto;}
 .lightbox-close{position:fixed;top:20px;right:35px;color:var(--surface);font-size:40px;cursor:pointer;line-height:1;}
@@ -38,9 +38,9 @@
   <nav id="nav">
     <a href="index.html#about">About</a>
     <a href="index.html#keywords">Skills</a>
-    <a href="index.html#experience">Experience</a>
     <a href="index.html#projects" class="active" aria-current="page">Projects</a>
-    <a href="kaushik-resume-gd.pdf?v=20260730">Resume</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="kaushik-resume-gd.pdf?v=20260731">Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
       <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
       <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -181,7 +181,7 @@
     <div class="row-2" style="margin-top: 32px;">
       <figure class="plate">
         <img class="lightbox-trigger" src="security-readiness/shipped-gauge.png" alt="Shipped Cyber Resiliency Readiness Score in gauge view with inner Mandatory ring and outer Recommended ring, tooltip on incomplete Cyber Resiliency Reports control, and 1 of 6 controls configured">
-        <figcaption><strong>Gauge view:</strong> Nested concentric arcs — Mandatory inner, Recommended outer. Hover tooltip surfaces the specific gap without leaving the Security Center.</figcaption>
+        <figcaption><strong>Gauge view:</strong> Nested concentric arcs — inner ring tracks Mandatory (audit-blocking) controls; outer ring tracks Recommended (risk-reducing) controls. Hover tooltip surfaces a specific gap; the same split applies in list view below.</figcaption>
       </figure>
       <figure class="plate">
         <img class="lightbox-trigger" src="security-readiness/shipped-list.png" alt="Shipped Cyber Resiliency Readiness Score in list view showing Mandatory and Recommended controls with pass-fail icons and pencil edit affordance per row">
