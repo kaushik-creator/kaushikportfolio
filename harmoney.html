@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260809"/>
+<link rel="stylesheet" href="styles/system.css?v=20260807music"/>
 <style>
 /* Harmoney-specific UI — design tokens only */
 .dash-frame{border:1px solid var(--line);overflow:hidden;background:var(--surface);}
@@ -67,9 +67,9 @@
   <a href="index.html" class="site-logo">K.</a>
   <nav id="nav">
     <a href="index.html#about">About</a>
-    <a href="index.html#keywords">Skills</a>
     <a href="index.html#projects" class="active" aria-current="page">Projects</a>
     <a href="index.html#experience">Experience</a>
+    <a href="theraxis.html">AI</a>
     <a href="kaushik-resume-gd.pdf?v=20260731">Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
       <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
@@ -389,6 +389,7 @@ storySlider.addEventListener('keydown', (e) => {
 storySlider.setAttribute('tabindex', '0');
 renderStorySlide();
 </script>
+<script src="js/site-footer.js"></script>
 <script src="js/system-theme.js"></script>
 <script src="audio/music.js"></script>
 </body>

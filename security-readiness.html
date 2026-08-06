@@ -5,93 +5,654 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="Security Readiness Score — case study by Kaushik, UX Designer."/>
 <meta property="og:title" content="Security Readiness Score — Case Study · Kaushik"/>
-<meta property="og:description" content="Six scattered security settings. One widget. Designing the Cyber Resiliency Readiness Score for Druva Cloud Administrators."/>
+<meta property="og:description" content="Two problems. One Security Center. Designing Explore Cyber Resiliency Features and the Cyber Resiliency Readiness Score for Druva Cloud Administrators."/>
 <meta name="theme-color" content="#0A0A0A"/>
 <title>Security Readiness Score — Case Study · Kaushik</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260809"/>
+<link rel="stylesheet" href="styles/system.css?v=20260807music"/>
 <style>
 .lightbox-modal{display:none;position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,.95);overflow:auto;}
-.lightbox-close{position:fixed;top:20px;right:35px;color:var(--surface);font-size:40px;cursor:pointer;line-height:1;}
+.lightbox-close{position:fixed;top:20px;right:35px;z-index:10001;color:var(--surface);font-size:40px;cursor:pointer;line-height:1;}
 .lightbox-close:hover{color:var(--muted);}
 .lightbox-content{margin:auto;display:block;max-width:1600px;max-height:90vh;width:auto;}
 
-/* Page-scoped: prose line length */
-.sr-page .section > p,
-.sr-page .module > p,
-.sr-page .sr-prose,
-.sr-page .sr-sticky-row__text p,
-.sr-page .sr-sticky-row__text .callout{ max-width:72ch; }
+/* ============ CASE STUDY GRID (aligned with MSC) ============ */
+.cs-page{ --cs-gap: var(--grid-gap); }
+.cs-page h1,
+.cs-page h2,
+.cs-page h3,
+.cs-page h4{ font-weight:700; max-width:none; width:100%; }
+.cs-page p,
+.cs-page li,
+.cs-page ul,
+.cs-page ol,
+.cs-page figcaption,
+.cs-page .eyebrow,
+.cs-page .cs-list,
+.cs-page .cs-callout,
+.cs-page .module,
+.cs-page .tradeoff,
+.cs-page .meta,
+.cs-page .cs-prose{ max-width:none; width:100%; }
+.cs-page p{ line-height:1.6; }
 
-/* Ground UI shots — no bleed into white page */
-.sr-page .sr-shot,
-.sr-page figure img,
-.sr-page .plate img{
-  border:1px solid rgba(0,0,0,.08);
-  border-radius:8px;
-  box-shadow:0 10px 25px -5px rgba(0,0,0,.05);
-  background:#fff;
-  width:100%;
+.cs-grid{
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:var(--cs-gap);
+  align-items:start;
+}
+.cs-span-12{ grid-column:1 / -1; }
+.cs-span-8{ grid-column:span 8; }
+.cs-span-7{ grid-column:span 7; }
+.cs-span-6{ grid-column:span 6; }
+.cs-span-5{ grid-column:span 5; }
+.cs-span-4{ grid-column:span 4; }
+.cs-span-3{ grid-column:span 3; }
+
+.cs-page .cs-shot,
+.cs-page figure img,
+.cs-page .plate img{
   display:block;
+  width:auto;
+  max-width:100%;
+  height:auto;
+  margin:0 auto;
+  border:1px solid rgba(0,0,0,.12);
+  border-radius:6px;
+  box-shadow:none;
+  background:#fff;
+  image-rendering:auto;
 }
-.sr-page .lightbox-trigger{ cursor:zoom-in; }
-:root[data-theme="dark"] .sr-page .sr-shot,
-:root[data-theme="dark"] .sr-page figure img,
-:root[data-theme="dark"] .sr-page .plate img{
-  border-color:rgba(255,255,255,.12);
-  box-shadow:0 10px 25px -5px rgba(0,0,0,.35);
+.cs-compare .cs-shot,
+.cs-explore .cs-shot{
+  width:100%;
+}
+.cs-page .plate{ border:none; background:transparent; padding:0; }
+.cs-page .plate figcaption,
+.cs-page figure figcaption{
+  margin-top:12px;
+  max-width:none;
+  width:100%;
+  color:var(--ink-soft);
+  font-size:14px;
+  line-height:1.5;
+}
+.cs-page .lightbox-trigger{ cursor:zoom-in; }
+:root[data-theme="dark"] .cs-page .cs-shot,
+:root[data-theme="dark"] .cs-page figure img{
+  border-color:rgba(255,255,255,.14);
 }
 
-.sr-page .plate{ border:none; background:transparent; padding:0; }
-.sr-page .plate figcaption,
-.sr-page figure figcaption{ margin-top:12px; max-width:72ch; }
+.cs-mark{
+  display:inline;
+  padding:0 0.2em;
+  background:rgba(232,163,61,.22);
+  color:var(--ink);
+  font-weight:600;
+  box-decoration-break:clone;
+  -webkit-box-decoration-break:clone;
+}
+.cs-chip{
+  display:inline-block;
+  padding:3px 8px;
+  border-radius:4px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.02em;
+  line-height:1.35;
+  vertical-align:baseline;
+  white-space:nowrap;
+}
+.cs-chip--amber{ background:rgba(232,163,61,.22); color:var(--ink); }
+.cs-chip--danger{ background:rgba(192,57,43,.14); color:#8B1E16; }
+.cs-chip--ok{ background:rgba(31,122,77,.14); color:#145C38; }
+.cs-chip--info{ background:rgba(37,99,235,.12); color:#1D4ED8; }
+:root[data-theme="dark"] .cs-chip--danger{ background:rgba(226,90,74,.18); color:#F0A29A; }
+:root[data-theme="dark"] .cs-chip--ok{ background:rgba(61,191,122,.16); color:#7DDBA8; }
+:root[data-theme="dark"] .cs-chip--info{ background:rgba(96,165,250,.16); color:#93C5FD; }
 
-.callout{display:block;margin-top:16px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-soft);line-height:1.5;}
-.callout--error{border-top-color:var(--accent);color:var(--ink);}
-.tradeoff{border:1px solid var(--line);border-left:2px solid var(--accent);padding:24px;margin-top:32px;background:var(--surface);}
-.sr-nda{
-  font-size:12px;color:var(--muted);max-width:72ch;margin:20px 0 0;
-  padding-top:16px;border-top:1px solid var(--line);line-height:1.55;
+.cs-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin:0 0 12px;
+  padding:6px 10px;
+  border:1px solid var(--line);
+  background:var(--surface);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  line-height:1.3;
+}
+.cs-tag--fail{ border-color:rgba(192,57,43,.35); color:#C0392B; background:rgba(192,57,43,.06); }
+.cs-tag--warn{ border-color:rgba(200,153,42,.45); color:#9A6F12; background:rgba(200,153,42,.1); }
+.cs-tag--shipped{ border-color:rgba(31,122,77,.35); color:#1F7A4D; background:rgba(31,122,77,.08); }
+:root[data-theme="dark"] .cs-tag--fail{ color:#E25A4A; }
+:root[data-theme="dark"] .cs-tag--warn{ color:#F4C13D; }
+:root[data-theme="dark"] .cs-tag--shipped{ color:#3DBF7A; }
+
+.cs-pointers{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(14px,2vw,22px);
+  margin-top:20px;
+}
+.cs-pointer{
+  border:1px solid var(--line);
+  background:var(--surface);
+  padding:18px 18px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  height:100%;
+  min-width:0;
+}
+.cs-pointer__head{ display:flex; align-items:center; gap:12px; }
+.cs-pointer__icon{
+  width:36px; height:36px;
+  display:inline-flex; align-items:center; justify-content:center;
+  border:1px solid var(--line); background:var(--bg); color:var(--ink); flex-shrink:0;
+}
+.cs-pointer__icon svg{ width:18px; height:18px; }
+.cs-pointer__icon--danger{ color:#C0392B; border-color:rgba(192,57,43,.35); }
+.cs-pointer__icon--warn{ color:#C8992A; border-color:rgba(200,153,42,.4); }
+.cs-pointer__icon--ok{ color:#1F7A4D; border-color:rgba(31,122,77,.35); }
+.cs-pointer__icon--info{ color:#2563EB; border-color:rgba(37,99,235,.35); }
+.cs-pointer__step{
+  margin:0; font-size:11px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--muted);
+}
+.cs-pointer h4{ margin:0; font-size:clamp(15px,1.3vw,17px); }
+.cs-pointer p{ margin:0; font-size:14px; line-height:1.45; color:var(--muted); max-width:none; }
+@media (max-width:900px){ .cs-pointers{ grid-template-columns:1fr; } }
+
+.cs-list{ margin:0; padding-left:0; list-style:none; color:var(--ink-soft); font-size:15px; line-height:1.6; }
+.cs-list li{ display:flex; gap:10px; align-items:flex-start; margin-bottom:12px; }
+.cs-list li:last-child{ margin-bottom:0; }
+.cs-list strong{ color:var(--ink); font-weight:600; }
+.cs-ico{ flex-shrink:0; width:18px; height:18px; margin-top:2px; color:var(--muted); }
+.cs-ico--warn{ color:#C8992A; }
+.cs-ico--danger{ color:#C0392B; }
+.cs-ico--ok{ color:#1F7A4D; }
+
+.cs-page .meta{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:var(--cs-gap);
+  padding-top:24px;
+  margin-top:28px;
+  border-top:1px solid var(--line);
+}
+.cs-page .meta > div{
+  min-width:0;
+  padding-right:clamp(8px,1.2vw,20px);
+  border-right:1px solid var(--line);
+}
+.cs-page .meta > div:last-child{ border-right:none; padding-right:0; }
+.cs-page .meta .k{
+  display:block; font-size:11px; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--muted); margin-bottom:6px;
+}
+.cs-page .meta .v{
+  font-family:var(--font-display); font-weight:600;
+  font-size:15px; color:var(--ink); line-height:1.35;
 }
 
-/* Iteration critique overlays */
-.sr-annotate{ position:relative; }
-.sr-annotate__pin{
-  position:absolute; z-index:2;
-  max-width:min(220px,46%);
-  background:rgba(20,20,20,.92); color:#fff;
-  font-size:11px; font-weight:600; line-height:1.35;
-  letter-spacing:.01em;
-  padding:8px 10px; border-left:3px solid #E24B4A;
+.cs-nda{
+  font-size:12px; color:var(--muted); margin:20px 0 0;
+  padding-top:16px; border-top:1px solid var(--line); line-height:1.55;
+}
+
+.cs-callout{
+  border:1px solid var(--line);
+  background:var(--surface);
+  padding:clamp(20px,2.4vw,28px);
+  width:100%;
+  box-sizing:border-box;
+}
+.cs-callout__title{ margin:0 0 14px; font-weight:700; color:var(--ink); font-size:15px; }
+
+.cs-brief{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--cs-gap);
+  width:100%;
+}
+.cs-brief__item{
+  min-width:0;
+  padding-right:clamp(8px,1.5vw,20px);
+  border-right:1px solid var(--line);
+}
+.cs-brief__item:last-child{ border-right:none; padding-right:0; }
+.cs-brief__item .eyebrow{ margin-bottom:8px; font-weight:700; }
+.eyebrow--problem{ color:#C0392B; }
+.eyebrow--existing{ color:#C8992A; }
+.eyebrow--preferred{ color:#1F7A4D; }
+:root[data-theme="dark"] .eyebrow--problem{ color:#E25A4A; }
+:root[data-theme="dark"] .eyebrow--existing{ color:#F4C13D; }
+:root[data-theme="dark"] .eyebrow--preferred{ color:#3DBF7A; }
+.cs-brief__item h3{
+  margin:0 0 10px;
+  font-size:clamp(1.05rem,1.4vw,1.25rem);
+  line-height:1.25;
+}
+.cs-brief__item .cs-list{ margin-top:4px; }
+.cs-brief__item .cs-list li{
+  display:list-item;
+  list-style:disc;
+  margin-left:1.1em;
+  margin-bottom:10px;
+  padding-left:0;
+  gap:0;
+}
+.cs-brief__item .cs-list li:last-child{ margin-bottom:0; }
+@media (max-width:820px){
+  .cs-brief{ grid-template-columns:1fr; }
+  .cs-brief__item{
+    border-right:none; padding-right:0;
+    padding-bottom:20px; border-bottom:1px solid var(--line);
+  }
+  .cs-brief__item:last-child{ border-bottom:none; padding-bottom:0; }
+}
+
+.cs-persona{
+  display:grid;
+  grid-template-columns:minmax(220px,280px) minmax(0,1fr);
+  border:1px solid var(--line);
+  background:var(--bg);
+  width:100%;
+  box-sizing:border-box;
+  overflow:hidden;
+}
+.cs-persona__rail{
+  background:var(--accent);
+  color:var(--accent-ink);
+  padding:clamp(24px,2.8vw,36px);
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  position:relative;
+}
+.cs-persona__rail::after{
+  content:"";
+  position:absolute;
+  inset:auto -40px -40px auto;
+  width:140px; height:140px;
+  border:18px solid rgba(20,20,20,.08);
+  border-radius:50%;
   pointer-events:none;
 }
-.sr-annotate__pin--tl{ top:10px; left:10px; }
-.sr-annotate__pin--tr{ top:10px; right:10px; }
-.sr-annotate__pin--bl{ bottom:12px; left:10px; }
-.sr-annotate__pin--br{ bottom:12px; right:10px; }
+.cs-persona__avatar{
+  width:88px; height:88px;
+  border:3px solid var(--accent-ink);
+  background:transparent;
+  color:var(--accent-ink);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:34px;
+  letter-spacing:-0.03em;
+  flex-shrink:0;
+}
+.cs-persona__rail .eyebrow{ color:rgba(20,20,20,.65); margin:0 0 8px; }
+.cs-persona__rail h3{
+  margin:0 0 8px; color:var(--accent-ink);
+  font-size:clamp(1.5rem,2.2vw,1.85rem); line-height:1.1;
+}
+.cs-persona__role{
+  margin:0; font-size:14px; line-height:1.45; color:rgba(20,20,20,.78);
+}
+.cs-persona__tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; }
+.cs-persona__tag{
+  font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  border:1px solid rgba(20,20,20,.28); padding:6px 9px; background:rgba(255,255,255,.28);
+}
+.cs-persona__body{
+  padding:clamp(24px,3vw,40px);
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
+.cs-persona__quote{
+  margin:0;
+  font-size:clamp(1.05rem,1.5vw,1.25rem);
+  line-height:1.45;
+  color:var(--ink);
+  font-family:var(--font-display);
+  font-weight:600;
+  padding:18px 20px;
+  background:var(--surface);
+  border-left:4px solid var(--accent);
+}
+.cs-persona__bio{
+  margin:0; color:var(--ink-soft); font-size:15px; line-height:1.65;
+}
+.cs-persona__grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:var(--cs-gap);
+}
+.cs-persona__block{
+  min-width:0;
+  border:1px solid var(--line);
+  background:var(--surface);
+  padding:16px 16px 18px;
+  transition:transform .2s ease, border-color .2s ease;
+}
+.cs-persona__block:hover{ transform:translateY(-2px); border-color:var(--ink); }
+.cs-persona__block .k{
+  display:flex; align-items:center; gap:8px;
+  font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+  font-weight:700; margin-bottom:12px;
+}
+.cs-persona__block .k svg{ width:14px; height:14px; flex-shrink:0; }
+.cs-persona__block--goals .k{ color:#1F7A4D; }
+.cs-persona__block--frictions .k{ color:#C0392B; }
+.cs-persona__block--behaviors .k{ color:#C8992A; }
+.cs-persona__block--needs .k{ color:var(--ink); }
+.cs-persona__block ul{ margin:0; padding:0; list-style:none; }
+.cs-persona__block li{
+  position:relative; padding-left:12px; margin-bottom:8px;
+  font-size:13px; line-height:1.5; color:var(--ink-soft);
+}
+.cs-persona__block li:last-child{ margin-bottom:0; }
+.cs-persona__block li::before{
+  content:""; position:absolute; left:0; top:0.55em;
+  width:5px; height:5px; background:currentColor; opacity:.45;
+}
+.cs-persona__asks h4{
+  margin:0 0 14px; font-size:14px; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--muted); font-weight:700;
+}
+.cs-persona__asks-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--cs-gap);
+  list-style:none; margin:0; padding:0; counter-reset:ask;
+}
+.cs-persona__ask{
+  counter-increment:ask;
+  border:1px solid var(--line);
+  background:var(--bg);
+  padding:16px;
+  display:flex; flex-direction:column; gap:10px;
+  min-height:100%;
+  transition:border-color .2s ease, background .2s ease;
+}
+.cs-persona__ask:hover{ border-color:var(--accent); background:var(--surface); }
+.cs-persona__ask::before{
+  content:counter(ask, decimal-leading-zero);
+  font-family:var(--font-display); font-weight:800; font-size:20px;
+  color:var(--accent); line-height:1;
+}
+.cs-persona__ask span{
+  font-size:14px; line-height:1.45; color:var(--ink); font-weight:600;
+}
+.cs-persona__ask small{
+  font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--muted); font-weight:700;
+}
+:root[data-theme="dark"] .cs-persona__rail::after{ border-color:rgba(20,20,20,.12); }
+:root[data-theme="dark"] .cs-persona__block:hover{ border-color:var(--accent); }
+@media (max-width:980px){
+  .cs-persona{ grid-template-columns:1fr; }
+  .cs-persona__grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .cs-persona__asks-grid{ grid-template-columns:1fr; }
+}
+@media (max-width:560px){ .cs-persona__grid{ grid-template-columns:1fr; } }
 
-/* Desktop sticky: text left, image pinned right */
-.sr-sticky-row{ display:block; margin-top:40px; }
-.sr-sticky-row + .sr-sticky-row{ margin-top:56px; }
-.sr-sticky-row__text h4{ margin-top:0; }
+.tradeoff{
+  border:1px solid var(--line);
+  border-left:4px solid #f59e0b;
+  padding:20px 24px;
+  margin-top:var(--cs-gap);
+  background:var(--surface);
+  display:flex; gap:12px; align-items:flex-start;
+  width:100%; box-sizing:border-box;
+}
+.tradeoff svg{ width:20px; height:20px; flex-shrink:0; margin-top:2px; color:#C8992A; }
+.tradeoff p{ margin:0; max-width:none; font-size:15px; line-height:1.6; color:var(--ink-soft); }
+.tradeoff strong{ color:var(--ink); }
+
+.cs-outcome{ display:flex; flex-direction:column; height:100%; box-sizing:border-box; }
+.cs-outcome .cs-outcome__head{
+  display:flex; align-items:center; gap:12px; margin-bottom:12px;
+}
+.cs-outcome .cs-outcome__icon{
+  width:36px; height:36px; display:inline-flex; align-items:center; justify-content:center;
+  margin:0; color:var(--ink); border:1px solid var(--line); background:var(--bg); flex-shrink:0;
+}
+.cs-outcome .cs-outcome__icon svg{ width:18px; height:18px; }
+.cs-outcome h4{ margin:0; }
+.cs-outcome p{ margin:0; flex:1 1 auto; max-width:none; }
+.cs-learning-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--cs-gap);
+  align-items:stretch;
+}
+@media (max-width:900px){ .cs-learning-grid{ grid-template-columns:1fr; } }
+
+.cs-sticky-row{
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:var(--cs-gap);
+  align-items:start;
+  margin-top:40px;
+}
+.cs-sticky-row + .cs-sticky-row{ margin-top:56px; }
+.cs-sticky-row__text{ grid-column:span 5; min-width:0; }
+.cs-sticky-row__media{ grid-column:span 7; min-width:0; }
+.cs-sticky-row--media-left .cs-sticky-row__media{ grid-column:1 / span 7; }
+.cs-sticky-row--media-left .cs-sticky-row__text{ grid-column:span 5; }
+.cs-sticky-row__text h4{ margin-top:0; }
+.cs-sticky-row__text p,
+.cs-sticky-row__text li{ max-width:none; }
 @media (min-width:1024px){
-  .sr-sticky-row{
-    display:grid;
-    grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
-    gap:clamp(24px,3vw,40px);
-    align-items:start;
-  }
-  .sr-sticky-row__media{
-    position:sticky;
-    top:120px;
-    align-self:flex-start;
-  }
+  .cs-sticky-row__media{ position:sticky; top:120px; align-self:start; }
 }
 @media (max-width:1023px){
-  .sr-sticky-row__media{ position:static; margin-top:16px; }
+  .cs-page .meta{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .cs-page .meta > div:nth-child(2n){ border-right:none; padding-right:0; }
+  .cs-sticky-row__text,
+  .cs-sticky-row__media,
+  .cs-span-8,.cs-span-7,.cs-span-6,.cs-span-5,.cs-span-4,.cs-span-3{ grid-column:1 / -1; }
+  .cs-sticky-row__media{ position:static; }
+}
+@media (max-width:640px){
+  .cs-page .meta{ grid-template-columns:1fr; }
+  .cs-page .meta > div{ border-right:none; padding-right:0; }
+}
+
+.cs-iter{ min-width:0; }
+.cs-iter h4{ margin-top:0; margin-bottom:12px; }
+.cs-iter p{ max-width:none; margin-top:12px; }
+.cs-iter__img{
+  width:100% !important;
+  max-width:100% !important;
+  height:auto !important;
+  margin:0 !important;
+  border:1px solid var(--line) !important;
+  border-radius:6px !important;
+  box-shadow:none !important;
+  background:#fff !important;
+}
+.cs-iter-matrix{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:var(--cs-gap);
+  margin-top:28px;
+  align-items:stretch;
+}
+.cs-iter-card{
+  border:1px solid var(--line);
+  background:var(--surface);
+  padding:clamp(18px,2vw,24px);
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  min-width:0;
+}
+.cs-iter-card--shipped{
+  grid-column:1 / -1;
+  border-color:rgba(31,122,77,.35);
+  background:linear-gradient(180deg, rgba(31,122,77,.06), var(--surface));
+}
+.cs-iter-card .cs-iter__img{ margin-top:4px !important; }
+@media (max-width:700px){ .cs-iter-matrix{ grid-template-columns:1fr; } }
+
+/* Before / After flow */
+.cs-flow{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  gap:clamp(16px,2.5vw,28px);
+  align-items:stretch;
+  margin-top:28px;
+}
+.cs-flow__col{
+  border:1px solid var(--line);
+  background:var(--surface);
+  padding:clamp(18px,2vw,24px);
+  min-width:0;
+}
+.cs-flow__col--after{ border-color:rgba(31,122,77,.35); }
+.cs-flow__arrow{
+  display:flex; align-items:center; justify-content:center;
+  color:var(--muted); font-size:22px; font-weight:700; padding-top:40px;
+}
+.cs-flow__steps{
+  list-style:none; margin:16px 0 0; padding:0;
+  display:flex; flex-direction:column; gap:8px;
+}
+.cs-flow__steps li{
+  display:flex; align-items:center; gap:10px;
+  font-size:13px; line-height:1.4; color:var(--ink-soft);
+  padding:10px 12px;
+  border:1px solid var(--line);
+  background:var(--bg);
+}
+.cs-flow__steps li strong{ color:var(--ink); }
+.cs-flow__n{
+  width:22px; height:22px; border-radius:50%;
+  display:inline-flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:700; flex-shrink:0;
+  background:var(--line); color:var(--ink);
+}
+.cs-flow__col--after .cs-flow__n{ background:rgba(31,122,77,.18); color:#1F7A4D; }
+.cs-flow__metrics{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:var(--cs-gap);
+  margin-top:20px;
+}
+.cs-flow__metric{
+  border:1px solid var(--line);
+  background:var(--surface);
+  padding:18px 20px;
+}
+.cs-flow__metric .eyebrow{ margin:0 0 8px; }
+.cs-flow__metric p{ margin:0; font-size:14px; color:var(--ink-soft); }
+.cs-flow__metric--bad{ border-left:4px solid #C0392B; }
+.cs-flow__metric--good{ border-left:4px solid #1F7A4D; }
+@media (max-width:900px){
+  .cs-flow{ grid-template-columns:1fr; }
+  .cs-flow__arrow{ padding:4px 0; transform:rotate(90deg); }
+  .cs-flow__metrics{ grid-template-columns:1fr; }
+}
+
+.cs-final-notes{
+  display:flex; flex-direction:column; gap:10px;
+  margin-top:14px;
+}
+.cs-final-note{
+  display:flex; gap:10px; align-items:flex-start;
+  border:1px solid var(--line);
+  background:var(--surface);
+  padding:12px 14px;
+}
+.cs-final-note__n{
+  width:22px; height:22px; border-radius:50%; flex-shrink:0;
+  background:var(--accent); color:var(--accent-ink);
+  font-size:11px; font-weight:800;
+  display:inline-flex; align-items:center; justify-content:center;
+}
+.cs-final-note p{ margin:0; font-size:13px; line-height:1.45; color:var(--ink-soft); }
+.cs-final-note strong{ color:var(--ink); }
+
+.cs-slideshow{
+  position:relative;
+  width:100%;
+  max-width:min(100%, 1180px);
+  margin:0 auto;
+  text-align:center;
+}
+.cs-slideshow__stage{
+  position:relative;
+  width:100%;
+  margin:0 auto;
+  line-height:0;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:var(--surface);
+  box-sizing:border-box;
+}
+.cs-slideshow__stage img.cs-shot{
+  display:block;
+  position:absolute;
+  left:50%;
+  top:0;
+  transform:translateX(-50%);
+  width:100% !important;
+  max-width:100% !important;
+  height:auto !important;
+  margin:0 auto;
+  opacity:0;
+  transition:opacity .55s ease;
+  border:none !important;
+  border-radius:0;
+  box-shadow:none;
+  background:transparent;
+  pointer-events:none;
+}
+.cs-slideshow__stage img.is-active{
+  position:relative;
+  left:auto;
+  transform:none;
+  opacity:1;
+  pointer-events:auto;
+  cursor:zoom-in;
+}
+.cs-slideshow__dots{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  justify-content:center;
+  margin-top:14px;
+}
+.cs-slideshow__dot{
+  width:8px; height:8px;
+  border:none;
+  padding:0;
+  border-radius:50%;
+  background:var(--line);
+  cursor:pointer;
+}
+.cs-slideshow__dot[aria-current="true"]{ background:var(--accent); }
+.cs-slideshow__caption{
+  margin-top:12px;
+  font-size:14px;
+  line-height:1.5;
+  color:var(--ink-soft);
+  text-align:left;
+}
+@media (prefers-reduced-motion: reduce){
+  .cs-slideshow__stage img{ transition:none; }
 }
 </style>
 </head>
@@ -109,9 +670,9 @@
   <a href="index.html" class="site-logo">K.</a>
   <nav id="nav">
     <a href="index.html#about">About</a>
-    <a href="index.html#keywords">Skills</a>
     <a href="index.html#projects" class="active" aria-current="page">Projects</a>
     <a href="index.html#experience">Experience</a>
+    <a href="theraxis.html">AI</a>
     <a href="kaushik-resume-gd.pdf?v=20260731">Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
       <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
@@ -123,254 +684,548 @@
   </button>
 </div></header>
 
-<main class="wrap sr-page">
+<main class="wrap cs-page">
   <a href="index.html#projects" class="link">← All Projects</a>
 
-  <!-- HERO -->
+  <!-- 1. HERO -->
   <section class="section">
-    <p class="eyebrow">Case Study · Druva</p>
-    <h1 style="margin-bottom: 16px;">Six settings scattered.<br>One readiness score.</h1>
-    <p>Druva's Cloud Administrators were forced to jump across six separate platform settings pages just to verify basic security hygiene like MFA and Geofencing. I designed the Cyber Resiliency Readiness Score—a consolidated, high-signal dashboard widget that surfaces missing security controls at a glance and allows admins to fix gaps in-place without losing context.</p>
-    <div class="meta">
-      <div>
-        <span class="k">Role</span>
-        <span class="v">UX Designer</span>
+    <div class="cs-grid">
+      <div class="cs-span-12">
+        <p class="eyebrow">Case Study · 02</p>
+        <h1 style="margin-bottom: 16px;">Two problems.<br>One Security Center.</h1>
+        <p>Cloud Administrators didn’t know Cyber Resiliency capabilities—and even when they did, baseline security lived across <span class="cs-chip cs-chip--amber">6 Scattered Pages</span>. I designed Explore Cyber Resiliency Features for onboarding/discovery, plus the Cyber Resiliency Readiness Score to guide Mandatory and Recommended setup in place.</p>
       </div>
-      <div>
-        <span class="k">Domain</span>
-        <span class="v">Cybersecurity · Enterprise B2B SaaS</span>
+      <div class="cs-span-12">
+        <div class="meta">
+          <div>
+            <span class="k">Role</span>
+            <span class="v">End-to-End UX</span>
+          </div>
+          <div>
+            <span class="k">Timeline</span>
+            <span class="v">2 Months</span>
+          </div>
+          <div>
+            <span class="k">Domain</span>
+            <span class="v">Cybersecurity &amp; Enterprise B2B SaaS</span>
+          </div>
+          <div>
+            <span class="k">Stakeholders</span>
+            <span class="v">Security PM / InfoSec / Lead Engineering</span>
+          </div>
+        </div>
+        <p class="cs-nda"><strong>Confidentiality note:</strong> This project is under NDA. Design is complete and moving into development. Interface redrawn and figures synthesized for case study presentation — core architectural logic and UX constraints remain true to production.</p>
       </div>
-      <div>
-        <span class="k">Focus</span>
-        <span class="v">Security UX &amp; Dashboard Systems</span>
-      </div>
-      <div>
-        <span class="k">Type</span>
-        <span class="v">Cloud Administrator Portal</span>
-      </div>
-      <div>
-        <span class="k">Timeline</span>
-        <span class="v">2 months</span>
-      </div>
-      <div>
-        <span class="k">Stakeholders</span>
-        <span class="v">Security Product Management, InfoSec, Lead Engineering</span>
-      </div>
-    </div>
-    <p class="sr-nda"><strong>Confidentiality note:</strong> This project is under NDA. Design is complete and moving into development. Interface redrawn and figures synthesized for case study presentation — core architectural logic and UX constraints remain true to production.</p>
-  </section>
-
-  <!-- COVER -->
-  <section class="section">
-    <figure class="plate">
-      <img class="lightbox-trigger sr-shot" src="security-readiness/cover.png" alt="Druva Security Center dashboard with Cyber Resiliency Readiness Score, Backup Risks, New Location Events, Access Risks, and Threat Summary panels">
-      <figcaption><strong>The Shipped Security Center.</strong> Readiness Score and Backup Risks on the top row; New Location Events and Access Risks on the second; Threat Summary full-width at the bottom — each card tied to a distinct question Jordan asks when opening this page.</figcaption>
-    </figure>
-  </section>
-
-  <!-- PERSONA -->
-  <section class="section">
-    <p class="eyebrow">Target Persona</p>
-    <div class="module">
-      <h3 style="margin-top: 0; margin-bottom: 16px;">Meet Jordan — Cloud Administrator</h3>
-      <p>Jordan manages the organization's Druva tenant as part of a broader IT operations role. Jordan isn't a dedicated security analyst, but is periodically on the hook with internal InfoSec teams to prove baseline controls are actually configured. Jordan doesn't have time to audit settings pages—they need an instant answer to what is misconfigured and a fast path to remediate it.</p>
-      <p style="margin-top: 16px;">Every time Jordan opens the Security Center, they are asking three things:</p>
-      <ol style="margin-top: 12px; padding-left: 20px; color: var(--ink-soft);">
-        <li style="margin-bottom: 8px;"><strong style="color: var(--ink);">Is my environment actually protected right now?</strong></li>
-        <li style="margin-bottom: 8px;"><strong style="color: var(--ink);">Did anything suspicious happen since I last checked?</strong></li>
-        <li><strong style="color: var(--ink);">What's the fastest thing I can fix to reduce risk today?</strong></li>
-      </ol>
     </div>
   </section>
 
-  <!-- CHAPTER 1 -->
+  <!-- 2. BRIEF TRIAD -->
   <section class="section">
-    <p class="eyebrow">Chapter 1</p>
-    <h3 style="margin-top: 0; margin-bottom: 16px;">Chapter 1: The six-page compliance hunt</h3>
-    <p>Configuring baseline security—Multi-Factor Authentication, Single Sign-On, Geofencing, and Alert Subscriptions—required navigating to six completely separate platform pages. Because settings were scattered, administrators frequently missed key configurations, leaving tenants exposed during compliance audits.</p>
-    <p style="margin-top: 16px;">Our goal was simple: consolidate these disparate configurations into a single, high-visibility anchor widget that highlights misconfigurations and provides a one-click path to fix them.</p>
-  </section>
-
-  <!-- CHAPTER 2 -->
-  <section class="section">
-    <p class="eyebrow">Chapter 2</p>
-    <h3 style="margin-top: 0; margin-bottom: 16px;">Chapter 2: Anchoring the Security Center</h3>
-
-    <div class="sr-sticky-row" style="margin-top: 24px;">
-      <div class="sr-sticky-row__text">
-        <p>The existing Security Center was reactive—answering "did a threat occur?" or "is a backup job failing?". It lacked a proactive view answering: "How secure is my environment right now, and what should I fix today?"</p>
-        <p style="margin-top: 16px;">We anchored the new Readiness Score in the top-left position of the dashboard. The primary design challenge was ensuring audit-blocking mandatory controls (like MFA) were visually distinguished from recommended risk-reducing controls (like Geofencing) without overwhelming the rest of the page layout.</p>
-        <div class="module" style="margin-top: 24px;">
-          <p class="eyebrow">The missing piece</p>
-          <p style="margin: 0;">A top-left anchor widget answering: <strong>"What is the fastest thing I can fix to reduce risk today?"</strong></p>
-        </div>
-        <div class="module" style="margin-top: 16px;">
-          <p class="eyebrow">The challenge</p>
-          <p style="margin: 0;">Visually differentiating <strong>Mandatory</strong> (audit-blocking) from <strong>Recommended</strong> (risk-reducing) controls without fighting the rest of the dashboard for dominance.</p>
+    <div class="cs-grid">
+      <div class="cs-span-12">
+        <div class="cs-brief">
+          <div class="cs-brief__item">
+            <p class="eyebrow eyebrow--problem">Problem 01</p>
+            <h3>Features went unexplained</h3>
+            <ul class="cs-list">
+              <li><span><strong>Users didn’t know the product</strong> — Cyber Resiliency capabilities lived in the nav with no guided explanation</span></li>
+              <li><span><strong>New onboardings were cold</strong> — first-time admins landed in Security Center without a tour of what each feature does</span></li>
+              <li><span><strong>Future features needed a home</strong> — when new capabilities ship, there was no reusable way to open and explain them</span></li>
+            </ul>
+          </div>
+          <div class="cs-brief__item">
+            <p class="eyebrow eyebrow--existing">Problem 02</p>
+            <h3>Risks without a guided path</h3>
+            <ul class="cs-list">
+              <li><span><strong>Posture only listed risks</strong> — same static checklist for every user, even newly onboarded admins</span></li>
+              <li><span><strong>Settings lived across 6 pages</strong> — MFA, SSO, Geofencing, alerts, and more required hopping away</span></li>
+              <li><span><strong>No Mandatory vs Recommended journey</strong> — nothing walked users through the tasks that actually improve security</span></li>
+            </ul>
+          </div>
+          <div class="cs-brief__item">
+            <p class="eyebrow eyebrow--preferred">Solution</p>
+            <h3>Discover. Then harden.</h3>
+            <ul class="cs-list">
+              <li><span><strong>Explore Cyber Resiliency Features</strong> — onboarding-style modal that explains capabilities now and when new features arrive</span></li>
+              <li><span><strong>Readiness Score</strong> — Mandatory + Recommended tasks with Gauge / List toggle</span></li>
+              <li><span><strong>In-context remediations</strong> — fix gaps without leaving Security Center</span></li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="sr-sticky-row__media">
+    </div>
+  </section>
+
+  <!-- 3. EXISTING → FINAL -->
+  <section class="section">
+    <div class="cs-grid cs-compare">
+      <div class="cs-span-6">
         <figure class="plate">
-          <img class="lightbox-trigger sr-shot" src="security-readiness/cover.png" alt="Druva Security Center dashboard with Cyber Resiliency Readiness Score anchored top-left">
-          <figcaption><strong>Security Center anchor.</strong> Readiness Score sits top-left — above backup risks and threat triage.</figcaption>
+          <p class="eyebrow" style="margin:0 0 12px;">Existing</p>
+          <img class="lightbox-trigger cs-shot" src="security-readiness/existing-security-center.png?v=20260806hi" width="1024" height="981" alt="Existing Security Center with Posture Security Risks checklist, Backup Risks, New Location Events, Access Risks, and Threat Summary — no readiness score widget">
+          <figcaption><strong>Before.</strong> Reactive Security Center — posture risks as a flat checklist, no consolidated readiness score or in-place remediation path.</figcaption>
+        </figure>
+      </div>
+      <div class="cs-span-6">
+        <figure class="plate">
+          <p class="eyebrow" style="margin:0 0 12px;">Shipped</p>
+          <img class="lightbox-trigger cs-shot" src="security-readiness/final-gauge.png?v=20260806hi2" width="1024" height="843" alt="Shipped Security Center with Explore Cyber Resiliency Features button and Cyber Resiliency Readiness Score widget">
+          <div class="cs-final-notes">
+            <div class="cs-final-note">
+              <span class="cs-final-note__n">01</span>
+              <p><strong>Explore Cyber Resiliency Features</strong> → solves Problem 01</p>
+            </div>
+            <div class="cs-final-note">
+              <span class="cs-final-note__n">02</span>
+              <p><strong>Cyber Resiliency Readiness Score</strong> → solves Problem 02</p>
+            </div>
+          </div>
         </figure>
       </div>
     </div>
   </section>
 
-  <!-- CHAPTER 3 -->
+  <!-- 4. PERSONA -->
   <section class="section">
-    <p class="eyebrow">Chapter 3</p>
-    <h3 style="margin-top: 0; margin-bottom: 16px;">Chapter 3: Distinguishing Mandatory vs. Recommended controls</h3>
-    <p>We iterated through three visual models to solve one core tension: mandatory controls and recommended controls cannot share equal visual weight.</p>
+    <div class="cs-grid">
+      <div class="cs-span-12">
+        <p class="eyebrow">Target Persona · Enterprise IT Operator</p>
+        <div class="cs-persona">
+          <aside class="cs-persona__rail">
+            <div class="cs-persona__avatar" aria-hidden="true">J</div>
+            <div>
+              <p class="eyebrow">Primary user</p>
+              <h3>Jordan</h3>
+              <p class="cs-persona__role">Cloud Administrator managing the organization’s Druva tenant as part of broader IT operations—not a dedicated security analyst.</p>
+            </div>
+            <div class="cs-persona__tags">
+              <span class="cs-persona__tag">Cloud Admin</span>
+              <span class="cs-persona__tag">Daily IT ops</span>
+              <span class="cs-persona__tag">InfoSec audits</span>
+            </div>
+          </aside>
 
-    <div class="sr-sticky-row">
-      <div class="sr-sticky-row__text">
-        <h4>Iteration 1 — Side-by-side split donuts</h4>
-        <p>Used two separate donut charts side by side — one for Required (Mandatory) and one for Optional (Recommended).</p>
-        <span class="callout callout--error"><strong>Why it failed:</strong> Placing both charts at equal scale implied recommended controls held equal operational urgency to mandatory audit blockers.</span>
-      </div>
-      <div class="sr-sticky-row__media">
-        <div class="sr-annotate">
-          <img class="lightbox-trigger sr-shot" src="security-readiness/iteration-02-split-donuts.png" alt="Configuration Status widget with separate Required and Optional donut charts side by side and a three-column security controls checklist">
-          <span class="sr-annotate__pin sr-annotate__pin--tl">Equal weight implied false urgency balance</span>
-        </div>
-      </div>
-    </div>
+          <div class="cs-persona__body">
+            <p class="cs-persona__quote">“I don’t have time to audit six settings pages—I need to know what’s misconfigured and fix it before InfoSec asks.”</p>
 
-    <div class="sr-sticky-row">
-      <div class="sr-sticky-row__text">
-        <h4>Iteration 2 — Single arc gauge with list</h4>
-        <p>Used a unified semi-circular gauge with equal arc segments for all 7 items, plus a static breakdown list.</p>
-        <span class="callout callout--error"><strong>Why it failed:</strong> It obscured the mandatory distinction, relying solely on small asterisks in an adjacent text list.</span>
-      </div>
-      <div class="sr-sticky-row__media">
-        <div class="sr-annotate">
-          <img class="lightbox-trigger sr-shot" src="security-readiness/iteration-01-semi-gauge.png" alt="Cyber Security Readiness widget with a single semi-circular gauge showing 3 of 7 configured and a side-by-side checklist of security controls">
-          <span class="sr-annotate__pin sr-annotate__pin--tl">Equal arc segments hid the mandatory distinction</span>
-        </div>
-      </div>
-    </div>
+            <p class="cs-persona__bio">Jordan owns day-to-day IT operations while absorbing periodic InfoSec audit requests that demand proof baseline controls are actually configured. Dual responsibility means Jordan needs to understand the product on day one, get an instant posture answer, and remediate fast—without becoming a full-time compliance analyst.</p>
 
-    <div class="sr-sticky-row">
-      <div class="sr-sticky-row__text">
-        <h4>Iteration 3 — Concentric nested arcs</h4>
-        <p>Introduced an inner arc for Mandatory progress and an outer arc for Recommended progress.</p>
-        <span class="callout callout--error"><strong>Why it failed as a standalone card:</strong> Displaying the full checklist alongside the double-ring graphic crammed too much visual noise into a single dashboard widget.</span>
-      </div>
-      <div class="sr-sticky-row__media">
-        <div class="sr-annotate">
-          <img class="lightbox-trigger sr-shot" src="security-readiness/iteration-03-nested-ring.png" alt="Cyber Resiliency Readiness nested concentric gauge with inner Mandatory arc and outer Recommended arc showing 3 of 7 total controls">
-          <span class="sr-annotate__pin sr-annotate__pin--br">Double ring + full checklist overcrowded the card</span>
+            <div class="cs-persona__grid">
+              <div class="cs-persona__block cs-persona__block--goals">
+                <span class="k">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                  Goals
+                </span>
+                <ul>
+                  <li>Understand features on first login</li>
+                  <li>Prove baseline controls are active across tenants</li>
+                  <li>Close gaps before audits escalate</li>
+                </ul>
+              </div>
+              <div class="cs-persona__block cs-persona__block--frictions">
+                <span class="k">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+                  Frustrations
+                </span>
+                <ul>
+                  <li>Jumping across isolated configuration pages</li>
+                  <li>No instant “are we compliant?” answer</li>
+                  <li>Leaving the page to flip one toggle</li>
+                </ul>
+              </div>
+              <div class="cs-persona__block cs-persona__block--behaviors">
+                <span class="k">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                  Behaviors
+                </span>
+                <ul>
+                  <li>Opens Security Center for a morning scan</li>
+                  <li>Responds to InfoSec asks under time pressure</li>
+                  <li>Fixes the highest-urgency gap first</li>
+                </ul>
+              </div>
+              <div class="cs-persona__block cs-persona__block--needs">
+                <span class="k">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M7 12h10"/><path d="M9 17h6"/></svg>
+                  Needs
+                </span>
+                <ul>
+                  <li>Understand features on first login</li>
+                  <li>Mandatory vs recommended visual hierarchy</li>
+                  <li>In-place edit without route changes</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="cs-persona__asks">
+              <h4>Three morning questions</h4>
+              <ol class="cs-persona__asks-grid">
+                <li class="cs-persona__ask">
+                  <small>Macro</small>
+                  <span>Is my environment compliant right now?</span>
+                </li>
+                <li class="cs-persona__ask">
+                  <small>Micro</small>
+                  <span>Where is the immediate exposure?</span>
+                </li>
+                <li class="cs-persona__ask">
+                  <small>Action</small>
+                  <span>Can I fix it in one click without leaving this page?</span>
+                </li>
+              </ol>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CHAPTER 4 -->
+  <!-- 5. PROBLEM 01 -->
   <section class="section">
-    <p class="eyebrow">Chapter 4</p>
-    <h3 style="margin-top: 0; margin-bottom: 16px;">Chapter 4: The Shipped Experience — Gauge, List, and In-Context Edit</h3>
-    <p>The shipped widget resolves the core tension: the inner arc tracks Mandatory progress, while the outer arc tracks Recommended progress. A Gauge/List toggle lets Jordan switch between a macro compliance view and a granular action list.</p>
-
-    <div class="sr-sticky-row">
-      <div class="sr-sticky-row__text">
-        <h4>Gauge view</h4>
-        <p>Nested concentric arcs — <em>inner ring</em> tracks Mandatory (audit-blocking) controls; <em>outer ring</em> tracks Recommended (risk-reducing) controls. Hover tooltip surfaces a specific gap; the pencil affordance opens in-context edit without leaving the page.</p>
+    <div class="cs-grid">
+      <div class="cs-span-12">
+        <p class="eyebrow">Problem 01 · Onboarding</p>
+        <h3 style="margin-top: 0; margin-bottom: 12px;">Users didn’t know the features</h3>
+        <p>Cloud Administrators—especially newly onboarded ones—landed in Security Center without understanding what Cyber Resiliency offered. Features lived in the sidebar, but nothing explained them. We needed a reusable onboarding surface that introduces capabilities today, and can open again when <span class="cs-mark">new features ship in the future</span>.</p>
       </div>
-      <div class="sr-sticky-row__media">
-        <figure class="plate">
-          <img class="lightbox-trigger sr-shot" src="security-readiness/shipped-gauge.png" alt="Shipped Cyber Resiliency Readiness Score in gauge view with inner Mandatory ring and outer Recommended ring, tooltip on incomplete Cyber Resiliency Reports control, and 1 of 6 controls configured">
-          <figcaption><strong>Gauge view:</strong> Inner = Mandatory · Outer = Recommended · Pencil opens in-context config.</figcaption>
-        </figure>
-      </div>
-    </div>
-
-    <div class="sr-sticky-row">
-      <div class="sr-sticky-row__text">
-        <h4>List view</h4>
-        <p>Full control checklist with pass/fail status, Mandatory asterisks, subscription minimums, and a <em>pencil edit icon</em> on each row so Jordan can remediate without hopping to six settings pages.</p>
-      </div>
-      <div class="sr-sticky-row__media">
-        <figure class="plate">
-          <img class="lightbox-trigger sr-shot" src="security-readiness/shipped-list.png" alt="Shipped Cyber Resiliency Readiness Score in list view showing Mandatory and Recommended controls with pass-fail icons and pencil edit affordance per row">
-          <figcaption><strong>List view:</strong> Per-row pass/fail + pencil edit for in-place configuration.</figcaption>
-        </figure>
+      <div class="cs-span-12">
+        <div class="cs-callout" style="margin-bottom: 24px;">
+          <p class="cs-callout__title">Solution: Explore Cyber Resiliency Features</p>
+          <ul class="cs-list">
+            <li>
+              <svg class="cs-ico cs-ico--ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <span><strong>For new users</strong> — opens as a guided explanation of Built in Security, Ransomware Recovery, and Incident Investigation</span>
+            </li>
+            <li>
+              <svg class="cs-ico cs-ico--ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <span><strong>For anytime rediscovery</strong> — always available from Security Center so admins can re-explore capabilities anytime</span>
+            </li>
+            <li>
+              <svg class="cs-ico cs-ico--ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <span><strong>For future features</strong> — the same modal can surface and explain newly shipped features without redesigning onboarding from scratch</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <h3 style="margin-top: 48px; margin-bottom: 16px;">Control breakdown</h3>
-    <div class="row-2">
-      <div class="module">
-        <p class="eyebrow">Mandatory *</p>
-        <h4 style="margin-top: 0;">Audit-blocking controls</h4>
-        <ul style="margin: 0; padding-left: 18px; color: var(--ink-soft);">
-          <li>Multi-Factor Authentication</li>
-          <li>Cyber Resiliency Reports (minimum 3 subscriptions)</li>
-          <li>Cyber Resiliency Alerts (minimum 3 subscriptions)</li>
+    <div class="cs-grid cs-explore" style="margin-top: 8px;">
+      <div class="cs-span-6">
+        <figure class="plate">
+          <img class="lightbox-trigger cs-shot" src="security-readiness/explore-01-built-in.png?v=20260806hi" width="1024" height="633" alt="Explore Cyber Resiliency Features modal on Built in Security tab showing Air-Gapped Backup, Managed Data Detection and Response, Rollback Actions, and Data Lock">
+          <figcaption><strong>01 · Built in Security</strong> — default protections like Air-Gapped Backup, Managed DDR, Rollback Actions, and Data Lock.</figcaption>
+        </figure>
+      </div>
+      <div class="cs-span-6">
+        <figure class="plate">
+          <img class="lightbox-trigger cs-shot" src="security-readiness/explore-02-ransomware.png?v=20260806hi" width="1024" height="633" alt="Explore Cyber Resiliency Features modal on Ransomware Recovery tab showing Restore Scan, Curated Snapshots, Sandbox Recovery, and Quarantine Bay">
+          <figcaption><strong>02 · Ransomware Recovery</strong> — Restore Scan, Curated Snapshots, Sandbox Recovery, and Quarantine Bay.</figcaption>
+        </figure>
+      </div>
+      <div class="cs-span-6">
+        <figure class="plate">
+          <img class="lightbox-trigger cs-shot" src="security-readiness/explore-03-incident.png?v=20260806hi" width="1024" height="633" alt="Explore Cyber Resiliency Features modal on Incident Investigation tab showing Data Anomalies and Threat Hunting">
+          <figcaption><strong>03 · Incident Investigation</strong> — Data Anomalies and Threat Hunting for proactive detection.</figcaption>
+        </figure>
+      </div>
+      <div class="cs-span-6">
+        <figure class="plate">
+          <img class="lightbox-trigger cs-shot" src="security-readiness/explore-04-learn-more.png?v=20260806hi" width="1024" height="627" alt="Explore Cyber Resiliency Features with Learn More panel open for Data Lock explaining immutable recovery points and edition availability">
+          <figcaption><strong>04 · Learn More</strong> — deep-dive panel for a selected feature (e.g. Data Lock) without leaving Security Center.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. PROBLEM 02 (merged) -->
+  <section class="section">
+    <div class="cs-grid">
+      <div class="cs-span-12">
+        <p class="eyebrow">Problem 02 · Security posture</p>
+        <h3 style="margin-top: 0; margin-bottom: 12px;">Risks listed. No guided path.</h3>
+        <p>Even after users understood the product, baseline security—Multi-Factor Authentication, Single Sign-On, Geofencing, Reports, Alerts, and Restore Scan—still required hopping across six separate platform pages. Security Center only surfaced a static risk list, not a journey that walks admins through <span class="cs-chip cs-chip--danger">Mandatory</span> and <span class="cs-chip cs-chip--ok">Recommended</span> tasks.</p>
+      </div>
+    </div>
+
+    <div class="cs-sticky-row cs-sticky-row--media-left" style="margin-top: 28px;">
+      <div class="cs-sticky-row__media">
+        <figure class="plate">
+          <img class="lightbox-trigger cs-shot" src="security-readiness/posture-security-risks.png?v=20260806hi" width="1024" height="795" alt="Posture Security Risks card showing 4 risks with pass-fail status for Single Sign-On, Geofencing, Multi-factor Authentication, Minimum 2 Cloud Administrators, and Audit Trail Retention Period">
+          <figcaption><strong>Posture Security Risks.</strong> A flat checklist of configuration gaps — same presentation for every admin, with no prioritized next steps.</figcaption>
+        </figure>
+      </div>
+      <div class="cs-sticky-row__text">
+        <p class="eyebrow eyebrow--problem" style="margin:0 0 8px;">What was broken</p>
+        <h4 style="margin:0 0 12px;">Static list, no remediation</h4>
+        <ul class="cs-list">
+          <li>
+            <svg class="cs-ico cs-ico--danger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+            <span><strong>It only showed the risk.</strong> Pass/fail rows told Jordan something was wrong — not what to do next, or why it mattered.</span>
+          </li>
+          <li>
+            <svg class="cs-ico cs-ico--warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+            <span><strong>One-size-fits-all.</strong> Newly onboarded admins saw the same static list. Nothing guided the right Mandatory vs Recommended tasks for their tenant.</span>
+          </li>
         </ul>
-      </div>
-      <div class="module">
-        <p class="eyebrow">Recommended</p>
-        <h4 style="margin-top: 0;">Risk-reducing controls</h4>
-        <ul style="margin: 0; padding-left: 18px; color: var(--ink-soft);">
-          <li>Single Sign-On</li>
-          <li>Geofencing</li>
-          <li>Restore Scan</li>
-        </ul>
+
+        <p class="eyebrow eyebrow--preferred" style="margin:24px 0 8px;">The goal</p>
+        <p style="margin:0;color:var(--ink-soft);font-size:15px;line-height:1.6;">Make readiness feel like <span class="cs-mark">guided setup</span> — walk the user through Mandatory and Recommended tasks so they actively strengthen security, instead of staring at a static risk list.</p>
       </div>
     </div>
 
-    <h3 style="margin-top: 48px; margin-bottom: 16px;">Key design decisions</h3>
-    <div class="row-3" style="margin-top: 24px;">
-      <div class="module">
-        <p class="eyebrow">01</p>
-        <h4 style="margin-top: 0;">Gauge / List toggle</h4>
-        <p>Supports two distinct mental modes—scanning the high-level score at a glance (gauge view) or reviewing specific failed controls (list view).</p>
-      </div>
-      <div class="module">
-        <p class="eyebrow">02</p>
-        <h4 style="margin-top: 0;">In-context configuration modals</h4>
-        <p>Clicking the edit icon opens configuration flows directly in a local modal. Admins fix gaps on the spot without leaving the Security Center or losing page state.</p>
-      </div>
-      <div class="module">
-        <p class="eyebrow">03</p>
-        <h4 style="margin-top: 0;">Macro to micro hierarchy</h4>
-        <p>Arranged the dashboard top-to-bottom from macro readiness (top) down to active risk triage and threat hunting (bottom).</p>
-      </div>
-    </div>
-  </section>
+    <div class="cs-grid" style="margin-top: 40px;">
+      <div class="cs-span-12">
+        <div class="cs-flow">
+          <div class="cs-flow__col">
+            <p class="eyebrow eyebrow--problem">Before</p>
+            <h4 style="margin:0 0 4px;">Fragmented path</h4>
+            <p style="margin:0;font-size:14px;color:var(--ink-soft);">Six disconnected settings menus for one hygiene check.</p>
+            <ol class="cs-flow__steps">
+              <li><span class="cs-flow__n">1</span><span><strong>MFA</strong> settings page</span></li>
+              <li><span class="cs-flow__n">2</span><span><strong>SSO</strong> settings page</span></li>
+              <li><span class="cs-flow__n">3</span><span><strong>Geofencing</strong> settings page</span></li>
+              <li><span class="cs-flow__n">4</span><span><strong>Alert subscriptions</strong></span></li>
+              <li><span class="cs-flow__n">5</span><span><strong>Reports</strong> configuration</span></li>
+              <li><span class="cs-flow__n">6</span><span><strong>Restore Scan</strong> settings</span></li>
+            </ol>
+          </div>
+          <div class="cs-flow__arrow" aria-hidden="true">→</div>
+          <div class="cs-flow__col cs-flow__col--after">
+            <p class="eyebrow eyebrow--preferred">After</p>
+            <h4 style="margin:0 0 4px;">Readiness hub</h4>
+            <p style="margin:0;font-size:14px;color:var(--ink-soft);">One Security Center anchor with in-context fix.</p>
+            <ol class="cs-flow__steps">
+              <li><span class="cs-flow__n">1</span><span>Open <strong>Security Center</strong></span></li>
+              <li><span class="cs-flow__n">2</span><span>Scan <strong>Readiness Score</strong></span></li>
+              <li><span class="cs-flow__n">3</span><span>Toggle to <strong>List</strong> for gaps</span></li>
+              <li><span class="cs-flow__n">4</span><span>Pencil → <strong>in-context modal</strong></span></li>
+              <li><span class="cs-flow__n">✓</span><span><strong>Done</strong> — no route change, no state loss</span></li>
+            </ol>
+          </div>
+        </div>
 
-  <!-- OUTCOMES -->
-  <section class="section">
-    <p class="eyebrow">Outcomes</p>
-    <h3>Key Outcomes &amp; Lessons</h3>
-
-    <div class="row-3" style="margin-top: 32px;">
-      <div class="module">
-        <p class="eyebrow">01</p>
-        <h4 style="margin-top: 0;">Zero-navigation remediation</h4>
-        <p>Admins no longer hop across six settings pages. In-context modals reduced friction, leading to higher baseline security adoption across tenant accounts.</p>
-      </div>
-      <div class="module">
-        <p class="eyebrow">02</p>
-        <h4 style="margin-top: 0;">Clear audit signals</h4>
-        <p>Separating mandatory controls into their own nested arc gave admins an immediate answer when preparing for internal compliance reviews.</p>
-      </div>
-      <div class="module">
-        <p class="eyebrow">03</p>
-        <h4 style="margin-top: 0;">Toggle flexibility</h4>
-        <p>Providing both a visual gauge and a granular list satisfied both executive-level scanning and admin-level execution on a single card.</p>
+        <div class="cs-flow__metrics">
+          <div class="cs-flow__metric cs-flow__metric--bad">
+            <p class="eyebrow">Time spent</p>
+            <p><strong style="color:var(--ink);">Multi-page hunt</strong> across disconnected settings before Jordan even knew what was missing.</p>
+          </div>
+          <div class="cs-flow__metric cs-flow__metric--good">
+            <p class="eyebrow">Reduced friction</p>
+            <p><strong style="color:var(--ink);">Single-hub remediation</strong> — scan, locate the gap, and fix without leaving the dashboard.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- 7. ITERATIONS -->
   <section class="section">
-    <div class="module module--accent">
-      <p class="eyebrow">Product demo</p>
-      <h3 style="margin-top: 0; margin-bottom: 16px;">See the Security Center in action</h3>
-      <p style="margin: 0;">Druva's official walkthrough of the Security Center — real-time visibility into backup security risks, readiness scoring, and threat triage in one unified dashboard.</p>
-      <a href="https://www.druva.com/learning-center/resources/media/product-demos/security-center" class="btn btn--demo" target="_blank" rel="noopener noreferrer">Watch product demo →</a>
+    <div class="cs-grid">
+      <div class="cs-span-12">
+        <p class="eyebrow">Problem 02 · Iterations</p>
+        <h3 style="margin-top: 0; margin-bottom: 12px;">Solving the gauge dilemma</h3>
+        <p>Two failed visual models, then a shipped hierarchy: Mandatory and Recommended cannot share equal visual weight.</p>
+      </div>
+
+      <div class="cs-span-12">
+        <div class="cs-iter-matrix">
+          <article class="cs-iter-card">
+            <span class="cs-tag cs-tag--fail">Failed · Equal urgency</span>
+            <h4>Split donuts</h4>
+            <img class="lightbox-trigger cs-shot cs-iter__img" src="security-readiness/iteration-02-split-donuts.png?v=20260806hi" width="1024" height="306" alt="Configuration Status widget with separate Required and Optional donut charts side by side and a three-column security controls checklist">
+            <p><strong>Why it failed:</strong> Equal scale implied recommended controls held equal operational urgency to mandatory audit blockers.</p>
+          </article>
+
+          <article class="cs-iter-card">
+            <span class="cs-tag cs-tag--fail">Failed · Hidden blockers</span>
+            <h4>Single arc + checklist</h4>
+            <img class="lightbox-trigger cs-shot cs-iter__img" src="security-readiness/iteration-01-semi-gauge.png?v=20260806hi" width="1024" height="306" alt="Cyber Security Readiness widget with a single semi-circular gauge showing 3 of 7 configured and a side-by-side checklist of security controls">
+            <p><strong>Why it failed:</strong> Concealed mandatory audit blockers behind small asterisks in an adjacent text list.</p>
+          </article>
+
+          <article class="cs-iter-card cs-iter-card--shipped">
+            <span class="cs-tag cs-tag--shipped">Shipped · Hierarchy + toggle</span>
+            <h4>Concentric arcs + Gauge / List toggle</h4>
+            <div class="cs-grid" style="margin-top:8px;">
+              <div class="cs-span-6">
+                <img class="lightbox-trigger cs-shot cs-iter__img" src="security-readiness/feature-gauge.png?v=20260806feat2" width="1024" height="563" alt="Shipped Cyber Resiliency Readiness Score in gauge view with inner Mandatory ring, outer Recommended ring, and tooltip on Cyber Resiliency Reports">
+              </div>
+              <div class="cs-span-6">
+                <img class="lightbox-trigger cs-shot cs-iter__img" src="security-readiness/feature-list.png?v=20260806feat2" width="1024" height="563" alt="Shipped Cyber Resiliency Readiness Score in list view with pass-fail status and pencil edit affordances">
+              </div>
+            </div>
+            <p><strong>What shipped:</strong> Inner arc (Mandatory) + outer arc (Recommended) + interactive Gauge/List toggle + in-context configuration modals.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. SHIPPED DEEP DIVE -->
+  <section class="section">
+    <div class="cs-grid">
+      <div class="cs-span-12">
+        <p class="eyebrow">Problem 02 · Shipped</p>
+        <h3 style="margin-top: 0; margin-bottom: 12px;">Feature deep dive</h3>
+        <p>Inner arc tracks Mandatory progress; outer arc tracks Recommended. A Gauge/List toggle lets Jordan switch between macro compliance and a granular action list—then fix gaps in place.</p>
+      </div>
+    </div>
+
+    <div class="cs-sticky-row cs-sticky-row--media-left">
+      <div class="cs-sticky-row__media">
+        <figure class="plate">
+          <img class="lightbox-trigger cs-shot" src="security-readiness/feature-gauge.png?v=20260806feat2" width="1024" height="563" alt="Cyber Resiliency Readiness gauge with nested Mandatory and Recommended arcs, tooltip on incomplete Cyber Resiliency Reports showing subscribe to minimum 3 reports">
+        </figure>
+      </div>
+      <div class="cs-sticky-row__text">
+        <p class="eyebrow" style="margin:0 0 8px;">01 · Macro</p>
+        <h4>Dual-ring concentric gauge</h4>
+        <p>Answers “is my environment protected?” at a glance. Inner ring = audit-blocking Mandatory controls. Outer ring = risk-reducing Recommended controls. Hover reveals the exact gap.</p>
+      </div>
+    </div>
+
+    <div class="cs-sticky-row">
+      <div class="cs-sticky-row__text">
+        <p class="eyebrow" style="margin:0 0 8px;">02 · Micro</p>
+        <h4>Actionable granular list</h4>
+        <p>Answers “where is the immediate exposure?” Direct pass/fail status with pencil edit affordances per row, plus Mandatory asterisks and subscription minimums.</p>
+      </div>
+      <div class="cs-sticky-row__media">
+        <figure class="plate">
+          <img class="lightbox-trigger cs-shot" src="security-readiness/feature-list.png?v=20260806feat2" width="1024" height="563" alt="Cyber Resiliency Readiness list view showing 3 of 6 controls with Mandatory and Recommended breakdown and pencil edit affordances">
+        </figure>
+      </div>
+    </div>
+
+    <div class="cs-sticky-row cs-sticky-row--media-left">
+      <div class="cs-sticky-row__media">
+        <figure class="plate">
+          <img class="lightbox-trigger cs-shot" src="security-readiness/feature-modal.png?v=20260806feat5" width="1024" height="511" alt="Subscription for Reports in-context modal over Security Center showing subscribed and unsubscribed report types with Manage Subscription action">
+        </figure>
+      </div>
+      <div class="cs-sticky-row__text">
+        <p class="eyebrow" style="margin:0 0 8px;">03 · Action</p>
+        <h4>Zero-navigation in-context modals</h4>
+        <p>Answers “can I fix it without leaving?” Local modals let admins configure missing settings—Reports, Alerts, and more—without changing routes or losing page state.</p>
+      </div>
+    </div>
+
+    <div class="cs-grid" style="margin-top: 56px;">
+      <div class="cs-span-12">
+        <h3 style="margin-top: 0; margin-bottom: 12px;">Final screens</h3>
+        <p style="margin:0 0 20px;">Gauge and List views of the shipped Security Center — auto-advances every 4 seconds.</p>
+        <div class="cs-slideshow" id="srFinalSlideshow" data-interval="4000" aria-roledescription="carousel" aria-label="Shipped Security Center — gauge and list views">
+          <div class="cs-slideshow__stage">
+            <img class="lightbox-trigger cs-shot is-active" src="security-readiness/final-gauge.png?v=20260806final" width="1024" height="843" alt="Shipped Security Center gauge view with Cyber Resiliency Readiness Score showing 0 of 5 controls, Explore Cyber Resiliency Features button, Backup Risks, and Threat Summary" data-label="Gauge view">
+            <img class="lightbox-trigger cs-shot" src="security-readiness/final-list.png?v=20260806final" width="1024" height="843" alt="Shipped Security Center list view with Cyber Resiliency Readiness checklist, Mandatory and Recommended controls, Explore Cyber Resiliency Features button" data-label="List view" aria-hidden="true">
+          </div>
+          <div class="cs-slideshow__dots" role="tablist" aria-label="Final screen views">
+            <button type="button" class="cs-slideshow__dot" aria-label="Show gauge view" aria-current="true" data-slide="0"></button>
+            <button type="button" class="cs-slideshow__dot" aria-label="Show list view" data-slide="1"></button>
+          </div>
+          <p class="cs-slideshow__caption"><strong>Gauge ↔ List.</strong> Same hub, two mental modes — macro readiness scan and granular remediation checklist.</p>
+        </div>
+      </div>
+
+      <div class="cs-span-12" style="margin-top: 40px;">
+        <h3 style="margin-top: 0; margin-bottom: 8px;">Key design decisions</h3>
+        <div class="cs-pointers" style="margin-top:12px;">
+          <div class="cs-pointer">
+            <div class="cs-pointer__head">
+              <div class="cs-pointer__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M7 12h10"/><path d="M9 17h6"/></svg>
+              </div>
+              <div>
+                <p class="cs-pointer__step">Decision 01</p>
+                <h4>Gauge / List toggle</h4>
+              </div>
+            </div>
+            <p>Supports two mental modes—scanning the high-level score (gauge) or reviewing specific failed controls (list).</p>
+          </div>
+          <div class="cs-pointer">
+            <div class="cs-pointer__head">
+              <div class="cs-pointer__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 12h8"/></svg>
+              </div>
+              <div>
+                <p class="cs-pointer__step">Decision 02</p>
+                <h4>In-context modals</h4>
+              </div>
+            </div>
+            <p>Edit opens configuration flows in a local modal so admins fix gaps without leaving Security Center.</p>
+          </div>
+          <div class="cs-pointer">
+            <div class="cs-pointer__head">
+              <div class="cs-pointer__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 3-3 3 2 4-5"/></svg>
+              </div>
+              <div>
+                <p class="cs-pointer__step">Decision 03</p>
+                <h4>Macro → micro hierarchy</h4>
+              </div>
+            </div>
+            <p>Dashboard arranged top-to-bottom from macro readiness down to active risk triage and threat hunting.</p>
+          </div>
+        </div>
+
+        <div class="tradeoff">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+          <p><strong>Deliberate tradeoff:</strong> Nested arcs alone weren’t enough for micro-tasking. We kept the concentric hierarchy for scanning, then offloaded the full checklist into a toggleable List view so the widget stayed scannable without sacrificing actionability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. IMPACT -->
+  <section class="section">
+    <div class="cs-grid">
+      <div class="cs-span-12">
+        <p class="eyebrow">Impact</p>
+        <h3 style="margin-top: 0; margin-bottom: 20px;">Outcomes across both problems</h3>
+        <div class="cs-learning-grid">
+          <div class="module cs-outcome">
+            <div class="cs-outcome__head">
+              <div class="cs-outcome__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              </div>
+              <h4>Feature discovery onboarding</h4>
+            </div>
+            <p>Explore Cyber Resiliency Features gives new admins a guided tour on first login—and a reusable surface when future capabilities ship.</p>
+          </div>
+          <div class="module cs-outcome">
+            <div class="cs-outcome__head">
+              <div class="cs-outcome__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg>
+              </div>
+              <h4>Zero-navigation remediation</h4>
+            </div>
+            <p>Reduced <span class="cs-mark">6-page</span> setting navigation to in-context local modals—higher baseline adoption without leaving Security Center.</p>
+          </div>
+          <div class="module cs-outcome">
+            <div class="cs-outcome__head">
+              <div class="cs-outcome__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M7 12h10"/><path d="M9 17h6"/></svg>
+              </div>
+              <h4>Mandatory / Recommended clarity</h4>
+            </div>
+            <p>Clear visual hierarchy plus Gauge/List toggle supports both executive macro-scanning and admin micro-tasking on one card.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. DEMO -->
+  <section class="section">
+    <div class="cs-grid">
+      <div class="cs-span-12">
+        <div class="module module--accent">
+          <p class="eyebrow">Product demo</p>
+          <h3 style="margin-top: 0; margin-bottom: 16px;">See the Security Center in action</h3>
+          <p style="margin: 0;">Druva's official walkthrough of the Security Center — real-time visibility into backup security risks, readiness scoring, and threat triage in one unified dashboard.</p>
+          <a href="https://www.druva.com/learning-center/resources/media/product-demos/security-center" class="btn btn--demo" target="_blank" rel="noopener noreferrer">Watch product demo →</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -439,8 +1294,46 @@ document.addEventListener('DOMContentLoaded',function(){
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape'&&modal.style.display==='block') closeLightbox();
   });
+
+  const show=document.getElementById('srFinalSlideshow');
+  if(show){
+    const slides=[].slice.call(show.querySelectorAll('.cs-slideshow__stage img'));
+    const dots=[].slice.call(show.querySelectorAll('.cs-slideshow__dot'));
+    const interval=parseInt(show.getAttribute('data-interval'),10)||4000;
+    let i=0;
+    let timer=null;
+    const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function go(n){
+      slides[i].classList.remove('is-active');
+      slides[i].setAttribute('aria-hidden','true');
+      if(dots[i]) dots[i].removeAttribute('aria-current');
+      i=(n+slides.length)%slides.length;
+      slides[i].classList.add('is-active');
+      slides[i].setAttribute('aria-hidden','false');
+      if(dots[i]) dots[i].setAttribute('aria-current','true');
+    }
+    function start(){
+      if(reduce||timer) return;
+      timer=setInterval(function(){ go(i+1); }, interval);
+    }
+    function stop(){
+      if(!timer) return;
+      clearInterval(timer);
+      timer=null;
+    }
+    dots.forEach(function(dot){
+      dot.addEventListener('click',function(){
+        go(parseInt(dot.getAttribute('data-slide'),10)||0);
+        stop(); start();
+      });
+    });
+    show.addEventListener('mouseenter',stop);
+    show.addEventListener('mouseleave',start);
+    start();
+  }
 });
 </script>
+<script src="js/site-footer.js"></script>
 <script src="js/system-theme.js"></script>
 <script src="audio/music.js"></script>
 </body>

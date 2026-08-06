@@ -3,21 +3,108 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Dashboard — Personal Project · Kaushik</title>
+<meta name="description" content="How to design a B2B dashboard — research case study using a drone fleet / delivery management example. By Kaushik Dayalan."/>
+<title>How to Design a Dashboard — Research · Kaushik</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260809"/>
+<link rel="stylesheet" href="styles/system.css?v=20260807music"/>
 <style>
-.slider{border:1px solid var(--line);background:var(--surface);padding:12px;}
-.stage{position:relative;display:flex;justify-content:center;align-items:center;min-height:60vh;}
-.stage img{max-width:100%;max-height:70vh;object-fit:contain;}
-.slide-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:1.5rem;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;}
-.slide-nav.prev{left:12px;}
-.slide-nav.next{right:12px;}
-.slide-nav:disabled{opacity:.35;cursor:not-allowed;}
-.slider-meta{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;color:var(--muted);font-size:14px;}
+.db-hero{ padding:clamp(32px,5vw,56px) 0 8px; }
+.db-hero h1{
+  font-family:var(--font-display); font-weight:800;
+  font-size:clamp(36px,5.5vw,56px); letter-spacing:-.03em; line-height:1.05;
+  margin:0 0 16px; max-width:16ch;
+}
+.db-hero__lede{ font-size:clamp(16px,1.7vw,19px); color:var(--ink-soft); line-height:1.5; max-width:54ch; margin:0 0 14px; }
+.db-hero__note{ font-size:15px; color:var(--ink-soft); line-height:1.55; max-width:58ch; margin:0; }
+.db-meta{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:12px;
+  margin:28px 0 0; padding-top:22px; border-top:1px solid var(--line);
+}
+.db-meta .k{ display:block; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+.db-meta .v{ font-family:var(--font-display); font-weight:600; font-size:14px; line-height:1.3; }
+
+.db-band{ padding:clamp(40px,6vw,72px) 0; }
+.db-band--soft{ background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.db-band__head{ max-width:640px; margin:0 0 28px; }
+.db-band__head h2{
+  font-family:var(--font-display); font-weight:700;
+  font-size:clamp(24px,3vw,32px); letter-spacing:-.02em; margin:0 0 10px;
+}
+.db-band__head p{ margin:0; color:var(--ink-soft); font-size:15px; line-height:1.55; max-width:52ch; }
+
+.db-pillars{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.db-pillar{ border:1px solid var(--line); background:var(--bg); padding:22px 18px; }
+.db-band:not(.db-band--soft) .db-pillar{ background:var(--surface); }
+.db-pillar .n{ font-family:var(--font-display); font-weight:700; font-size:12px; color:var(--muted); letter-spacing:.08em; margin-bottom:10px; }
+.db-pillar h3{ margin:0 0 8px; font-size:16px; }
+.db-pillar p{ margin:0; font-size:13.5px; color:var(--ink-soft); line-height:1.45; max-width:none; }
+
+.db-steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.db-step{
+  border:1px solid var(--line); background:var(--bg); padding:16px 14px;
+  display:flex; gap:12px; align-items:flex-start; text-align:left;
+}
+.db-band--soft .db-step{ background:var(--bg); }
+.db-step .num{
+  flex-shrink:0; width:28px; height:28px; display:flex; align-items:center; justify-content:center;
+  background:var(--ink); color:var(--bg); font-size:12px; font-weight:800;
+  font-family:var(--font-display);
+}
+.db-step h3{ margin:0 0 4px; font-size:14px; }
+.db-step p{ margin:0; font-size:12.5px; color:var(--ink-soft); line-height:1.4; max-width:none; }
+
+.db-chapters{
+  display:flex; flex-wrap:wrap; gap:8px; margin:0 0 18px;
+}
+.db-chapters button{
+  border:1px solid var(--line-strong); background:var(--bg); color:var(--ink-soft);
+  border-radius:999px; padding:7px 14px; font-size:12.5px; font-weight:600; cursor:pointer;
+}
+.db-chapters button:hover{ border-color:var(--ink); color:var(--ink); }
+.db-chapters button.is-active{ background:var(--ink); color:var(--bg); border-color:var(--ink); }
+
+.db-slider{ border:1px solid var(--line); background:var(--surface); }
+.db-stage{
+  position:relative; display:flex; justify-content:center; align-items:center;
+  min-height:min(68vh,720px); background:#fff; padding:12px;
+}
+.db-stage img{
+  max-width:100%; max-height:min(66vh,680px); width:auto; height:auto;
+  object-fit:contain; display:block;
+}
+.db-nav{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:44px; height:44px; border:1px solid var(--line); background:var(--bg); color:var(--ink);
+  font-size:1.5rem; line-height:1; display:flex; align-items:center; justify-content:center; cursor:pointer;
+}
+.db-nav.prev{ left:12px; }
+.db-nav.next{ right:12px; }
+.db-nav:disabled{ opacity:.35; cursor:not-allowed; }
+.db-meta-bar{
+  display:flex; justify-content:space-between; align-items:flex-start; gap:16px;
+  padding:14px 16px; border-top:1px solid var(--line); background:var(--surface);
+}
+.db-meta-bar .cap{ font-size:14px; color:var(--ink-soft); line-height:1.4; }
+.db-meta-bar .cap strong{ display:block; color:var(--ink); font-size:14.5px; margin-bottom:2px; }
+.db-meta-bar .count{ font-size:13px; color:var(--muted); white-space:nowrap; font-weight:600; }
+.db-hint{ margin:10px 0 0; font-size:12.5px; color:var(--muted); }
+
+.db-data{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:8px; }
+.db-data span{
+  border:1px solid var(--line); background:var(--bg); padding:10px 12px;
+  font-size:13px; font-weight:600; text-align:center;
+}
+
+@media(max-width:820px){
+  .db-meta,.db-pillars,.db-steps,.db-data{ grid-template-columns:1fr 1fr; }
+}
+@media(max-width:520px){
+  .db-meta,.db-pillars,.db-steps,.db-data{ grid-template-columns:1fr; }
+  .db-nav{ width:36px; height:36px; font-size:1.25rem; }
+}
 </style>
 </head>
 <body>
@@ -34,9 +121,9 @@
   <a href="index.html" class="site-logo">K.</a>
   <nav id="nav">
     <a href="index.html#about">About</a>
-    <a href="index.html#keywords">Skills</a>
     <a href="index.html#projects" class="active" aria-current="page">Projects</a>
     <a href="index.html#experience">Experience</a>
+    <a href="theraxis.html">AI</a>
     <a href="kaushik-resume-gd.pdf?v=20260731">Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
       <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
@@ -48,77 +135,252 @@
   </button>
 </div></header>
 
-<main class="wrap">
-  <section class="section">
-    <a href="index.html#projects" class="link">← All Projects</a>
-    <p class="eyebrow" style="margin-top:24px;">Personal Project</p>
-    <h1>Dashboard</h1>
-    <p>A personal learning project focused on designing a dashboard that helps users consume information quickly and clearly.</p>
-    <p style="color:var(--ink-soft);">This exploration uses a drone fleet management template — fleet status, live telemetry, mission planning, and alert triage — to practice information density, visual hierarchy, and scannable layout without decorative chrome. Six curated screens below show the slices that mattered most in the edit.</p>
-
-    <div class="slider" style="margin-top:32px;">
-      <div class="stage">
-        <button class="slide-nav prev" id="prevBtn" aria-label="Previous image">‹</button>
-        <img id="slideImage" src="dashboard-images/1.jpg" alt="Drone fleet overview dashboard"/>
-        <button class="slide-nav next" id="nextBtn" aria-label="Next image">›</button>
+<main>
+  <div class="wrap">
+    <section class="db-hero">
+      <a href="index.html#projects" class="link">← All Projects</a>
+      <p class="eyebrow" style="margin-top:24px;">Strategy &amp; Research · Personal project</p>
+      <h1>How to design a B2B dashboard</h1>
+      <p class="db-hero__lede">A research case study — not a client ship. I built a reusable structure for designing dense operational dashboards, then applied it to a concrete example.</p>
+      <p class="db-hero__note">Example domain: <strong style="color:var(--ink);">drone fleet management for a delivery system</strong> — orders, routes, live telemetry, alerts, and triage. The slides below walk through brief → research → design principles → wireframes → hi-fi UI → reflection. All 55 boards from the original study are here.</p>
+      <div class="db-meta">
+        <div><span class="k">Type</span><span class="v">Research case study</span></div>
+        <div><span class="k">Focus</span><span class="v">B2B dashboard structure</span></div>
+        <div><span class="k">Example</span><span class="v">Drone fleet · Delivery</span></div>
+        <div><span class="k">Output</span><span class="v">Framework + full UI deck</span></div>
       </div>
-      <div class="slider-meta">
-        <span id="slideCaption">Fleet overview — active units, mission status, and open alerts above the fold</span>
-        <span id="slideCount">1 / 6</span>
+    </section>
+  </div>
+
+  <section class="db-band db-band--soft">
+    <div class="wrap">
+      <div class="db-band__head">
+        <p class="eyebrow">Why this exists</p>
+        <h2>A structure you can reuse on any ops dashboard</h2>
+        <p>B2B dashboards fail when everything is “important.” This study defines what a fleet manager needs in five seconds, what can wait, and how hierarchy, KPIs, and context keep density usable.</p>
+      </div>
+      <div class="db-pillars">
+        <article class="db-pillar">
+          <div class="n">01</div>
+          <h3>The problem space</h3>
+          <p>Fleet managers need one view of orders, drones, weather, safety, and disruptions — without hopping tools or reading spreadsheets.</p>
+        </article>
+        <article class="db-pillar">
+          <div class="n">02</div>
+          <h3>The structure</h3>
+          <p>Nine design practices: user needs → end goal → dashboard type → five-second rule → KPIs → IA → context → minimalism → aesthetics.</p>
+        </article>
+        <article class="db-pillar">
+          <div class="n">03</div>
+          <h3>The example</h3>
+          <p>Pickup → hub → last-mile delivery on drones. Same patterns apply to MSP ops, logistics, or any multi-signal control room.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="db-band">
+    <div class="wrap">
+      <div class="db-band__head">
+        <p class="eyebrow">Framework</p>
+        <h2>Nine practices that shaped the deck</h2>
+        <p>Each practice becomes a chapter in the slide deck — jump to any of them below, or walk the full sequence.</p>
+      </div>
+      <div class="db-steps">
+        <article class="db-step"><span class="num">1</span><div><h3>Understand the user</h3><p>Fleet manager jobs, alerts, and decision moments.</p></div></article>
+        <article class="db-step"><span class="num">2</span><div><h3>Define the end goal</h3><p>Clear overview, faster triage, fewer delays.</p></div></article>
+        <article class="db-step"><span class="num">3</span><div><h3>Pick the dashboard type</h3><p>Operational / analytical slices for delivery ops.</p></div></article>
+        <article class="db-step"><span class="num">4</span><div><h3>Five-second rule</h3><p>Status and risk readable before any drill-down.</p></div></article>
+        <article class="db-step"><span class="num">5</span><div><h3>Choose KPIs carefully</h3><p>Orders, drones, issues — not vanity metrics.</p></div></article>
+        <article class="db-step"><span class="num">6</span><div><h3>Information architecture</h3><p>Must-know vs nice-to-know layout zones.</p></div></article>
+        <article class="db-step"><span class="num">7</span><div><h3>Provide context</h3><p>Benchmarks, labels, annotations, related pages.</p></div></article>
+        <article class="db-step"><span class="num">8</span><div><h3>Keep it minimal</h3><p>Density without decorative chrome.</p></div></article>
+        <article class="db-step"><span class="num">9</span><div><h3>Make it aesthetic &amp; usable</h3><p>Colour, type, and components that scale.</p></div></article>
+      </div>
+      <div class="db-data" aria-label="Data the dashboard must surface">
+        <span>Drone info</span>
+        <span>Flight data</span>
+        <span>Weather</span>
+        <span>Comms logs</span>
+        <span>Delivery details</span>
+        <span>Pickup details</span>
+        <span>Safety protocols</span>
+        <span>Alerts</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="db-band db-band--soft" id="deck">
+    <div class="wrap">
+      <div class="db-band__head">
+        <p class="eyebrow">Full study · 55 boards</p>
+        <h2>Brief → research → structure → UI</h2>
+        <p>Use the chapter pills to jump, or arrow through every board. This is the complete original deck — title, brief, journey map, principles, low-fi, hi-fi annotated screens, colour system, and learnings.</p>
+      </div>
+
+      <div class="db-chapters" id="chapters" role="tablist" aria-label="Deck chapters"></div>
+
+      <div class="db-slider">
+        <div class="db-stage">
+          <button class="db-nav prev" id="prevBtn" aria-label="Previous slide">‹</button>
+          <img id="slideImage" src="dashboard-images/1.jpg?v=20260807" width="1600" height="900" alt="Drone Fleet Management — design cover"/>
+          <button class="db-nav next" id="nextBtn" aria-label="Next slide">›</button>
+        </div>
+        <div class="db-meta-bar">
+          <div class="cap">
+            <strong id="slideTitle">Cover</strong>
+            <span id="slideCaption">Drone Fleet Management — fleet management dashboard design study</span>
+          </div>
+          <span class="count" id="slideCount">1 / 55</span>
+        </div>
+      </div>
+      <p class="db-hint">Tip: use ← → keys to move through the deck.</p>
+    </div>
+  </section>
+
+  <section class="db-band">
+    <div class="wrap">
+      <div class="db-band__head">
+        <p class="eyebrow">What this proves</p>
+        <h2>The same structure travels</h2>
+        <p>Drone delivery was the sandbox. The hierarchy — overview first, alerts second, detail on demand — is the same pattern I later applied on enterprise ops surfaces like MSC and security readiness.</p>
+      </div>
+      <div class="db-pillars">
+        <article class="db-pillar">
+          <div class="n">Research</div>
+          <h3>Assumptions named</h3>
+          <p>Built with limited domain access — learnings and future proposals (predictive maintenance, dynamic routing) are documented in the closing boards.</p>
+        </article>
+        <article class="db-pillar">
+          <div class="n">Design</div>
+          <h3>Low-fi → hi-fi</h3>
+          <p>Wireframes establish zones; annotated hi-fi screens show how “must know / important / nice to know” land in the live UI.</p>
+        </article>
+        <article class="db-pillar">
+          <div class="n">Transfer</div>
+          <h3>Reusable for B2B</h3>
+          <p>Swap drones for tenants, backups, or therapy sessions — the five-second rule and KPI discipline still hold.</p>
+        </article>
       </div>
     </div>
   </section>
 
   <section class="section more-work">
-    <div class="more-work__head">
-      <span class="eyebrow">More work</span>
-      <a href="index.html#projects" class="more-work__all">View all work</a>
-    </div>
-    <div class="more-work__grid">
-      <a class="mw-card" href="druva.html">
-        <span class="mw-card__name">Druva</span>
-        <span class="mw-card__desc">Provisioning &amp; access for service partners</span>
-      </a>
-      <a class="mw-card" href="msc-dashboard.html">
-        <span class="mw-card__name">MSC Dashboard</span>
-        <span class="mw-card__desc">Operations dashboard for MSP partners</span>
-      </a>
-      <a class="mw-card" href="harmoney.html">
-        <span class="mw-card__name">Harmoney</span>
-        <span class="mw-card__desc">Bond-trading platform, built 0→1</span>
-      </a>
+    <div class="wrap">
+      <div class="more-work__head">
+        <span class="eyebrow">More work</span>
+        <a href="index.html#projects" class="more-work__all">View all work</a>
+      </div>
+      <div class="more-work__grid">
+        <a class="mw-card" href="msc-dashboard.html">
+          <span class="mw-card__name">MSC Dashboard</span>
+          <span class="mw-card__desc">Ops dashboard for MSP partners</span>
+        </a>
+        <a class="mw-card" href="theraxis.html">
+          <span class="mw-card__name">Theraxis</span>
+          <span class="mw-card__desc">Clinical ops — AI build</span>
+        </a>
+        <a class="mw-card" href="druva.html">
+          <span class="mw-card__name">Druva</span>
+          <span class="mw-card__desc">Provisioning &amp; access</span>
+        </a>
+      </div>
     </div>
   </section>
 </main>
 
 <script>
-const slides = [
-  { src: 'dashboard-images/1.jpg', alt: 'Drone fleet overview dashboard', caption: 'Fleet overview — active units, mission status, and open alerts above the fold' },
-  { src: 'dashboard-images/11.jpg', alt: 'Live telemetry panel', caption: 'Live telemetry — battery, signal strength, and altitude per unit in one scan row' },
-  { src: 'dashboard-images/22.jpg', alt: 'Mission planning view', caption: 'Mission planning — route, ETA, and assignment without leaving the fleet context' },
-  { src: 'dashboard-images/33.jpg', alt: 'Alert triage queue', caption: 'Alert triage — severity-sorted queue so the highest-risk unit surfaces first' },
-  { src: 'dashboard-images/44.jpg', alt: 'Unit detail drill-down', caption: 'Unit detail — drill-down history and status without losing fleet navigation' },
-  { src: 'dashboard-images/55.jpg', alt: 'Analytics summary view', caption: 'Analytics summary — weekly utilization and failure trends for post-mission review' }
-];
-let current = 0;
-const imgEl = document.getElementById('slideImage');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const countEl = document.getElementById('slideCount');
-const captionEl = document.getElementById('slideCaption');
-function renderSlide() {
-  const slide = slides[current];
-  imgEl.src = slide.src;
-  imgEl.alt = slide.alt;
-  captionEl.textContent = slide.caption;
-  countEl.textContent = `${current + 1} / ${slides.length}`;
-  prevBtn.disabled = current === 0;
-  nextBtn.disabled = current === slides.length - 1;
-}
-prevBtn.addEventListener('click', () => { if (current > 0) { current -= 1; renderSlide(); } });
-nextBtn.addEventListener('click', () => { if (current < slides.length - 1) { current += 1; renderSlide(); } });
-renderSlide();
+(function(){
+  var TOTAL = 55;
+  var chapters = [
+    { at: 1,  label: 'Cover', title: 'Cover', caption: 'Drone Fleet Management — B2B fleet dashboard design study' },
+    { at: 2,  label: 'Brief', title: 'Design brief', caption: 'Efficient fleet management for managers — data the system must collect and show' },
+    { at: 3,  label: 'Understanding', title: 'Understanding the dashboard', caption: 'What a dashboard is, how it should be designed, and why a fleet system needs one' },
+    { at: 5,  label: 'Practices', title: 'Why dashboards + 9 practices', caption: 'Need for a dashboard, and the nine practices that structure this study' },
+    { at: 6,  label: 'User needs', title: 'Understand the needs of the user', caption: 'Jobs, journey, and alerts for fleet / delivery managers' },
+    { at: 15, label: 'End goal', title: 'Defining the end goal', caption: 'Clear fleet overview, route optimization, delivery tracking, proactive alerts' },
+    { at: 21, label: 'Type', title: 'Picking the dashboard type', caption: 'Choosing the right operational dashboard shape for delivery ops' },
+    { at: 25, label: '5-second', title: 'The five-second rule', caption: 'Status and risk must land before any drill-down' },
+    { at: 34, label: 'Context', title: 'Provide context', caption: 'Labels, comparisons, cues — and what lives on other pages' },
+    { at: 40, label: 'Low-fi', title: 'Low-fi layouts', caption: 'Wireframes for order overview, alerts, map, and upcoming work' },
+    { at: 43, label: 'Aesthetic', title: 'Make it aesthetic & usable', caption: 'Colour system, components, and hi-fi annotated screens' },
+    { at: 50, label: 'Hi-fi', title: 'Getting a clear overview', caption: 'Annotated fleet UI — orders, map, upcoming, triage hierarchy' },
+    { at: 55, label: 'Learnings', title: 'Learnings & next', caption: 'Disclaimer, future proposals, what to improve, and takeaways' }
+  ];
+
+  var captions = {};
+  chapters.forEach(function(c){ captions[c.at] = c; });
+
+  function captionFor(n){
+    if (captions[n]) return captions[n];
+    var prev = chapters[0];
+    for (var i = 0; i < chapters.length; i++){
+      if (chapters[i].at <= n) prev = chapters[i];
+      else break;
+    }
+    return {
+      title: prev.title,
+      caption: 'Board ' + n + ' of the research deck — continue from “' + prev.label + '”'
+    };
+  }
+
+  var current = 0;
+  var imgEl = document.getElementById('slideImage');
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  var countEl = document.getElementById('slideCount');
+  var titleEl = document.getElementById('slideTitle');
+  var captionEl = document.getElementById('slideCaption');
+  var chapterWrap = document.getElementById('chapters');
+
+  chapters.forEach(function(c){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = c.label;
+    b.setAttribute('data-at', String(c.at));
+    b.addEventListener('click', function(){ go(c.at - 1); });
+    chapterWrap.appendChild(b);
+  });
+
+  function go(index){
+    current = Math.max(0, Math.min(TOTAL - 1, index));
+    var n = current + 1;
+    imgEl.src = 'dashboard-images/' + n + '.jpg?v=20260807';
+    imgEl.alt = 'Dashboard research board ' + n;
+    var meta = captionFor(n);
+    titleEl.textContent = meta.title;
+    captionEl.textContent = meta.caption;
+    countEl.textContent = n + ' / ' + TOTAL;
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === TOTAL - 1;
+    Array.prototype.forEach.call(chapterWrap.children, function(btn){
+      var at = parseInt(btn.getAttribute('data-at'), 10);
+      var nextAt = TOTAL + 1;
+      for (var i = 0; i < chapters.length; i++){
+        if (chapters[i].at === at) {
+          nextAt = chapters[i + 1] ? chapters[i + 1].at : TOTAL + 1;
+          break;
+        }
+      }
+      btn.classList.toggle('is-active', n >= at && n < nextAt);
+    });
+    for (var p = n; p < Math.min(n + 3, TOTAL + 1); p++){
+      var im = new Image();
+      im.src = 'dashboard-images/' + p + '.jpg?v=20260807';
+    }
+  }
+
+  prevBtn.addEventListener('click', function(){ go(current - 1); });
+  nextBtn.addEventListener('click', function(){ go(current + 1); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowLeft') go(current - 1);
+    if (e.key === 'ArrowRight') go(current + 1);
+  });
+
+  go(0);
+})();
 </script>
+<script src="js/site-footer.js"></script>
 <script src="js/system-theme.js"></script>
 <script src="audio/music.js"></script>
 </body>
