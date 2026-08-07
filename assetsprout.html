@@ -126,7 +126,7 @@ hr.rule{border:none;border-top:1px solid var(--rule);margin:0;}
 </head>
 <body>
 
-<audio id="bgMusic" loop preload="auto" playsinline>
+<audio id="bgMusic" loop preload="auto" playsinline autoplay>
   <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
 </audio>
 <button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
@@ -276,7 +276,7 @@ document.querySelectorAll('.fi').forEach(el => io.observe(el));
 </script>
 <script src="js/site-shell.js?v=20260807mwscroll"></script>
 <script src="js/theme-toggle.js"></script>
-<script src="audio/music.js?v=20260807b"></script>
+<script src="audio/music.js?v=20260807autoplay"></script>
 <script src="js/site-footer.js?v=20260807contact"></script>
 </body>
 </html>
