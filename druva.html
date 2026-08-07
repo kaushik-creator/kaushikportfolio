@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260807csflat"/>
+<link rel="stylesheet" href="styles/system.css?v=20260807yellow"/>
 <style>
 /* Tighter case-study rhythm — cut excess section padding */
 main.wrap > .section{ padding-block:clamp(36px,5vw,56px); }
@@ -275,9 +275,9 @@ main.wrap > a.link{ display:inline-block; margin-top:28px; }
 <header class="site-header"><div class="wrap">
   <a href="index.html" class="site-logo">K.</a>
   <nav id="nav">
-    <a href="index.html#about">About</a>
-    <a href="index.html#projects" class="active" aria-current="page">Projects</a>
-    <a href="index.html#experience">Experience</a>
+    <a href="index.html">About</a>
+    <a href="projects.html" class="active" aria-current="page">Projects</a>
+    <a href="experience.html">Experience</a>
     <a href="theraxis.html">AI</a>
     <a href="Kaushik_Resume_Updated_v2.pdf?v=20260807" data-resume-trigger>Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
@@ -291,35 +291,41 @@ main.wrap > a.link{ display:inline-block; margin-top:28px; }
 </div></header>
 
 <main class="wrap">
-  <a href="index.html#projects" class="link">← All Projects</a>
+  <a href="projects.html" class="link cs-back">← All Projects</a>
 
   <!-- HERO + CONTEXT -->
-  <section class="section">
-    <p class="eyebrow">Case Study · 02</p>
-    <h1>Druva — provisioning &amp; access for service partners</h1>
-    <div class="druva-meta">
-      <div>
+  <section class="section cs-hero">
+    <p class="eyebrow">Case Study · Druva</p>
+    <h1>Provisioning &amp; access for service partners</h1>
+    <p class="cs-hero__lede">Self-serve product expansion for MSP partners — plan, approve, initiate, migrate, and validate without filing a support ticket each time.</p>
+    <div class="cs-hero__cover cs-hero__cover--diagram">
+      <img src="project-tiles/druva-800.png" srcset="project-tiles/druva-800.png 800w, druva/cover.png 1024w" sizes="(max-width: 920px) 100vw, 920px" width="1024" height="453" alt="Druva provisioning workflow"/>
+    </div>
+    <div class="cs-overview">
+      <div class="cs-overview__card">
         <span class="k">Role</span>
         <span class="v">UX Designer</span>
       </div>
-      <div>
+      <div class="cs-overview__card">
         <span class="k">Timeline</span>
         <span class="v">Feb – Aug 2025</span>
       </div>
-      <div>
+      <div class="cs-overview__card">
         <span class="k">Domain</span>
-        <span class="v">MSP Licensing &amp; Partner Access</span>
+        <span class="v">MSP Licensing &amp; Access</span>
       </div>
-      <div>
+      <div class="cs-overview__card">
         <span class="k">Platform</span>
         <span class="v">Enterprise Web Portal</span>
       </div>
-      <div>
+      <div class="cs-overview__card">
         <span class="k">Stakeholders</span>
         <span class="v">Support, PMs</span>
       </div>
     </div>
+  </section>
 
+  <section class="section">
     <div class="druva-brief">
       <div class="druva-brief__col">
         <p class="eyebrow">Context</p>
@@ -372,17 +378,17 @@ main.wrap > a.link{ display:inline-block; margin-top:28px; }
   </section>
 
   <section class="section">
-    <figure class="plate" style="padding: 0; overflow: hidden; border: none; background: transparent;">
-      <img src="druva/cover.png" alt="Druva provisioning workflow diagram — Plan, Approve, Initiate, Migrate, and Validate across Partner, Druva Cloud Admin, and MSP Admin" style="border-radius: 8px; width: 100%;">
-      <figcaption><strong>End-to-end provisioning flow.</strong> Plan and approve with Druva, initiate and validate as MSP Admin — with verification tokens and service-plan checks at each handoff.</figcaption>
+    <figure class="cs-well">
+      <img src="druva/cover.png" alt="Druva provisioning workflow diagram — Plan, Approve, Initiate, Migrate, and Validate across Partner, Druva Cloud Admin, and MSP Admin">
+      <figcaption style="margin-top:12px;color:var(--ink-soft);font-size:13px;"><strong>End-to-end provisioning flow.</strong> Plan and approve with Druva, initiate and validate as MSP Admin — with verification tokens and service-plan checks at each handoff.</figcaption>
     </figure>
   </section>
 
   <!-- THE PROBLEM -->
-  <section class="section">
+  <section class="section cs-story">
     <p class="eyebrow">The Problem</p>
-    <h3>MSPs lost customers when MSC couldn't provision products outside its supported set.</h3>
-    <p style="color:var(--ink-soft);">Licensing blocked the obvious fix — just add products. How might we expand what MSPs can sell within licensing constraints — without breaking customer privacy?</p>
+    <h2>MSPs lost customers when MSC couldn't provision products outside its supported set.</h2>
+    <p>Licensing blocked the obvious fix — just add products. How might we expand what MSPs can sell within licensing constraints — without breaking customer privacy?</p>
   </section>
 
   <!-- PERSONAS -->
@@ -655,7 +661,7 @@ main.wrap > a.link{ display:inline-block; margin-top:28px; }
   <section class="section more-work">
     <div class="more-work__head">
       <span class="eyebrow">More work</span>
-      <a href="index.html#projects" class="more-work__all">View all work</a>
+      <a href="projects.html" class="more-work__all">View all work</a>
     </div>
     <div class="more-work__scroller" data-more-work></div>
   </section>
@@ -728,7 +734,7 @@ main.wrap > a.link{ display:inline-block; margin-top:28px; }
 </script>
 <script src="js/site-footer.js?v=20260807contact"></script>
 <script src="js/system-theme.js"></script>
-<script src="js/site-shell.js?v=20260807mw"></script>
+<script src="js/site-shell.js?v=20260807nextup"></script>
 <script src="audio/music.js?v=20260807b"></script>
 </body>
 </html>

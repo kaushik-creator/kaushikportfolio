@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260807csflat"/>
+<link rel="stylesheet" href="styles/system.css?v=20260807yellow"/>
 <style>
 .lightbox-modal{display:none;position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,.95);overflow:auto;}
 .lightbox-close{position:fixed;top:20px;right:35px;z-index:10001;color:var(--surface);font-size:40px;cursor:pointer;line-height:1;}
@@ -1044,9 +1044,9 @@
 <header class="site-header"><div class="wrap">
   <a href="index.html" class="site-logo">K.</a>
   <nav id="nav">
-    <a href="index.html#about">About</a>
-    <a href="index.html#projects" class="active" aria-current="page">Projects</a>
-    <a href="index.html#experience">Experience</a>
+    <a href="index.html">About</a>
+    <a href="projects.html" class="active" aria-current="page">Projects</a>
+    <a href="experience.html">Experience</a>
     <a href="theraxis.html">AI</a>
     <a href="Kaushik_Resume_Updated_v2.pdf?v=20260807" data-resume-trigger>Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
@@ -1060,40 +1060,42 @@
 </div></header>
 
 <main class="wrap cs-page">
-  <a href="index.html#projects" class="link">← All Projects</a>
+  <a href="projects.html" class="link cs-back">← All Projects</a>
 
   <!-- HERO -->
+  <section class="section cs-hero">
+    <p class="eyebrow">Case Study · 01</p>
+    <h1>Hundreds of customers.<br>One control room.</h1>
+    <p class="cs-hero__lede">Druva's MSPs were logging into dozens of client accounts every morning just to find broken backups. I designed the operational dashboard that consolidated failures, storage spikes, and security risks into one clear view.</p>
+    <div class="cs-hero__cover">
+      <img src="project-tiles/msc-800.png" srcset="project-tiles/msc-800.png 800w, msc-dashboard/slide-tab1.png?v=20260806orig 2880w" sizes="(max-width: 920px) 100vw, 920px" width="2880" height="2208" alt="MSC Operational Dashboard"/>
+    </div>
+    <div class="cs-overview">
+      <div class="cs-overview__card">
+        <span class="k">Role</span>
+        <span class="v">UX/UI Designer (Sole)</span>
+      </div>
+      <div class="cs-overview__card">
+        <span class="k">Timeline</span>
+        <span class="v">1.5 months</span>
+      </div>
+      <div class="cs-overview__card">
+        <span class="k">Domain</span>
+        <span class="v">Data Backup &amp; Security</span>
+      </div>
+      <div class="cs-overview__card">
+        <span class="k">Type</span>
+        <span class="v">Enterprise B2B · MSP Portal</span>
+      </div>
+      <div class="cs-overview__card">
+        <span class="k">Stakeholders</span>
+        <span class="v">PM, Directors, Engineering</span>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="cs-grid">
-      <div class="cs-span-12">
-        <p class="eyebrow">Case Study · 01</p>
-        <h1 style="margin-bottom: 16px;">Hundreds of customers.<br>One control room.</h1>
-        <p>Druva's Managed Service Providers (MSPs) had a scaling problem: admins were logging into dozens of client accounts individually every morning just to find broken backups. I designed the single operational dashboard that consolidated backup failures, storage spikes, and security risks into one clear view.</p>
-      </div>
-      <div class="cs-span-12">
-        <div class="meta">
-          <div>
-            <span class="k">Role</span>
-            <span class="v">UX/UI Designer (Sole)</span>
-          </div>
-          <div>
-            <span class="k">Timeline</span>
-            <span class="v">1.5 months</span>
-          </div>
-          <div>
-            <span class="k">Domain</span>
-            <span class="v">Data Backup &amp; Security</span>
-          </div>
-          <div>
-            <span class="k">Type</span>
-            <span class="v">Enterprise B2B · MSP Portal</span>
-          </div>
-          <div>
-            <span class="k">Stakeholders</span>
-            <span class="v">PM, Directors, Engineering</span>
-          </div>
-        </div>
-      </div>
       <div class="cs-span-12">
         <div class="cs-brief">
           <div class="cs-brief__item">
@@ -1136,6 +1138,7 @@
         <h3 style="margin-top:0;margin-bottom:24px;">Final Design</h3>
       </div>
       <div class="cs-span-12">
+        <div class="cs-well" style="padding:clamp(12px,2vw,20px);">
         <div class="cs-slideshow" id="mscCoverSlideshow" data-interval="4000" aria-roledescription="carousel" aria-label="Final design — MSC dashboard tabs">
           <div class="cs-slideshow__stage">
             <img class="lightbox-trigger cs-shot is-active" src="msc-dashboard/slide-tab1.png?v=20260806orig" width="2880" height="2208" alt="Accounts and Licensing tab" data-label="Tab 01">
@@ -1147,6 +1150,7 @@
             <button type="button" class="cs-slideshow__dot" aria-label="Show Usage Monitoring" data-slide="1"></button>
             <button type="button" class="cs-slideshow__dot" aria-label="Show Backup Triage Centre" data-slide="2"></button>
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -1787,7 +1791,7 @@
   <section class="section more-work">
     <div class="more-work__head">
       <span class="eyebrow">More work</span>
-      <a href="index.html#projects" class="more-work__all">View all work</a>
+      <a href="projects.html" class="more-work__all">View all work</a>
     </div>
     <div class="more-work__scroller" data-more-work></div>
   </section>
@@ -2007,7 +2011,7 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 <script src="js/site-footer.js?v=20260807contact"></script>
 <script src="js/system-theme.js"></script>
-<script src="js/site-shell.js?v=20260807mw"></script>
+<script src="js/site-shell.js?v=20260807nextup"></script>
 <script src="audio/music.js?v=20260807b"></script>
 </body>
 </html>

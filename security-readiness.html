@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260807csflat"/>
+<link rel="stylesheet" href="styles/system.css?v=20260807yellow"/>
 <style>
 .lightbox-modal{display:none;position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,.95);overflow:auto;}
 .lightbox-close{position:fixed;top:20px;right:35px;z-index:10001;color:var(--surface);font-size:40px;cursor:pointer;line-height:1;}
@@ -669,9 +669,9 @@
 <header class="site-header"><div class="wrap">
   <a href="index.html" class="site-logo">K.</a>
   <nav id="nav">
-    <a href="index.html#about">About</a>
-    <a href="index.html#projects" class="active" aria-current="page">Projects</a>
-    <a href="index.html#experience">Experience</a>
+    <a href="index.html">About</a>
+    <a href="projects.html" class="active" aria-current="page">Projects</a>
+    <a href="experience.html">Experience</a>
     <a href="theraxis.html">AI</a>
     <a href="Kaushik_Resume_Updated_v2.pdf?v=20260807" data-resume-trigger>Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
@@ -685,38 +685,35 @@
 </div></header>
 
 <main class="wrap cs-page">
-  <a href="index.html#projects" class="link">← All Projects</a>
+  <a href="projects.html" class="link cs-back">← All Projects</a>
 
   <!-- 1. HERO -->
-  <section class="section">
-    <div class="cs-grid">
-      <div class="cs-span-12">
-        <p class="eyebrow">Case Study · 02</p>
-        <h1 style="margin-bottom: 16px;">Two problems.<br>One Security Center.</h1>
-        <p>Cloud Administrators didn’t know Cyber Resiliency capabilities—and even when they did, baseline security lived across <span class="cs-chip cs-chip--amber">6 Scattered Pages</span>. I designed Explore Cyber Resiliency Features for onboarding/discovery, plus the Cyber Resiliency Readiness Score to guide Mandatory and Recommended setup in place.</p>
+  <section class="section cs-hero">
+    <p class="eyebrow">Case Study · 02</p>
+    <h1>Two problems.<br>One Security Center.</h1>
+    <p class="cs-hero__lede">Cloud Administrators didn’t know Cyber Resiliency capabilities—and even when they did, baseline security lived across <span class="cs-chip cs-chip--amber">6 Scattered Pages</span>. I designed discovery onboarding plus a Readiness Score for Mandatory and Recommended setup in place.</p>
+    <div class="cs-hero__cover">
+      <img src="project-tiles/security-800.png" srcset="project-tiles/security-800.png 800w, security-readiness/cover.png 1024w" sizes="(max-width: 920px) 100vw, 920px" width="1024" height="843" alt="Security Readiness Score widget"/>
+    </div>
+    <div class="cs-overview">
+      <div class="cs-overview__card">
+        <span class="k">Role</span>
+        <span class="v">End-to-End UX</span>
       </div>
-      <div class="cs-span-12">
-        <div class="meta">
-          <div>
-            <span class="k">Role</span>
-            <span class="v">End-to-End UX</span>
-          </div>
-          <div>
-            <span class="k">Timeline</span>
-            <span class="v">2 Months</span>
-          </div>
-          <div>
-            <span class="k">Domain</span>
-            <span class="v">Cybersecurity &amp; Enterprise B2B SaaS</span>
-          </div>
-          <div>
-            <span class="k">Stakeholders</span>
-            <span class="v">Security PM / InfoSec / Lead Engineering</span>
-          </div>
-        </div>
-        <p class="cs-nda"><strong>Confidentiality note:</strong> This project is under NDA. Design is complete and moving into development. Interface redrawn and figures synthesized for case study presentation — core architectural logic and UX constraints remain true to production.</p>
+      <div class="cs-overview__card">
+        <span class="k">Timeline</span>
+        <span class="v">2 Months</span>
+      </div>
+      <div class="cs-overview__card">
+        <span class="k">Domain</span>
+        <span class="v">Cybersecurity · Enterprise B2B</span>
+      </div>
+      <div class="cs-overview__card">
+        <span class="k">Stakeholders</span>
+        <span class="v">Security PM / InfoSec / Eng</span>
       </div>
     </div>
+    <p class="cs-nda" style="max-width:52ch;margin:24px auto 0;text-align:left;"><strong>Confidentiality note:</strong> This project is under NDA. Design is complete and moving into development. Interface redrawn and figures synthesized for case study presentation — core architectural logic and UX constraints remain true to production.</p>
   </section>
 
   <!-- 2. BRIEF TRIAD -->
@@ -760,14 +757,14 @@
   <section class="section">
     <div class="cs-grid cs-compare">
       <div class="cs-span-6">
-        <figure class="plate">
+        <figure class="cs-well">
           <p class="eyebrow" style="margin:0 0 12px;">Existing</p>
           <img class="lightbox-trigger cs-shot" src="security-readiness/existing-security-center.png?v=20260806hi" width="1024" height="981" alt="Existing Security Center with Posture Security Risks checklist, Backup Risks, New Location Events, Access Risks, and Threat Summary — no readiness score widget">
           <figcaption><strong>Before.</strong> Reactive Security Center — posture risks as a flat checklist, no consolidated readiness score or in-place remediation path.</figcaption>
         </figure>
       </div>
       <div class="cs-span-6">
-        <figure class="plate">
+        <figure class="cs-well">
           <p class="eyebrow" style="margin:0 0 12px;">Shipped</p>
           <img class="lightbox-trigger cs-shot" src="security-readiness/final-gauge.png?v=20260806hi2" width="1024" height="843" alt="Shipped Security Center with Explore Cyber Resiliency Features button and Cyber Resiliency Readiness Score widget">
           <div class="cs-final-notes">
@@ -911,25 +908,25 @@
 
     <div class="cs-grid cs-explore" style="margin-top: 8px;">
       <div class="cs-span-6">
-        <figure class="plate">
+        <figure class="cs-well">
           <img class="lightbox-trigger cs-shot" src="security-readiness/explore-01-built-in.png?v=20260806hi" width="1024" height="633" alt="Explore Cyber Resiliency Features modal on Built in Security tab showing Air-Gapped Backup, Managed Data Detection and Response, Rollback Actions, and Data Lock">
           <figcaption><strong>01 · Built in Security</strong> — default protections like Air-Gapped Backup, Managed DDR, Rollback Actions, and Data Lock.</figcaption>
         </figure>
       </div>
       <div class="cs-span-6">
-        <figure class="plate">
+        <figure class="cs-well">
           <img class="lightbox-trigger cs-shot" src="security-readiness/explore-02-ransomware.png?v=20260806hi" width="1024" height="633" alt="Explore Cyber Resiliency Features modal on Ransomware Recovery tab showing Restore Scan, Curated Snapshots, Sandbox Recovery, and Quarantine Bay">
           <figcaption><strong>02 · Ransomware Recovery</strong> — Restore Scan, Curated Snapshots, Sandbox Recovery, and Quarantine Bay.</figcaption>
         </figure>
       </div>
       <div class="cs-span-6">
-        <figure class="plate">
+        <figure class="cs-well">
           <img class="lightbox-trigger cs-shot" src="security-readiness/explore-03-incident.png?v=20260806hi" width="1024" height="633" alt="Explore Cyber Resiliency Features modal on Incident Investigation tab showing Data Anomalies and Threat Hunting">
           <figcaption><strong>03 · Incident Investigation</strong> — Data Anomalies and Threat Hunting for proactive detection.</figcaption>
         </figure>
       </div>
       <div class="cs-span-6">
-        <figure class="plate">
+        <figure class="cs-well">
           <img class="lightbox-trigger cs-shot" src="security-readiness/explore-04-learn-more.png?v=20260806hi" width="1024" height="627" alt="Explore Cyber Resiliency Features with Learn More panel open for Data Lock explaining immutable recovery points and edition availability">
           <figcaption><strong>04 · Learn More</strong> — deep-dive panel for a selected feature (e.g. Data Lock) without leaving Security Center.</figcaption>
         </figure>
@@ -949,7 +946,7 @@
 
     <div class="cs-sticky-row cs-sticky-row--media-left" style="margin-top: 28px;">
       <div class="cs-sticky-row__media">
-        <figure class="plate">
+        <figure class="cs-well">
           <img class="lightbox-trigger cs-shot" src="security-readiness/posture-security-risks.png?v=20260806hi" width="1024" height="795" alt="Posture Security Risks card showing 4 risks with pass-fail status for Single Sign-On, Geofencing, Multi-factor Authentication, Minimum 2 Cloud Administrators, and Audit Trail Retention Period">
           <figcaption><strong>Posture Security Risks.</strong> A flat checklist of configuration gaps — same presentation for every admin, with no prioritized next steps.</figcaption>
         </figure>
@@ -1073,7 +1070,7 @@
 
     <div class="cs-sticky-row cs-sticky-row--media-left">
       <div class="cs-sticky-row__media">
-        <figure class="plate">
+        <figure class="cs-well">
           <img class="lightbox-trigger cs-shot" src="security-readiness/feature-gauge.png?v=20260806feat2" width="1024" height="563" alt="Cyber Resiliency Readiness gauge with nested Mandatory and Recommended arcs, tooltip on incomplete Cyber Resiliency Reports showing subscribe to minimum 3 reports">
         </figure>
       </div>
@@ -1091,7 +1088,7 @@
         <p>Answers “where is the immediate exposure?” Direct pass/fail status with pencil edit affordances per row, plus Mandatory asterisks and subscription minimums.</p>
       </div>
       <div class="cs-sticky-row__media">
-        <figure class="plate">
+        <figure class="cs-well">
           <img class="lightbox-trigger cs-shot" src="security-readiness/feature-list.png?v=20260806feat2" width="1024" height="563" alt="Cyber Resiliency Readiness list view showing 3 of 6 controls with Mandatory and Recommended breakdown and pencil edit affordances">
         </figure>
       </div>
@@ -1099,7 +1096,7 @@
 
     <div class="cs-sticky-row cs-sticky-row--media-left">
       <div class="cs-sticky-row__media">
-        <figure class="plate">
+        <figure class="cs-well">
           <img class="lightbox-trigger cs-shot" src="security-readiness/feature-modal.png?v=20260806feat5" width="1024" height="511" alt="Subscription for Reports in-context modal over Security Center showing subscribed and unsubscribed report types with Manage Subscription action">
         </figure>
       </div>
@@ -1232,7 +1229,7 @@
   <section class="section more-work">
     <div class="more-work__head">
       <span class="eyebrow">More work</span>
-      <a href="index.html#projects" class="more-work__all">View all work</a>
+      <a href="projects.html" class="more-work__all">View all work</a>
     </div>
     <div class="more-work__scroller" data-more-work></div>
   </section>
@@ -1322,7 +1319,7 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 <script src="js/site-footer.js?v=20260807contact"></script>
 <script src="js/system-theme.js"></script>
-<script src="js/site-shell.js?v=20260807mw"></script>
+<script src="js/site-shell.js?v=20260807nextup"></script>
 <script src="audio/music.js?v=20260807b"></script>
 </body>
 </html>

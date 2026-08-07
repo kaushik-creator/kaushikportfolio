@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260807csflat"/>
+<link rel="stylesheet" href="styles/system.css?v=20260807yellow"/>
 <style>
 .tradeoff{border:1px solid var(--line);border-left:2px solid var(--accent);padding:24px;margin-top:32px;background:var(--surface);}
 </style>
@@ -29,9 +29,9 @@
 <header class="site-header"><div class="wrap">
   <a href="index.html" class="site-logo">K.</a>
   <nav id="nav">
-    <a href="index.html#about">About</a>
-    <a href="index.html#projects" class="active" aria-current="page">Projects</a>
-    <a href="index.html#experience">Experience</a>
+    <a href="index.html">About</a>
+    <a href="projects.html" class="active" aria-current="page">Projects</a>
+    <a href="experience.html">Experience</a>
     <a href="theraxis.html">AI</a>
     <a href="Kaushik_Resume_Updated_v2.pdf?v=20260807" data-resume-trigger>Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
@@ -45,61 +45,75 @@
 </div></header>
 
 <main class="wrap">
-  <a href="index.html#projects" class="link">← All Projects</a>
+  <a href="projects.html" class="link cs-back">← All Projects</a>
 
-  <section class="section">
+  <section class="section cs-hero">
     <p class="eyebrow">Case Study · Mason / ModeMagic</p>
     <h1>ModeMagic — Shopify automation for D2C sellers</h1>
-    <p>Redesigning Mason's flagship Shopify app — ModeMagic — from a simple badge tool into a seller-facing automation product. D2C store owners use it to apply promotional badges across their catalog in three steps: select badge, choose products, update store — without touching each listing manually.</p>
-    <div class="meta">
-      <div>
+    <p class="cs-hero__lede">Redesigning Mason's flagship Shopify app from a simple badge tool into a seller-facing automation product — select badge, choose products, update store.</p>
+    <div class="cs-hero__cover">
+      <img src="project-tiles/mason-800.png" srcset="project-tiles/mason-800.png 800w, mason-story/e.png 1356w" sizes="(max-width: 920px) 100vw, 920px" width="1356" height="839" alt="ModeMagic badge automation interface"/>
+    </div>
+    <div class="cs-overview">
+      <div class="cs-overview__card">
         <span class="k">Role</span>
         <span class="v">Product Designer</span>
       </div>
-      <div>
+      <div class="cs-overview__card">
         <span class="k">Timeline</span>
         <span class="v">Feb 2021 – Apr 2022</span>
       </div>
-      <div>
+      <div class="cs-overview__card">
         <span class="k">Type</span>
-        <span class="v">Fulltime · E-commerce · Shopify B2B</span>
+        <span class="v">E-commerce · Shopify B2B</span>
       </div>
-      <div>
+      <div class="cs-overview__card">
         <span class="k">Skills</span>
-        <span class="v">UX Design · Shopify Apps · Automation Flows · Conversion</span>
+        <span class="v">UX · Automation · Conversion</span>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <p class="eyebrow">Step 01 / Problem &amp; Context</p>
-    <h3 style="margin-top: 0; margin-bottom: 16px;">Badge tool → automation platform</h3>
+  <section class="section cs-story">
+    <p class="eyebrow">Problem &amp; Context</p>
+    <h2>Badge tool → automation platform</h2>
     <p><strong>The Problem:</strong> D2C sellers on Shopify needed to run promotions across large catalogs, but applying badges product-by-product was slow and error-prone — especially during flash sales when timing mattered.</p>
-    <p style="margin-top: 16px;"><strong>The Opportunity:</strong> ModeMagic already had badge assets. The redesign had to make bulk application and automation feel as simple as the three-step manual flow — select badge, choose products, update store — while giving Mason a path from experiment to core product vertical.</p>
-    <div class="tradeoff" style="margin-top: 32px; border: 1px solid var(--line); border-left: 2px solid var(--accent); padding: 24px; background: var(--surface);">
-      <p style="margin: 0;"><strong>Recognition:</strong> The redesigned experience contributed to an 8× increase in weekly active users within a year and supported a Shopify Commerce Award win for Best App User Interface — validated through product metrics and team feedback post-launch, not a controlled A/B study I ran in isolation.</p>
-    </div>
+    <p><strong>The Opportunity:</strong> ModeMagic already had badge assets. The redesign had to make bulk application and automation feel as simple as the three-step manual flow — select badge, choose products, update store — while giving Mason a path from experiment to core product vertical.</p>
   </section>
 
   <section class="section">
     <p class="eyebrow">Screens &amp; Process</p>
-    <figure class="plate"><img src="mason-story/a.png" alt="ModeMagic 2.0 product design overview for Shopify D2C store owners"/></figure>
-    <figure class="plate"><img src="mason-story/b.png" alt="ModeMagic screen B"/></figure>
-    <figure class="plate"><img src="mason-story/c.png" alt="What is ModeMagic — Shopify app for D2C store proprietors to apply promotional badges"/></figure>
-    <figure class="plate"><img src="mason-story/d.png" alt="Mason screen D"/></figure>
-    <figure class="plate"><img src="mason-story/e.png" alt="ModeMagic badge application interface — select badge, choose products, update store"/></figure>
-    <figure class="plate"><img src="mason-story/f.png" alt="Mason screen F"/></figure>
-    <figure class="plate"><img src="mason-story/g.png" alt="Mason screen G"/></figure>
-    <figure class="plate"><img src="mason-story/h.png" alt="Mason screen H"/></figure>
-    <figure class="plate"><img src="mason-story/i.png" alt="Mason screen I"/></figure>
-    <figure class="plate"><img src="mason-story/j.png" alt="Mason screen J"/></figure>
-    <figure class="plate"><img src="mason-story/k.png" alt="Mason screen K"/></figure>
-    <figure class="plate"><img src="mason-story/l.png" alt="Mason screen L"/></figure>
-    <figure class="plate"><img src="mason-story/m.png" alt="Mason screen M"/></figure>
+    <figure class="cs-well"><img src="mason-story/a.png" alt="ModeMagic 2.0 product design overview for Shopify D2C store owners"/></figure>
+    <figure class="cs-well"><img src="mason-story/b.png" alt="ModeMagic screen B"/></figure>
+    <figure class="cs-well"><img src="mason-story/c.png" alt="What is ModeMagic — Shopify app for D2C store proprietors to apply promotional badges"/></figure>
+    <figure class="cs-well"><img src="mason-story/d.png" alt="Mason screen D"/></figure>
+    <figure class="cs-well"><img src="mason-story/e.png" alt="ModeMagic badge application interface — select badge, choose products, update store"/></figure>
+    <figure class="cs-well"><img src="mason-story/f.png" alt="Mason screen F"/></figure>
+    <figure class="cs-well"><img src="mason-story/g.png" alt="Mason screen G"/></figure>
+    <figure class="cs-well"><img src="mason-story/h.png" alt="Mason screen H"/></figure>
+    <figure class="cs-well"><img src="mason-story/i.png" alt="Mason screen I"/></figure>
+    <figure class="cs-well"><img src="mason-story/j.png" alt="Mason screen J"/></figure>
+    <figure class="cs-well"><img src="mason-story/k.png" alt="Mason screen K"/></figure>
+    <figure class="cs-well"><img src="mason-story/l.png" alt="Mason screen L"/></figure>
+    <figure class="cs-well"><img src="mason-story/m.png" alt="Mason screen M"/></figure>
   </section>
 
   <section class="section">
     <p class="eyebrow">Outcomes &amp; Reflection</p>
+    <div class="cs-impact">
+      <div class="cs-impact__item">
+        <p class="cs-impact__num">8×</p>
+        <p class="cs-impact__label">Weekly active users within a year</p>
+      </div>
+      <div class="cs-impact__item">
+        <p class="cs-impact__num">Award</p>
+        <p class="cs-impact__label">Shopify Commerce · Best App UI</p>
+      </div>
+      <div class="cs-impact__item">
+        <p class="cs-impact__num">Core</p>
+        <p class="cs-impact__label">From experiment to product vertical</p>
+      </div>
+    </div>
     <div class="module">
       <h3 style="margin-top: 0;">Impact</h3>
       <ul>
@@ -122,7 +136,7 @@
   <section class="section more-work">
     <div class="more-work__head">
       <span class="eyebrow">More work</span>
-      <a href="index.html#projects" class="more-work__all">View all work</a>
+      <a href="projects.html" class="more-work__all">View all work</a>
     </div>
     <div class="more-work__scroller" data-more-work></div>
   </section>
@@ -130,7 +144,7 @@
 
 <script src="js/site-footer.js?v=20260807contact"></script>
 <script src="js/system-theme.js"></script>
-<script src="js/site-shell.js?v=20260807mw"></script>
+<script src="js/site-shell.js?v=20260807nextup"></script>
 <script src="audio/music.js?v=20260807b"></script>
 </body>
 </html>

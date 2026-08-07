@@ -88,12 +88,6 @@
   }
 
   function renderMoreWorkCard(item) {
-    var tags = ['<span class="mw-card__tag mw-card__tag--type">' + escapeHtml(item.type) + '</span>']
-      .concat((item.tags || []).map(function (tag) {
-        return '<span class="mw-card__tag">' + escapeHtml(tag) + '</span>';
-      }))
-      .join('');
-
     var media;
     if (item.label) {
       media = '<div class="mw-card__media mw-card__media--label" aria-hidden="true">' + escapeHtml(item.label) + '</div>';
@@ -109,9 +103,9 @@
       '<a class="mw-card" href="' + escapeHtml(item.href) + '">' +
         media +
         '<div class="mw-card__body">' +
-          '<div class="mw-card__tags">' + tags + '</div>' +
           '<span class="mw-card__name">' + escapeHtml(item.name) + '</span>' +
           '<span class="mw-card__desc">' + escapeHtml(item.desc) + '</span>' +
+          '<span class="proj-show__cta">View case study →</span>' +
         '</div>' +
       '</a>'
     );
@@ -121,9 +115,18 @@
   document.querySelectorAll('[data-more-work]').forEach(function (host) {
     var cards = MORE_WORK.filter(function (item) {
       return item.href.toLowerCase() !== currentPage;
-    });
+    }).slice(0, 2);
     host.innerHTML = cards.map(renderMoreWorkCard).join('');
     host.setAttribute('role', 'list');
+    host.classList.add('more-work__scroller');
+
+    var section = host.closest('.more-work');
+    if (section) {
+      var eyebrow = section.querySelector('.more-work__head .eyebrow');
+      if (eyebrow) eyebrow.textContent = 'Next up';
+      var all = section.querySelector('.more-work__all');
+      if (all) all.textContent = 'View all projects';
+    }
   });
 
   var resumeModal = document.getElementById('resumeModal');

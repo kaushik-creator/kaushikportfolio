@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260807csflat"/>
+<link rel="stylesheet" href="styles/system.css?v=20260807yellow"/>
 <style>
 /* Harmoney-specific UI — design tokens only */
 .dash-frame{border:1px solid var(--line);overflow:hidden;background:var(--surface);}
@@ -66,9 +66,9 @@
 <header class="site-header"><div class="wrap">
   <a href="index.html" class="site-logo">K.</a>
   <nav id="nav">
-    <a href="index.html#about">About</a>
-    <a href="index.html#projects" class="active" aria-current="page">Projects</a>
-    <a href="index.html#experience">Experience</a>
+    <a href="index.html">About</a>
+    <a href="projects.html" class="active" aria-current="page">Projects</a>
+    <a href="experience.html">Experience</a>
     <a href="theraxis.html">AI</a>
     <a href="Kaushik_Resume_Updated_v2.pdf?v=20260807" data-resume-trigger>Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
@@ -82,59 +82,40 @@
 </div></header>
 
 <main class="wrap">
-  <a href="index.html#projects" class="link">← All Projects</a>
+  <a href="projects.html" class="link cs-back">← All Projects</a>
 
-  <section class="section">
-    <p class="eyebrow">Case Study · 01</p>
+  <section class="section cs-hero">
+    <p class="eyebrow">Case Study · Fintech</p>
     <h1>Harmoney</h1>
-    <p>India's first digital B2B bond trading platform — streamlining the trading process for institutions, wealth firms, and brokers through a unified, transparent digital marketplace.</p>
-    <div class="meta">
-      <div>
+    <p class="cs-hero__lede">India's first digital B2B bond trading platform — streamlining trading for institutions, wealth firms, and brokers through a unified marketplace.</p>
+    <div class="cs-hero__cover">
+      <img src="project-tiles/harmoney-800.png" srcset="project-tiles/harmoney-800.png 800w, harmoney-screen-1.png 1200w" sizes="(max-width: 920px) 100vw, 920px" width="1200" height="854" alt="Harmoney bond trading dashboard"/>
+    </div>
+    <div class="cs-overview">
+      <div class="cs-overview__card">
         <span class="k">Role</span>
         <span class="v">Founding Product Designer</span>
       </div>
-      <div>
+      <div class="cs-overview__card">
         <span class="k">Timeline</span>
         <span class="v">May 2022 – Mar 2023</span>
       </div>
-      <div>
+      <div class="cs-overview__card">
         <span class="k">Type</span>
-        <span class="v">Fulltime · Fintech · B2B</span>
+        <span class="v">Fintech · B2B · 0→1</span>
       </div>
-      <div>
+      <div class="cs-overview__card">
         <span class="k">Skills</span>
-        <span class="v">
-          <span class="chips">
-            <span class="chip">Product Design</span>
-            <span class="chip">UX Research</span>
-            <span class="chip">Design Systems</span>
-            <span class="chip">Mobile &amp; Desktop</span>
-            <span class="chip">User Interviews</span>
-          </span>
-        </span>
+        <span class="v">Product · Research · Systems</span>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="dash-frame">
-      <div class="dash-titlebar">
-        <div class="win-btn" style="background:#f87171;"></div>
-        <div class="win-btn" style="background:#fbbf24;"></div>
-        <div class="win-btn" style="background:#4ade80;"></div>
-        <span class="dash-url">harmoney.io · Bond Market Dashboard</span>
-      </div>
-      <div class="plate" style="border:none;padding:0;">
-        <img src="harmoney-screen-1.png" alt="Harmoney dashboard screen"/>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <p class="eyebrow">Step 01 / Problem &amp; Context</p>
-    <h3 style="margin-top: 0; margin-bottom: 16px;">From bond listings to a trading desk</h3>
+  <section class="section cs-story">
+    <p class="eyebrow">Problem &amp; Context</p>
+    <h2>From bond listings to a trading desk</h2>
     <p><strong>The Problem:</strong> Harmoney launched as a bond listing website — useful for discovery, but traders still ran their actual workflow across four to six separate screens (market watch, order book, execution, settlement).</p>
-    <p style="margin-top: 16px;"><strong>The Bet:</strong> Consolidate the highest-frequency trading actions into one platform so institutional traders, wealth firms, and brokers could execute without context-switching — and Harmoney could earn a permanent place in their daily stack.</p>
+    <p><strong>The Bet:</strong> Consolidate the highest-frequency trading actions into one platform so institutional traders, wealth firms, and brokers could execute without context-switching — and Harmoney could earn a permanent place in their daily stack.</p>
   </section>
 
   <section class="section">
@@ -185,7 +166,7 @@
       </div>
     </div>
     <div class="story-board">
-      <figure class="plate">
+      <figure class="cs-well">
         <img src="story-website.png" alt="Early Harmoney website for bond search"/>
         <figcaption>Bond Searching Website</figcaption>
       </figure>
@@ -201,7 +182,7 @@
     <h2>Bond Trading Was Broken</h2>
     <p>Bond trades were still closed over phone calls — brokers negotiated verbally, hung up, and recorded the deal manually in a spreadsheet. If a price moved while a broker was mid-call with someone else, there was no way to know. Wealth managers had no visibility into what bonds were even available.</p>
     <p>The CEO, who came from the bond trading industry, knew this could be digitized. The design challenge was different from most consumer products: institutional traders optimize for speed and data density, not visual polish.</p>
-    <figure class="plate" style="margin-top:1.35rem;">
+    <figure class="cs-well" style="margin-top:1.35rem;">
       <img src="story-understanding.png" alt="Understanding the product and transition from informational website to digital bond trading platform"/>
       <figcaption>Understanding the Product</figcaption>
     </figure>
@@ -250,31 +231,31 @@
 
   <section class="section">
     <div class="stack">
-      <figure class="plate">
+      <figure class="cs-well">
         <img src="story/stack-1.png" alt="Existing state and preferred state comparison"/>
         <figcaption>Existing vs Preferred State</figcaption>
       </figure>
-      <figure class="plate">
+      <figure class="cs-well">
         <img src="story/stack-2.png" alt="Goal: develop an efficient bond trading platform"/>
         <figcaption>Goal: Efficient Bond Trading Platform</figcaption>
       </figure>
-      <figure class="plate">
+      <figure class="cs-well">
         <img src="story/stack-3.png" alt="Understanding the operations flow"/>
         <figcaption>Operations Flow Mapping</figcaption>
       </figure>
-      <figure class="plate">
+      <figure class="cs-well">
         <img src="story/stack-under-3.png" alt="Clustering the components"/>
         <figcaption>Component Clustering</figcaption>
       </figure>
-      <figure class="plate">
+      <figure class="cs-well">
         <img src="story/stack-under-5.png" alt="MVP flow and closed deals workflow"/>
         <figcaption>MVP Flow &amp; Closed Deals</figcaption>
       </figure>
-      <figure class="plate">
+      <figure class="cs-well">
         <img src="story/stack-under-6.png" alt="Customer feedback summary"/>
         <figcaption>Customer Feedback Summary</figcaption>
       </figure>
-      <figure class="plate">
+      <figure class="cs-well">
         <img src="story/stack-under-7.png" alt="Version four interface and drawbacks"/>
         <figcaption>Version Four Interface Review</figcaption>
       </figure>
@@ -286,15 +267,15 @@
     <h2>Key Screens &amp; Workflows</h2>
     <p>The final design balances information density with usability — desktop optimized for institutional traders, mobile for quick checks and on-the-go trading.</p>
     <div class="gif-stack">
-      <figure class="plate">
+      <figure class="cs-well">
         <img src="harmoney-gif/hg11.gif" alt="Harmoney workflow demo 1"/>
         <figcaption>Flow demo 01: A single screen to trade bonds effortlessly</figcaption>
       </figure>
-      <figure class="plate">
+      <figure class="cs-well">
         <img src="harmoney-gif/hg21.gif" alt="Harmoney workflow demo 2"/>
         <figcaption>Flow Demo 02: A single screen for Market Watch and My Orders</figcaption>
       </figure>
-      <figure class="plate">
+      <figure class="cs-well">
         <img src="harmoney-gif/hg31.gif" alt="Harmoney workflow demo 3"/>
         <figcaption>Flow Demo 03: Easy way to edit and trade bonds</figcaption>
       </figure>
@@ -331,7 +312,7 @@
   <section class="section more-work">
     <div class="more-work__head">
       <span class="eyebrow">More work</span>
-      <a href="index.html#projects" class="more-work__all">View all work</a>
+      <a href="projects.html" class="more-work__all">View all work</a>
     </div>
     <div class="more-work__scroller" data-more-work></div>
   </section>
@@ -378,7 +359,7 @@ renderStorySlide();
 </script>
 <script src="js/site-footer.js?v=20260807contact"></script>
 <script src="js/system-theme.js"></script>
-<script src="js/site-shell.js?v=20260807mw"></script>
+<script src="js/site-shell.js?v=20260807nextup"></script>
 <script src="audio/music.js?v=20260807b"></script>
 </body>
 </html>
