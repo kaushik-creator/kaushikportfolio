@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260807wash2"/>
+<link rel="stylesheet" href="styles/system.css?v=20260807csflat"/>
 <style>
 .lightbox-modal{display:none;position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,.95);overflow:auto;}
 .lightbox-close{position:fixed;top:20px;right:35px;z-index:10001;color:var(--surface);font-size:40px;cursor:pointer;line-height:1;}
@@ -1789,20 +1789,7 @@
       <span class="eyebrow">More work</span>
       <a href="index.html#projects" class="more-work__all">View all work</a>
     </div>
-    <div class="more-work__grid">
-      <a class="mw-card" href="security-readiness.html">
-        <span class="mw-card__name">Security Readiness</span>
-        <span class="mw-card__desc">Cyber resiliency score for Cloud Admins</span>
-      </a>
-      <a class="mw-card" href="druva.html">
-        <span class="mw-card__name">Druva</span>
-        <span class="mw-card__desc">Provisioning &amp; access for service partners</span>
-      </a>
-      <a class="mw-card" href="harmoney.html">
-        <span class="mw-card__name">Harmoney</span>
-        <span class="mw-card__desc">Bond-trading platform, built 0→1</span>
-      </a>
-    </div>
+    <div class="more-work__scroller" data-more-work></div>
   </section>
 
   <!-- FOOTER -->
@@ -2020,7 +2007,7 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 <script src="js/site-footer.js?v=20260807contact"></script>
 <script src="js/system-theme.js"></script>
-<script src="js/site-shell.js"></script>
+<script src="js/site-shell.js?v=20260807mw"></script>
 <script src="audio/music.js?v=20260807b"></script>
 </body>
 </html>

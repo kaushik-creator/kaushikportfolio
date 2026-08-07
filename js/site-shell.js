@@ -14,6 +14,118 @@
     });
   }
 
+  var MORE_WORK = [
+    {
+      href: 'msc-dashboard.html',
+      name: 'MSC Operational Dashboard',
+      desc: 'One overloaded MSP screen split into three job-focused surfaces.',
+      type: 'Professional',
+      tags: ['B2B', 'Dashboard'],
+      img: 'project-tiles/msc-800.png',
+      alt: 'MSC Operational Dashboard'
+    },
+    {
+      href: 'security-readiness.html',
+      name: 'Security Readiness Score',
+      desc: 'Six scattered security settings into one readiness widget and fix path.',
+      type: 'Professional',
+      tags: ['Security', 'Cyber Resiliency'],
+      img: 'project-tiles/security-800.png',
+      alt: 'Security Readiness Score'
+    },
+    {
+      href: 'druva.html',
+      name: 'Provisioning & Access',
+      desc: 'Self-serve product expansion for MSP partners — no support tickets.',
+      type: 'Professional',
+      tags: ['Workflow', 'MSP'],
+      img: 'project-tiles/druva-800.png',
+      alt: 'Druva provisioning workflow',
+      diagram: true
+    },
+    {
+      href: 'harmoney.html',
+      name: 'Harmoney',
+      desc: "Founding design for India's first digital bond trading platform.",
+      type: 'Professional',
+      tags: ['Fintech', '0→1'],
+      img: 'project-tiles/harmoney-800.png',
+      alt: 'Harmoney bond trading dashboard'
+    },
+    {
+      href: 'mason.html',
+      name: 'ModeMagic',
+      desc: 'Shopify Commerce Award UI that grew weekly active users 8×.',
+      type: 'Professional',
+      tags: ['App Design', 'Shopify'],
+      img: 'project-tiles/mason-800.png',
+      alt: 'ModeMagic Shopify badge automation'
+    },
+    {
+      href: 'dashboard.html',
+      name: 'Dashboard',
+      desc: 'How to design a SaaS dashboard — hierarchy, density, and scan paths.',
+      type: 'Strategy and Research',
+      tags: ['SaaS', 'Framework'],
+      label: 'How to design a dashboard'
+    },
+    {
+      href: 'theraxis.html',
+      name: 'Theraxis',
+      desc: 'PRD → design → live web build for therapy centers.',
+      type: 'AI',
+      tags: ['PRD', 'Cursor'],
+      label: 'Child therapy software'
+    }
+  ];
+
+  function escapeHtml(value) {
+    return String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function renderMoreWorkCard(item) {
+    var tags = ['<span class="mw-card__tag mw-card__tag--type">' + escapeHtml(item.type) + '</span>']
+      .concat((item.tags || []).map(function (tag) {
+        return '<span class="mw-card__tag">' + escapeHtml(tag) + '</span>';
+      }))
+      .join('');
+
+    var media;
+    if (item.label) {
+      media = '<div class="mw-card__media mw-card__media--label" aria-hidden="true">' + escapeHtml(item.label) + '</div>';
+    } else {
+      var mediaClass = 'mw-card__media' + (item.diagram ? ' mw-card__media--diagram' : '');
+      media =
+        '<div class="' + mediaClass + '">' +
+          '<img src="' + escapeHtml(item.img) + '" alt="' + escapeHtml(item.alt || item.name) + '" loading="lazy" width="800" height="600"/>' +
+        '</div>';
+    }
+
+    return (
+      '<a class="mw-card" href="' + escapeHtml(item.href) + '">' +
+        media +
+        '<div class="mw-card__body">' +
+          '<div class="mw-card__tags">' + tags + '</div>' +
+          '<span class="mw-card__name">' + escapeHtml(item.name) + '</span>' +
+          '<span class="mw-card__desc">' + escapeHtml(item.desc) + '</span>' +
+        '</div>' +
+      '</a>'
+    );
+  }
+
+  var currentPage = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  document.querySelectorAll('[data-more-work]').forEach(function (host) {
+    var cards = MORE_WORK.filter(function (item) {
+      return item.href.toLowerCase() !== currentPage;
+    });
+    host.innerHTML = cards.map(renderMoreWorkCard).join('');
+    host.setAttribute('role', 'list');
+  });
+
   var resumeModal = document.getElementById('resumeModal');
   if (!resumeModal) {
     var wrap = document.createElement('div');

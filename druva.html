@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260807wash2"/>
+<link rel="stylesheet" href="styles/system.css?v=20260807csflat"/>
 <style>
 /* Tighter case-study rhythm — cut excess section padding */
 main.wrap > .section{ padding-block:clamp(36px,5vw,56px); }
@@ -657,20 +657,7 @@ main.wrap > a.link{ display:inline-block; margin-top:28px; }
       <span class="eyebrow">More work</span>
       <a href="index.html#projects" class="more-work__all">View all work</a>
     </div>
-    <div class="more-work__grid">
-      <a class="mw-card" href="msc-dashboard.html">
-        <span class="mw-card__name">MSC Dashboard</span>
-        <span class="mw-card__desc">Operations dashboard for MSP partners</span>
-      </a>
-      <a class="mw-card" href="harmoney.html">
-        <span class="mw-card__name">Harmoney</span>
-        <span class="mw-card__desc">Bond-trading platform, built 0→1</span>
-      </a>
-      <a class="mw-card" href="mason.html">
-        <span class="mw-card__name">Mason · ModeMagic</span>
-        <span class="mw-card__desc">Shopify commerce app, 8× weekly active users</span>
-      </a>
-    </div>
+    <div class="more-work__scroller" data-more-work></div>
   </section>
 </main>
 
@@ -741,7 +728,7 @@ main.wrap > a.link{ display:inline-block; margin-top:28px; }
 </script>
 <script src="js/site-footer.js?v=20260807contact"></script>
 <script src="js/system-theme.js"></script>
-<script src="js/site-shell.js"></script>
+<script src="js/site-shell.js?v=20260807mw"></script>
 <script src="audio/music.js?v=20260807b"></script>
 </body>
 </html>
