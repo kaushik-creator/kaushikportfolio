@@ -105,7 +105,7 @@
         '<div class="mw-card__body">' +
           '<span class="mw-card__name">' + escapeHtml(item.name) + '</span>' +
           '<span class="mw-card__desc">' + escapeHtml(item.desc) + '</span>' +
-          '<span class="proj-show__cta">View case study →</span>' +
+          '<span class="proj-show__cta">View →</span>' +
         '</div>' +
       '</a>'
     );
@@ -115,7 +115,7 @@
   document.querySelectorAll('[data-more-work]').forEach(function (host) {
     var cards = MORE_WORK.filter(function (item) {
       return item.href.toLowerCase() !== currentPage;
-    }).slice(0, 2);
+    });
     host.innerHTML = cards.map(renderMoreWorkCard).join('');
     host.setAttribute('role', 'list');
     host.classList.add('more-work__scroller');
