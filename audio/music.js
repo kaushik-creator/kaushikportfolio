@@ -10,10 +10,11 @@
   const MUSIC_SRC_KEY = 'portfolio_music_src';
   const MUSIC_UNLOCK_KEY = 'portfolio_music_unlocked';
   const MUSIC_SRC_ID = 'bittersweet-v20260724';
-  const UNLOCK_EVENTS = ['pointerdown', 'click', 'keydown', 'touchstart', 'scroll'];
+  const UNLOCK_EVENTS = ['pointerdown', 'keydown', 'touchstart'];
 
   bgMusic.volume = 0.45;
   let userPaused = false;
+  let playToken = 0;
   let lastSavedAt = 0;
   let unlockListenersBound = false;
   let unlockHandler = null;
@@ -52,12 +53,20 @@
     persistMusicState();
   }
 
+  function setIconVisibility(el, visible) {
+    if (!el) return;
+    // SVGElement.hidden is unreliable across engines — toggle the attribute + class.
+    el.classList.toggle('is-hidden', !visible);
+    if (visible) el.removeAttribute('hidden');
+    else el.setAttribute('hidden', '');
+  }
+
   function updateMusicButton() {
     const playing = !bgMusic.paused && !bgMusic.ended;
     musicToggle.setAttribute('aria-pressed', playing ? 'true' : 'false');
     musicToggle.setAttribute('aria-label', playing ? 'Pause background music' : 'Play background music');
-    if (iconPause) iconPause.hidden = !playing;
-    if (iconPlay) iconPlay.hidden = playing;
+    setIconVisibility(iconPause, playing);
+    setIconVisibility(iconPlay, !playing);
   }
 
   function restoreSavedTime() {
@@ -75,7 +84,7 @@
     if (!unlockListenersBound || !unlockHandler) return;
     unlockListenersBound = false;
     UNLOCK_EVENTS.forEach((eventName) => {
-      document.removeEventListener(eventName, unlockHandler, { capture: true });
+      document.removeEventListener(eventName, unlockHandler, true);
     });
     unlockHandler = null;
   }
@@ -84,8 +93,9 @@
     if (unlockListenersBound || userPaused) return;
     unlockListenersBound = true;
 
-    unlockHandler = () => {
+    unlockHandler = (event) => {
       if (userPaused) return;
+      if (event.target && musicToggle.contains(event.target)) return;
       attemptPlay();
     };
 
@@ -100,8 +110,14 @@
       return Promise.resolve(false);
     }
 
+    const token = ++playToken;
     return bgMusic.play()
       .then(() => {
+        if (token !== playToken || userPaused) {
+          if (!bgMusic.paused) bgMusic.pause();
+          updateMusicButton();
+          return false;
+        }
         markUnlocked();
         updateMusicButton();
         persistMusicState();
@@ -109,8 +125,10 @@
         return true;
       })
       .catch(() => {
-        updateMusicButton();
-        bindUnlockListeners();
+        if (token === playToken) {
+          updateMusicButton();
+          bindUnlockListeners();
+        }
         return false;
       });
   }
@@ -136,27 +154,26 @@
   }
 
   musicToggle.addEventListener('click', (e) => {
+    e.preventDefault();
     e.stopPropagation();
-    if (bgMusic.paused) {
-      userPaused = false;
-      attemptPlay().then(() => persistMusicState());
-    } else {
+
+    if (!bgMusic.paused) {
+      playToken += 1;
       userPaused = true;
       bgMusic.pause();
       persistMusicState();
       updateMusicButton();
+      return;
     }
+
+    userPaused = false;
+    attemptPlay().then((started) => {
+      if (started || !userPaused) persistMusicState();
+    });
   });
 
-  bgMusic.addEventListener('play', () => {
-    updateMusicButton();
-    persistMusicState();
-  });
-
-  bgMusic.addEventListener('pause', () => {
-    updateMusicButton();
-    if (userPaused) persistMusicState();
-  });
+  bgMusic.addEventListener('play', updateMusicButton);
+  bgMusic.addEventListener('pause', updateMusicButton);
 
   bgMusic.addEventListener('timeupdate', () => {
     if (!bgMusic.paused && !userPaused) maybePersistPlaybackTime();
@@ -187,5 +204,6 @@
     persistMusicState();
   }, true);
 
+  updateMusicButton();
   startPlaybackFlow();
 })();

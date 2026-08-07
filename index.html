@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260807kwmobile"/>
+<link rel="stylesheet" href="styles/system.css?v=20260807projflat"/>
 </head>
 <body>
 
@@ -30,7 +30,7 @@
     <a href="#projects" data-nav="projects">Projects</a>
     <a href="#experience" data-nav="experience">Experience</a>
     <a href="theraxis.html">AI</a>
-    <a href="kaushik-resume-gd.pdf?v=20260731">Resume</a>
+    <a href="Kaushik_Resume_Updated_v2.pdf?v=20260807" data-resume-trigger>Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
       <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
       <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -129,6 +129,7 @@
           <li>Writer</li>
           <li>Gamer</li>
           <li>Rappelling</li>
+          <li>Mountain climber</li>
           <li>Story teller</li>
         </ul>
       </div>
@@ -293,12 +294,15 @@
     <div class="li-card">
 
       <article class="li-item">
-        <div class="li-logo" aria-hidden="true">D</div>
+        <div class="li-logo li-logo--img" aria-hidden="true"><img src="druva-logo.png" alt=""/></div>
         <div class="li-body">
-          <h3 class="li-title">UX Designer</h3>
-          <p class="li-company">Druva · Full-time <a href="https://www.druva.com/" class="li-ext" target="_blank" rel="noopener noreferrer" aria-label="Druva website">↗</a></p>
-          <p class="li-meta">Jul 2024 – Present</p>
-          <p class="li-meta">Data Backup &amp; Cybersecurity</p>
+          <div class="li-head">
+            <div class="li-head__main">
+              <h3 class="li-title">UX Designer <span class="li-domain">(Data Backup &amp; Cybersecurity)</span></h3>
+              <p class="li-company"><a href="https://www.druva.com/" class="li-company-link" target="_blank" rel="noopener noreferrer">Druva</a> · Full-time</p>
+            </div>
+            <p class="li-date">Jul 2024 – Present</p>
+          </div>
           <div class="li-expand">
             <p class="li-snippet">Handle UX for Druva's MSP experience — design workshops, leadership reviews, and interaction patterns the team builds on. <button type="button" class="li-more-btn" aria-expanded="false">… more</button></p>
             <div class="li-details" hidden>
@@ -318,13 +322,16 @@
       <article class="li-item li-item--group">
         <div class="li-logo" aria-hidden="true">F</div>
         <div class="li-body">
-          <h3 class="li-title">Freelancing</h3>
-          <p class="li-meta">May 2023 – May 2024 · 1 yr</p>
+          <div class="li-head">
+            <div class="li-head__main">
+              <h3 class="li-title">Freelancing</h3>
+            </div>
+            <p class="li-date">May 2023 – May 2024 · 1 yr</p>
+          </div>
           <div class="li-roles">
             <div class="li-role">
-              <h4 class="li-role__title">Product Designer</h4>
-              <p class="li-company">AssetSprout · Contract</p>
-              <p class="li-meta">US-based Fintech SaaS</p>
+              <h4 class="li-role__title">Product Designer <span class="li-domain">(US-based Fintech SaaS)</span></h4>
+              <p class="li-company"><a href="https://www.linkedin.com/company/assetsprout/posts/?feedView=images" class="li-company-link" target="_blank" rel="noopener noreferrer">AssetSprout</a> · Contract</p>
               <div class="li-expand">
                 <p class="li-snippet">Took AssetSprout from MVP to a production-ready platform for financial advisors. <button type="button" class="li-more-btn" aria-expanded="false">… more</button></p>
                 <div class="li-details" hidden>
@@ -337,9 +344,8 @@
               </div>
             </div>
             <div class="li-role">
-              <h4 class="li-role__title">Project Associate</h4>
+              <h4 class="li-role__title">Project Associate <span class="li-domain">(HMI Designer)</span></h4>
               <p class="li-company">IIT Kanpur · Contract</p>
-              <p class="li-meta">HMI Designer</p>
               <div class="li-expand">
                 <p class="li-snippet">Grounded an autonomous vehicle interface in real operator behavior through field research. <button type="button" class="li-more-btn" aria-expanded="false">… more</button></p>
                 <div class="li-details" hidden>
@@ -357,10 +363,13 @@
       <article class="li-item">
         <div class="li-logo li-logo--img" aria-hidden="true"><img src="harmoney-logo.svg" alt=""/></div>
         <div class="li-body">
-          <h3 class="li-title">Founding Product Designer</h3>
-          <p class="li-company">Harmoney · Full-time <a href="https://www.harmoney.in/" class="li-ext" target="_blank" rel="noopener noreferrer" aria-label="Harmoney website">↗</a></p>
-          <p class="li-meta">May 2022 – Mar 2023 · 11 mos</p>
-          <p class="li-meta">Bond Trading Platform · Y Combinator W22</p>
+          <div class="li-head">
+            <div class="li-head__main">
+              <h3 class="li-title">Founding Product Designer <span class="li-domain">(Bond Trading Platform · Y Combinator W22)</span></h3>
+              <p class="li-company"><a href="https://www.harmoney.in/" class="li-company-link" target="_blank" rel="noopener noreferrer">Harmoney</a> · Full-time</p>
+            </div>
+            <p class="li-date">May 2022 – Mar 2023 · 11 mos</p>
+          </div>
           <div class="li-expand">
             <p class="li-snippet">Designed end-to-end order-matching and closure flows for bond traders — supporting a 6× rise in monthly traded volume. <button type="button" class="li-more-btn" aria-expanded="false">… more</button></p>
             <div class="li-details" hidden>
@@ -376,12 +385,15 @@
       </article>
 
       <article class="li-item">
-        <div class="li-logo" aria-hidden="true">M</div>
+        <div class="li-logo li-logo--img" aria-hidden="true"><img src="mason-logo.png" alt=""/></div>
         <div class="li-body">
-          <h3 class="li-title">Product Designer</h3>
-          <p class="li-company">Mason · Full-time <a href="https://getmason.io/" class="li-ext" target="_blank" rel="noopener noreferrer" aria-label="Mason website">↗</a></p>
-          <p class="li-meta">Feb 2021 – Apr 2022 · 1 yr 3 mos</p>
-          <p class="li-meta">SaaS App for Shopify</p>
+          <div class="li-head">
+            <div class="li-head__main">
+              <h3 class="li-title">Product Designer <span class="li-domain">(SaaS App for Shopify)</span></h3>
+              <p class="li-company"><a href="https://getmason.io/" class="li-company-link" target="_blank" rel="noopener noreferrer">Mason</a> · Full-time</p>
+            </div>
+            <p class="li-date">Feb 2021 – Apr 2022 · 1 yr 3 mos</p>
+          </div>
           <div class="li-expand">
             <p class="li-snippet">Won a Shopify Commerce Award for Best App User Interface by redesigning ModeMagic — contributing to 8× weekly active users. <button type="button" class="li-more-btn" aria-expanded="false">… more</button></p>
             <div class="li-details" hidden>
@@ -399,10 +411,13 @@
       <article class="li-item">
         <div class="li-logo" aria-hidden="true">T</div>
         <div class="li-body">
-          <h3 class="li-title">Independent Product Builder</h3>
-          <p class="li-company">Theraxis · Personal project <a href="theraxis.html" class="li-ext" aria-label="Theraxis case study">↗</a></p>
-          <p class="li-meta">Self-initiated</p>
-          <p class="li-meta">Clinic Management Platform · Healthtech</p>
+          <div class="li-head">
+            <div class="li-head__main">
+              <h3 class="li-title">Independent Product Builder <span class="li-domain">(Clinic Management Platform · Healthtech)</span></h3>
+              <p class="li-company"><a href="theraxis.html" class="li-company-link">Theraxis</a> · Personal project</p>
+            </div>
+            <p class="li-date">Self-initiated</p>
+          </div>
           <div class="li-expand">
             <p class="li-snippet">Scoped and wrote the PRD for a multi-location clinic platform — then built and tested the product with AI-assisted tools. <button type="button" class="li-more-btn" aria-expanded="false">… more</button></p>
             <div class="li-details" hidden>
@@ -428,76 +443,67 @@
     <div class="li-card">
 
       <article class="li-item">
-        <div class="li-logo" aria-hidden="true">I</div>
+        <div class="li-logo li-logo--img li-logo--edu" aria-hidden="true"><img src="logos/iit-delhi.png" alt=""/></div>
         <div class="li-body">
-          <h3 class="li-title">Indian Institute of Technology, Delhi <a href="https://design.iitd.ac.in/" class="li-ext" target="_blank" rel="noopener noreferrer" aria-label="IIT Delhi website">↗</a></h3>
-          <p class="li-company">Master of Design, Product Design</p>
-          <p class="li-meta">Jul 2018 – Aug 2020</p>
-          <div class="li-expand">
-            <p class="li-snippet">Physical product design — form, material, and human factors before digital work. <button type="button" class="li-more-btn" aria-expanded="false">… more</button></p>
-            <div class="li-details" hidden>
-              <ul>
-                <li>Master of Design with a focus on product design — form, material, and human factors.</li>
-                <li>Built the research and systems foundation later applied to enterprise SaaS and complex workflows.</li>
-              </ul>
-              <button type="button" class="li-more-btn li-more-btn--less" aria-expanded="true">… less</button>
+          <div class="li-head">
+            <div class="li-head__main">
+              <h3 class="li-title">Indian Institute of Technology, Delhi <a href="https://design.iitd.ac.in/" class="li-ext" target="_blank" rel="noopener noreferrer" aria-label="IIT Delhi website">↗</a></h3>
+              <p class="li-company">Master of Design, Product Design</p>
             </div>
+            <p class="li-date">Jul 2018 – Aug 2020</p>
           </div>
         </div>
       </article>
 
       <article class="li-item">
-        <div class="li-logo" aria-hidden="true">M</div>
+        <div class="li-logo li-logo--img li-logo--edu li-logo--dark" aria-hidden="true"><img src="logos/mantra-academy.png" alt=""/></div>
         <div class="li-body">
-          <h3 class="li-title">Mantra Academy <a href="https://www.mantraacademy.com/" class="li-ext" target="_blank" rel="noopener noreferrer" aria-label="Mantra Academy website">↗</a></h3>
-          <p class="li-company">Automotive Design &amp; Research</p>
-          <p class="li-meta">Jan 2017 – Oct 2017</p>
-          <div class="li-expand">
-            <p class="li-snippet">Automotive design and research — vehicle form language and HMI context. <button type="button" class="li-more-btn" aria-expanded="false">… more</button></p>
-            <div class="li-details" hidden>
-              <ul>
-                <li>Automotive design and research program covering vehicle form language, packaging, and human–machine interaction context.</li>
-              </ul>
-              <button type="button" class="li-more-btn li-more-btn--less" aria-expanded="true">… less</button>
+          <div class="li-head">
+            <div class="li-head__main">
+              <h3 class="li-title">Mantra Academy <a href="https://www.mantraacademy.com/" class="li-ext" target="_blank" rel="noopener noreferrer" aria-label="Mantra Academy website">↗</a></h3>
+              <p class="li-company">Automotive Design &amp; Research</p>
             </div>
+            <p class="li-date">Jan 2017 – Oct 2017</p>
           </div>
         </div>
       </article>
 
       <article class="li-item">
-        <div class="li-logo" aria-hidden="true">A</div>
+        <div class="li-logo li-logo--img li-logo--edu" aria-hidden="true"><img src="logos/anna-university.png" alt=""/></div>
         <div class="li-body">
-          <h3 class="li-title">Anna University, Chennai <a href="https://www.annauniv.edu/" class="li-ext" target="_blank" rel="noopener noreferrer" aria-label="Anna University website">↗</a></h3>
-          <p class="li-company">B.E, Mechanical Engineering</p>
-          <p class="li-meta">Jul 2012 – Aug 2016</p>
-          <div class="li-expand">
-            <p class="li-snippet">CAD modeling and fabrication — making ideas tangible early. <button type="button" class="li-more-btn" aria-expanded="false">… more</button></p>
-            <div class="li-details" hidden>
-              <ul>
-                <li>Bachelor of Engineering in Mechanical Engineering.</li>
-                <li>CAD modeling and fabrication foundations — Fusion 360, Creo, Autodesk — making ideas tangible early.</li>
-              </ul>
-              <button type="button" class="li-more-btn li-more-btn--less" aria-expanded="true">… less</button>
+          <div class="li-head">
+            <div class="li-head__main">
+              <h3 class="li-title">Anna University, Chennai <a href="https://www.annauniv.edu/" class="li-ext" target="_blank" rel="noopener noreferrer" aria-label="Anna University website">↗</a></h3>
+              <p class="li-company">B.E, Mechanical Engineering</p>
             </div>
+            <p class="li-date">Jul 2012 – Aug 2016</p>
           </div>
         </div>
       </article>
 
       <article class="li-item">
-        <div class="li-logo" aria-hidden="true">V</div>
+        <div class="li-logo li-logo--img li-logo--edu" aria-hidden="true"><img src="logos/velammal.png" alt=""/></div>
         <div class="li-body">
-          <h3 class="li-title">Velammal <a href="https://velammaltrust.com/schools/velammal-matriculation-schools/" class="li-ext" target="_blank" rel="noopener noreferrer" aria-label="Velammal website">↗</a></h3>
-          <p class="li-company">Class XI — XII</p>
-          <p class="li-meta">2010 – 2012</p>
+          <div class="li-head">
+            <div class="li-head__main">
+              <h3 class="li-title">Velammal <a href="https://velammaltrust.com/schools/velammal-matriculation-schools/" class="li-ext" target="_blank" rel="noopener noreferrer" aria-label="Velammal website">↗</a></h3>
+              <p class="li-company">Class XI — XII</p>
+            </div>
+            <p class="li-date">2010 – 2012</p>
+          </div>
         </div>
       </article>
 
       <article class="li-item">
-        <div class="li-logo" aria-hidden="true">B</div>
+        <div class="li-logo li-logo--img li-logo--edu li-logo--dark" aria-hidden="true"><img src="logos/bhaktavatsalam.png" alt=""/></div>
         <div class="li-body">
-          <h3 class="li-title">Bhaktavatsalam Vidyashram <a href="https://www.bvcbse.ac.in/" class="li-ext" target="_blank" rel="noopener noreferrer" aria-label="Bhaktavatsalam Vidyashram website">↗</a></h3>
-          <p class="li-company">Up to Class X</p>
-          <p class="li-meta">1998 – 2010</p>
+          <div class="li-head">
+            <div class="li-head__main">
+              <h3 class="li-title">Bhaktavatsalam Vidyashram <a href="https://www.bvcbse.ac.in/" class="li-ext" target="_blank" rel="noopener noreferrer" aria-label="Bhaktavatsalam Vidyashram website">↗</a></h3>
+              <p class="li-company">Up to Class X</p>
+            </div>
+            <p class="li-date">1998 – 2010</p>
+          </div>
         </div>
       </article>
 
@@ -506,9 +512,10 @@
 </section>
 
 
-<script src="js/site-footer.js"></script>
+<script src="js/site-footer.js?v=20260807contact"></script>
 <script src="js/system-theme.js"></script>
-<script src="audio/music.js"></script>
+<script src="js/site-shell.js"></script>
+<script src="audio/music.js?v=20260807b"></script>
 <script>
 (function(){
   var HASH_ALIASES={skills:'about',keywords:'about'};
