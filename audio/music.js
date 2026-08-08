@@ -16,6 +16,7 @@
   bgMusic.volume = TARGET_VOLUME;
   bgMusic.setAttribute('playsinline', '');
   bgMusic.setAttribute('webkit-playsinline', '');
+  bgMusic.removeAttribute('autoplay');
 
   let userPaused = false;
   let playToken = 0;
@@ -66,12 +67,12 @@
   }
 
   function updateMusicButton() {
-    const playing = !bgMusic.paused && !bgMusic.ended && !bgMusic.muted;
-    const armed = !bgMusic.paused && !bgMusic.ended;
+    const playing = !bgMusic.paused && !bgMusic.ended && !bgMusic.muted && !userPaused;
+    const armed = !bgMusic.paused && !bgMusic.ended && !userPaused;
     musicToggle.setAttribute('aria-pressed', armed ? 'true' : 'false');
     musicToggle.setAttribute(
       'aria-label',
-      armed && !bgMusic.muted ? 'Pause background music' : 'Play background music'
+      playing ? 'Pause background music' : 'Play background music'
     );
     setIconVisibility(iconPause, playing);
     setIconVisibility(iconPlay, !playing);
@@ -97,7 +98,20 @@
     unlockHandler = null;
   }
 
+  function enforcePaused() {
+    playToken += 1;
+    waitingToUnmute = false;
+    removeUnlockListeners();
+    bgMusic.pause();
+    bgMusic.muted = false;
+    updateMusicButton();
+  }
+
   function unmuteNow() {
+    if (userPaused) {
+      enforcePaused();
+      return;
+    }
     waitingToUnmute = false;
     bgMusic.muted = false;
     bgMusic.volume = TARGET_VOLUME;
@@ -130,7 +144,7 @@
 
   function attemptPlay() {
     if (userPaused) {
-      updateMusicButton();
+      enforcePaused();
       return Promise.resolve(false);
     }
 
@@ -152,7 +166,6 @@
       return true;
     };
 
-    // Prefer audible autoplay when the browser allows it.
     bgMusic.muted = false;
     bgMusic.volume = TARGET_VOLUME;
 
@@ -160,16 +173,17 @@
       .play()
       .then(onAudible)
       .catch(() => {
-        if (token !== playToken || userPaused) return false;
+        if (token !== playToken || userPaused) {
+          if (userPaused) enforcePaused();
+          return false;
+        }
 
-        // Many browsers allow muted autoplay — start muted, unmute on first gesture.
         bgMusic.muted = true;
         return bgMusic
           .play()
           .then(() => {
             if (token !== playToken || userPaused) {
-              if (!bgMusic.paused) bgMusic.pause();
-              updateMusicButton();
+              enforcePaused();
               return false;
             }
             waitingToUnmute = true;
@@ -182,7 +196,7 @@
               bgMusic.muted = false;
               waitingToUnmute = false;
               updateMusicButton();
-              bindUnlockListeners();
+              if (!userPaused) bindUnlockListeners();
             }
             return false;
           });
@@ -191,11 +205,16 @@
 
   function startPlaybackFlow() {
     if (userPaused) {
-      updateMusicButton();
+      enforcePaused();
+      persistMusicState();
       return;
     }
 
     const run = () => {
+      if (userPaused) {
+        enforcePaused();
+        return;
+      }
       restoreSavedTime();
       attemptPlay();
     };
@@ -208,13 +227,15 @@
       try {
         bgMusic.load();
       } catch (_) {}
-      // Optimistic attempt — some engines start before canplay.
       attemptPlay();
     }
 
-    // Retry shortly after load in case the first gesture-free attempt raced metadata.
     window.setTimeout(() => {
-      if (!userPaused && (bgMusic.paused || bgMusic.muted)) attemptPlay();
+      if (userPaused) {
+        enforcePaused();
+        return;
+      }
+      if (bgMusic.paused || bgMusic.muted) attemptPlay();
     }, 400);
   }
 
@@ -222,15 +243,11 @@
     e.preventDefault();
     e.stopPropagation();
 
-    if (!bgMusic.paused && !bgMusic.muted) {
-      playToken += 1;
+    // Pause whenever audio is currently running (audible or muted unlock state)
+    if (!bgMusic.paused && !userPaused) {
       userPaused = true;
-      waitingToUnmute = false;
-      bgMusic.pause();
-      bgMusic.muted = false;
+      enforcePaused();
       persistMusicState();
-      updateMusicButton();
-      removeUnlockListeners();
       return;
     }
 
@@ -238,12 +255,21 @@
     waitingToUnmute = false;
     bgMusic.muted = false;
     bgMusic.volume = TARGET_VOLUME;
-    attemptPlay().then((started) => {
-      if (started || !userPaused) persistMusicState();
+    persistMusicState();
+    attemptPlay().then(() => {
+      persistMusicState();
     });
   });
 
-  bgMusic.addEventListener('play', updateMusicButton);
+  // Guard: if anything starts playback while the user paused, stop it immediately.
+  bgMusic.addEventListener('play', () => {
+    if (userPaused) {
+      bgMusic.pause();
+      updateMusicButton();
+      return;
+    }
+    updateMusicButton();
+  });
   bgMusic.addEventListener('pause', updateMusicButton);
   bgMusic.addEventListener('volumechange', updateMusicButton);
 
@@ -254,25 +280,30 @@
   window.addEventListener('pagehide', persistMusicState);
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') persistMusicState();
-    if (document.visibilityState === 'visible' && !userPaused && (bgMusic.paused || bgMusic.muted)) {
-      attemptPlay();
+    if (document.visibilityState === 'visible') {
+      if (userPaused) {
+        enforcePaused();
+        return;
+      }
+      if (bgMusic.paused || bgMusic.muted) attemptPlay();
     }
   });
 
   window.addEventListener('pageshow', () => {
     if (userPaused) {
-      updateMusicButton();
+      enforcePaused();
       return;
     }
     restoreSavedTime();
     attemptPlay();
   });
 
+  // Persist pause/play preference before navigating to another page
   document.addEventListener(
     'click',
     (e) => {
       const link = e.target.closest('a[href]');
-      if (!link || userPaused) return;
+      if (!link) return;
       const href = link.getAttribute('href') || '';
       if (!href || href.startsWith('#') || link.hasAttribute('data-resume-trigger')) return;
       persistMusicState();
