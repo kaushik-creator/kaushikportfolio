@@ -1,5 +1,5 @@
 (function () {
-  var RESUME_SRC = 'Kaushik_Resume_Updated_v2.pdf?v=20260807';
+  var RESUME_SRC = 'Kaushik_Resume_Updated_v5.pdf?v=20260808';
 
   var ham = document.getElementById('hamburger');
   var menu = document.getElementById('mobileMenu');
