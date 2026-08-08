@@ -123,3 +123,28 @@ html.ir-nda-unlocked img[src*="identity-resilience/final.png"]{
 .ir-nda-wrap--card .ir-nda-gate__copy{ font-size:12px; margin-bottom:10px; }
 .ir-nda-wrap--card .ir-nda-gate__form{ flex-direction:column; }
 .ir-nda-wrap--card .ir-nda-gate__form button{ width:100%; }
+
+/* Listing teaser — NDA label + blue View Project (no password) */
+.ir-nda-gate--teaser{
+  pointer-events:none; /* clicks go to parent project link */
+  background:rgba(10,12,16,.38);
+}
+.ir-nda-gate--teaser .ir-nda-gate__card{
+  width:auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+.ir-nda-gate--teaser .ir-nda-gate__eyebrow{
+  margin:0;
+  font-size:12px;
+  letter-spacing:.14em;
+}
+.ir-nda-gate__view{
+  font-size:15px;
+  font-weight:600;
+  color:#3B82F6;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}

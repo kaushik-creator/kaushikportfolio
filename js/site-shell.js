@@ -147,7 +147,7 @@
     if (!document.querySelector('link[data-ir-nda-gate]')) {
       var ndaCss = document.createElement('link');
       ndaCss.rel = 'stylesheet';
-      ndaCss.href = 'identity-resilience/nda-gate.css?v=1';
+      ndaCss.href = 'identity-resilience/nda-gate.css?v=2';
       ndaCss.setAttribute('data-ir-nda-gate', '');
       document.head.appendChild(ndaCss);
     }
@@ -157,7 +157,7 @@
       }
     } catch (e) {}
     var ndaJs = document.createElement('script');
-    ndaJs.src = 'identity-resilience/nda-gate.js?v=1';
+    ndaJs.src = 'identity-resilience/nda-gate.js?v=2';
     ndaJs.setAttribute('data-ir-nda-gate', '');
     document.body.appendChild(ndaJs);
   }

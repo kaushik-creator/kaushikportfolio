@@ -1,4 +1,5 @@
-/* Unlock all Identity Resilience final-design frames with one password. */
+/* Unlock all Identity Resilience final-design frames with one password.
+   Listing cards (projects / next-up) only show an NDA teaser — no password. */
 (function () {
   var KEY = "ir_final_unlocked_v1";
   var LEGACY_KEY = "ir_cover_unlocked_v1";
@@ -21,7 +22,6 @@
     document.documentElement.classList.add("ir-nda-unlocked");
   }
 
-  // Apply before paint when possible — reduces flash of clear final frames.
   if (isUnlocked()) {
     document.documentElement.classList.add("ir-nda-unlocked");
   }
@@ -33,7 +33,21 @@
     });
   }
 
-  function gateMarkup() {
+  function isListingCard(wrap) {
+    return !!wrap.closest(".proj-show, .mw-card");
+  }
+
+  function gateMarkup(listing) {
+    if (listing) {
+      return (
+        '<div class="ir-nda-gate ir-nda-gate--teaser" aria-label="NDA protected preview">' +
+          '<div class="ir-nda-gate__card">' +
+            '<p class="ir-nda-gate__eyebrow">NDA</p>' +
+            '<span class="ir-nda-gate__view">View Project</span>' +
+          "</div>" +
+        "</div>"
+      );
+    }
     return (
       '<div class="ir-nda-gate" role="dialog" aria-label="NDA protected final design">' +
         '<div class="ir-nda-gate__card">' +
@@ -58,7 +72,6 @@
     wrap.className = "ir-nda-wrap is-locked";
     wrap.setAttribute("data-ir-nda", "");
 
-    // Wrap whole magnify widget so loupe cannot reveal locked pixels.
     var host = img.closest(".ir-magnify") || img.parentNode;
     if (host && host !== img && host.contains(img) && host.parentNode && host.classList && host.classList.contains("ir-magnify")) {
       host.parentNode.insertBefore(wrap, host);
@@ -74,17 +87,22 @@
     if (wrap.getAttribute("data-ir-nda-bound") === "1") return;
     wrap.setAttribute("data-ir-nda-bound", "1");
 
+    var listing = isListingCard(wrap);
     if (!wrap.querySelector(".ir-nda-gate")) {
-      wrap.insertAdjacentHTML("beforeend", gateMarkup());
+      wrap.insertAdjacentHTML("beforeend", gateMarkup(listing));
     }
 
     var gate = wrap.querySelector(".ir-nda-gate");
+    if (!gate) return;
+
+    // Listing teaser: let clicks pass through to the parent project link.
+    if (listing) return;
+
     var form = wrap.querySelector(".ir-nda-gate__form");
     var input = wrap.querySelector('.ir-nda-gate__form input[type="password"]');
     var err = wrap.querySelector(".ir-nda-gate__error");
-    if (!gate || !form || !input) return;
+    if (!form || !input) return;
 
-    // Keep project-card / more-work links from navigating while unlocking.
     ["click", "mousedown", "mouseup", "pointerdown"].forEach(function (evt) {
       gate.addEventListener(evt, function (e) {
         e.stopPropagation();
@@ -126,7 +144,7 @@
 
     wraps.forEach(function (wrap) {
       wrap.classList.add("ir-nda-wrap");
-      if (wrap.closest(".mw-card, .proj-show")) {
+      if (isListingCard(wrap)) {
         wrap.classList.add("ir-nda-wrap--card");
       }
       if (isUnlocked()) {
@@ -144,7 +162,6 @@
     init();
   }
 
-  // More-work cards inject after shell runs — observe briefly.
   var observer = new MutationObserver(function () {
     init();
   });
