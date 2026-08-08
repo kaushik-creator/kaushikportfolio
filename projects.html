@@ -11,7 +11,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260807expfull"/>
+<link rel="stylesheet" href="styles/system.css?v=20260808bg"/>
+<link rel="stylesheet" href="identity-resilience/nda-gate.css?v=1"/>
+<script>
+(function(){try{if(localStorage.getItem("ir_final_unlocked_v1")==="1"||localStorage.getItem("ir_cover_unlocked_v1")==="1")document.documentElement.classList.add("ir-nda-unlocked");}catch(e){}})();
+</script>
 </head>
 <body>
 
@@ -68,6 +72,22 @@
           </div>
           <h2 class="proj-show__title">MSC Operational Dashboard</h2>
           <p class="proj-show__brief">One overloaded MSP screen split into three job-focused surfaces.</p>
+          <span class="proj-show__cta">View case study →</span>
+        </div>
+      </a>
+
+      <a href="identity-resilience.html" class="proj-show" data-project-type="professional">
+        <div class="proj-show__media proj-show__media--diagram">
+          <img src="identity-resilience/design-frame.png?v=8" width="2880" height="2244" alt="Identity Resilience final activity analysis swimlane graph"/>
+        </div>
+        <div class="proj-show__body">
+          <div class="proj-show__tags">
+            <span class="tile__tag tile__tag--type">Professional</span>
+            <span class="tile__tag">Security</span>
+            <span class="tile__tag">Data viz</span>
+          </div>
+          <h2 class="proj-show__title">Identity Resilience</h2>
+          <p class="proj-show__brief">Identity activity table redesigned as a type swim-lane attack graph.</p>
           <span class="proj-show__cta">View case study →</span>
         </div>
       </a>
@@ -172,8 +192,9 @@
 
 <script src="js/site-footer.js?v=20260807contact"></script>
 <script src="js/system-theme.js"></script>
-<script src="js/site-shell.js?v=20260807mwscroll"></script>
+<script src="js/site-shell.js?v=20260808irnda"></script>
 <script src="audio/music.js?v=20260808pausepersist"></script>
+<script src="identity-resilience/nda-gate.js?v=1"></script>
 <script>
 (function(){
   var tabs=document.querySelectorAll('.tab-btn');

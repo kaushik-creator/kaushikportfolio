@@ -25,6 +25,15 @@
       alt: 'MSC Operational Dashboard'
     },
     {
+      href: 'identity-resilience.html',
+      name: 'Identity Resilience',
+      desc: 'Identity activity table redesigned as a type swim-lane attack graph.',
+      type: 'Professional',
+      tags: ['Security', 'Data viz'],
+      img: 'identity-resilience/design-frame.png?v=8',
+      alt: 'Identity Resilience final activity analysis swimlane graph'
+    },
+    {
       href: 'security-readiness.html',
       name: 'Security Readiness Score',
       desc: 'Six scattered security settings into one readiness widget and fix path.',
@@ -112,9 +121,13 @@
   }
 
   var currentPage = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  var moreWorkHasIrFinal = false;
   document.querySelectorAll('[data-more-work]').forEach(function (host) {
     var cards = MORE_WORK.filter(function (item) {
       return item.href.toLowerCase() !== currentPage;
+    });
+    moreWorkHasIrFinal = moreWorkHasIrFinal || cards.some(function (item) {
+      return /identity-resilience\/(design-frame|final)\.png/i.test(item.img || '');
     });
     host.innerHTML = cards.map(renderMoreWorkCard).join('');
     host.setAttribute('role', 'list');
@@ -128,6 +141,26 @@
       if (all) all.textContent = 'View all projects';
     }
   });
+
+  // Protect IR final frames in Next up cards on every case-study page.
+  if (moreWorkHasIrFinal && !document.querySelector('script[data-ir-nda-gate]')) {
+    if (!document.querySelector('link[data-ir-nda-gate]')) {
+      var ndaCss = document.createElement('link');
+      ndaCss.rel = 'stylesheet';
+      ndaCss.href = 'identity-resilience/nda-gate.css?v=1';
+      ndaCss.setAttribute('data-ir-nda-gate', '');
+      document.head.appendChild(ndaCss);
+    }
+    try {
+      if (localStorage.getItem('ir_final_unlocked_v1') === '1' || localStorage.getItem('ir_cover_unlocked_v1') === '1') {
+        document.documentElement.classList.add('ir-nda-unlocked');
+      }
+    } catch (e) {}
+    var ndaJs = document.createElement('script');
+    ndaJs.src = 'identity-resilience/nda-gate.js?v=1';
+    ndaJs.setAttribute('data-ir-nda-gate', '');
+    document.body.appendChild(ndaJs);
+  }
 
   var resumeModal = document.getElementById('resumeModal');
   if (!resumeModal) {

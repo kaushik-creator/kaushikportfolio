@@ -1,7 +1,7 @@
 /* UID-inspired editorial language — load LAST so tokens win */
 :root{
-  --bg:        #FFFFFF;
-  --bg-soft:   #FAFAF8;
+  --bg:        #F5F6F8;
+  --bg-soft:   #F0F1F4;
   --ink:       #111111;
   --muted:     #767676;
   --line:      #E5E5E5;

@@ -1,0 +1,125 @@
+/* Shared NDA lock for Identity Resilience final design frames */
+
+/* Pre-blur before JS wraps (avoids clear flash). final-approved.png excluded. */
+html:not(.ir-nda-unlocked) img[src*="identity-resilience/design-frame.png"],
+html:not(.ir-nda-unlocked) img[src*="identity-resilience/final.png"]{
+  filter:blur(14px);
+  transform:scale(1.04);
+}
+
+.ir-nda-wrap{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+.proj-show__media > .ir-nda-wrap,
+.mw-card__media > .ir-nda-wrap{
+  display:block;
+  width:100%;
+  height:100%;
+}
+.ir-nda-wrap > img,
+.ir-nda-wrap .ir-magnify__img{
+  transition:filter .35s ease, transform .35s ease;
+}
+.ir-nda-wrap.is-locked > img,
+.ir-nda-wrap.is-locked .ir-magnify__img{
+  filter:blur(14px);
+  transform:scale(1.04);
+}
+.ir-nda-wrap:not(.is-locked) > img,
+.ir-nda-wrap:not(.is-locked) .ir-magnify__img,
+html.ir-nda-unlocked img[src*="identity-resilience/design-frame.png"],
+html.ir-nda-unlocked img[src*="identity-resilience/final.png"]{
+  filter:none;
+  transform:none;
+}
+.ir-nda-wrap.is-locked .ir-magnify__btn{
+  pointer-events:none;
+  opacity:.35;
+}
+.ir-nda-gate{
+  position:absolute;
+  inset:0;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(10,12,16,.42);
+  backdrop-filter:blur(2px);
+}
+.ir-nda-wrap:not(.is-locked) .ir-nda-gate{ display:none; }
+.ir-nda-gate__card{
+  width:min(100%,340px);
+  text-align:center;
+  color:#fff;
+}
+.ir-nda-gate__eyebrow{
+  margin:0 0 8px;
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:700;
+  opacity:.85;
+}
+.ir-nda-gate__title{
+  margin:0 0 8px;
+  font-size:clamp(1.05rem,1.8vw,1.35rem);
+  font-weight:700;
+  line-height:1.2;
+  color:#fff;
+}
+.ir-nda-gate__copy{
+  margin:0 0 14px;
+  font-size:13.5px;
+  line-height:1.45;
+  opacity:.9;
+}
+.ir-nda-gate__form{
+  display:flex;
+  gap:8px;
+  align-items:stretch;
+}
+.ir-nda-gate__form input{
+  flex:1;
+  min-width:0;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:8px;
+  background:rgba(255,255,255,.12);
+  color:#fff;
+  font:inherit;
+  font-size:14px;
+  padding:10px 12px;
+  outline:none;
+}
+.ir-nda-gate__form input::placeholder{ color:rgba(255,255,255,.55); }
+.ir-nda-gate__form input:focus{
+  border-color:rgba(255,255,255,.7);
+  background:rgba(255,255,255,.18);
+}
+.ir-nda-gate__form button{
+  appearance:none;
+  border:none;
+  border-radius:8px;
+  background:#E8B92E;
+  color:#0B0C0F;
+  font:inherit;
+  font-size:13px;
+  font-weight:700;
+  padding:10px 14px;
+  cursor:pointer;
+}
+.ir-nda-gate__error{
+  margin:10px 0 0;
+  min-height:1.2em;
+  font-size:12.5px;
+  color:#FFB4B4;
+}
+
+/* Compact overlay for project tiles / next-up cards */
+.ir-nda-wrap--card .ir-nda-gate{ padding:12px; }
+.ir-nda-wrap--card .ir-nda-gate__title{ font-size:1rem; }
+.ir-nda-wrap--card .ir-nda-gate__copy{ font-size:12px; margin-bottom:10px; }
+.ir-nda-wrap--card .ir-nda-gate__form{ flex-direction:column; }
+.ir-nda-wrap--card .ir-nda-gate__form button{ width:100%; }

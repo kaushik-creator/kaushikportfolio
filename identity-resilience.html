@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Identity Resilience — UX case study: Identity Recovery Intelligence, the investigation graph between detection and recovery."/>
+<meta property="og:title" content="Identity Resilience — Case Study · Kaushik"/>
+<meta property="og:description" content="Turning an activity table into an identity graph — Identity Recovery Intelligence for AD, Entra ID, and Okta."/>
+<title>Identity Resilience — Case Study · Kaushik</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles/system.css?v=20260808bg"/>
+<link rel="stylesheet" href="identity-resilience/ir.css?v=20260808dslarge"/>
+<link rel="stylesheet" href="identity-resilience/nda-gate.css?v=1"/>
+<script>
+(function(){try{if(localStorage.getItem("ir_final_unlocked_v1")==="1"||localStorage.getItem("ir_cover_unlocked_v1")==="1")document.documentElement.classList.add("ir-nda-unlocked");}catch(e){}})();
+</script>
+<style>
+.ir-proto-block__head{
+  display:flex; flex-wrap:wrap; gap:12px 20px;
+  align-items:baseline; justify-content:space-between;
+  margin-bottom:14px;
+}
+.ir-compare{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(20px,3vw,32px);
+  margin-top:24px;
+}
+.ir-compare h3{ margin:0 0 8px; font-size:16px; }
+.ir-compare p{ margin:0; color:var(--ink-soft); font-size:14.5px; line-height:1.55; max-width:none; }
+.ir-axis{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+  margin-top:16px;
+}
+.ir-axis th,.ir-axis td{
+  text-align:left; vertical-align:top;
+  padding:12px 10px; border-bottom:1px solid var(--line);
+}
+.ir-axis th{
+  font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--muted); font-weight:600;
+}
+.ir-axis td{ color:var(--ink-soft); }
+.ir-axis td:first-child{ color:var(--ink); font-weight:500; width:28%; }
+@media (max-width:720px){
+  .ir-compare{ grid-template-columns:1fr; }
+}
+.ir-iter{
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(260px,0.8fr);
+  gap:clamp(20px,3vw,36px);
+  align-items:start;
+}
+.ir-iter__copy{ min-width:0; padding-top:2px; }
+.ir-iter__label{
+  margin:0 0 8px;
+  font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); font-weight:600;
+}
+.ir-iter__copy h3{
+  margin:0 0 10px; font-size:clamp(18px,2vw,22px);
+}
+.ir-iter__copy > p{
+  margin:0; color:var(--ink-soft); max-width:42ch;
+  font-size:14.5px; line-height:1.55;
+}
+.ir-iter__media{
+  margin:0;
+  min-width:0;
+}
+.ir-iter__media img{
+  display:block;
+  width:auto;
+  max-width:100%;
+  height:auto;
+  object-fit:contain;
+}
+.ir-iter .ir-axis{ margin-top:16px; }
+/* Iterations: larger image, alternating sides + magnifier */
+.ir-iters .ir-iter{
+  grid-template-columns:minmax(0,1.75fr) minmax(220px,0.55fr);
+  gap:clamp(24px,3.5vw,40px);
+  margin-top:clamp(36px,5vw,56px);
+}
+.ir-iters .ir-iter:first-of-type{ margin-top:clamp(20px,3vw,28px); }
+.ir-iters .ir-iter--alt{
+  grid-template-columns:minmax(220px,0.55fr) minmax(0,1.75fr);
+}
+.ir-iters .ir-iter--alt .ir-iter__media{ order:2; }
+.ir-iters .ir-iter--alt .ir-iter__copy{ order:1; }
+.ir-iters .ir-iter__media{
+  width:100%;
+}
+.ir-iters .ir-magnify{
+  position:relative;
+  width:100%;
+}
+.ir-iters .ir-magnify__stage{
+  position:relative;
+  display:block;
+  width:100%;
+  overflow:hidden;
+  border-radius:8px;
+  background:#EEF1F4;
+  border:1px solid rgba(15,23,42,.06);
+}
+.ir-iters .ir-magnify__stage.is-magnifying{ cursor:none; }
+.ir-iters .ir-magnify__img{
+  display:block;
+  width:100% !important;
+  max-width:100% !important;
+  height:auto !important;
+  object-fit:contain;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+.ir-iters .ir-magnify__btn{
+  position:absolute; top:10px; right:10px; z-index:4;
+  display:inline-flex; align-items:center; gap:6px;
+  appearance:none; border:1px solid #D7DEE7; border-radius:999px;
+  background:rgba(255,255,255,.94); color:#15202B;
+  font:inherit; font-size:12px; font-weight:600;
+  padding:7px 11px; cursor:pointer;
+  box-shadow:0 1px 3px rgba(15,23,42,.08);
+}
+.ir-iters .ir-magnify__btn.is-on{
+  background:#0B1F33; color:#fff; border-color:#0B1F33;
+}
+.ir-iters .ir-magnify__loupe{
+  position:absolute;
+  width:168px; height:168px;
+  border-radius:50%;
+  border:3px solid #0B1F33;
+  box-shadow:
+    0 0 0 6px rgba(255,255,255,.55),
+    0 10px 28px rgba(15,23,42,.28);
+  pointer-events:none;
+  z-index:3;
+  background-repeat:no-repeat;
+  background-color:#fff;
+}
+.ir-iters .ir-magnify__loupe::after{
+  content:"";
+  position:absolute; right:-2px; bottom:-2px;
+  width:34px; height:34px;
+  border-radius:50%;
+  background:#0B1F33;
+  box-shadow:0 2px 6px rgba(15,23,42,.25);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2'%3E%3Ccircle cx='10.5' cy='10.5' r='6'/%3E%3Cpath d='M16 16l4.5 4.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size:18px 18px;
+  background-repeat:no-repeat;
+  background-position:center;
+}
+.ir-ai + .ir-ai{ margin-top:clamp(32px,4.5vw,48px); }
+.ir-realise{
+  margin-top:clamp(40px,5.5vw,64px);
+  padding-top:clamp(28px,4vw,40px);
+  border-top:1px solid var(--line, rgba(0,0,0,.08));
+}
+.ir-realise h2{
+  margin:0 0 clamp(14px,2vw,20px);
+  font-size:clamp(22px,2.6vw,30px);
+  letter-spacing:-0.02em;
+}
+.ir-realise__figure{
+  margin:0;
+  min-width:0;
+}
+.ir-realise__figure img{
+  display:block;
+  width:100%;
+  max-width:100%;
+  height:auto;
+  background:#EEF1F4;
+}
+.ir-realise__figure figcaption{
+  margin-top:10px;
+  font-size:13px;
+  font-weight:600;
+  color:var(--ink);
+}
+.ir-ai{
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(280px,0.8fr);
+  gap:clamp(20px,3vw,36px);
+  align-items:start;
+}
+.ir-ai--alt{ grid-template-columns:minmax(280px,0.8fr) minmax(0,1.2fr); }
+.ir-ai--alt .ir-ai__media{ order:2; }
+.ir-ai--alt .ir-ai__copy{ order:1; }
+.ir-ai__media{
+  margin:0;
+  min-width:0;
+}
+.ir-ai__media img{
+  display:block;
+  width:100%;
+  max-width:100%;
+  height:auto;
+  object-fit:contain;
+}
+.ir-ai__copy{
+  min-width:0;
+  padding-top:2px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.ir-ai__copy .ir-iter__label{ margin:0; }
+.ir-ai__copy h3{
+  margin:0;
+  font-size:clamp(18px,2vw,22px);
+}
+.ir-ai__copy > p{
+  margin:0;
+  color:var(--ink-soft);
+  max-width:42ch;
+  font-size:14.5px;
+  line-height:1.55;
+}
+.ir-ai__table{
+  margin:4px 0 0;
+  min-width:0;
+}
+.ir-ai__table img{
+  display:block;
+  width:100%;
+  max-width:100%;
+  height:auto;
+  object-fit:contain;
+}
+.ir-insp-title{
+  margin:0 0 16px;
+  font-size:clamp(28px,3.5vw,40px);
+  font-weight:800;
+  letter-spacing:-0.03em;
+  color:var(--ink);
+}
+.ir-insp-points{
+  margin:0 0 clamp(20px,3vw,28px);
+  padding:0;
+  list-style:none;
+  max-width:62ch;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.ir-insp-points li{
+  position:relative;
+  padding-left:1.1em;
+  color:var(--ink-soft);
+  font-size:14.5px;
+  line-height:1.5;
+}
+.ir-insp-points li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0.55em;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--ink);
+}
+.ir-insp{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(16px,2.5vw,28px);
+  align-items:start;
+}
+.ir-insp figure{ margin:0; min-width:0; }
+.ir-insp img{
+  display:block;
+  width:100%;
+  max-width:100%;
+  height:auto;
+  object-fit:contain;
+  background:#0B0C0F;
+}
+.ir-insp figcaption{
+  margin-top:10px;
+  font-size:13px;
+  font-weight:600;
+  color:var(--ink);
+}
+@media (max-width:900px){
+  .ir-iter{ grid-template-columns:1fr; }
+  .ir-iter__copy > p{ max-width:62ch; }
+  .ir-iters .ir-iter,
+  .ir-iters .ir-iter--alt{ grid-template-columns:1fr; }
+  .ir-iters .ir-iter--alt .ir-iter__media,
+  .ir-iters .ir-iter--alt .ir-iter__copy{ order:unset; }
+  .ir-ai,
+  .ir-ai--alt{ grid-template-columns:1fr; }
+  .ir-ai--alt .ir-ai__media,
+  .ir-ai--alt .ir-ai__copy{ order:unset; }
+  .ir-ai__copy > p{ max-width:62ch; }
+  .ir-insp{ grid-template-columns:1fr; }
+  .ir-iters .ir-magnify__btn span{ display:none; }
+  .ir-iters .ir-magnify__loupe{ width:132px; height:132px; }
+}
+/* Hero: cover left, meta sidebar right (matches security-readiness) */
+.section.cs-hero{
+  grid-template-columns:minmax(0,1.4fr) minmax(260px,0.7fr);
+  column-gap:clamp(24px,3.5vw,40px);
+  align-items:start;
+}
+.section.cs-hero .cs-hero__cover{
+  grid-column:1;
+  position:relative;
+  width:100% !important;
+  max-width:100% !important;
+  margin:0;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#EEF1F4;
+}
+.section.cs-hero .cs-hero__cover img{
+  display:block;
+  width:auto !important;
+  max-width:100% !important;
+  height:auto !important;
+  min-width:0;
+  object-fit:contain;
+  object-position:top center;
+  background:#EEF1F4;
+}
+.section.cs-hero .cs-overview{
+  grid-column:2;
+  grid-template-columns:1fr;
+  max-width:none;
+  width:100%;
+  margin:0;
+  padding-top:2px;
+  gap:18px;
+  align-self:start;
+}
+.section.cs-hero .cs-nda{
+  grid-column:2;
+  max-width:none;
+  width:100%;
+  margin:20px 0 0;
+  text-align:left;
+}
+@media (max-width:900px){
+  .section.cs-hero{
+    grid-template-columns:1fr;
+  }
+  .section.cs-hero .cs-hero__cover,
+  .section.cs-hero .cs-overview,
+  .section.cs-hero .cs-nda{
+    grid-column:1;
+  }
+  .section.cs-hero .cs-overview{ margin-top:20px; }
+}
+
+/* Shared case-study patterns (from security-readiness) */
+.cs-nda{
+  font-size:12px; color:var(--muted); margin:20px 0 0;
+  padding-top:16px; border-top:1px solid var(--line); line-height:1.55;
+}
+.cs-list{ margin:0; padding-left:0; list-style:none; color:var(--ink-soft); font-size:15px; line-height:1.6; }
+.cs-list li{ display:flex; gap:10px; align-items:flex-start; margin-bottom:12px; }
+.cs-list li:last-child{ margin-bottom:0; }
+.cs-list strong{ color:var(--ink); font-weight:600; }
+.cs-callout{
+  border:1px solid var(--line);
+  background:var(--surface);
+  padding:clamp(20px,2.4vw,28px);
+  width:100%;
+  box-sizing:border-box;
+}
+.cs-callout__title{ margin:0 0 14px; font-weight:700; color:var(--ink); font-size:15px; }
+.cs-callout + .cs-callout{ margin-top:16px; }
+.cs-persona{
+  display:grid;
+  grid-template-columns:minmax(220px,280px) minmax(0,1fr);
+  border:1px solid var(--line);
+  background:var(--bg);
+  width:100%;
+  box-sizing:border-box;
+  overflow:hidden;
+}
+.cs-persona + .cs-persona{ margin-top:20px; }
+.cs-persona__rail{
+  background:var(--accent);
+  color:var(--accent-ink);
+  padding:clamp(24px,2.8vw,36px);
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  position:relative;
+}
+.cs-persona__rail::after{ display:none; }
+.cs-persona__avatar{
+  width:56px; height:56px;
+  border:none;
+  border-radius:50%;
+  background:var(--accent-ink);
+  color:var(--accent);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:22px;
+  letter-spacing:-0.03em;
+  flex-shrink:0;
+}
+.cs-persona__rail .eyebrow{ color:rgba(20,20,20,.65); margin:0 0 8px; }
+.cs-persona__rail h3{
+  margin:0; color:var(--accent-ink);
+  font-size:clamp(1.5rem,2.2vw,1.85rem); line-height:1.1;
+}
+.cs-persona__identity{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.cs-persona__role{
+  margin:0; font-size:14px; line-height:1.45; color:rgba(20,20,20,.78);
+}
+.cs-persona__body{
+  padding:clamp(24px,3vw,40px);
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  justify-content:center;
+}
+.cs-persona__quote{
+  margin:0;
+  font-size:clamp(1.05rem,1.5vw,1.25rem);
+  line-height:1.45;
+  color:var(--ink);
+  font-family:var(--font-display);
+  font-weight:600;
+  padding:18px 20px;
+  background:var(--surface);
+  border-left:4px solid var(--accent);
+}
+.cs-persona__bio{
+  margin:0; color:var(--ink-soft); font-size:15px; line-height:1.65;
+}
+.cs-pointers{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(14px,2vw,22px);
+  margin-top:20px;
+}
+.cs-pointer{
+  border:1px solid var(--line);
+  background:var(--surface);
+  padding:18px 18px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  height:100%;
+  min-width:0;
+}
+.cs-pointer__head{ display:flex; align-items:center; gap:12px; }
+.cs-pointer__icon{
+  width:36px; height:36px;
+  display:inline-flex; align-items:center; justify-content:center;
+  border:1px solid var(--line); background:var(--bg); color:var(--ink); flex-shrink:0;
+}
+.cs-pointer__icon svg{ width:18px; height:18px; }
+.cs-pointer__step{
+  margin:0; font-size:11px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--muted);
+}
+.cs-pointer h4{ margin:0; font-size:clamp(15px,1.3vw,17px); }
+.cs-pointer p{ margin:0; font-size:14px; line-height:1.45; color:var(--muted); max-width:none; }
+@media (max-width:980px){
+  .cs-persona{ grid-template-columns:1fr; }
+}
+@media (max-width:900px){
+  .cs-pointers{ grid-template-columns:1fr; }
+}
+.ir-situations{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(24px,3.5vw,40px);
+  margin-top:8px;
+  align-items:start;
+}
+.ir-situations h3{ margin:0 0 10px; font-size:clamp(18px,2vw,22px); }
+.ir-situations > div > p{
+  margin:0 0 14px;
+  color:var(--ink-soft);
+  font-size:14.5px;
+  line-height:1.55;
+  max-width:48ch;
+}
+.ir-situations figure{ margin:0; min-width:0; }
+.ir-situations img{
+  display:block;
+  width:100% !important;
+  max-width:100% !important;
+  height:auto !important;
+  object-fit:contain;
+  background:#EEF1F4;
+}
+.eyebrow--existing{ color:#C8992A; }
+.eyebrow--preferred{ color:#1F7A4D; }
+:root[data-theme="dark"] .eyebrow--existing{ color:#F4C13D; }
+:root[data-theme="dark"] .eyebrow--preferred{ color:#3DBF7A; }
+@media (max-width:720px){
+  .ir-situations{ grid-template-columns:1fr; }
+}
+
+/* Icon-pointer rows — one idea per line */
+.ir-points{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  max-width:72ch;
+}
+.ir-point{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  margin:0;
+}
+.ir-point__ico{
+  flex-shrink:0;
+  width:18px;
+  height:18px;
+  margin-top:2px;
+  color:var(--ink);
+}
+.ir-point__text{
+  margin:0;
+  font-size:14.5px;
+  line-height:1.45;
+  color:var(--ink-soft);
+}
+.ir-point__text strong{
+  color:var(--ink);
+  font-weight:600;
+}
+.ir-point-note{
+  margin:14px 0 0;
+  max-width:72ch;
+  font-size:12.5px;
+  line-height:1.5;
+  color:var(--muted);
+  font-style:italic;
+}
+.cs-persona__body .ir-points{ max-width:none; }
+.ir-persona-flow{
+  margin:0;
+  max-width:58ch;
+  font-size:15px;
+  line-height:1.6;
+  color:var(--ink-soft);
+}
+.ir-iters > .ir-points{ margin-bottom:clamp(20px,3vw,28px); }
+@media (max-width:480px){
+  .ir-point{ gap:10px; }
+  .ir-point__text{ font-size:13.5px; line-height:1.4; }
+}
+
+/* Learning — 2 horizontal cards */
+.ir-learn{
+  list-style:none;
+  margin:clamp(12px,2vw,20px) 0 0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(16px,2.5vw,28px);
+  max-width:none;
+}
+.ir-learn__item{
+  margin:0;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding:clamp(16px,2vw,22px);
+  border:1px solid var(--line, rgba(0,0,0,.1));
+  background:var(--surface, transparent);
+}
+.ir-learn__title{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  margin:0;
+  font-size:15px;
+  font-weight:600;
+  letter-spacing:-0.015em;
+  color:var(--ink);
+  line-height:1.3;
+}
+.ir-learn__title svg{
+  flex-shrink:0;
+  width:18px;
+  height:18px;
+  margin-top:1px;
+  color:var(--ink);
+}
+.ir-learn__sub{
+  margin:0;
+  font-size:13.5px;
+  line-height:1.5;
+  color:var(--ink-soft);
+}
+@media (max-width:720px){
+  .ir-learn{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<audio id="bgMusic" loop preload="auto" playsinline>
+  <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
+</audio>
+<button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
+  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
+</button>
+
+<header class="site-header"><div class="wrap">
+  <a href="index.html" class="site-logo">K.</a>
+  <nav id="nav">
+    <a href="index.html">About</a>
+    <a href="projects.html" class="active" aria-current="page">Projects</a>
+    <a href="experience.html">Experience</a>
+    <a href="theraxis.html">AI</a>
+    <a href="Kaushik_Resume_Updated_v2.pdf?v=20260807" data-resume-trigger>Resume</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
+      <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+</div></header>
+
+<main class="wrap cs-page">
+  <a href="projects.html" class="link cs-back">← All Projects</a>
+
+  <section class="section cs-hero">
+    <p class="eyebrow">Case study · Identity security</p>
+    <h1>Turning an activity table into an identity graph</h1>
+    <p class="cs-hero__lede">Security and backup teams could see that an identity was compromised — but had to read a table, row by row, to find out what it actually touched. I redesigned that table as a graph: the identity at the center, everything it touched plotted around it by type.</p>
+    <div class="cs-hero__cover ir-nda-wrap is-locked" data-ir-nda>
+      <img src="identity-resilience/design-frame.png?v=8" width="2880" height="2244" alt="Identity Resiliency — Identity Activity Analysis swimlane graph"/>
+    </div>
+    <div class="cs-overview">
+      <div class="cs-overview__card"><span class="k">Role</span><span class="v">UX Designer</span></div>
+      <div class="cs-overview__card"><span class="k">Scope</span><span class="v">Active Directory, Entra ID, Okta</span></div>
+      <div class="cs-overview__card"><span class="k">Domain</span><span class="v">Identity security · Enterprise B2B backup &amp; cyber recovery</span></div>
+    </div>
+    <p class="cs-nda"><strong>Status:</strong> PRD in review (Rev 0.1). Design explored ahead of and alongside spec — this case study documents that process.</p>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">The problem</p>
+    <h2>Detection exists; trusted identity recovery doesn’t</h2>
+    <p class="cs-persona__quote" style="margin-bottom:24px;">“Detection exists; trusted identity recovery doesn’t. Backup restores systems, not trust.”</p>
+    <p class="eyebrow" style="margin:0 0 12px;">What’s wrong with the table</p>
+    <ul class="ir-points" style="margin-bottom:16px;">
+      <li class="ir-point">
+        <svg class="ir-point__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+        <p class="ir-point__text"><strong>Rows hide relationships</strong> — nothing shows it’s connected to the identity that did it.</p>
+      </li>
+      <li class="ir-point">
+        <svg class="ir-point__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12c2-4 4-6 8-6s6 2 8 6c-2 4-4 6-8 6s-6-2-8-6z"/><circle cx="12" cy="12" r="2"/></svg>
+        <p class="ir-point__text"><strong>You rebuild the shape yourself</strong> — tracing how far a compromise spread means reading every row by hand.</p>
+      </li>
+      <li class="ir-point">
+        <svg class="ir-point__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        <p class="ir-point__text"><strong>Every object type looks identical</strong> — users, groups, policies, MFA changes, same row, same weight.</p>
+      </li>
+      <li class="ir-point">
+        <svg class="ir-point__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19V5M8 19V9M12 19V7M16 19v-6M20 19V3"/></svg>
+        <p class="ir-point__text"><strong>It falls apart at volume</strong> — a hundred events across six object types is just noise during an incident.</p>
+      </li>
+    </ul>
+    <p style="color:var(--ink-soft);max-width:62ch;margin:0 0 clamp(28px,4vw,40px);font-size:15px;line-height:1.55;">That’s the argument for a graph instead of a table: put the compromised identity at the center, plot everything it touched around it by type, and the shape of the attack is visible instead of something you compute.</p>
+    <div class="ir-situations">
+      <div>
+        <p class="eyebrow eyebrow--existing">Existing</p>
+        <h3>Time-ordered table</h3>
+        <p>Every change is a row. Filters find events; they don’t show the path. Multiple entities and activities force responders to rebuild the sequence by hand.</p>
+        <figure>
+          <img src="identity-resilience/existing-table.png?v=2" width="2880" height="2304" alt="Existing Identity Activity Analysis — time-ordered activity table for John Adams" decoding="async"/>
+        </figure>
+      </div>
+      <div>
+        <p class="eyebrow eyebrow--preferred">Preferred</p>
+        <h3>Node-based graph</h3>
+        <p>Same audit detail, plotted by object type — nodes for entities, edges for actions — so sequence and blast radius are visible before reading rows.</p>
+        <figure>
+          <img src="identity-resilience/final.png?v=9" width="2880" height="2244" alt="Preferred Identity Activity Analysis — type swim-lane attack graph" decoding="async"/>
+        </figure>
+      </div>
+    </div>
+    <p style="color:var(--ink-soft);max-width:62ch;margin:clamp(24px,3.5vw,36px) 0 0;">This screen sits on top of an immutable-snapshot recovery layer — its job is to answer “what changed, when, by whom” before any recovery plan can be trusted.</p>
+  </section>
+
+  <section class="section cs-story">
+    <p class="eyebrow">Reframe</p>
+    <h2>Keep the detail. Show the shape.</h2>
+    <p>The data is relational: one actor, many objects, typed by risk. Tables encode time. Graphs encode relationships. Design question — can both stay true?</p>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">Who this is for</p>
+    <h2>Two personas, one investigation artifact</h2>
+    <div class="cs-persona">
+      <aside class="cs-persona__rail">
+        <div class="cs-persona__identity">
+          <div class="cs-persona__avatar" aria-hidden="true">S</div>
+          <div>
+            <p class="eyebrow">Primary user</p>
+            <h3>Security Admin</h3>
+          </div>
+        </div>
+      </aside>
+      <div class="cs-persona__body">
+        <p class="ir-persona-flow">Gets the flagged identity from a Druva alert or third-party ITDR signal → reads the activity graph to see who did what and how far it spread → hands off to Backup Admin once scope is clear.</p>
+      </div>
+    </div>
+    <div class="cs-persona">
+      <aside class="cs-persona__rail">
+        <div class="cs-persona__identity">
+          <div class="cs-persona__avatar" aria-hidden="true">B</div>
+          <div>
+            <p class="eyebrow">Primary user</p>
+            <h3>Backup Admin</h3>
+          </div>
+        </div>
+      </aside>
+      <div class="cs-persona__body">
+        <p class="ir-persona-flow">Picks up from a Druva alert or from what Security Admin found → uses the same graph to find the clean recovery point → restores the identity and reports back.</p>
+      </div>
+    </div>
+    <p style="color:var(--ink-soft);max-width:62ch;margin:24px 0 0;">Both personas converge on the same artifact. Neither can move to recovery without it.</p>
+  </section>
+
+  <section class="section">
+    <h2 class="ir-insp-title">Inspiration</h2>
+    <p style="color:var(--ink-soft);max-width:62ch;margin:0 0 clamp(20px,3vw,28px);font-size:15px;line-height:1.55;">Two references shaped the layout. n8n keeps node types legible because every type carries its own icon and connector style. Wiz’s Security Graph reads left-to-right with no legend at all. Both pointed at the same thing: solve type visually first, or the graph collapses into the same mess as the table it’s replacing.</p>
+
+    <div class="ir-insp">
+      <figure>
+        <img src="identity-resilience/inspiration-n8n.png?v=2" width="1024" height="769" alt="n8n workflow graph — AI agent flow with distinct node types and connected tools" decoding="async"/>
+        <figcaption>n8n</figcaption>
+      </figure>
+      <figure>
+        <img src="identity-resilience/inspiration-wiz.png?v=2" width="1024" height="584" alt="Wiz Security Graph — attack path with visually distinct entities" decoding="async"/>
+        <figcaption>Wiz Security Graph</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">AI Explorations</p>
+    <h2>Scenarios from the Security Scientist</h2>
+
+    <article class="ir-ai">
+      <figure class="ir-ai__media">
+        <img src="identity-resilience/scenario-1-ui.png" width="1024" height="540" alt="Scenario 1 visualization — attack path with Initial Access, Privilege Escalation, Persistence stages" decoding="async"/>
+      </figure>
+      <div class="ir-ai__copy">
+        <p class="ir-iter__label">Scenario 1</p>
+        <h3>One-way timed sequence</h3>
+        <p>Role elevation → new admin → app registration, as a one-way timed sequence. Easy to follow at a glance, but every node carries equal visual weight — nothing signals which step actually matters — and the moment actions branch instead of chaining in one line, it stops working.</p>
+        <figure class="ir-ai__table">
+          <img src="identity-resilience/scenario-1-research.png?v=2" width="1024" height="166" alt="Scenario 1 research table — activity, changes, actor, activity type, restore recommendations" decoding="async"/>
+        </figure>
+      </div>
+    </article>
+
+    <article class="ir-ai ir-ai--alt">
+      <figure class="ir-ai__media">
+        <img src="identity-resilience/scenario-2-ui.png" width="1024" height="576" alt="Scenario 2 Identity Investigation UI — John Admin timeline for MFA, policy, group, and OAuth app changes" decoding="async"/>
+      </figure>
+      <div class="ir-ai__copy">
+        <p class="ir-iter__label">Scenario 2</p>
+        <h3>Action-first timeline</h3>
+        <p>MFA changes, guest privilege, long-lived OAuth secrets, laid out as an action-first timeline. Edges carry the color, nodes stay thin, so you see what happened without opening every node. Same ceiling as Scenario 1: nest or multiply the actions and it breaks.</p>
+        <figure class="ir-ai__table">
+          <img src="identity-resilience/scenario-2-research.png" width="1024" height="171" alt="Scenario 2 research table — MFA, guests, long-lived secrets" decoding="async"/>
+        </figure>
+      </div>
+    </article>
+
+    <article class="ir-ai">
+      <figure class="ir-ai__media">
+        <img src="identity-resilience/scenario-3-ui.png" width="1024" height="676" alt="Scenario 3 Identity Investigation UI — clustered deletions and impact summary" decoding="async"/>
+      </figure>
+      <div class="ir-ai__copy">
+        <p class="ir-iter__label">Scenario 3</p>
+        <h3>Clustered bulk deletes</h3>
+        <p>Bulk deletes across users, apps, MFA, secrets, and devices. A hundred deleted devices collapse into one readable cluster instead of a hundred identical rows.</p>
+        <figure class="ir-ai__table">
+          <img src="identity-resilience/scenario-3-research.png" width="1024" height="248" alt="Scenario 3 research table — bulk delete across object types" decoding="async"/>
+        </figure>
+      </div>
+    </article>
+
+    <div class="ir-realise">
+      <p class="eyebrow">Realisation</p>
+      <h2>Flows aren’t always linear</h2>
+      <p style="color:var(--ink-soft);max-width:62ch;margin:0 0 clamp(20px,3vw,28px);font-size:15px;line-height:1.55;">Flows aren’t always linear. Once an identity’s compromised, it can fan out into many activities at once — a single login can spawn an MFA disable, a role change, and new tokens, all in parallel, not one after another. The graph had to support one origin branching into many forks and stay readable no matter how far it fanned out.</p>
+      <figure class="ir-realise__figure">
+        <img src="identity-resilience/realisation-branch.png?v=1" width="888" height="543" alt="Activity Graph — John Admin branching into multiple parallel identity actions with severity-coded edges" decoding="async"/>
+        <figcaption>Multi-branch activity graph — one identity, parallel paths</figcaption>
+      </figure>
+    </div>
+
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">Design system</p>
+    <h2>A working kit for iteration</h2>
+    <p style="color:var(--ink-soft);max-width:62ch;">I built a basic design system to support quick iterations and early explorations — shared with the visual team, engineering, and senior stakeholders so decisions stayed aligned before polish.</p>
+    <figure class="ir-ds-figure">
+      <div class="ir-ds-viewer">
+        <button type="button" class="ir-ds-magnify-btn" id="irDsMagnifyBtn" aria-pressed="true" title="Magnifying lens">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="10.5" cy="10.5" r="6.5"/>
+            <path d="M16 16l5 5" stroke-linecap="round"/>
+          </svg>
+          <span>Magnify</span>
+        </button>
+        <div class="ir-ds-scroll" id="irDsStage" tabindex="0" aria-label="Design system board — full sheet, use magnifier to inspect detail">
+          <img id="irDsImg" src="identity-resilience/design-system.svg?v=11" width="2880" height="1179" alt="Identity Resiliency design system — actors, nodes, activity chips, flow lines, and detail cards"/>
+          <div class="ir-ds-loupe" id="irDsLoupe" hidden aria-hidden="true"></div>
+        </div>
+      </div>
+      <figcaption>Component sheet — Magnify to inspect detail</figcaption>
+    </figure>
+    <p style="color:var(--ink-soft);max-width:72ch;margin:clamp(16px,2.5vw,24px) 0 0;font-size:15px;line-height:1.55;">The kit covers distinct start/branch node treatments so origin and forks read instantly, action chips that sit right on the swim-lane edge instead of a side legend, nodes that surface type, name, time, and change without a click, and tooltips that carry MITRE technique, severity, and actor on hover.</p>
+  </section>
+
+  <section class="section ir-iters">
+    <p class="eyebrow">Design process</p>
+    <h2>Iterations</h2>
+    <p style="color:var(--ink-soft);max-width:72ch;margin:0 0 clamp(20px,3vw,28px);font-size:15px;line-height:1.55;">The spec was specific: identity nodes, action edges, a typed icon per identity type, hover detail, and results that reproduce against the same time window every time. That left three real design problems — keeping six identity types visually distinct without a legend war, keeping the graph legible when one actor fires forty events in ninety seconds (solved by grouping same actor + action + target inside a rolling window), and getting from a flagged node into the recovery flow in one click without losing the context already built.</p>
+
+    <div class="ir-iter">
+      <div class="ir-iter__media">
+        <div class="ir-magnify">
+          <button type="button" class="ir-magnify__btn" aria-pressed="true" title="Magnifying lens">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="10.5" cy="10.5" r="6.5"/>
+              <path d="M16 16l5 5" stroke-linecap="round"/>
+            </svg>
+            <span>Magnify</span>
+          </button>
+          <div class="ir-magnify__stage" tabindex="0" aria-label="Iteration 1 — use magnifier to inspect detail">
+            <img class="ir-magnify__img" src="identity-resilience/iteration-1.png?v=5" width="2400" height="2066" alt="Iteration 1 — Identity Activity Analysis graph organized by timeline and activity" decoding="async"/>
+            <div class="ir-magnify__loupe" hidden aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+      <div class="ir-iter__copy">
+        <p class="ir-iter__label">Iteration 1</p>
+        <h3>Timeline + activity</h3>
+        <p>Once branches grew, finding a specific node in the path got slow, and freeform branches had no stable layout rule for engineering to actually build against. Auto-plotting made it worse — the same events landed in random spots every run, so nothing was reproducible.</p>
+      </div>
+    </div>
+
+    <div class="ir-iter ir-iter--alt">
+      <div class="ir-iter__media">
+        <div class="ir-magnify">
+          <button type="button" class="ir-magnify__btn" aria-pressed="true" title="Magnifying lens">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="10.5" cy="10.5" r="6.5"/>
+              <path d="M16 16l5 5" stroke-linecap="round"/>
+            </svg>
+            <span>Magnify</span>
+          </button>
+          <div class="ir-magnify__stage" tabindex="0" aria-label="Iteration 2 — use magnifier to inspect detail">
+            <img class="ir-magnify__img" src="identity-resilience/iteration-2.png?v=5" width="2400" height="2334" alt="Iteration 2 — type swim lanes activity graph with Investigation Builder" decoding="async"/>
+            <div class="ir-magnify__loupe" hidden aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+      <div class="ir-iter__copy">
+        <p class="ir-iter__label">Iteration 2</p>
+        <h3>Type swim lanes</h3>
+        <p><strong>Why it worked:</strong> Y = identity type, X = time. Empty lanes drop away, so density stays proportional to what actually happened, not to the full taxonomy.</p>
+        <table class="ir-axis">
+          <thead><tr><th>Axis</th><th>Contents</th></tr></thead>
+          <tbody>
+            <tr><td>Y</td><td>Identity types (active only)</td></tr>
+            <tr><td>X</td><td>Time</td></tr>
+            <tr><td>Nodes</td><td>Objects in their lane</td></tr>
+            <tr><td>Edges</td><td>Actions</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="ir-iter">
+      <div class="ir-iter__media">
+        <div class="ir-magnify">
+          <button type="button" class="ir-magnify__btn" aria-pressed="true" title="Magnifying lens">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="10.5" cy="10.5" r="6.5"/>
+              <path d="M16 16l5 5" stroke-linecap="round"/>
+            </svg>
+            <span>Magnify</span>
+          </button>
+          <div class="ir-magnify__stage" tabindex="0" aria-label="Pre final design — use magnifier to inspect detail">
+            <img class="ir-magnify__img" src="identity-resilience/final-approved.png?v=2" width="2400" height="2066" alt="Pre final Identity Activity Analysis — type swim-lane graph before visual enhancements" decoding="async"/>
+            <div class="ir-magnify__loupe" hidden aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+      <div class="ir-iter__copy">
+        <p class="ir-iter__label">Pre final</p>
+        <h3>Approved structure, before visual polish</h3>
+        <p>Type lanes, metrics, and action chips locked — the interaction model before visual enhancements.</p>
+      </div>
+    </div>
+
+    <div class="ir-iter ir-iter--alt">
+      <div class="ir-iter__media">
+        <div class="ir-magnify">
+          <button type="button" class="ir-magnify__btn" aria-pressed="true" title="Magnifying lens">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="10.5" cy="10.5" r="6.5"/>
+              <path d="M16 16l5 5" stroke-linecap="round"/>
+            </svg>
+            <span>Magnify</span>
+          </button>
+          <div class="ir-magnify__stage" tabindex="0" aria-label="Final design after visual enhancements — use magnifier to inspect detail">
+            <img class="ir-magnify__img" src="identity-resilience/final.png?v=8" width="2880" height="2244" alt="Final Identity Activity Analysis after visual enhancements — Alice Smith type swim-lane graph" decoding="async"/>
+            <div class="ir-magnify__loupe" hidden aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+      <div class="ir-iter__copy">
+        <p class="ir-iter__label">Final</p>
+        <h3>Final design after visual enhancements</h3>
+        <p>Polished Identity Activity Analysis — type lanes, MITRE metrics, action chips, and explicit gaps — ready for product.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">Closing</p>
+    <h2>Learning</h2>
+    <ul class="ir-learn">
+      <li class="ir-learn__item">
+        <p class="ir-learn__title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          Invent the system
+        </p>
+        <p class="ir-learn__sub">First node-based design — no existing interaction model to adapt. Built the design system from scratch, then pressure-tested it with security researchers against privilege escalation, defense evasion, and bulk deletes.</p>
+      </li>
+      <li class="ir-learn__item">
+        <p class="ir-learn__title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>
+          Group by relationship
+        </p>
+        <p class="ir-learn__sub">Not by time. The pattern that came out of this screen is one I’d reach for again outside this specific product.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section more-work">
+    <div class="more-work__head">
+      <span class="eyebrow">More work</span>
+      <a href="projects.html" class="more-work__all">View all work</a>
+    </div>
+    <div class="more-work__scroller" data-more-work></div>
+  </section>
+</main>
+
+<script src="identity-resilience/ds-magnify.js?v=20260808iters"></script>
+<script src="identity-resilience/crisp-imgs.js?v=2"></script>
+<script src="js/site-footer.js?v=20260807contact"></script>
+<script src="js/system-theme.js"></script>
+<script src="js/site-shell.js?v=20260808irnda"></script>
+<script src="audio/music.js?v=20260808pausepersist"></script>
+<script src="identity-resilience/nda-gate.js?v=1"></script>
+</body>
+</html>

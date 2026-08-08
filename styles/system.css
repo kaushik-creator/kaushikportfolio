@@ -1,9 +1,9 @@
 /* ============ DESIGN TOKENS ============ */
 :root{
-  /* LIGHT — white ground, high-contrast type */
-  --bg:         #FFFFFF;
+  /* LIGHT — soft grey ground, white surfaces */
+  --bg:         #F5F6F8;
   --surface:    #FFFFFF;
-  --surface-2:  #F3F4F6;
+  --surface-2:  #EEF0F3;
   --ink:        #0A0B0D;
   --ink-soft:   #3A3F4A;
   --muted:      #5C6370;
@@ -33,14 +33,14 @@
   --bg-wash:
     radial-gradient(ellipse 90% 70% at 0% 0%, var(--glow-accent), transparent 58%),
     radial-gradient(ellipse 60% 50% at 100% 100%, var(--glow-ink), transparent 52%),
-    linear-gradient(180deg, #FFFFFF 0%, var(--bg) 100%);
+    linear-gradient(180deg, #F7F8FA 0%, var(--bg) 100%);
   --bg-wash-soft:
     radial-gradient(ellipse 100% 140% at 0% 0%, rgba(212,168,42,.06), transparent 62%),
-    linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%);
+    linear-gradient(180deg, var(--bg) 0%, var(--bg) 100%);
   --bg-wash-hero:
     radial-gradient(ellipse 70% 80% at 6% 0%, rgba(212,168,42,.06), transparent 55%),
     radial-gradient(ellipse 50% 60% at 100% 40%, rgba(15,17,21,.015), transparent 55%),
-    linear-gradient(180deg, var(--bg) 0%, #FFFFFF 100%);
+    linear-gradient(180deg, var(--bg) 0%, #F7F8FA 100%);
 }
 :root[data-theme="dark"]{
   --bg:         #0B0C0F;
@@ -1267,7 +1267,7 @@ figure figcaption,
 /* ============ HEADER + THEME TOGGLE ============ */
 .site-header{
   position:sticky; top:0; z-index:50;
-  background:rgba(255,255,255,.78);
+  background:rgba(245,246,248,.82);
   backdrop-filter:blur(16px) saturate(1.05);
   -webkit-backdrop-filter:blur(16px) saturate(1.05);
   border-bottom:1px solid var(--line);
