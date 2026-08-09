@@ -11,9 +11,9 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <script src="js/theme-init.js"></script>
-<link rel="stylesheet" href="styles/system.css?v=20260809be1"/>
+<link rel="stylesheet" href="styles/system.css?v=20260809nda1"/>
 <style>
 /* Tighter case-study rhythm — cut excess section padding */
 main.wrap > .section{ padding-block:clamp(36px,5vw,56px); }
@@ -198,14 +198,14 @@ main.wrap > a.link{ display:inline-block; margin-top:28px; }
 }
 .druva-persona__avatar{
   width:40px; height:40px;
-  border-radius:50%;
+  border-radius:0;
   display:inline-flex; align-items:center; justify-content:center;
-  background:var(--surface-2);
-  border:1px solid var(--line);
+  background:var(--ink);
+  border:1px solid var(--border-hard);
   font-family:var(--font-display);
   font-weight:700;
   font-size:14px;
-  color:var(--ink);
+  color:var(--accent-ink);
   flex-shrink:0;
 }
 .druva-persona__name{
@@ -296,7 +296,6 @@ main.wrap > a.link{ display:inline-block; margin-top:28px; }
 
   <!-- HERO + CONTEXT -->
   <section class="section cs-hero">
-    <p class="cs-badge" role="status">CASE STUDY · DRUVA</p>
     <h1>Provisioning &amp; access for service partners</h1>
     <p class="cs-hero__lede">Self-serve product expansion for MSP partners — plan, approve, initiate, migrate, and validate without filing a support ticket each time.</p>
     <div class="cs-hero__cover cs-hero__cover--diagram">
@@ -659,6 +658,14 @@ main.wrap > a.link{ display:inline-block; margin-top:28px; }
     </div>
   </section>
 
+  <section class="section cs-confidentiality" aria-label="Confidentiality note">
+    <p class="cs-confidentiality__note">
+      <strong>Confidentiality note:</strong> This project is under NDA. Design is complete and moving into development.<br>
+      Interface redrawn and figures synthesized for case study presentation.<br>
+      The core architectural logic and UX constraints remain true to production.
+    </p>
+  </section>
+
   <section class="section more-work">
     <div class="more-work__head">
       <span class="eyebrow">More work</span>
@@ -733,7 +740,7 @@ main.wrap > a.link{ display:inline-block; margin-top:28px; }
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
 })();
 </script>
-<script src="js/site-footer.js?v=20260809be1"></script>
+<script src="js/site-footer.js?v=20260809ux1"></script>
 <script src="js/system-theme.js"></script>
 <script src="js/site-shell.js?v=20260809nochats"></script>
 <script src="audio/music.js?v=20260809noauto"></script>

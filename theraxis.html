@@ -11,9 +11,9 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <script src="js/theme-init.js"></script>
-<link rel="stylesheet" href="styles/system.css?v=20260809be1"/>
+<link rel="stylesheet" href="styles/system.css?v=20260809nda1"/>
 <style>
 /* Theraxis — AI product website case study (not MSC) */
 .tx{ --mat: var(--surface); }
@@ -262,10 +262,10 @@
 .tx .dot{ display:inline-block; width:9px; height:9px; border-radius:50%; background:var(--ink); }
 .tx .dash{ color:var(--muted); }
 .tx .persona-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-.tx .persona{ border:1px solid var(--line); padding:22px; background:var(--surface); }
+.tx .persona{ border:1px solid var(--border-hard); padding:22px; background:var(--surface); border-radius:0; }
 .tx .persona .role{ font-weight:700; font-size:17px; }
 .tx .persona .sub{ font-size:12.5px; color:var(--muted); margin:2px 0 14px; }
-.tx .persona blockquote{ margin:0 0 16px; font-style:italic; color:var(--ink-soft); border-left:3px solid var(--accent); padding-left:14px; font-size:14.5px; }
+.tx .persona blockquote{ margin:0 0 16px; font-style:normal; font-weight:600; font-family:var(--font-display); color:var(--ink); border-left:4px solid var(--accent); padding:14px 16px; background:var(--surface-2); font-size:14.5px; }
 .tx .persona .label{ font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:700; margin:14px 0 6px; }
 .tx .persona ul{ margin:0; padding-left:18px; font-size:13.5px; color:var(--ink-soft); }
 .tx .modgrid{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
@@ -352,7 +352,6 @@
 
     <!-- HERO -->
     <section class="cs-hero tx-hero">
-      <p class="cs-badge" role="status">AI · PERSONAL PROJECT</p>
       <h1>Theraxis — Clinical ops for pediatric therapy centers</h1>
       <p class="cs-hero__lede">PRD, design, and a live web build for pediatric therapy centers.</p>
       <div class="cs-hero__cover">
@@ -921,6 +920,16 @@
     </div>
   </div>
 
+  <section class="section cs-confidentiality" aria-label="Confidentiality note">
+    <div class="wrap">
+      <p class="cs-confidentiality__note">
+        <strong>Confidentiality note:</strong> This project is under NDA. Design is complete and moving into development.<br>
+        Interface redrawn and figures synthesized for case study presentation.<br>
+        The core architectural logic and UX constraints remain true to production.
+      </p>
+    </div>
+  </section>
+
   <section class="section more-work">
     <div class="wrap">
       <div class="more-work__head">
@@ -932,7 +941,7 @@
   </section>
 </main>
 
-<script src="js/site-footer.js?v=20260809be1"></script>
+<script src="js/site-footer.js?v=20260809ux1"></script>
 <script src="js/system-theme.js"></script>
 <script src="js/site-shell.js?v=20260809nochats"></script>
 <script src="audio/music.js?v=20260809noauto"></script>

@@ -10,9 +10,9 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <script src="js/theme-init.js"></script>
-<link rel="stylesheet" href="styles/system.css?v=20260809be1"/>
+<link rel="stylesheet" href="styles/system.css?v=20260809persona1"/>
 <link rel="stylesheet" href="identity-resilience/ir.css?v=20260808dslarge"/>
 <link rel="stylesheet" href="identity-resilience/nda-gate.css?v=3"/>
 <script>
@@ -319,9 +319,9 @@
   max-width:100% !important;
   margin:0;
   overflow:hidden;
-  border:1px solid var(--line);
-  border-radius:10px;
-  background:#EEF1F4;
+  border:1px solid var(--border-hard);
+  border-radius:0;
+  background:var(--surface-2);
 }
 .section.cs-hero .cs-hero__cover img{
   display:block;
@@ -380,74 +380,7 @@
 }
 .cs-callout__title{ margin:0 0 14px; font-weight:700; color:var(--ink); font-size:15px; }
 .cs-callout + .cs-callout{ margin-top:16px; }
-.cs-persona{
-  display:grid;
-  grid-template-columns:minmax(220px,280px) minmax(0,1fr);
-  border:1px solid var(--line);
-  background:var(--bg);
-  width:100%;
-  box-sizing:border-box;
-  overflow:hidden;
-}
-.cs-persona + .cs-persona{ margin-top:20px; }
-.cs-persona__rail{
-  background:var(--accent);
-  color:var(--accent-ink);
-  padding:clamp(24px,2.8vw,36px);
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-  position:relative;
-}
-.cs-persona__rail::after{ display:none; }
-.cs-persona__avatar{
-  width:56px; height:56px;
-  border:none;
-  border-radius:50%;
-  background:var(--accent-ink);
-  color:var(--accent);
-  display:flex; align-items:center; justify-content:center;
-  font-family:var(--font-display);
-  font-weight:800;
-  font-size:22px;
-  letter-spacing:-0.03em;
-  flex-shrink:0;
-}
-.cs-persona__rail .eyebrow{ color:rgba(20,20,20,.65); margin:0 0 8px; }
-.cs-persona__rail h3{
-  margin:0; color:var(--accent-ink);
-  font-size:clamp(1.5rem,2.2vw,1.85rem); line-height:1.1;
-}
-.cs-persona__identity{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-.cs-persona__role{
-  margin:0; font-size:14px; line-height:1.45; color:rgba(20,20,20,.78);
-}
-.cs-persona__body{
-  padding:clamp(24px,3vw,40px);
-  min-width:0;
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-  justify-content:center;
-}
-.cs-persona__quote{
-  margin:0;
-  font-size:clamp(1.05rem,1.5vw,1.25rem);
-  line-height:1.45;
-  color:var(--ink);
-  font-family:var(--font-display);
-  font-weight:600;
-  padding:18px 20px;
-  background:var(--surface);
-  border-left:4px solid var(--accent);
-}
-.cs-persona__bio{
-  margin:0; color:var(--ink-soft); font-size:15px; line-height:1.65;
-}
+/* Persona chrome lives in styles/system.css — shared across case studies */
 .cs-pointers{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
@@ -527,7 +460,7 @@
 }
 .ir-point{
   display:flex;
-  align-items:flex-start;
+  align-items:center;
   gap:12px;
   margin:0;
 }
@@ -535,7 +468,7 @@
   flex-shrink:0;
   width:18px;
   height:18px;
-  margin-top:2px;
+  margin-top:0;
   color:var(--ink);
 }
 .ir-point__text{
@@ -650,7 +583,6 @@
   <a href="projects.html" class="link cs-back">← All Projects</a>
 
   <section class="section cs-hero">
-    <p class="cs-badge" role="status">CASE STUDY · IDENTITY SECURITY</p>
     <h1>Turning an activity table into an identity graph</h1>
     <p class="cs-hero__lede">Security and backup teams could see that an identity was compromised — but had to read a table, row by row, to find out what it actually touched. I redesigned that table as a graph: the identity at the center, everything it touched plotted around it by type.</p>
     <div class="cs-hero__cover ir-nda-wrap is-locked" data-ir-nda>
@@ -665,8 +597,8 @@
 
   <section class="section">
     <p class="eyebrow">The problem</p>
-    <h2>Detection exists; trusted identity recovery doesn’t</h2>
-    <p class="cs-persona__quote" style="margin-bottom:24px;">“Detection exists; trusted identity recovery doesn’t. Backup restores systems, not trust.”</p>
+    <h2>A table shows signals. A graph shows the path.</h2>
+    <p class="cs-persona__quote" style="margin-bottom:24px;">“Flat activity tables hide relationships, blast radius, and the path to restore trust. A node graph makes the attack path visible — so recovery isn’t a row-by-row guess.”</p>
     <p class="eyebrow" style="margin:0 0 12px;">What’s wrong with the table</p>
     <ul class="ir-learn ir-learn--4">
       <li class="ir-learn__item">
@@ -714,10 +646,7 @@
       <aside class="cs-persona__rail">
         <div class="cs-persona__identity">
           <div class="cs-persona__avatar" aria-hidden="true">S</div>
-          <div>
-            <p class="eyebrow">Primary user</p>
-            <h3>Security Admin</h3>
-          </div>
+          <h3>Security Admin</h3>
         </div>
       </aside>
       <div class="cs-persona__body">
@@ -728,10 +657,7 @@
       <aside class="cs-persona__rail">
         <div class="cs-persona__identity">
           <div class="cs-persona__avatar" aria-hidden="true">B</div>
-          <div>
-            <p class="eyebrow">Primary user</p>
-            <h3>Backup Admin</h3>
-          </div>
+          <h3>Backup Admin</h3>
         </div>
       </aside>
       <div class="cs-persona__body">
@@ -1065,6 +991,14 @@
     </ul>
   </section>
 
+  <section class="section cs-confidentiality" aria-label="Confidentiality note">
+    <p class="cs-confidentiality__note">
+      <strong>Confidentiality note:</strong> This project is under NDA. Design is complete and moving into development.<br>
+      Interface redrawn and figures synthesized for case study presentation.<br>
+      The core architectural logic and UX constraints remain true to production.
+    </p>
+  </section>
+
   <section class="section more-work">
     <div class="more-work__head">
       <span class="eyebrow">More work</span>
@@ -1076,7 +1010,7 @@
 
 <script src="identity-resilience/ds-magnify.js?v=20260808iters"></script>
 <script src="identity-resilience/crisp-imgs.js?v=2"></script>
-<script src="js/site-footer.js?v=20260809be1"></script>
+<script src="js/site-footer.js?v=20260809ux1"></script>
 <script src="js/system-theme.js"></script>
 <script src="js/site-shell.js?v=20260809nochats"></script>
 <script src="audio/music.js?v=20260809noauto"></script>
