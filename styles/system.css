@@ -2211,6 +2211,11 @@ main.cs-page > .section:first-of-type,
   font-size:14.5px;
   line-height:1.55;
 }
+.proj-show__brief strong{
+  color:var(--ink);
+  font-size:inherit;
+  font-weight:600;
+}
 .proj-show__cta{
   font-size:13px;
   font-weight:500;
