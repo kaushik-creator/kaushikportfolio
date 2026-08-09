@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <script src="js/theme-init.js"></script>
-<link rel="stylesheet" href="styles/system.css?v=20260809live1"/>
+<link rel="stylesheet" href="styles/system.css?v=20260809plain1"/>
 <style>
 .lightbox-modal{display:none;position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,.95);overflow:auto;}
 .lightbox-close{position:fixed;top:20px;right:35px;z-index:10001;color:var(--surface);font-size:40px;cursor:pointer;line-height:1;}
@@ -544,8 +544,8 @@
         <span class="v">End-to-End UX</span>
       </div>
       <div class="cs-overview__card">
-        <span class="k">Timeline</span>
-        <span class="v">2 Months</span>
+        <span class="k">Scope</span>
+        <span class="v">One readiness score and path to close security gaps</span>
       </div>
       <div class="cs-overview__card">
         <span class="k">Domain</span>
@@ -553,7 +553,15 @@
       </div>
       <div class="cs-overview__card">
         <span class="k">Stakeholders</span>
-        <span class="v">Security PM / InfoSec / Eng</span>
+        <span class="v">Cloud Admins · InfoSec · Engineering</span>
+      </div>
+      <div class="cs-overview__card">
+        <span class="k">Product Managers</span>
+        <span class="v">Security PM</span>
+      </div>
+      <div class="cs-overview__card">
+        <span class="k">Designers</span>
+        <span class="v">Sole designer</span>
       </div>
     </div>
     <p class="cs-nda" style="max-width:52ch;margin:24px auto 0;text-align:left;"><strong>Confidentiality note:</strong> This project is under NDA. Design is complete and moving into development. Interface redrawn and figures synthesized for case study presentation — core architectural logic and UX constraints remain true to production.</p>
@@ -566,29 +574,29 @@
         <div class="cs-brief">
           <div class="cs-brief__item">
             <p class="eyebrow eyebrow--problem">Problem 01</p>
-            <h3>Features went unexplained</h3>
+            <h3>Admins had security tools — but nothing explained what they did.</h3>
             <ul class="cs-list">
-              <li><span><strong>Users didn’t know the product</strong> — Cyber Resiliency capabilities lived in the nav with no guided explanation</span></li>
-              <li><span><strong>New onboardings were cold</strong> — first-time admins landed in Security Center without a tour of what each feature does</span></li>
-              <li><span><strong>Future features needed a home</strong> — when new capabilities ship, there was no reusable way to open and explain them</span></li>
+              <li><span><strong>Features hid in the menu</strong> — Cyber Resiliency lived in the nav with no plain explanation of what each capability does</span></li>
+              <li><span><strong>New admins started cold</strong> — first login dropped them into Security Center with no tour</span></li>
+              <li><span><strong>Impact:</strong> people underused protections they already paid for, and future features had no place to be introduced</span></li>
             </ul>
           </div>
           <div class="cs-brief__item">
             <p class="eyebrow eyebrow--existing">Problem 02</p>
-            <h3>Risks without a guided path</h3>
+            <h3>They could see security gaps — but not a simple path to fix them.</h3>
             <ul class="cs-list">
-              <li><span><strong>Posture only listed risks</strong> — same static checklist for every user, even newly onboarded admins</span></li>
-              <li><span><strong>Settings lived across 6 pages</strong> — MFA, SSO, Geofencing, alerts, and more required hopping away</span></li>
-              <li><span><strong>No Mandatory vs Recommended journey</strong> — nothing walked users through the tasks that actually improve security</span></li>
+              <li><span><strong>A list, not a plan</strong> — Security Center showed pass/fail risks with no next steps</span></li>
+              <li><span><strong>Fixes lived on 6 pages</strong> — MFA, SSO, geofencing, alerts, and more meant leaving the page over and over</span></li>
+              <li><span><strong>Impact:</strong> gaps stayed open longer, and audits got harder because nobody had one clear “are we ready?” answer</span></li>
             </ul>
           </div>
           <div class="cs-brief__item">
             <p class="eyebrow eyebrow--preferred">Solution</p>
-            <h3>Discover. Then harden.</h3>
+            <h3>Learn the tools. Then close the gaps.</h3>
             <ul class="cs-list">
-              <li><span><strong>Explore Cyber Resiliency Features</strong> — onboarding-style modal that explains capabilities now and when new features arrive</span></li>
-              <li><span><strong>Readiness Score</strong> — Mandatory + Recommended tasks with Gauge / List toggle</span></li>
-              <li><span><strong>In-context remediations</strong> — fix gaps without leaving Security Center</span></li>
+              <li><span><strong>Explore Cyber Resiliency Features</strong> — a guided tour that also works when new features ship later</span></li>
+              <li><span><strong>Readiness Score</strong> — Mandatory and Recommended tasks in one score, with Gauge or List view</span></li>
+              <li><span><strong>Fix in place</strong> — close gaps without leaving Security Center</span></li>
             </ul>
           </div>
         </div>
@@ -635,7 +643,7 @@
               <div class="cs-persona__avatar" aria-hidden="true">J</div>
               <h3>Jordan</h3>
             </div>
-            <p class="cs-persona__role">Cloud Administrator managing the organization’s Druva tenant as part of broader IT operations—not a dedicated security analyst.</p>
+            <p class="cs-persona__role">Cloud Admin who runs day-to-day IT for the company — not a full-time security analyst. Also answers InfoSec when they ask for proof that basic protections are on.</p>
             <div class="cs-persona__tags">
               <span class="cs-persona__tag">Cloud Admin</span>
               <span class="cs-persona__tag">Daily IT ops</span>
@@ -644,9 +652,9 @@
           </aside>
 
           <div class="cs-persona__body">
-            <p class="cs-persona__quote">“I don’t have time to audit six settings pages—I need to know what’s misconfigured and fix it before InfoSec asks.”</p>
+            <p class="cs-persona__quote">“I don’t have time to check six settings pages. I need to know what’s wrong and fix it before InfoSec asks.”</p>
 
-            <p class="cs-persona__bio">Jordan owns day-to-day IT operations while absorbing periodic InfoSec audit requests that demand proof baseline controls are actually configured. Dual responsibility means Jordan needs to understand the product on day one, get an instant posture answer, and remediate fast—without becoming a full-time compliance analyst.</p>
+            <p class="cs-persona__bio">Jordan opens Security Center in the morning, then jumps into other IT work. When InfoSec asks whether basic controls are configured, Jordan has to prove it fast. The hard part: learning what the product offers, seeing what’s misconfigured, and fixing it — without becoming a full-time compliance person.</p>
 
             <div class="cs-persona__grid">
               <div class="cs-persona__block cs-persona__block--goals">
@@ -655,9 +663,9 @@
                   Goals
                 </span>
                 <ul>
-                  <li>Understand features on first login</li>
-                  <li>Prove baseline controls are active across tenants</li>
-                  <li>Close gaps before audits escalate</li>
+                  <li>Know what the security tools do on day one</li>
+                  <li>Show that basic protections are actually on</li>
+                  <li>Fix gaps before an audit becomes a fire drill</li>
                 </ul>
               </div>
               <div class="cs-persona__block cs-persona__block--frictions">
@@ -666,9 +674,9 @@
                   Frustrations
                 </span>
                 <ul>
-                  <li>Jumping across isolated configuration pages</li>
-                  <li>No instant “are we compliant?” answer</li>
-                  <li>Leaving the page to flip one toggle</li>
+                  <li>Settings scattered across separate pages</li>
+                  <li>No fast answer to “are we okay right now?”</li>
+                  <li>Leaving the page just to flip one switch</li>
                 </ul>
               </div>
               <div class="cs-persona__block cs-persona__block--behaviors">
@@ -677,9 +685,9 @@
                   Behaviors
                 </span>
                 <ul>
-                  <li>Opens Security Center for a morning scan</li>
-                  <li>Responds to InfoSec asks under time pressure</li>
-                  <li>Fixes the highest-urgency gap first</li>
+                  <li>Scans Security Center at the start of the day</li>
+                  <li>Answers InfoSec questions under time pressure</li>
+                  <li>Fixes the most urgent gap first</li>
                 </ul>
               </div>
               <div class="cs-persona__block cs-persona__block--needs">
@@ -688,9 +696,9 @@
                   Needs
                 </span>
                 <ul>
-                  <li>Understand features on first login</li>
-                  <li>Mandatory vs recommended visual hierarchy</li>
-                  <li>In-place edit without route changes</li>
+                  <li>A plain tour of what each feature does</li>
+                  <li>Clear “must fix” vs “nice to fix” order</li>
+                  <li>Ways to fix gaps without leaving the page</li>
                 </ul>
               </div>
             </div>
@@ -700,15 +708,15 @@
               <ol class="cs-persona__asks-grid">
                 <li class="cs-persona__ask">
                   <small>Macro</small>
-                  <span>Is my environment compliant right now?</span>
+                  <span>Are we in good shape right now?</span>
                 </li>
                 <li class="cs-persona__ask">
                   <small>Micro</small>
-                  <span>Where is the immediate exposure?</span>
+                  <span>What’s the biggest risk today?</span>
                 </li>
                 <li class="cs-persona__ask">
                   <small>Action</small>
-                  <span>Can I fix it in one click without leaving this page?</span>
+                  <span>Can I fix it here without leaving this page?</span>
                 </li>
               </ol>
             </div>
@@ -723,8 +731,8 @@
     <div class="cs-grid">
       <div class="cs-span-12">
         <p class="eyebrow">Problem 01 · Onboarding</p>
-        <h3 style="margin-top: 0; margin-bottom: 12px;">Users didn’t know the features</h3>
-        <p>Cloud Administrators—especially newly onboarded ones—landed in Security Center without understanding what Cyber Resiliency offered. Features lived in the sidebar, but nothing explained them. We needed a reusable onboarding surface that introduces capabilities today, and can open again when <span class="cs-mark">new features ship in the future</span>.</p>
+        <h3 style="margin-top: 0; margin-bottom: 12px;">New admins open Security Center and don’t know what Cyber Resiliency includes.</h3>
+        <p>The tools were already in the product — buried in the sidebar with no plain explanation. First-time Cloud Admins landed cold. Paid protections went unused, and when new features shipped later, there was still no reusable place to introduce them.</p>
       </div>
       <div class="cs-span-12">
         <div class="cs-callout" style="margin-bottom: 24px;">
@@ -780,8 +788,8 @@
     <div class="cs-grid">
       <div class="cs-span-12">
         <p class="eyebrow">Problem 02 · Security posture</p>
-        <h3 style="margin-top: 0; margin-bottom: 12px;">Risks listed. No guided path.</h3>
-        <p>Even after users understood the product, baseline security—Multi-Factor Authentication, Single Sign-On, Geofencing, Reports, Alerts, and Restore Scan—still required hopping across six separate platform pages. Security Center only surfaced a static risk list, not a journey that walks admins through <span class="cs-chip cs-chip--danger">Mandatory</span> and <span class="cs-chip cs-chip--ok">Recommended</span> tasks.</p>
+        <h3 style="margin-top: 0; margin-bottom: 12px;">Security Center listed what was wrong — but not how to fix it.</h3>
+        <p>Basic protections — Multi-Factor Authentication, Single Sign-On, Geofencing, Reports, Alerts, and Restore Scan — lived across six separate pages. The old screen only showed a static risk list. It did not walk admins through <span class="cs-chip cs-chip--danger">Mandatory</span> vs <span class="cs-chip cs-chip--ok">Recommended</span> tasks, so gaps stayed open longer.</p>
       </div>
     </div>
 
@@ -794,7 +802,7 @@
       </div>
       <div class="cs-sticky-row__text">
         <p class="eyebrow eyebrow--problem" style="margin:0 0 8px;">What was broken</p>
-        <h4 style="margin:0 0 12px;">Static list, no remediation</h4>
+        <h4 style="margin:0 0 12px;">A list of problems — no path to fix them</h4>
         <ul class="cs-list">
           <li>
             <svg class="cs-ico cs-ico--danger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
@@ -802,7 +810,7 @@
           </li>
           <li>
             <svg class="cs-ico cs-ico--warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
-            <span><strong>One-size-fits-all.</strong> Newly onboarded admins saw the same static list. Nothing guided the right Mandatory vs Recommended tasks for their tenant.</span>
+            <span><strong>Same list for everyone.</strong> New admins saw the same static checklist. Nothing ordered “must fix” vs “nice to fix” for their setup.</span>
           </li>
         </ul>
 

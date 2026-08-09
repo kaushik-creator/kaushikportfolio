@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <script src="js/theme-init.js"></script>
-<link rel="stylesheet" href="styles/system.css?v=20260809live1"/>
+<link rel="stylesheet" href="styles/system.css?v=20260809plain1"/>
 <style>
 /* Theraxis — AI product website case study (not MSC) */
 .tx{ --mat: var(--surface); }
@@ -359,9 +359,11 @@
       </div>
       <div class="cs-overview">
         <div class="cs-overview__card"><span class="k">Role</span><span class="v">Product &amp; Systems Design</span></div>
-        <div class="cs-overview__card"><span class="k">Built with</span><span class="v">Cursor</span></div>
-        <div class="cs-overview__card"><span class="k">Platform</span><span class="v">Multi-tenant web</span></div>
-        <div class="cs-overview__card"><span class="k">Status</span><span class="v">Live build tested with doctors</span></div>
+        <div class="cs-overview__card"><span class="k">Scope</span><span class="v">Clinic platform from PRD to live web build</span></div>
+        <div class="cs-overview__card"><span class="k">Domain</span><span class="v">Pediatric therapy · Multi-tenant web</span></div>
+        <div class="cs-overview__card"><span class="k">Stakeholders</span><span class="v">Clinic staff · Doctors · Parents</span></div>
+        <div class="cs-overview__card"><span class="k">Product Managers</span><span class="v">Self — PRD &amp; product definition</span></div>
+        <div class="cs-overview__card"><span class="k">Designers</span><span class="v">Sole designer</span></div>
       </div>
     </section>
   </div>
@@ -371,24 +373,24 @@
     <div class="wrap">
       <div class="tx-band__head">
         <p class="eyebrow">The problem</p>
-        <h2>Ops, care, and families were flying blind</h2>
-        <p>Same breaks in every conversation — centers and parents asking different versions of the same questions.</p>
+        <h2>Therapy centers ran care, scheduling, and billing in separate places — so staff and families lost the thread.</h2>
+        <p>Every conversation repeated the same breaks. Centers and parents were asking different versions of the same questions — and nobody had one trustworthy answer.</p>
       </div>
       <div class="tx-grid3">
         <article class="tx-card">
           <div class="n">01</div>
-          <h3>No unified workflow</h3>
-          <p>Clinical decisions — screenings, assessments, care plans — sit apart from scheduling and billing. Care plan ≠ invoice ≠ calendar.</p>
+          <h3>No single workflow</h3>
+          <p>Screenings, care plans, scheduling, and billing don’t talk to each other. The care plan, invoice, and calendar can disagree.</p>
         </article>
         <article class="tx-card">
           <div class="n">02</div>
-          <h3>Billing is manual and error-prone</h3>
-          <p>Pricing and GST in spreadsheets. Enrollments go active without a paid invoice — revenue leaks.</p>
+          <h3>Billing is manual and leaky</h3>
+          <p>Pricing and tax live in spreadsheets. Kids can start sessions before an invoice is paid — so revenue slips away.</p>
         </article>
         <article class="tx-card">
           <div class="n">03</div>
-          <h3>Progress is anecdotal</h3>
-          <p>Goals float free of assessment evidence. Session outcomes aren’t structured. No audit trail.</p>
+          <h3>Progress is guesswork</h3>
+          <p>Goals aren’t tied to assessment evidence. Session outcomes aren’t structured. There’s no clear trail of what worked.</p>
         </article>
       </div>
       <div class="tx-grid6">
@@ -475,43 +477,49 @@
       <div class="tx-band__head">
         <p class="eyebrow">Personas</p>
         <h2>Who feels it most</h2>
-        <p>Staff need continuity. Families need clarity.</p>
+        <p>Staff need continuity between sessions. Families need a clear answer to “is my child improving?”</p>
       </div>
       <div class="tx-grid2">
         <article class="tx-persona">
           <p class="who">Persona 01</p>
           <h3>Therapist</h3>
           <blockquote>“What did we work on last session — and what should I do today?”</blockquote>
+          <p class="label">Opens every day</p>
+          <ul>
+            <li>Session notes, the day’s schedule, and whichever child walks in next</li>
+          </ul>
+          <p class="label">Problem</p>
+          <ul>
+            <li>Last session lives in chat or paper</li>
+            <li>No structured outcomes or next tasks</li>
+            <li>Billing noise distracts from care</li>
+          </ul>
           <p class="label">Needs</p>
           <ul>
             <li>History and last-session notes before walking in</li>
-            <li>Screening and assessments without losing context</li>
-            <li>Progress against goals, not gut feel</li>
-            <li>Clean handoff when another therapist covers</li>
-          </ul>
-          <p class="label">Friction</p>
-          <ul>
-            <li>Previous session lives in chat or paper</li>
-            <li>No structured outcomes or next tasks</li>
-            <li>Billing noise distracts from care</li>
+            <li>Progress against goals — not gut feel</li>
+            <li>A clean handoff when another therapist covers</li>
           </ul>
         </article>
         <article class="tx-persona">
           <p class="who">Persona 02</p>
           <h3>Parent</h3>
           <blockquote>“Is my child getting better — and what should I do at home?”</blockquote>
+          <p class="label">Opens every day</p>
+          <ul>
+            <li>Messages from the center — or waits until pickup to ask</li>
+          </ul>
+          <p class="label">Problem</p>
+          <ul>
+            <li>Updates are informal or missing</li>
+            <li>No visible answer to “is my kid improving?”</li>
+            <li>Home practice fades after the drive home</li>
+          </ul>
           <p class="label">Needs</p>
           <ul>
             <li>Progress without calling the front desk</li>
             <li>Upcoming sessions and whether they happened</li>
             <li>Clear home carryover between visits</li>
-            <li>Trust that care is continuous</li>
-          </ul>
-          <p class="label">Friction</p>
-          <ul>
-            <li>Updates informal or missing</li>
-            <li>No visible answer to “is my kid improving?”</li>
-            <li>Home practice fades after the drive home</li>
           </ul>
         </article>
       </div>

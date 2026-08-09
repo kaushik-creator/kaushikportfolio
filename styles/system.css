@@ -2331,13 +2331,13 @@ main > .wrap > .cs-hero,
   display:grid;
   grid-column:2;
   grid-template-columns:1fr;
-  gap:18px;
-  max-width:28ch;
+  gap:14px;
+  max-width:34ch;
   width:100%;
   margin:0;
   padding-top:2px;
   text-align:left;
-  align-self:center;
+  align-self:start;
 }
 /* No cover image — keep meta as a horizontal row */
 .cs-hero:not(:has(.cs-hero__cover)) .cs-overview{
@@ -2745,12 +2745,15 @@ main.cs-page > a.link + .section.cs-hero{
 }
 .cs-persona__bio,
 .cs-persona__body .ir-persona-flow{
-  margin:0;
+  margin:0 0 10px;
   max-width:58ch;
   color:var(--ink-soft);
   font-size:15px;
   line-height:1.65;
 }
+.cs-persona__body .ir-persona-flow:last-child,
+.cs-persona__bio:last-child{ margin-bottom:0; }
+.cs-persona__body .ir-persona-flow strong{ color:var(--ink); font-weight:600; }
 .cs-persona__grid{
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));

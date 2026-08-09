@@ -12,8 +12,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <script src="js/theme-init.js"></script>
-<link rel="stylesheet" href="styles/system.css?v=20260809live1"/>
-<link rel="stylesheet" href="identity-resilience/ir.css?v=20260808dslarge"/>
+<link rel="stylesheet" href="styles/system.css?v=20260809plain1"/>
+<link rel="stylesheet" href="identity-resilience/ir.css?v=20260809plain1"/>
 <link rel="stylesheet" href="identity-resilience/nda-gate.css?v=3"/>
 <script>
 (function(){try{if(localStorage.getItem("ir_final_unlocked_v1")==="1"||localStorage.getItem("ir_cover_unlocked_v1")==="1")document.documentElement.classList.add("ir-nda-unlocked");}catch(e){}})();
@@ -491,12 +491,14 @@
 }
 .cs-persona__body .ir-points{ max-width:none; }
 .ir-persona-flow{
-  margin:0;
+  margin:0 0 10px;
   max-width:58ch;
   font-size:15px;
   line-height:1.6;
   color:var(--ink-soft);
 }
+.ir-persona-flow:last-child{ margin-bottom:0; }
+.ir-persona-flow strong{ color:var(--ink); font-weight:600; }
 .ir-iters > .ir-points{ margin-bottom:clamp(20px,3vw,28px); }
 @media (max-width:480px){
   .ir-point{ gap:10px; }
@@ -584,45 +586,49 @@
 
   <section class="section cs-hero">
     <h1>Turning an activity table into an identity graph</h1>
-    <p class="cs-hero__lede">Security and backup teams could see that an identity was compromised — but had to read a table, row by row, to find out what it actually touched. I redesigned that table as a graph: the identity at the center, everything it touched plotted around it by type.</p>
+    <p class="cs-hero__lede">Security and backup teams can see that an identity was compromised — but had to read a table, row by row, to find out what it actually touched. I redesigned that table as a graph: the identity at the center, everything it touched plotted around it by type.</p>
     <div class="cs-hero__cover ir-nda-wrap is-locked" data-ir-nda>
       <img src="identity-resilience/design-frame.png?v=8" width="2880" height="2244" alt="Identity Resiliency — Identity Activity Analysis swimlane graph"/>
     </div>
     <div class="cs-overview">
       <div class="cs-overview__card"><span class="k">Role</span><span class="v">UX Designer</span></div>
-      <div class="cs-overview__card"><span class="k">Scope</span><span class="v">Active Directory, Entra ID, Okta</span></div>
+      <div class="cs-overview__card"><span class="k">Scope</span><span class="v">Identity activity as a node-based attack graph</span></div>
       <div class="cs-overview__card"><span class="k">Domain</span><span class="v">Identity Security · B2B Backup &amp; Cyber Recovery</span></div>
+      <div class="cs-overview__card"><span class="k">Stakeholders</span><span class="v">Security &amp; backup teams · Visual team · Engineering</span></div>
+      <div class="cs-overview__card"><span class="k">Designers</span><span class="v">UX Designer · Visual team</span></div>
+      <div class="cs-overview__card"><span class="k">Security Scientist</span><span class="v">Security Scientist</span></div>
+      <div class="cs-overview__card"><span class="k">Directors</span><span class="v">Senior stakeholders</span></div>
     </div>
   </section>
 
   <section class="section">
     <p class="eyebrow">The problem</p>
-    <h2>A table shows signals. A graph shows the path.</h2>
-    <p class="cs-persona__quote" style="margin-bottom:24px;">“Flat activity tables hide relationships, blast radius, and the path to restore trust. A node graph makes the attack path visible — so recovery isn’t a row-by-row guess.”</p>
+    <h2>Security teams can see that an identity was compromised — but not the path of what it did next.</h2>
+    <p class="cs-persona__quote" style="margin-bottom:24px;">They waste time rebuilding the story from rows in a table, so recovery is slow and trust stays broken longer.</p>
     <p class="eyebrow" style="margin:0 0 12px;">What’s wrong with the table</p>
     <ul class="ir-learn ir-learn--4">
       <li class="ir-learn__item">
-        <p class="ir-learn__title">Rows hide relationships</p>
-        <p class="ir-learn__sub">Nothing shows it’s connected to the identity that did it.</p>
+        <p class="ir-learn__title">Events don’t show connections</p>
+        <p class="ir-learn__sub">Each row is one change. Nothing draws the line from the compromised account to what it touched.</p>
       </li>
       <li class="ir-learn__item">
-        <p class="ir-learn__title">You rebuild the shape yourself</p>
-        <p class="ir-learn__sub">Tracing how far a compromise spread means reading every row by hand.</p>
+        <p class="ir-learn__title">Responders rebuild the story by hand</p>
+        <p class="ir-learn__sub">During an incident, they scroll and piece together what happened before and after.</p>
       </li>
       <li class="ir-learn__item">
-        <p class="ir-learn__title">Every object type looks identical</p>
-        <p class="ir-learn__sub">Users, groups, policies, MFA changes — same row, same weight.</p>
+        <p class="ir-learn__title">Different things look the same</p>
+        <p class="ir-learn__sub">A password change, a group change, and a policy change all look like equal rows — so urgency is hard to spot.</p>
       </li>
       <li class="ir-learn__item">
-        <p class="ir-learn__title">It falls apart at volume</p>
-        <p class="ir-learn__sub">A hundred events across six object types is just noise during an incident.</p>
+        <p class="ir-learn__title">Volume turns into noise</p>
+        <p class="ir-learn__sub">Dozens of events across many object types bury the path instead of revealing it.</p>
       </li>
     </ul>
     <div class="ir-situations" style="margin-top:clamp(20px,3vw,28px);">
       <div>
         <p class="eyebrow eyebrow--existing">Existing</p>
         <h3>Time-ordered table</h3>
-        <p>Every change is a row. Filters find events; they don’t show the path. Multiple entities and activities force responders to rebuild the sequence by hand.</p>
+        <p>The old screen was a long list of changes in time order. You could find a single event, but not see what happened next — or how far the damage spread.</p>
         <figure>
           <img src="identity-resilience/existing-table.png?v=2" width="2880" height="2304" alt="Existing Identity Activity Analysis — time-ordered activity table for John Adams" decoding="async"/>
         </figure>
@@ -630,18 +636,18 @@
       <div>
         <p class="eyebrow eyebrow--preferred">Preferred</p>
         <h3>Node-based graph</h3>
-        <p>Same audit detail, plotted by object type — nodes for entities, edges for actions — so sequence and blast radius are visible before reading rows.</p>
+        <p>Same details, drawn as a map: the identity in the middle, everything it touched around it. You see the path and the blast radius before digging into any single row.</p>
         <figure>
           <img src="identity-resilience/final.png?v=9" width="2880" height="2244" alt="Preferred Identity Activity Analysis — type swim-lane attack graph" decoding="async"/>
         </figure>
       </div>
     </div>
-    <p style="color:var(--ink-soft);max-width:62ch;margin:clamp(24px,3.5vw,36px) 0 0;">This screen sits on top of an immutable-snapshot recovery layer — its job is to answer “what changed, when, by whom” before any recovery plan can be trusted.</p>
+    <p style="color:var(--ink-soft);max-width:62ch;margin:clamp(24px,3.5vw,36px) 0 0;">This screen sits on top of backup recovery that cannot be tampered with. Its job is to answer “what changed, when, and by whom” before anyone trusts a restore plan.</p>
   </section>
 
   <section class="section">
     <p class="eyebrow">Who this is for</p>
-    <h2>Two personas, one investigation artifact</h2>
+    <h2>Two jobs. One shared picture.</h2>
     <div class="cs-persona">
       <aside class="cs-persona__rail">
         <div class="cs-persona__identity">
@@ -650,7 +656,9 @@
         </div>
       </aside>
       <div class="cs-persona__body">
-        <p class="ir-persona-flow">They get an alert that an identity is compromised — but not what it did next, or how far the damage spread. Without that picture, they can’t tell Backup Admin what is safe to restore.</p>
+        <p class="ir-persona-flow"><strong>Opens every day:</strong> alerts when a login or account looks stolen.</p>
+        <p class="ir-persona-flow"><strong>Problem:</strong> they know something is wrong, but not what the attacker did next or how many systems are at risk.</p>
+        <p class="ir-persona-flow"><strong>Needs:</strong> a clear path of damage so they can tell Backup Admin what is safe to restore.</p>
       </div>
     </div>
     <div class="cs-persona">
@@ -661,10 +669,12 @@
         </div>
       </aside>
       <div class="cs-persona__body">
-        <p class="ir-persona-flow">They can restore systems from backup — but not tell which point in time is still clean. Guess wrong, and the compromised identity comes back with the same access.</p>
+        <p class="ir-persona-flow"><strong>Opens every day:</strong> the backup console when it’s time to restore systems.</p>
+        <p class="ir-persona-flow"><strong>Problem:</strong> they can roll systems back, but can’t tell which backup point is still clean. Guess wrong, and the stolen account comes back with the same access.</p>
+        <p class="ir-persona-flow"><strong>Needs:</strong> a clear “before the damage” moment so restore does not bring the attacker back.</p>
       </div>
     </div>
-    <p style="color:var(--ink-soft);max-width:62ch;margin:24px 0 0;">Both personas converge on the same artifact. Neither can move to recovery without it.</p>
+    <p style="color:var(--ink-soft);max-width:62ch;margin:24px 0 0;">Both roles need the same picture. Neither can move to recovery without it.</p>
   </section>
 
   <section class="section">

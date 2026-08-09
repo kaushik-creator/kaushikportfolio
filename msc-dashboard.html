@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <script src="js/theme-init.js"></script>
-<link rel="stylesheet" href="styles/system.css?v=20260809live1"/>
+<link rel="stylesheet" href="styles/system.css?v=20260809plain1"/>
 <style>
 .lightbox-modal{display:none;position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,.95);overflow:auto;}
 .lightbox-close{position:fixed;top:20px;right:35px;z-index:10001;color:var(--surface);font-size:40px;cursor:pointer;line-height:1;}
@@ -902,7 +902,7 @@
   <!-- HERO -->
   <section class="section cs-hero">
     <h1>Hundreds of customers.<br>One control room.</h1>
-    <p class="cs-hero__lede">Druva's MSPs were logging into dozens of client accounts every morning just to find broken backups. I designed the operational dashboard that consolidated failures, storage spikes, and security risks into one clear view.</p>
+    <p class="cs-hero__lede">Managed service partners (MSPs) were logging into dozens of client accounts every morning just to find broken backups. I designed the operational dashboard that consolidates failures, storage spikes, and security risks into one clear view.</p>
     <div class="cs-hero__cover">
       <img src="project-tiles/msc-800.png" srcset="project-tiles/msc-800.png 800w, msc-dashboard/slide-tab1.png?v=20260806orig 2880w" sizes="(max-width: 920px) 100vw, 920px" width="2880" height="2208" alt="MSC Operational Dashboard"/>
     </div>
@@ -912,20 +912,28 @@
         <span class="v">UX/UI Designer (Sole)</span>
       </div>
       <div class="cs-overview__card">
-        <span class="k">Timeline</span>
-        <span class="v">1.5 months</span>
+        <span class="k">Scope</span>
+        <span class="v">One MSP console split into three job-focused dashboards</span>
       </div>
       <div class="cs-overview__card">
         <span class="k">Domain</span>
         <span class="v">Data Backup &amp; Security</span>
       </div>
       <div class="cs-overview__card">
-        <span class="k">Type</span>
-        <span class="v">Enterprise B2B · MSP Portal</span>
+        <span class="k">Stakeholders</span>
+        <span class="v">MSP partners · IT Ops Admins</span>
       </div>
       <div class="cs-overview__card">
-        <span class="k">Stakeholders</span>
-        <span class="v">PM, Directors, Engineering</span>
+        <span class="k">Product Managers</span>
+        <span class="v">Product managers</span>
+      </div>
+      <div class="cs-overview__card">
+        <span class="k">Designers</span>
+        <span class="v">Sole designer</span>
+      </div>
+      <div class="cs-overview__card">
+        <span class="k">Directors</span>
+        <span class="v">Senior-level directors</span>
       </div>
     </div>
   </section>
@@ -934,24 +942,24 @@
     <div class="cs-grid">
       <div class="cs-span-12">
         <p class="eyebrow">Problem vs preferred scenario</p>
-        <h2 id="compare-heading" style="margin:0 0 20px;font-size:clamp(22px,2.6vw,30px);">From account hopping to one control room</h2>
+        <h2 id="compare-heading" style="margin:0 0 20px;font-size:clamp(22px,2.6vw,30px);">From logging into every customer — to one morning view</h2>
         <div class="cs-compare">
           <div class="cs-compare__col cs-compare__col--problem">
             <p class="eyebrow eyebrow--problem">Problem · Existing</p>
-            <h3>Checking 100+ customer accounts one by one</h3>
+            <h3>Partner IT admins had to open each customer account one by one just to see if backups were failing.</h3>
             <ul class="cs-list">
-              <li><span><strong>No single point of visibility</strong> — admins had no central place to check failing backups, burning storage, or license expiries across tenants</span></li>
-              <li><span><strong>Signals buried deep</strong> — critical warnings lived inside individual account dashboards 3+ clicks deep</span></li>
-              <li><span><strong>Manual account hopping</strong> — ~2 hours lost every morning logging into dozens of client accounts before triage could start</span></li>
+              <li><span><strong>No single place to look</strong> — failed backups, storage spikes, and license expiries lived inside each customer account</span></li>
+              <li><span><strong>Warnings were buried</strong> — critical alerts sat three or more clicks deep inside individual dashboards</span></li>
+              <li><span><strong>Impact:</strong> mornings burned ~2 hours logging into dozens of accounts before real triage could start — so failures and renewals were easy to miss</span></li>
             </ul>
           </div>
           <div class="cs-compare__col cs-compare__col--preferred">
             <p class="eyebrow eyebrow--preferred">Preferred scenario</p>
             <h3>One control room for every customer</h3>
             <ul class="cs-list">
-              <li><span><strong>A single operational dashboard</strong> consolidating every client account at a glance</span></li>
-              <li><span><strong>Exception-based visibility</strong> into failed backups, storage spikes, security risks, and commercial expirations</span></li>
-              <li><span><strong>Direct drill-down</strong> into remediation workflows without losing main-view context</span></li>
+              <li><span><strong>One operational dashboard</strong> that shows every client account at a glance</span></li>
+              <li><span><strong>Only the exceptions</strong> — failed backups, storage spikes, security risks, and contracts about to expire</span></li>
+              <li><span><strong>Click straight into the fix</strong> without losing the big picture</span></li>
             </ul>
           </div>
         </div>
@@ -994,23 +1002,23 @@
     <div class="cs-grid">
       <div class="cs-span-12">
         <p class="eyebrow">The Problem</p>
-        <h3 style="margin-top: 0; margin-bottom: 16px;">Checking 100+ accounts one by one</h3>
+        <h3 style="margin-top: 0; margin-bottom: 16px;">Partner IT admins had to open each customer account one by one just to see if backups were failing.</h3>
       </div>
       <div class="cs-span-12">
         <div class="cs-callout">
-          <p class="cs-callout__title">What was broken in the old workflow:</p>
+          <p class="cs-callout__title">What went wrong — and who got hurt:</p>
           <ul class="cs-list">
             <li>
               <svg class="cs-ico cs-ico--warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
-              <span><strong>Manual Account Hopping:</strong> Admins had to open each customer's account individually to check backup health, storage, and licenses.</span>
+              <span><strong>Account hopping:</strong> Admins opened each customer’s account separately to check backup health, storage, and licenses.</span>
             </li>
             <li>
               <svg class="cs-ico cs-ico--danger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-              <span><strong>High Risk of Data Loss:</strong> Critical backup alerts buried 3 clicks deep were easy to miss across a large client list.</span>
+              <span><strong>Missed failures:</strong> Critical backup alerts sat three clicks deep — easy to miss across a long client list, so data risk stayed hidden.</span>
             </li>
             <li>
               <svg class="cs-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
-              <span><strong>Hidden Upsell Opportunities:</strong> Expiring contracts were buried inside tenant settings, causing MSPs to miss renewals and upgrades.</span>
+              <span><strong>Missed renewals:</strong> Expiring contracts hid inside tenant settings, so partners missed renewals and upgrades.</span>
             </li>
           </ul>
         </div>
@@ -1026,9 +1034,9 @@
           <aside class="cs-persona__rail">
             <div class="cs-persona__identity">
               <div class="cs-persona__avatar" aria-hidden="true">A</div>
-              <h3>Alex Rivera</h3>
+              <h3>Alex</h3>
             </div>
-            <p class="cs-persona__role">IT Operations Admin at a mid-size MSP, responsible for 100+ Druva customer tenants.</p>
+            <p class="cs-persona__role">IT ops admin at a managed service provider (MSP) — a company that runs backup for 100+ customer companies. Alex’s job is the morning check across all of them.</p>
             <div class="cs-persona__tags">
               <span class="cs-persona__tag">MSP Ops</span>
               <span class="cs-persona__tag">100+ tenants</span>
@@ -1037,9 +1045,9 @@
           </aside>
 
           <div class="cs-persona__body">
-            <p class="cs-persona__quote">“I shouldn’t need two hours of account hopping before I know who’s on fire.”</p>
+            <p class="cs-persona__quote">“I shouldn’t need two hours of logging into accounts before I know who’s on fire.”</p>
 
-            <p class="cs-persona__bio">Alex owns day-to-day backup operations for an MSP’s customer portfolio. Mornings are for triage — finding failed jobs and SLA risks. Mid-day is for storage and quota checks. Weekly, Alex supports account managers with renewal and upsell signals. Alex is not a security specialist, but still needs enough posture visibility to escalate real risks without drowning in noise.</p>
+            <p class="cs-persona__bio">Alex starts the day looking for failed backups and SLA risks. Mid-day is storage and quota checks. Weekly, Alex helps account managers spot renewals and upgrades. Alex is not a security specialist — just needs enough risk signal to escalate real problems without drowning in noise.</p>
 
             <div class="cs-persona__grid">
               <div class="cs-persona__block cs-persona__block--goals">
@@ -1048,9 +1056,9 @@
                   Goals
                 </span>
                 <ul>
-                  <li>See every at-risk tenant in one view</li>
+                  <li>See every at-risk customer in one view</li>
                   <li>Fix backup failures before customers notice</li>
-                  <li>Spot renewals and upsells without digging into settings</li>
+                  <li>Spot renewals without digging into settings</li>
                 </ul>
               </div>
               <div class="cs-persona__block cs-persona__block--frictions">
@@ -1061,7 +1069,7 @@
                 <ul>
                   <li>Switching accounts just to check status</li>
                   <li>Critical alerts buried three clicks deep</li>
-                  <li>Commercial signals hidden from the ops workflow</li>
+                  <li>Renewal signals hidden from the daily ops view</li>
                 </ul>
               </div>
               <div class="cs-persona__block cs-persona__block--behaviors">
@@ -1071,8 +1079,8 @@
                 </span>
                 <ul>
                   <li>Starts every day with a failure sweep</li>
-                  <li>Scans for red/amber before reading charts</li>
-                  <li>Drills in only after a problem is confirmed</li>
+                  <li>Looks for red/amber before reading charts</li>
+                  <li>Opens a customer only after a problem is confirmed</li>
                 </ul>
               </div>
               <div class="cs-persona__block cs-persona__block--needs">
@@ -1081,9 +1089,9 @@
                   Needs
                 </span>
                 <ul>
-                  <li>Fast exception-based overview</li>
-                  <li>Clear separation of triage vs analysis</li>
-                  <li>Views that respect role-based access</li>
+                  <li>A fast “what’s broken” overview</li>
+                  <li>Clear split between triage and deep analysis</li>
+                  <li>Views that only show what their role is allowed to see</li>
                 </ul>
               </div>
             </div>
@@ -1100,8 +1108,8 @@
         </div>
       </div>
       <div class="cs-span-12" style="margin-top: 40px;">
-        <h3 style="margin-top: 0; margin-bottom: 16px;">The Ultimate Constraint: Role-Based Access</h3>
-        <p>Different types of users require different data views on the exact same screen architecture. If a user doesn't have permissions, the layout cannot look broken or empty.</p>
+        <h3 style="margin-top: 0; margin-bottom: 16px;">The hard constraint: different roles, same screen</h3>
+        <p>Different job roles see different data on the same layout. If someone lacks permission, the screen still has to look complete — not broken or empty.</p>
       </div>
       <div class="cs-span-12">
         <div class="module" style="padding: 0; overflow-x: auto;">
