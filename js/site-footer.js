@@ -6,7 +6,7 @@
           '<div class="contact-band__intro">' +
             '<p class="eyebrow">Contact</p>' +
             '<h2>Get in touch</h2>' +
-            '<p class="contact-band__lead">Open to B2B SaaS and fintech roles — happy to talk product, systems, and AI-assisted design.</p>' +
+            '<p class="contact-band__lead">Open to <strong>Senior Product Designer</strong> roles in enterprise SaaS and AI-powered products — happy to talk systems, security UX, and AI-assisted design.</p>' +
             '<p class="contact-band__meta">Chennai, India · Open to remote</p>' +
           '</div>' +
           '<div class="contact-band__channels" aria-label="Contact channels">' +
@@ -27,7 +27,7 @@
                 '<span>LinkedIn</span>' +
               '</a>' +
               '<a href="https://www.behance.net/kaushikdmdes" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Behance">' +
-                '<svg viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M155.3 318.4c17.2 0 31.2-6.1 31.2-25.4c0-19.7-11.7-27.4-30.3-27.5h-46v52.9zm-5.4-129.6h-39.6v44.8H153c15.1 0 25.8-6.6 25.8-22.9c0-17.7-13.7-21.9-28.9-21.9m129.5 74.8h62.2c-1.7-18.5-11.3-29.7-30.5-29.7c-18.3 0-30.5 11.4-31.7 29.7M384 32H64C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h320c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64m-34.5 153h-77.8v-18.9h77.8zm-155.8 58.7c23.6 6.7 35 27.5 35 51.6c0 39-32.7 55.7-67.6 55.9H68v-192h90.5c32.9 0 61.4 9.3 61.4 47.5c0 19.3-9 28.8-26.2 37m118.7-38.6c43.5 0 67.6 34.3 67.6 75.4c0 1.6-.1 3.3-.2 5c0 .8-.1 1.5-.1 2.2H279.5c0 22.2 11.7 35.3 34.1 35.3c11.6 0 26.5-6.2 30.2-18.1h33.7c-10.4 31.9-31.9 46.8-65.1 46.8c-43.8 0-71.1-29.7-71.1-73c0-41.8 28.7-73.6 71.1-73.6"/></svg>' +
+                '<svg class="social-link__icon social-link__icon--behance" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.84 10.87c.56-.3.9-.85.9-1.58 0-1.17-.92-1.95-2.39-1.95H4.54v7.29h2.95c1.55 0 2.62-.86 2.62-2.19 0-.91-.49-1.58-1.27-1.57zm-2.39-2.23h.85c.59 0 .98.34.98.84s-.39.85-.98.85h-.85v-1.69zm1.02 4.91h-.98v-1.86h.98c.68 0 1.08.37 1.08.93 0 .56-.4.93-1.08.93zM19 8.34h-3.66v1.02H19V8.34zm1.97 3.05c0-2.3-1.41-4.03-3.75-4.03-2.36 0-3.91 1.74-3.91 4.06 0 2.34 1.54 4.07 3.95 4.07 1.52 0 2.81-.61 3.45-1.68l-1.28-.66c-.41.66-1.19 1.02-2.12 1.02-1.36 0-2.29-.88-2.46-2.09h6.09c.03-.27.07-.56.07-.85zm-6.09-.34c.2-1.15 1.05-1.88 2.26-1.88 1.22 0 2.01.73 2.11 1.88h-4.37z"/></svg>' +
                 '<span>Behance</span>' +
               '</a>' +
             '</div>' +

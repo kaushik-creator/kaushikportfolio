@@ -6,13 +6,14 @@
 <meta name="description" content="Security Readiness Score — case study by Kaushik, UX Designer."/>
 <meta property="og:title" content="Security Readiness Score — Case Study · Kaushik"/>
 <meta property="og:description" content="Two problems. One Security Center. Designing Explore Cyber Resiliency Features and the Cyber Resiliency Readiness Score for Druva Cloud Administrators."/>
-<meta name="theme-color" content="#0A0A0A"/>
+<meta name="theme-color" content="#FFFFFF"/>
 <title>Security Readiness Score — Case Study · Kaushik</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260809glitch"/>
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="styles/system.css?v=20260809be1"/>
 <style>
 .lightbox-modal{display:none;position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,.95);overflow:auto;}
 .lightbox-close{position:fixed;top:20px;right:35px;z-index:10001;color:var(--surface);font-size:40px;cursor:pointer;line-height:1;}
@@ -661,9 +662,9 @@
 <audio id="bgMusic" loop preload="auto" playsinline>
   <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
 </audio>
-<button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
-  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
+<button type="button" class="music-toggle" id="musicToggle" aria-label="Play background music" aria-pressed="false" title="Music">
+  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
 </button>
 
 <header class="site-header"><div class="wrap">
@@ -689,7 +690,7 @@
 
   <!-- 1. HERO -->
   <section class="section cs-hero">
-    <p class="eyebrow">Case Study · 02</p>
+    <p class="cs-badge" role="status">CASE STUDY · 02</p>
     <h1>Two problems.<br>One Security Center.</h1>
     <p class="cs-hero__lede">Cloud Administrators didn’t know Cyber Resiliency capabilities—and even when they did, baseline security lived across <span class="cs-chip cs-chip--amber">6 Scattered Pages</span>. I designed discovery onboarding plus a Readiness Score for Mandatory and Recommended setup in place.</p>
     <div class="cs-hero__cover">
@@ -1110,17 +1111,17 @@
     <div class="cs-grid" style="margin-top: 56px;">
       <div class="cs-span-12">
         <h3 style="margin-top: 0; margin-bottom: 12px;">Final screens</h3>
-        <p style="margin:0 0 20px;">Gauge and List views of the shipped Security Center — auto-advances every 4 seconds.</p>
-        <div class="cs-slideshow" id="srFinalSlideshow" data-interval="4000" aria-roledescription="carousel" aria-label="Shipped Security Center — gauge and list views">
-          <div class="cs-slideshow__stage">
-            <img class="lightbox-trigger cs-shot is-active" src="security-readiness/final-gauge.png?v=20260806final" width="1024" height="843" alt="Shipped Security Center gauge view with Cyber Resiliency Readiness Score showing 0 of 5 controls, Explore Cyber Resiliency Features button, Backup Risks, and Threat Summary" data-label="Gauge view">
-            <img class="lightbox-trigger cs-shot" src="security-readiness/final-list.png?v=20260806final" width="1024" height="843" alt="Shipped Security Center list view with Cyber Resiliency Readiness checklist, Mandatory and Recommended controls, Explore Cyber Resiliency Features button" data-label="List view" aria-hidden="true">
+        <p style="margin:0 0 16px;">Same Security Center hub — switch between Gauge (macro scan) and List (remediation checklist).</p>
+        <div data-view-toggle>
+          <div class="cs-view-toggle" role="group" aria-label="Readiness widget view">
+            <button type="button" class="cs-view-toggle__btn" data-view="gauge" aria-pressed="true">Gauge</button>
+            <button type="button" class="cs-view-toggle__btn" data-view="list" aria-pressed="false">List</button>
           </div>
-          <div class="cs-slideshow__dots" role="tablist" aria-label="Final screen views">
-            <button type="button" class="cs-slideshow__dot" aria-label="Show gauge view" aria-current="true" data-slide="0"></button>
-            <button type="button" class="cs-slideshow__dot" aria-label="Show list view" data-slide="1"></button>
+          <div class="cs-slideshow__stage" style="position:relative;">
+            <img class="lightbox-trigger cs-shot" data-view-panel="gauge" src="security-readiness/final-gauge.png?v=20260806final" width="1024" height="843" alt="Shipped Security Center gauge view with Cyber Resiliency Readiness Score showing concentric Mandatory and Recommended arcs">
+            <img class="lightbox-trigger cs-shot" data-view-panel="list" hidden src="security-readiness/final-list.png?v=20260806final" width="1024" height="843" alt="Shipped Security Center list view with Cyber Resiliency Readiness checklist of Mandatory and Recommended controls">
           </div>
-          <p class="cs-slideshow__caption"><strong>Gauge ↔ List.</strong> Same hub, two mental modes — macro readiness scan and granular remediation checklist.</p>
+          <p class="cs-slideshow__caption" style="margin-top:12px;"><strong>Gauge ↔ List.</strong> Concentric arcs for scanning; list mode for fixing gaps without leaving the hub.</p>
         </div>
       </div>
 
@@ -1279,47 +1280,28 @@ document.addEventListener('DOMContentLoaded',function(){
     if(e.key==='Escape'&&modal.style.display==='block') closeLightbox();
   });
 
-  const show=document.getElementById('srFinalSlideshow');
-  if(show){
-    const slides=[].slice.call(show.querySelectorAll('.cs-slideshow__stage img'));
-    const dots=[].slice.call(show.querySelectorAll('.cs-slideshow__dot'));
-    const interval=parseInt(show.getAttribute('data-interval'),10)||4000;
-    let i=0;
-    let timer=null;
-    const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function go(n){
-      slides[i].classList.remove('is-active');
-      slides[i].setAttribute('aria-hidden','true');
-      if(dots[i]) dots[i].removeAttribute('aria-current');
-      i=(n+slides.length)%slides.length;
-      slides[i].classList.add('is-active');
-      slides[i].setAttribute('aria-hidden','false');
-      if(dots[i]) dots[i].setAttribute('aria-current','true');
-    }
-    function start(){
-      if(reduce||timer) return;
-      timer=setInterval(function(){ go(i+1); }, interval);
-    }
-    function stop(){
-      if(!timer) return;
-      clearInterval(timer);
-      timer=null;
-    }
-    dots.forEach(function(dot){
-      dot.addEventListener('click',function(){
-        go(parseInt(dot.getAttribute('data-slide'),10)||0);
-        stop(); start();
+  document.querySelectorAll('[data-view-toggle]').forEach(function(root){
+    var buttons=[].slice.call(root.querySelectorAll('[data-view]'));
+    var panels=[].slice.call(root.querySelectorAll('[data-view-panel]'));
+    function show(view){
+      buttons.forEach(function(btn){
+        btn.setAttribute('aria-pressed', btn.getAttribute('data-view')===view ? 'true' : 'false');
       });
+      panels.forEach(function(panel){
+        var on=panel.getAttribute('data-view-panel')===view;
+        panel.hidden=!on;
+        panel.setAttribute('aria-hidden', on ? 'false' : 'true');
+      });
+    }
+    buttons.forEach(function(btn){
+      btn.addEventListener('click', function(){ show(btn.getAttribute('data-view')); });
     });
-    show.addEventListener('mouseenter',stop);
-    show.addEventListener('mouseleave',start);
-    start();
-  }
+  });
 });
 </script>
-<script src="js/site-footer.js?v=20260809linkedin"></script>
+<script src="js/site-footer.js?v=20260809be1"></script>
 <script src="js/system-theme.js"></script>
 <script src="js/site-shell.js?v=20260809nochats"></script>
-<script src="audio/music.js?v=20260808pausepersist"></script>
+<script src="audio/music.js?v=20260809noauto"></script>
 </body>
 </html>

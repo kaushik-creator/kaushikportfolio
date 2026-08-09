@@ -6,13 +6,14 @@
 <meta name="description" content="Theraxis — clinical ops SaaS for pediatric therapy centers. PRD, design, and live build by Kaushik Dayalan."/>
 <meta property="og:title" content="Theraxis"/>
 <meta property="og:description" content="Clinical · billing · scheduling — one gated system. Built end-to-end."/>
-<meta name="theme-color" content="#0A0A0A"/>
+<meta name="theme-color" content="#FFFFFF"/>
 <title>Theraxis — Case Study · Kaushik</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260809glitch"/>
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="styles/system.css?v=20260809be1"/>
 <style>
 /* Theraxis — AI product website case study (not MSC) */
 .tx{ --mat: var(--surface); }
@@ -322,9 +323,9 @@
 <audio id="bgMusic" loop preload="auto" playsinline>
   <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
 </audio>
-<button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
-  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
+<button type="button" class="music-toggle" id="musicToggle" aria-label="Play background music" aria-pressed="false" title="Music">
+  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
 </button>
 
 <header class="site-header"><div class="wrap">
@@ -351,9 +352,9 @@
 
     <!-- HERO -->
     <section class="cs-hero tx-hero">
-      <p class="eyebrow">AI · Personal project</p>
-      <h1>Theraxis</h1>
-      <p class="cs-hero__lede">Clinical ops for pediatric therapy centers — PRD, design, and a live web build.</p>
+      <p class="cs-badge" role="status">AI · PERSONAL PROJECT</p>
+      <h1>Theraxis — Clinical ops for pediatric therapy centers</h1>
+      <p class="cs-hero__lede">PRD, design, and a live web build for pediatric therapy centers.</p>
       <div class="cs-hero__cover">
         <img src="theraxis/theraxis-dashboard-live-07.png?v=20260807g" alt="Theraxis Admin Overview" width="1024" height="558"/>
       </div>
@@ -361,7 +362,7 @@
         <div class="cs-overview__card"><span class="k">Role</span><span class="v">Product &amp; Systems Design</span></div>
         <div class="cs-overview__card"><span class="k">Built with</span><span class="v">Cursor</span></div>
         <div class="cs-overview__card"><span class="k">Platform</span><span class="v">Multi-tenant web</span></div>
-        <div class="cs-overview__card"><span class="k">Parent</span><span class="v">Mobile · in progress</span></div>
+        <div class="cs-overview__card"><span class="k">Status</span><span class="v">Live build tested with doctors</span></div>
       </div>
     </section>
   </div>
@@ -428,6 +429,44 @@
         </article>
       </div>
       <p class="tx-fine">Research conversations only — not clients, not partners, not endorsements.</p>
+    </div>
+  </section>
+
+  <!-- HARD SYSTEM GATES -->
+  <section class="tx-band">
+    <div class="wrap">
+      <div class="tx-band__head">
+        <p class="eyebrow">Hard system gates</p>
+        <h2>Enforced at the database / Supabase RLS layer</h2>
+        <p>These gates are not UI niceties — they refuse invalid states before a screen can look “empty” or permissive.</p>
+      </div>
+      <div class="cs-gate-grid">
+        <article class="cs-gate-card">
+          <p class="n">Gate 01</p>
+          <h3>Evidence → Care Plan</h3>
+          <p>Refuses Care Plan generation if domain evidence is insufficient.</p>
+        </article>
+        <article class="cs-gate-card">
+          <p class="n">Gate 02</p>
+          <h3>Payment → Session</h3>
+          <p>Financial confirmation / payment gates session start and resource allocation.</p>
+        </article>
+        <article class="cs-gate-card">
+          <p class="n">Gate 03</p>
+          <h3>Availability conflicts</h3>
+          <p>Availability grid disables conflict slots natively — no double-book path.</p>
+        </article>
+        <article class="cs-gate-card">
+          <p class="n">Gate 04</p>
+          <h3>Row-Level Security</h3>
+          <p>RLS policies enforce tenant/role isolation at the DB layer, not via UI filtering.</p>
+        </article>
+        <article class="cs-gate-card">
+          <p class="n">Gate 05</p>
+          <h3>Domain separation</h3>
+          <p>Clinical vs financial domains separated by role — billing noise can’t bleed into care.</p>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -893,9 +932,9 @@
   </section>
 </main>
 
-<script src="js/site-footer.js?v=20260809linkedin"></script>
+<script src="js/site-footer.js?v=20260809be1"></script>
 <script src="js/system-theme.js"></script>
 <script src="js/site-shell.js?v=20260809nochats"></script>
-<script src="audio/music.js?v=20260808pausepersist"></script>
+<script src="audio/music.js?v=20260809noauto"></script>
 </body>
 </html>

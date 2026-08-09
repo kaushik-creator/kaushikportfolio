@@ -11,16 +11,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260809glitch"/>
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="styles/system.css?v=20260809be1"/>
 </head>
 <body>
 
 <audio id="bgMusic" loop preload="auto" playsinline>
   <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
 </audio>
-<button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
-  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
+<button type="button" class="music-toggle" id="musicToggle" aria-label="Play background music" aria-pressed="false" title="Music">
+  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden hidden><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
 </button>
 
 <header class="site-header"><div class="wrap">
@@ -45,28 +46,26 @@
   <div class="wrap hero-grid">
     <div>
       <p class="eyebrow">UX Designer · Enterprise SaaS</p>
-      <h1>Hi,<br/>I'm <span class="glitch-text" data-text="Kaushik">Kaushik</span></h1>
-      <ul class="hero-bullets">
-        <li>Designing high-stakes, <strong>data-dense enterprise SaaS</strong> across <strong>cybersecurity</strong>, <strong>fintech</strong>, and <strong>e-commerce</strong></li>
-        <li>Hands-on depth in <strong>design systems</strong>, <strong>RBAC</strong>, and <strong>multi-tenant</strong> architecture — <strong>0→1 → production</strong></li>
-        <li>At <strong>Druva</strong>, designing MSP and security products — including the first <strong>node-based identity activity graph</strong></li>
-        <li>Former <strong>Founding Product Designer</strong> at a <strong class="brand-yc">Y Combinator</strong>-backed fintech; <strong>Shopify Commerce Award</strong></li>
-        <li>Built a full SaaS product end-to-end with <strong>Claude</strong> and <strong>Cursor</strong> — wrote the complete <strong>PRD</strong>, developed the product, and tested with users</li>
-        <li class="hero-bullet--looking">
-          <span class="hero-bullet-title">Looking for</span>
-          <span class="hero-bullet-body"><strong>Senior Product Designer</strong> roles in <strong>enterprise SaaS</strong> and <strong>AI-powered products</strong> — expanding my forte in AI tools</span>
-        </li>
-      </ul>
-      <p class="hero-loc">Design skills: Visual Design, Research</p>
+      <h1>Hi, I'm <span class="glitch-text" data-text="Kaushik Dayalan">Kaushik Dayalan</span></h1>
+      <p class="hero-aka">People call me KD</p>
+      <div class="hero-lede">
+        <p>I design high-stakes, <strong>data-dense enterprise SaaS</strong> across <strong>cybersecurity</strong>, <strong>fintech</strong>, and <strong>e-commerce</strong> — with depth in <strong>design systems</strong>, <strong>RBAC</strong>, and <strong>multi-tenant</strong> architecture from <strong>0→1 to production</strong>.</p>
+        <p>At <strong>Druva</strong> I ship MSP and security products, including the first <strong>node-based identity activity graph</strong>. Previously <strong>Founding Product Designer</strong> at a <strong class="brand-yc">Y Combinator</strong>-backed fintech and a <strong>Shopify Commerce Award</strong> recipient.</p>
+        <p>I also build end-to-end with <strong>Claude</strong> and <strong>Cursor</strong> — <strong>PRD</strong> through product to user testing.</p>
+      </div>
+      <p class="hero-looking">
+        <span class="hero-looking__label">Looking for</span>
+        <span class="hero-looking__body"><strong>Senior Product Designer</strong> roles in <strong>enterprise SaaS</strong> and <strong>AI-powered products</strong> — expanding my forte in AI tools</span>
+      </p>
       <p class="hero-loc">Chennai, India</p>
       <div class="hero-actions">
-        <a href="projects.html" class="link">View work →</a>
+        <a href="projects.html" class="btn">View work →</a>
         <a href="#contact" class="link link--muted">Get in touch</a>
       </div>
     </div>
     <div class="hero-portrait">
       <figure class="hero-glitch" aria-hidden="false">
-        <img src="profile.jpg" alt="Kaushik — UX Designer"/>
+        <img src="profile.jpg" alt="Kaushik Dayalan — professional portrait, UX Designer"/>
         <span class="hero-glitch__scan" aria-hidden="true"></span>
         <span class="hero-glitch__lines" aria-hidden="true"></span>
       </figure>
@@ -80,31 +79,21 @@
       <span class="marquee__item">Figma</span>
       <span class="marquee__item">Cursor</span>
       <span class="marquee__item">Codex</span>
+      <span class="marquee__item">Design Systems</span>
       <span class="marquee__item">Actor Mapping</span>
       <span class="marquee__item">Scenario Mapping</span>
       <span class="marquee__item">Usability Testing</span>
       <span class="marquee__item">A/B Testing</span>
       <span class="marquee__item">Design QA</span>
-      <span class="marquee__item">Fusion 360</span>
-      <span class="marquee__item">Autodesk Alias</span>
-      <span class="marquee__item">Creo</span>
-      <span class="marquee__item">AutoCAD</span>
-      <span class="marquee__item">Industrial Design</span>
-      <span class="marquee__item">HMI Design</span>
       <span class="marquee__item">Figma</span>
       <span class="marquee__item">Cursor</span>
       <span class="marquee__item">Codex</span>
+      <span class="marquee__item">Design Systems</span>
       <span class="marquee__item">Actor Mapping</span>
       <span class="marquee__item">Scenario Mapping</span>
       <span class="marquee__item">Usability Testing</span>
       <span class="marquee__item">A/B Testing</span>
       <span class="marquee__item">Design QA</span>
-      <span class="marquee__item">Fusion 360</span>
-      <span class="marquee__item">Autodesk Alias</span>
-      <span class="marquee__item">Creo</span>
-      <span class="marquee__item">AutoCAD</span>
-      <span class="marquee__item">Industrial Design</span>
-      <span class="marquee__item">HMI Design</span>
     </div>
   </div>
 </section>
@@ -115,8 +104,7 @@
 
     <div class="define-board">
       <div class="define-board__head">
-        <p class="eyebrow">Outside of work</p>
-        <h2>How I define myself</h2>
+        <h2>Outside of work — How I define myself</h2>
       </div>
 
       <div class="life-board" aria-label="Personal photos and field notes">
@@ -176,8 +164,7 @@
     <div class="timeline" id="journey">
       <div class="timeline__head">
         <p class="eyebrow">My journey</p>
-        <h2>How I got here</h2>
-        <p class="timeline__lede">From creative kid to curious learner — the turns that shaped the work.</p>
+        <h2>How I got here — From creative kid to curious learner</h2>
       </div>
       <ol class="timeline__track">
         <li class="timeline__item">
@@ -220,15 +207,15 @@
     <p class="eyebrow">Making</p>
     <h2>Investigator &amp; maker range</h2>
     <div class="row-3 making-grid">
-      <div>
+      <div class="module">
         <h3>IIT Delhi · Industrial Design</h3>
         <p>Physical product design — form, material, and human factors before digital work.</p>
       </div>
-      <div>
+      <div class="module">
         <h3>Anna University · Mechanical Engineering</h3>
         <p>CAD modeling and fabrication — Fusion 360, Creo, Autodesk — making ideas tangible early.</p>
       </div>
-      <div>
+      <div class="module">
         <h3>IIT Kanpur · Autonomous Vehicle HMI</h3>
         <p>Driver–vehicle interaction research — investigation-led, not screen-first.</p>
       </div>
@@ -236,10 +223,10 @@
   </div>
 </section>
 
-<script src="js/site-footer.js?v=20260809linkedin"></script>
+<script src="js/site-footer.js?v=20260809be1"></script>
 <script src="js/system-theme.js"></script>
 <script src="js/site-shell.js?v=20260809nochats"></script>
-<script src="audio/music.js?v=20260808pausepersist"></script>
+<script src="audio/music.js?v=20260809noauto"></script>
 <script>
 (function(){
   // Old homepage anchors that moved to dedicated pages

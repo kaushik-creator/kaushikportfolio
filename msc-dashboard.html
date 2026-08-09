@@ -6,13 +6,14 @@
 <meta name="description" content="MSC Operational Dashboard — case study by Kaushik, UX Designer."/>
 <meta property="og:title" content="MSC Dashboard — Case Study · Kaushik"/>
 <meta property="og:description" content="Hundreds of customers. One control room. Designing a new home screen for Druva's MSP partners."/>
-<meta name="theme-color" content="#0A0A0A"/>
+<meta name="theme-color" content="#FFFFFF"/>
 <title>MSC Dashboard — Case Study · Kaushik</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260809glitch"/>
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="styles/system.css?v=20260809be1"/>
 <style>
 .lightbox-modal{display:none;position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,.95);overflow:auto;}
 .lightbox-close{position:fixed;top:20px;right:35px;z-index:10001;color:var(--surface);font-size:40px;cursor:pointer;line-height:1;}
@@ -306,8 +307,53 @@
   max-width:none;
 }
 .cs-tab-card--full{ margin-top:12px; }
+.cs-tab-card{ background:var(--surface); border-radius:var(--radius); }
+.cs-workflow-tabs{ margin-top:8px; }
+.cs-workflow-tabs__nav{
+  display:flex; flex-wrap:wrap; gap:8px;
+  margin:0 0 20px; padding:0; list-style:none;
+}
+.cs-workflow-tabs__btn{
+  appearance:none; cursor:pointer;
+  border:1px solid var(--line);
+  background:var(--surface-2);
+  color:var(--muted);
+  font:inherit; font-size:13px; font-weight:600;
+  padding:10px 14px; border-radius:999px;
+  transition:background .15s ease, color .15s ease, border-color .15s ease;
+}
+.cs-workflow-tabs__btn:hover{ color:var(--ink); border-color:var(--line-strong); }
+.cs-workflow-tabs__btn[aria-selected="true"]{
+  background:var(--ink); color:var(--bg); border-color:var(--ink);
+}
+.cs-workflow-panel[hidden]{ display:none !important; }
+.cs-workflow-panel__q{
+  margin:0 0 8px; font-size:15px; color:var(--ink-soft); max-width:60ch;
+}
+.cs-workflow-panel__scope{
+  margin:0 0 16px; font-size:14px; color:var(--muted); max-width:70ch;
+}
+.cs-compare{
+  display:grid; grid-template-columns:1fr 1fr; gap:16px;
+}
+.cs-compare__col{
+  background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--radius); padding:20px 22px;
+}
+.cs-compare__col--problem{ border-top:3px solid var(--status-error); }
+.cs-compare__col--preferred{ border-top:3px solid var(--status-success); }
+.cs-badge{
+  display:inline-flex; align-items:center;
+  font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--muted); background:transparent;
+  border:1px solid var(--line); padding:6px 10px; border-radius:0;
+}
+.cs-ico--danger{ color:var(--status-error); }
+.cs-ico--warn{ color:var(--status-warn); }
+.cs-ico--ok{ color:var(--status-success); }
 @media (max-width:640px){
   .cs-tab-pair{ grid-template-columns:1fr; }
+  .cs-compare{ grid-template-columns:1fr; }
 }
 .cs-iter h4{ margin-top:0; margin-bottom:12px; }
 .cs-iter p{ max-width:none; margin-top:12px; }
@@ -1036,9 +1082,9 @@
 <audio id="bgMusic" loop preload="auto" playsinline>
   <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
 </audio>
-<button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
-  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
+<button type="button" class="music-toggle" id="musicToggle" aria-label="Play background music" aria-pressed="false" title="Music">
+  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
 </button>
 
 <header class="site-header"><div class="wrap">
@@ -1064,8 +1110,8 @@
 
   <!-- HERO -->
   <section class="section cs-hero">
-    <p class="eyebrow">Case Study · 01</p>
-    <h1>Hundreds of customers.<br>One control room.</h1>
+    <p class="cs-badge" role="status">CASE STUDY · 01</p>
+    <h1 style="margin-top:16px;">Hundreds of customers.<br>One control room.</h1>
     <p class="cs-hero__lede">Druva's MSPs were logging into dozens of client accounts every morning just to find broken backups. I designed the operational dashboard that consolidated failures, storage spikes, and security risks into one clear view.</p>
     <div class="cs-hero__cover">
       <img src="project-tiles/msc-800.png" srcset="project-tiles/msc-800.png 800w, msc-dashboard/slide-tab1.png?v=20260806orig 2880w" sizes="(max-width: 920px) 100vw, 920px" width="2880" height="2208" alt="MSC Operational Dashboard"/>
@@ -1094,36 +1140,28 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" aria-labelledby="compare-heading">
     <div class="cs-grid">
       <div class="cs-span-12">
-        <div class="cs-brief">
-          <div class="cs-brief__item">
-            <p class="eyebrow eyebrow--problem">Problem</p>
+        <p class="eyebrow">Problem vs preferred scenario</p>
+        <h2 id="compare-heading" style="margin:0 0 20px;font-size:clamp(22px,2.6vw,30px);">From account hopping to one control room</h2>
+        <div class="cs-compare">
+          <div class="cs-compare__col cs-compare__col--problem">
+            <p class="eyebrow eyebrow--problem">Problem · Existing</p>
             <h3>Checking 100+ customer accounts one by one</h3>
             <ul class="cs-list">
-              <li><span><strong>No single point of visibility</strong> — admins had no place to see which tenants were failing backups, burning storage, or approaching license expiry</span></li>
-              <li><span><strong>Signals buried deep</strong> — critical warnings lived inside each individual account, not surfaced anywhere central</span></li>
-              <li><span><strong>Fires found late, or not at all</strong> — by the time an issue surfaced, it had often already become urgent</span></li>
+              <li><span><strong>No single point of visibility</strong> — admins had no central place to check failing backups, burning storage, or license expiries across tenants</span></li>
+              <li><span><strong>Signals buried deep</strong> — critical warnings lived inside individual account dashboards 3+ clicks deep</span></li>
+              <li><span><strong>Manual account hopping</strong> — ~2 hours lost every morning logging into dozens of client accounts before triage could start</span></li>
             </ul>
           </div>
-          <div class="cs-brief__item">
-            <p class="eyebrow eyebrow--existing">Existing scenario</p>
-            <h3>Log in. Switch tenant. Repeat.</h3>
-            <ul class="cs-list">
-              <li><span><strong>No dashboard existed at all</strong> — admins worked directly inside each individual tenant, one at a time</span></li>
-              <li><span><strong>Manual account hopping</strong> — every morning meant logging into dozens of separate client accounts just to scan backup health, storage, and licenses</span></li>
-              <li><span><strong>Alerts buried three clicks deep</strong>, with renewals hidden inside settings pages</span></li>
-              <li><span><strong>Two hours lost every morning</strong> to account switching before real triage could even begin</span></li>
-            </ul>
-          </div>
-          <div class="cs-brief__item">
+          <div class="cs-compare__col cs-compare__col--preferred">
             <p class="eyebrow eyebrow--preferred">Preferred scenario</p>
             <h3>One control room for every customer</h3>
             <ul class="cs-list">
-              <li><span><strong>A single operational dashboard</strong> showing every account at a glance</span></li>
-              <li><span><strong>Immediate visibility into what needs attention</strong> — failed backups, storage spikes, security risks, and commercial expirations, all in one view</span></li>
-              <li><span><strong>Drill into the right workflow without leaving the overview</strong></span></li>
+              <li><span><strong>A single operational dashboard</strong> consolidating every client account at a glance</span></li>
+              <li><span><strong>Exception-based visibility</strong> into failed backups, storage spikes, security risks, and commercial expirations</span></li>
+              <li><span><strong>Direct drill-down</strong> into remediation workflows without losing main-view context</span></li>
             </ul>
           </div>
         </div>
@@ -1623,38 +1661,47 @@
 
     <div class="cs-grid" style="margin-top: 48px;">
       <div class="cs-span-12">
-        <h3 style="margin-top: 0; margin-bottom: 16px;">3 Dedicated Workflows</h3>
-      </div>
+        <h2 style="margin:0 0 8px;font-size:clamp(22px,2.6vw,30px);">The shipped solution — 3 dedicated workflows</h2>
+        <p style="margin:0 0 20px;color:var(--ink-soft);max-width:62ch;">Split one overloaded screen into three tabbed surfaces — each answering a morning ops question.</p>
+        <div class="cs-workflow-tabs" data-workflow-tabs>
+          <div class="cs-workflow-tabs__nav" role="tablist" aria-label="Dashboard workflow tabs">
+            <button type="button" class="cs-workflow-tabs__btn" role="tab" id="wf-tab-1" aria-controls="wf-panel-1" aria-selected="true">Tab 01 · Accounts &amp; Licensing</button>
+            <button type="button" class="cs-workflow-tabs__btn" role="tab" id="wf-tab-2" aria-controls="wf-panel-2" aria-selected="false" tabindex="-1">Tab 02 · Usage Monitoring</button>
+            <button type="button" class="cs-workflow-tabs__btn" role="tab" id="wf-tab-3" aria-controls="wf-panel-3" aria-selected="false" tabindex="-1">Tab 03 · Backup Triage</button>
+          </div>
 
-      <div class="cs-span-12">
-        <h3 style="margin-top: 0; margin-bottom: 8px;">Tab 01 — Accounts &amp; Licensing</h3>
-        <p>Question: Which customers need commercial attention today?</p>
-        <div class="cs-step4-shot" style="margin-top: 16px;">
-          <img class="lightbox-trigger cs-shot" alt="Final Accounts and Licensing tab" src="msc-dashboard/slide-tab1.png?v=20260806orig" width="2880" height="2208">
-        </div>
-      </div>
+          <div class="cs-workflow-panel" role="tabpanel" id="wf-panel-1" aria-labelledby="wf-tab-1">
+            <p class="cs-workflow-panel__q"><strong>Question answered:</strong> Which customers need commercial attention today?</p>
+            <p class="cs-workflow-panel__scope"><strong>Scope:</strong> Global admin view showing customer accounts, tenant visibility, product modules, security posture, and active support tickets.</p>
+            <div class="cs-step4-shot">
+              <img class="lightbox-trigger cs-shot" alt="Final Accounts and Licensing tab" src="msc-dashboard/slide-tab1.png?v=20260806orig" width="2880" height="2208">
+            </div>
+          </div>
 
-      <div class="cs-span-12" style="margin-top: 40px;">
-        <h3 style="margin-top: 0; margin-bottom: 8px;">Tab 02 — Usage Monitoring</h3>
-        <p>Question: Which tenants are consuming resources abnormally?</p>
-        <div class="cs-step4-shot" style="margin-top: 16px;">
-          <img class="lightbox-trigger cs-shot" alt="Final Usage Monitoring tab" src="msc-dashboard/slide-tab2.png?v=20260806orig" width="2880" height="2168">
-        </div>
-      </div>
-      <div class="cs-span-12">
-        <div class="tradeoff">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M7 12h10"/><path d="M9 17h6"/></svg>
-          <p><strong>Deliberate Tradeoff:</strong> Per-product storage numbers live inside hover tooltips rather than separate cards. This keeps the chart scannable for quick spike detection, even though detailed product comparisons take two hovers instead of one look.</p>
-        </div>
-      </div>
+          <div class="cs-workflow-panel" role="tabpanel" id="wf-panel-2" aria-labelledby="wf-tab-2" hidden>
+            <p class="cs-workflow-panel__q"><strong>Question answered:</strong> Which tenants are consuming resources abnormally?</p>
+            <p class="cs-workflow-panel__scope"><strong>Scope:</strong> Dynamic usage trends, quota alerts, and storage consumption per selected customer.</p>
+            <div class="cs-step4-shot">
+              <img class="lightbox-trigger cs-shot" alt="Final Usage Monitoring tab" src="msc-dashboard/slide-tab2.png?v=20260806orig" width="2880" height="2168">
+            </div>
+            <div class="tradeoff" style="margin-top:16px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M7 12h10"/><path d="M9 17h6"/></svg>
+              <p><strong>Deliberate UX trade-off:</strong> Per-product storage numbers live inside hover tooltips rather than separate cards — keeping the chart scannable for quick spike detection.</p>
+            </div>
+          </div>
 
-      <div class="cs-span-12" style="margin-top: 40px;">
-        <h3 style="margin-top: 0; margin-bottom: 8px;">Tab 03 — Backup Triage Centre</h3>
-        <p>Question: Which customer backups require attention this morning?</p>
-        <div class="cs-tab-card" style="margin-top: 16px;">
-          <p class="eyebrow">Separate project</p>
-          <h4>Failure triage, customer-first</h4>
-          <p>Backup Triage was considered a separate project—to get an overall view of failures and prioritise which customers need attention first. Deep remediation stays out of scope; this tab is the entry point into that workflow.</p>
+          <div class="cs-workflow-panel" role="tabpanel" id="wf-panel-3" aria-labelledby="wf-tab-3" hidden>
+            <p class="cs-workflow-panel__q"><strong>Question answered:</strong> Which customer backups require attention this morning?</p>
+            <p class="cs-workflow-panel__scope"><strong>Scope:</strong> Exception-based failure table prioritizing accounts that need instant remediation.</p>
+            <div class="cs-tab-card" style="margin-top: 8px;">
+              <p class="eyebrow">Separate project</p>
+              <h4>Failure triage, customer-first</h4>
+              <p>Backup Triage was scoped as a separate project — overall failure view and customer prioritization first. Deep remediation stays out of scope; this tab is the entry point into that workflow.</p>
+            </div>
+            <div class="cs-step4-shot" style="margin-top:16px;">
+              <img class="lightbox-trigger cs-shot" alt="Backup Triage Centre tab" src="msc-dashboard/slide-tab3.png?v=20260806orig" width="2880" height="1896">
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2007,11 +2054,42 @@ document.addEventListener('DOMContentLoaded',function(){
     show.addEventListener('mouseleave',start);
     start();
   }
+
+  /* Interactive workflow tabs (Accounts / Usage / Triage) */
+  document.querySelectorAll('[data-workflow-tabs]').forEach(function (root) {
+    var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+    var panels = Array.prototype.slice.call(root.querySelectorAll('[role="tabpanel"]'));
+    if (!tabs.length) return;
+
+    function activate(index) {
+      tabs.forEach(function (tab, i) {
+        var on = i === index;
+        tab.setAttribute('aria-selected', on ? 'true' : 'false');
+        tab.tabIndex = on ? 0 : -1;
+        if (panels[i]) panels[i].hidden = !on;
+      });
+      tabs[index].focus({ preventScroll: true });
+    }
+
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { activate(i); });
+      tab.addEventListener('keydown', function (e) {
+        var next = i;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (i + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (i - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') next = 0;
+        else if (e.key === 'End') next = tabs.length - 1;
+        else return;
+        e.preventDefault();
+        activate(next);
+      });
+    });
+  });
 });
 </script>
-<script src="js/site-footer.js?v=20260809linkedin"></script>
+<script src="js/site-footer.js?v=20260809be1"></script>
 <script src="js/system-theme.js"></script>
 <script src="js/site-shell.js?v=20260809nochats"></script>
-<script src="audio/music.js?v=20260808pausepersist"></script>
+<script src="audio/music.js?v=20260809noauto"></script>
 </body>
 </html>

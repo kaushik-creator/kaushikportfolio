@@ -18,7 +18,8 @@
   bgMusic.setAttribute('webkit-playsinline', '');
   bgMusic.removeAttribute('autoplay');
 
-  let userPaused = false;
+  // Opt-in only — never autoplay on load or navigation (a11y guardrail)
+  let userPaused = true;
   let playToken = 0;
   let lastSavedAt = 0;
   let unlockListenersBound = false;
@@ -26,7 +27,7 @@
   let waitingToUnmute = false;
 
   try {
-    userPaused = localStorage.getItem(MUSIC_PREF_KEY) === 'true';
+    localStorage.setItem(MUSIC_PREF_KEY, 'true');
     const savedSrc = localStorage.getItem(MUSIC_SRC_KEY);
     const savedTime = parseFloat(localStorage.getItem(MUSIC_TIME_KEY) || '0');
 
@@ -280,22 +281,12 @@
   window.addEventListener('pagehide', persistMusicState);
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') persistMusicState();
-    if (document.visibilityState === 'visible') {
-      if (userPaused) {
-        enforcePaused();
-        return;
-      }
-      if (bgMusic.paused || bgMusic.muted) attemptPlay();
-    }
+    if (document.visibilityState === 'visible' && userPaused) enforcePaused();
   });
 
   window.addEventListener('pageshow', () => {
-    if (userPaused) {
-      enforcePaused();
-      return;
-    }
-    restoreSavedTime();
-    attemptPlay();
+    // Stay paused unless the user pressed play on this page
+    if (userPaused) enforcePaused();
   });
 
   // Persist pause/play preference before navigating to another page
@@ -312,5 +303,6 @@
   );
 
   updateMusicButton();
-  startPlaybackFlow();
+  enforcePaused();
+  persistMusicState();
 })();

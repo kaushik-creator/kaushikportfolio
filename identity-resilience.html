@@ -11,7 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260809glitch"/>
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="styles/system.css?v=20260809be1"/>
 <link rel="stylesheet" href="identity-resilience/ir.css?v=20260808dslarge"/>
 <link rel="stylesheet" href="identity-resilience/nda-gate.css?v=3"/>
 <script>
@@ -622,9 +623,9 @@
 <audio id="bgMusic" loop preload="auto" playsinline>
   <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
 </audio>
-<button type="button" class="music-toggle" id="musicToggle" aria-label="Pause background music" aria-pressed="true" title="Music">
-  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
+<button type="button" class="music-toggle" id="musicToggle" aria-label="Play background music" aria-pressed="false" title="Music">
+  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
 </button>
 
 <header class="site-header"><div class="wrap">
@@ -649,7 +650,7 @@
   <a href="projects.html" class="link cs-back">← All Projects</a>
 
   <section class="section cs-hero">
-    <p class="eyebrow">Case study · Identity security</p>
+    <p class="cs-badge" role="status">CASE STUDY · IDENTITY SECURITY</p>
     <h1>Turning an activity table into an identity graph</h1>
     <p class="cs-hero__lede">Security and backup teams could see that an identity was compromised — but had to read a table, row by row, to find out what it actually touched. I redesigned that table as a graph: the identity at the center, everything it touched plotted around it by type.</p>
     <div class="cs-hero__cover ir-nda-wrap is-locked" data-ir-nda>
@@ -658,7 +659,7 @@
     <div class="cs-overview">
       <div class="cs-overview__card"><span class="k">Role</span><span class="v">UX Designer</span></div>
       <div class="cs-overview__card"><span class="k">Scope</span><span class="v">Active Directory, Entra ID, Okta</span></div>
-      <div class="cs-overview__card"><span class="k">Domain</span><span class="v">Identity security · Enterprise B2B backup &amp; cyber recovery</span></div>
+      <div class="cs-overview__card"><span class="k">Domain</span><span class="v">Identity Security · B2B Backup &amp; Cyber Recovery</span></div>
     </div>
   </section>
 
@@ -1043,6 +1044,12 @@
     </div>
   </section>
 
+  <section class="section" aria-labelledby="ir-outcome">
+    <p class="eyebrow">Outcome</p>
+    <h2 id="ir-outcome">First node-based identity graph from scratch</h2>
+    <p style="max-width:62ch;color:var(--ink-soft);">Built the first node-based graph system for Active Directory, Entra ID, and Okta recovery — identity at the center, everything it touched plotted by type so security and backup teams can see spread without reading a log table row by row.</p>
+  </section>
+
   <section class="section">
     <p class="eyebrow">Closing</p>
     <h2>Learning</h2>
@@ -1069,10 +1076,10 @@
 
 <script src="identity-resilience/ds-magnify.js?v=20260808iters"></script>
 <script src="identity-resilience/crisp-imgs.js?v=2"></script>
-<script src="js/site-footer.js?v=20260809linkedin"></script>
+<script src="js/site-footer.js?v=20260809be1"></script>
 <script src="js/system-theme.js"></script>
 <script src="js/site-shell.js?v=20260809nochats"></script>
-<script src="audio/music.js?v=20260808pausepersist"></script>
+<script src="audio/music.js?v=20260809noauto"></script>
 <script src="identity-resilience/nda-gate.js?v=2"></script>
 </body>
 </html>

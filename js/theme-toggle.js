@@ -25,7 +25,7 @@
     return null;
   }
 
-  var initial = savedTheme() || html.dataset.theme || 'dark';
+  var initial = savedTheme() || 'light';
   apply(initial === 'light');
 
   if (!toggle) return;
