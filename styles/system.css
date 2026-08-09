@@ -1615,6 +1615,13 @@ main.cs-page > .section:first-of-type,
   line-height:1.6;
   text-wrap:pretty;
 }
+/* Solid plate under Projects + Experience ledes — covers dotted field bleed */
+#projects .page-intro__lede,
+#experience .page-intro__lede{
+  background:var(--surface);
+  padding:.45em .6em;
+  box-sizing:border-box;
+}
 #experience .page-intro{
   max-width:none;
 }
