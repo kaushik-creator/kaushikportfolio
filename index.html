@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/system.css?v=20260808bg"/>
+<link rel="stylesheet" href="styles/system.css?v=20260809glitch"/>
 </head>
 <body>
 
@@ -45,12 +45,12 @@
   <div class="wrap hero-grid">
     <div>
       <p class="eyebrow">UX Designer · Enterprise SaaS</p>
-      <h1>Hi,<br/>I'm Kaushik</h1>
+      <h1>Hi,<br/>I'm <span class="glitch-text" data-text="Kaushik">Kaushik</span></h1>
       <ul class="hero-bullets">
         <li>Designing high-stakes, <strong>data-dense enterprise SaaS</strong> across <strong>cybersecurity</strong>, <strong>fintech</strong>, and <strong>e-commerce</strong></li>
         <li>Hands-on depth in <strong>design systems</strong>, <strong>RBAC</strong>, and <strong>multi-tenant</strong> architecture — <strong>0→1 → production</strong></li>
         <li>At <strong>Druva</strong>, designing MSP and security products — including the first <strong>node-based identity activity graph</strong></li>
-        <li>Former <strong>Founding Product Designer</strong> at a <strong>Y Combinator</strong>-backed fintech; <strong>Shopify Commerce Award</strong></li>
+        <li>Former <strong>Founding Product Designer</strong> at a <strong class="brand-yc">Y Combinator</strong>-backed fintech; <strong>Shopify Commerce Award</strong></li>
         <li>Built a full SaaS product end-to-end with <strong>Claude</strong> and <strong>Cursor</strong> — wrote the complete <strong>PRD</strong>, developed the product, and tested with users</li>
         <li class="hero-bullet--looking">
           <span class="hero-bullet-title">Looking for</span>
@@ -64,8 +64,12 @@
         <a href="#contact" class="link link--muted">Get in touch</a>
       </div>
     </div>
-    <div>
-      <img src="profile.jpg" alt="Kaushik — UX Designer"/>
+    <div class="hero-portrait">
+      <figure class="hero-glitch" aria-hidden="false">
+        <img src="profile.jpg" alt="Kaushik — UX Designer"/>
+        <span class="hero-glitch__scan" aria-hidden="true"></span>
+        <span class="hero-glitch__lines" aria-hidden="true"></span>
+      </figure>
     </div>
   </div>
 </section>
@@ -232,9 +236,9 @@
   </div>
 </section>
 
-<script src="js/site-footer.js?v=20260807contact"></script>
+<script src="js/site-footer.js?v=20260809besquare"></script>
 <script src="js/system-theme.js"></script>
-<script src="js/site-shell.js?v=20260808irnda"></script>
+<script src="js/site-shell.js?v=20260809nochats"></script>
 <script src="audio/music.js?v=20260808pausepersist"></script>
 <script>
 (function(){

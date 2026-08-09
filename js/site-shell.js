@@ -27,7 +27,7 @@
     {
       href: 'identity-resilience.html',
       name: 'Identity Resilience',
-      desc: 'Identity activity table redesigned as a type swim-lane attack graph.',
+      desc: 'Identity activity table redesigned as a node-based attack graph.',
       type: 'Professional',
       tags: ['Security', 'Data viz'],
       img: 'identity-resilience/design-frame.png?v=8',
@@ -147,7 +147,7 @@
     if (!document.querySelector('link[data-ir-nda-gate]')) {
       var ndaCss = document.createElement('link');
       ndaCss.rel = 'stylesheet';
-      ndaCss.href = 'identity-resilience/nda-gate.css?v=2';
+      ndaCss.href = 'identity-resilience/nda-gate.css?v=3';
       ndaCss.setAttribute('data-ir-nda-gate', '');
       document.head.appendChild(ndaCss);
     }
@@ -228,3 +228,4 @@
     if (event.key === 'Escape' && !resumeModal.hidden) closeResumeModal();
   });
 })();
+
