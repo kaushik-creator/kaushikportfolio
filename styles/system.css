@@ -622,16 +622,8 @@ figure figcaption,
   margin:16px 0 0;
   max-width:52ch;
 }
-.hero-looking__label{
-  font-size:12px;
-  font-weight:600;
-  letter-spacing:.04em;
-  text-transform:uppercase;
-  color:#1E6B4E;
-  line-height:1.3;
-}
-:root[data-theme="dark"] .hero-looking__label{
-  color:#3FA87A;
+.hero-looking .page-lede-mark{
+  margin:0;
 }
 .hero-looking__body{
   font-size:15px;
@@ -1582,7 +1574,7 @@ main.cs-page > .section:first-of-type,
 }
 
 /* Flat content bands — no atmospheric wash
-   Projects / Experience / Education keep dotted fields (see museum pass) */
+   Projects / Experience / Education / Notes keep dotted fields (see museum pass) */
 .page-band{
   background:var(--bg);
   background-image:none;
@@ -1590,7 +1582,8 @@ main.cs-page > .section:first-of-type,
 }
 #projects.section,
 #experience.section,
-#education.section{
+#education.section,
+#notes.section{
   padding-block:clamp(32px,4.5vw,56px);
 }
 #making.section{
@@ -1615,19 +1608,44 @@ main.cs-page > .section:first-of-type,
   line-height:1.6;
   text-wrap:pretty;
 }
-/* Solid plate under Projects + Experience ledes — covers dotted field bleed */
-#projects .page-intro__lede,
-#experience .page-intro__lede{
-  background:var(--surface);
-  padding:.45em .6em;
-  box-sizing:border-box;
-}
 #experience .page-intro{
   max-width:none;
 }
-#experience .page-intro__lede{
+/* Museum yellow highlight — shared lede mark (Home, Projects, Experience, AI, Notes) */
+.page-lede-mark,
+.notes-lede{
+  position:relative;
+  z-index:1;
+  margin:0;
+  padding:0;
+  border:none;
+  background:none;
   max-width:none;
-  width:100%;
+  width:auto;
+  color:var(--ink);
+  font-size:clamp(15px,1.5vw,17px);
+  line-height:1.75;
+  text-wrap:unset;
+}
+#home .page-lede-mark{
+  margin:0 0 .55em;
+}
+.page-lede-mark > span,
+.notes-lede > span{
+  display:inline;
+  background:#FFE600;
+  color:#111;
+  border:none;
+  box-decoration-break:clone;
+  -webkit-box-decoration-break:clone;
+  padding:.22em .5em;
+  white-space:nowrap;
+}
+@media (max-width:420px){
+  .page-lede-mark > span,
+  .notes-lede > span{
+    white-space:normal;
+  }
 }
 .page-intro--sub{
   margin-bottom:clamp(20px,3vw,28px);
@@ -2081,6 +2099,174 @@ main.cs-page > .section:first-of-type,
     padding:5px 8px;
   }
 }
+
+/* ============ NOTES — Design Museum Q&A / catalog essay ============ */
+#notes.section,
+.notes-band{
+  position:relative;
+  background-color:var(--bg) !important;
+  background-image:var(--dotfield) !important;
+  background-size:var(--dotfield-size) !important;
+  overflow:hidden;
+}
+.notes-wrap{
+  position:relative;
+  z-index:1;
+}
+/* Secondary horizontal dashed guide lines (museum Q&A structure) */
+.notes-guides{
+  position:absolute;
+  left:50%;
+  top:0;
+  bottom:0;
+  width:100vw;
+  transform:translateX(-50%);
+  z-index:0;
+  pointer-events:none;
+  background-image:repeating-linear-gradient(
+    90deg,
+    rgba(10,10,10,.28) 0 6px,
+    transparent 6px 16px
+  );
+  background-size:16px 1px;
+  background-repeat:repeat;
+  background-position:0 0;
+  /* Only paint a rule every ~56px: mask to thin horizontal slots */
+  -webkit-mask-image:repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 55px,
+    #000 55px,
+    #000 56px
+  );
+  mask-image:repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 55px,
+    #000 55px,
+    #000 56px
+  );
+  opacity:1;
+}
+:root[data-theme="dark"] .notes-guides{
+  background-image:repeating-linear-gradient(
+    90deg,
+    rgba(245,246,248,.32) 0 6px,
+    transparent 6px 16px
+  );
+}
+.notes-stack{
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:clamp(16px,2.4vw,24px);
+  width:100%;
+  max-width:none;
+}
+.notes-title{
+  position:relative;
+  z-index:1;
+  margin:0;
+  max-width:none;
+  background:none;
+  border:0;
+  padding:0;
+}
+/* Match global page H1 (Archivo display) — keep on one line except very small screens */
+.notes-title h1{
+  margin:0;
+  white-space:nowrap;
+}
+.notes-panel{
+  position:relative;
+  z-index:1;
+  background:var(--surface);
+  border:1px solid var(--border-hard);
+  border-radius:0;
+  box-sizing:border-box;
+  width:100%;
+  max-width:none;
+  align-self:stretch;
+  margin:0;
+}
+.notes-panel--essay{
+  padding:clamp(22px,2.8vw,36px) clamp(18px,2.6vw,36px);
+  text-align:left;
+}
+.notes-essay p{
+  color:var(--ink-soft);
+  font-size:16px;
+  line-height:1.7;
+  max-width:none;
+  width:100%;
+  margin:0 0 1.15em;
+  text-align:left;
+}
+.notes-essay p:last-child{
+  margin-bottom:0;
+}
+/* Museum wall-label attribution — muted, tracked, left under essay */
+.notes-essay .notes-attr{
+  margin:1.6em 0 0;
+  padding:0;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:0.22em;
+  line-height:1.4;
+  text-transform:uppercase;
+  text-align:left;
+}
+/* Full-bleed still inside the essay panel — hard edges, no extra bordered shell */
+.notes-essay .notes-figure{
+  margin:0 calc(-1 * clamp(18px,2.6vw,36px)) 1.15em;
+  width:calc(100% + 2 * clamp(18px,2.6vw,36px));
+  max-width:none;
+  padding:0;
+  border:0;
+  background:transparent;
+}
+.notes-essay .notes-figure img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:0;
+  border-radius:0;
+  filter:none !important;
+}
+.notes-essay .notes-figure figcaption{
+  margin:10px clamp(18px,2.6vw,36px) 0;
+  padding:0;
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.45;
+  text-align:center;
+}
+@media (max-width:720px){
+  .notes-stack{ gap:14px; }
+  .notes-panel--essay{
+    padding:18px 16px;
+  }
+  .notes-essay .notes-figure{
+    margin:0 -16px 1.15em;
+    width:calc(100% + 32px);
+  }
+  .notes-essay .notes-figure figcaption{
+    margin-left:16px;
+    margin-right:16px;
+  }
+  .notes-guides{
+    opacity:.55;
+  }
+}
+@media (max-width:520px){
+  .notes-title h1{
+    white-space:normal;
+    text-wrap:balance;
+  }
+}
 @media (max-width:520px){
   .li-catalog .li-item{
     grid-template-columns:40px 1fr;
@@ -2293,6 +2479,10 @@ main > .wrap > .cs-hero,
   color:var(--ink-soft);
   font-size:clamp(15px,1.45vw,17px);
   line-height:1.65;
+}
+.cs-hero__lede.page-lede-mark{
+  max-width:none;
+  color:var(--ink);
 }
 .cs-hero__cover{
   position:relative;
@@ -2921,8 +3111,7 @@ main.cs-page > a.link + .section.cs-hero{
 /* Micro-label underlines (Role / Domain / Scope keys) */
 .cs-impact .k,
 .cs-pointer__label,
-.tx .persona .label,
-.hero-looking__label{
+.tx .persona .label{
   display:inline-block;
   padding-bottom:4px;
   border-bottom:1.5px solid var(--ink);
@@ -2975,7 +3164,7 @@ main.cs-page > a.link + .section.cs-hero{
   position:relative;
   z-index:1;
 }
-.page-band:not(#projects):not(#experience):not(#education),
+.page-band:not(#projects):not(#experience):not(#education):not(#notes),
 #making.section,
 #home,
 .cs-hero,
@@ -2984,10 +3173,11 @@ main.cs-page > a.link + .section.cs-hero{
   background:var(--bg) !important;
   background-image:none !important;
 }
-/* Projects / Experience / Education keep dotted field + white catalog panel */
+/* Projects / Experience / Education / Notes keep dotted field + white catalog panel */
 #projects.section,
 #experience.section,
-#education.section{
+#education.section,
+#notes.section{
   background-color:var(--bg) !important;
   background-image:var(--dotfield) !important;
   background-size:var(--dotfield-size) !important;
