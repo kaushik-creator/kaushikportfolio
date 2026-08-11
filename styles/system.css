@@ -79,7 +79,11 @@
 
 /* ============ BASE ============ */
 *{ box-sizing:border-box; }
-html{ scroll-behavior:smooth; scroll-padding-top:56px; }
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:56px;
+  overflow-x:clip;
+}
 body{
   margin:0;
   background:var(--bg);
@@ -88,6 +92,7 @@ body{
   letter-spacing:-0.005em;
   -webkit-font-smoothing:antialiased;
   transition:background-color .2s ease, color .2s ease;
+  overflow-x:clip;
 }
 img{ max-width:100%; height:auto; display:block; }
 a{ color:var(--ink); text-decoration:none; }
@@ -1547,6 +1552,24 @@ strong.brand-yc{
 }
 @media(max-width:820px){
   .hero-grid,.contact-grid{ grid-template-columns:1fr; }
+  .hero-grid{
+    gap:clamp(20px,4vw,28px);
+    align-items:start;
+  }
+  .hero-portrait,
+  .hero-glitch{
+    width:100%;
+    max-width:100%;
+  }
+  .hero-lede,
+  .hero-looking{
+    max-width:none;
+    width:100%;
+    min-width:0;
+  }
+  .hero-portrait__role{
+    max-width:100%;
+  }
 }
 
 /* ============ HEADER + THEME TOGGLE ============ */
@@ -1560,7 +1583,14 @@ strong.brand-yc{
 :root[data-theme="dark"] .site-header{
   background:var(--bg);
 }
-.site-header .wrap{ display:flex; align-items:center; justify-content:space-between; height:56px; }
+.site-header .wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:56px;
+  position:relative;
+  gap:12px;
+}
 
 /* Hero wash — homepage only (not case study first sections) */
 #home.section,
@@ -1636,12 +1666,13 @@ main.cs-page > .section:first-of-type,
   padding:0;
   border:none;
   background:none;
-  max-width:none;
+  max-width:100%;
   width:auto;
   color:var(--ink);
   font-size:clamp(15px,1.5vw,17px);
   line-height:1.75;
   text-wrap:unset;
+  overflow-wrap:break-word;
 }
 #home .page-lede-mark{
   margin:0 0 .55em;
@@ -1656,8 +1687,11 @@ main.cs-page > .section:first-of-type,
   -webkit-box-decoration-break:clone;
   padding:.22em .5em;
   white-space:nowrap;
+  max-width:100%;
+  box-sizing:border-box;
 }
-@media (max-width:420px){
+/* Allow wrap on small screens so long ledes don’t force horizontal scroll */
+@media (max-width:520px){
   .page-lede-mark > span,
   .notes-lede > span{
     white-space:normal;
@@ -1680,7 +1714,14 @@ main.cs-page > .section:first-of-type,
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
 }
-.site-header nav{ display:flex; gap:clamp(14px,2.2vw,28px); align-items:center; }
+.site-header nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:clamp(10px,1.8vw,28px);
+  align-items:center;
+  justify-content:flex-end;
+  min-width:0;
+}
 .site-header nav a{
   font-size:13px;
   font-weight:500;
@@ -1690,6 +1731,8 @@ main.cs-page > .section:first-of-type,
   border-radius:0;
   background:transparent;
   text-decoration:none;
+  white-space:nowrap;
+  flex-shrink:0;
 }
 .site-header nav a:hover{
   color:var(--ink);
@@ -1703,6 +1746,11 @@ main.cs-page > .section:first-of-type,
   border:none;
   border-radius:0;
   padding:6px 10px;
+  display:inline-flex;
+  align-items:center;
+  width:fit-content;
+  max-width:100%;
+  box-sizing:border-box;
 }
 .site-header nav a.active:hover,
 .site-header nav a[aria-current="page"]:hover{
@@ -1715,6 +1763,20 @@ main.cs-page > .section:first-of-type,
 :root[data-theme="dark"] .site-header nav a[aria-current="page"]:hover{
   background:#FFE600;
   color:#111;
+}
+.nav-toggle{
+  display:none;
+  background:none;
+  border:none;
+  width:auto;
+  height:auto;
+  cursor:pointer;
+  color:var(--ink);
+  flex-shrink:0;
+  min-width:44px;
+  min-height:44px;
+  padding:10px;
+  box-sizing:border-box;
 }
 
 /* Outlined "tab" buttons (like Schools ⌄ / Directly to ⌄ / Login ⌄):
@@ -1731,7 +1793,6 @@ main.cs-page > .section:first-of-type,
 .theme-toggle{ background:none; border:none; width:auto; height:auto; padding:0; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; color:var(--muted); }
 .theme-toggle:hover{ color:var(--ink); }
 .theme-toggle svg{ width:18px; height:18px; }
-.nav-toggle{ display:none; background:none; border:none; width:auto; height:auto; padding:0; cursor:pointer; color:var(--ink); }
 
 /* Resume popup */
 .resume-modal[hidden]{ display:none !important; }
@@ -1846,15 +1907,35 @@ main.cs-page > .section:first-of-type,
   .skills-marquee{ overflow:visible; }
 }
 
-@media(max-width:820px){
+/* Collapse earlier so yellow active + links don’t overflow mid widths */
+@media(max-width:900px){
   .site-header nav{ display:none; }
   .site-header nav.open{
-    display:flex; position:absolute; top:64px; left:0; right:0;
+    display:flex;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
     flex-direction:column;
+    align-items:flex-start;
+    gap:2px;
     background:var(--bg);
     backdrop-filter:none;
     border-bottom:1px solid var(--line);
-    padding:16px var(--gutter);
+    padding:12px var(--gutter) 16px;
+    z-index:60;
+    box-shadow:none;
+  }
+  .site-header nav.open a{
+    display:inline-flex;
+    align-items:center;
+    min-height:44px;
+    padding:10px 12px;
+  }
+  .site-header nav.open a.active,
+  .site-header nav.open a[aria-current="page"]{
+    width:fit-content;
+    max-width:calc(100% - 8px);
   }
   .nav-toggle{ display:inline-flex; align-items:center; justify-content:center; }
 }
@@ -2157,6 +2238,9 @@ main.cs-page > .section:first-of-type,
 .notes-wrap{
   position:relative;
   z-index:1;
+  min-width:0;
+  width:100%;
+  box-sizing:border-box;
 }
 /* Secondary horizontal dashed guide lines (museum Q&A structure) */
 .notes-guides{
@@ -2250,7 +2334,7 @@ main.cs-page > .section:first-of-type,
   color:var(--ink-soft);
   font-size:16px;
   line-height:1.7;
-  max-width:none;
+  max-width:65ch;
   width:100%;
   margin:0 0 1.15em;
   text-align:left;
@@ -2269,6 +2353,7 @@ main.cs-page > .section:first-of-type,
   line-height:1.4;
   text-transform:uppercase;
   text-align:left;
+  max-width:65ch;
 }
 /* Full-bleed still inside the essay panel — hard edges, no extra bordered shell */
 .notes-essay .notes-figure{
@@ -2299,12 +2384,28 @@ main.cs-page > .section:first-of-type,
 }
 @media (max-width:720px){
   .notes-stack{ gap:14px; }
+  .notes-title,
+  .notes-lede,
+  .notes-back{
+    max-width:100%;
+    min-width:0;
+  }
   .notes-panel--essay{
     padding:18px 16px;
+    overflow-x:clip;
+  }
+  .notes-essay p{
+    font-size:15.5px;
+    max-width:none;
   }
   .notes-essay .notes-figure{
     margin:0 -16px 1.15em;
     width:calc(100% + 32px);
+    max-width:none;
+  }
+  .notes-essay .notes-figure img{
+    width:100%;
+    height:auto;
   }
   .notes-essay .notes-figure figcaption{
     margin-left:16px;
@@ -2464,22 +2565,44 @@ main.cs-page > .section:first-of-type,
   .proj-show,
   .proj-show:nth-child(even),
   .proj-show:nth-child(odd){
-    grid-template-columns:minmax(120px,140px) minmax(0,1fr);
+    grid-template-columns:minmax(140px,180px) minmax(0,1fr);
     gap:16px;
   }
   .proj-show__media{ border-radius:0; }
   .proj-show__body{ padding-inline:0; }
 }
-@media (max-width:520px){
+@media (max-width:640px){
   .proj-catalog,
-  #articles .proj-catalog{ padding:0 16px; }
+  #articles .proj-catalog,
+  .li-catalog{ padding:0 16px; }
   .proj-show,
   .proj-show:nth-child(even),
   .proj-show:nth-child(odd){
     grid-template-columns:1fr;
     gap:14px;
+    padding:22px 0;
   }
-  .proj-show__media{ aspect-ratio:16/10; max-width:100%; }
+  .proj-show__media{
+    aspect-ratio:16/10;
+    max-width:100%;
+    width:100%;
+  }
+  .filter-row{ gap:8px; margin:16px 0 20px; }
+  .filter-row .tab-btn{
+    min-height:40px;
+    padding:10px 14px;
+  }
+  .page-intro{
+    max-width:100%;
+    margin-bottom:20px;
+  }
+  .page-intro__lede{
+    max-width:100%;
+  }
+}
+@media (max-width:520px){
+  .proj-show__title{ font-size:clamp(17px,5.2vw,22px); }
+  .proj-show__brief{ font-size:14px; }
 }
 
 /* ============ CASE STUDY VISUAL SYSTEM ============ */
