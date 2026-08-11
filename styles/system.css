@@ -2073,7 +2073,11 @@ main.cs-page > .section:first-of-type,
   border:1px solid var(--border-hard);
   width:100%;
   box-sizing:border-box;
-  padding:0 clamp(20px,3vw,36px);
+  /* Generous inset so thumbs + copy breathe inside the hard border */
+  padding:0 clamp(24px,3.5vw,40px);
+}
+#articles .proj-catalog{
+  padding:0 clamp(24px,3.5vw,40px);
 }
 
 /* ============ EXPERIENCE / EDUCATION — museum catalog (same family as projects) ============ */
@@ -2328,14 +2332,14 @@ main.cs-page > .section:first-of-type,
   display:grid;
   grid-template-columns:minmax(160px,240px) minmax(0,1fr);
   gap:clamp(24px,3vw,32px);
-  align-items:center;
+  align-items:start;
   color:inherit;
   text-decoration:none;
-  padding:clamp(24px,3vw,32px) 0;
+  padding:clamp(28px,3.2vw,36px) 0;
   border-bottom:1px dotted var(--line-strong);
 }
 .proj-show:last-child{ border-bottom:none; }
-/* Always image left — no alternating */
+/* Always image left / text right — no alternating */
 .proj-show:nth-child(even),
 .proj-show:nth-child(odd){
   grid-template-columns:minmax(160px,240px) minmax(0,1fr);
@@ -2357,10 +2361,16 @@ main.cs-page > .section:first-of-type,
   height:100%;
   display:block;
   object-fit:cover;
-  object-position:top center;
+  object-position:center;
   border-radius:0;
   box-shadow:none;
+  filter:none !important;
   transition:opacity .2s ease;
+}
+/* Article catalog thumbs — keep photo crops clean (no glitch wrappers) */
+#articles .proj-show__media img{
+  object-position:center;
+  filter:none !important;
 }
 .proj-show:hover .proj-show__media img{
   transform:none;
@@ -2461,7 +2471,8 @@ main.cs-page > .section:first-of-type,
   .proj-show__body{ padding-inline:0; }
 }
 @media (max-width:520px){
-  .proj-catalog{ padding:0 16px; }
+  .proj-catalog,
+  #articles .proj-catalog{ padding:0 16px; }
   .proj-show,
   .proj-show:nth-child(even),
   .proj-show:nth-child(odd){
