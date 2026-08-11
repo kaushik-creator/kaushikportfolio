@@ -5,29 +5,31 @@
 
   const iconPause = document.getElementById('musicIconPause');
   const iconPlay = document.getElementById('musicIconPlay');
-  const MUSIC_PREF_KEY = 'portfolio_music_paused';
+  // New key — old portfolio_music_paused was force-written to "true" on every load
+  const MUSIC_PLAYING_KEY = 'portfolio_music_playing';
   const MUSIC_TIME_KEY = 'portfolio_music_time';
   const MUSIC_SRC_KEY = 'portfolio_music_src';
   const MUSIC_UNLOCK_KEY = 'portfolio_music_unlocked';
   const MUSIC_SRC_ID = 'bittersweet-v20260724';
   const TARGET_VOLUME = 0.45;
-  const UNLOCK_EVENTS = ['pointerdown', 'keydown', 'touchstart', 'click'];
+  const UNLOCK_EVENTS = ['pointerdown', 'keydown', 'touchstart', 'click', 'scroll'];
 
   bgMusic.volume = TARGET_VOLUME;
   bgMusic.setAttribute('playsinline', '');
   bgMusic.setAttribute('webkit-playsinline', '');
   bgMusic.removeAttribute('autoplay');
 
-  // Opt-in only — never autoplay on load or navigation (a11y guardrail)
-  let userPaused = true;
+  let userPaused = false;
   let playToken = 0;
   let lastSavedAt = 0;
   let unlockListenersBound = false;
   let unlockHandler = null;
-  let waitingToUnmute = false;
 
   try {
-    localStorage.setItem(MUSIC_PREF_KEY, 'true');
+    const savedPlaying = localStorage.getItem(MUSIC_PLAYING_KEY);
+    // unset → first visit: autoplay. "false" → explicit pause, respect across pages.
+    userPaused = savedPlaying === 'false';
+
     const savedSrc = localStorage.getItem(MUSIC_SRC_KEY);
     const savedTime = parseFloat(localStorage.getItem(MUSIC_TIME_KEY) || '0');
 
@@ -38,11 +40,13 @@
     } else if (Number.isFinite(savedTime) && savedTime > 0) {
       bgMusic.currentTime = savedTime;
     }
-  } catch (_) {}
+  } catch (_) {
+    userPaused = false;
+  }
 
   function persistMusicState() {
     try {
-      localStorage.setItem(MUSIC_PREF_KEY, userPaused ? 'true' : 'false');
+      localStorage.setItem(MUSIC_PLAYING_KEY, userPaused ? 'false' : 'true');
       localStorage.setItem(MUSIC_TIME_KEY, String(bgMusic.currentTime || 0));
       localStorage.setItem(MUSIC_SRC_KEY, MUSIC_SRC_ID);
       lastSavedAt = Date.now();
@@ -101,25 +105,10 @@
 
   function enforcePaused() {
     playToken += 1;
-    waitingToUnmute = false;
     removeUnlockListeners();
     bgMusic.pause();
     bgMusic.muted = false;
     updateMusicButton();
-  }
-
-  function unmuteNow() {
-    if (userPaused) {
-      enforcePaused();
-      return;
-    }
-    waitingToUnmute = false;
-    bgMusic.muted = false;
-    bgMusic.volume = TARGET_VOLUME;
-    markUnlocked();
-    updateMusicButton();
-    persistMusicState();
-    removeUnlockListeners();
   }
 
   function bindUnlockListeners() {
@@ -128,13 +117,6 @@
 
     unlockHandler = () => {
       if (userPaused) return;
-
-      if (waitingToUnmute || (!bgMusic.paused && bgMusic.muted)) {
-        unmuteNow();
-        if (bgMusic.paused) attemptPlay();
-        return;
-      }
-
       attemptPlay();
     };
 
@@ -157,7 +139,6 @@
         updateMusicButton();
         return false;
       }
-      waitingToUnmute = false;
       bgMusic.muted = false;
       bgMusic.volume = TARGET_VOLUME;
       markUnlocked();
@@ -178,29 +159,10 @@
           if (userPaused) enforcePaused();
           return false;
         }
-
-        bgMusic.muted = true;
-        return bgMusic
-          .play()
-          .then(() => {
-            if (token !== playToken || userPaused) {
-              enforcePaused();
-              return false;
-            }
-            waitingToUnmute = true;
-            updateMusicButton();
-            bindUnlockListeners();
-            return true;
-          })
-          .catch(() => {
-            if (token === playToken) {
-              bgMusic.muted = false;
-              waitingToUnmute = false;
-              updateMusicButton();
-              if (!userPaused) bindUnlockListeners();
-            }
-            return false;
-          });
+        // Autoplay blocked — start on first user gesture
+        updateMusicButton();
+        bindUnlockListeners();
+        return false;
       });
   }
 
@@ -236,7 +198,7 @@
         enforcePaused();
         return;
       }
-      if (bgMusic.paused || bgMusic.muted) attemptPlay();
+      if (bgMusic.paused) attemptPlay();
     }, 400);
   }
 
@@ -244,8 +206,7 @@
     e.preventDefault();
     e.stopPropagation();
 
-    // Pause whenever audio is currently running (audible or muted unlock state)
-    if (!bgMusic.paused && !userPaused) {
+    if (!userPaused && !bgMusic.paused) {
       userPaused = true;
       enforcePaused();
       persistMusicState();
@@ -253,7 +214,6 @@
     }
 
     userPaused = false;
-    waitingToUnmute = false;
     bgMusic.muted = false;
     bgMusic.volume = TARGET_VOLUME;
     persistMusicState();
@@ -262,7 +222,6 @@
     });
   });
 
-  // Guard: if anything starts playback while the user paused, stop it immediately.
   bgMusic.addEventListener('play', () => {
     if (userPaused) {
       bgMusic.pause();
@@ -281,15 +240,18 @@
   window.addEventListener('pagehide', persistMusicState);
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') persistMusicState();
-    if (document.visibilityState === 'visible' && userPaused) enforcePaused();
   });
 
-  window.addEventListener('pageshow', () => {
-    // Stay paused unless the user pressed play on this page
-    if (userPaused) enforcePaused();
+  window.addEventListener('pageshow', (event) => {
+    if (userPaused) {
+      enforcePaused();
+      return;
+    }
+    if (event.persisted && bgMusic.paused) {
+      startPlaybackFlow();
+    }
   });
 
-  // Persist pause/play preference before navigating to another page
   document.addEventListener(
     'click',
     (e) => {
@@ -303,6 +265,12 @@
   );
 
   updateMusicButton();
-  enforcePaused();
-  persistMusicState();
+
+  if (userPaused) {
+    enforcePaused();
+    persistMusicState();
+  } else {
+    persistMusicState();
+    startPlaybackFlow();
+  }
 })();

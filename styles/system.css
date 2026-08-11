@@ -635,8 +635,18 @@ figure figcaption,
   margin:16px 0 0;
   max-width:52ch;
 }
-.hero-looking .page-lede-mark{
+.hero-looking__label{
+  font-family:var(--font-display);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--ink);
   margin:0;
+  display:inline-block;
+  width:fit-content;
+  padding-bottom:4px;
+  border-bottom:2px solid var(--ink);
 }
 .hero-looking__body{
   font-size:15px;
@@ -660,7 +670,33 @@ strong.brand-yc{
 :root[data-theme="dark"] strong.brand-yc{
   color:#FF7A1A;
 }
-.hero-actions{ display:flex; flex-wrap:wrap; gap:24px; margin-top:28px; }
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:24px;
+  margin-top:28px;
+}
+.hero-actions .btn,
+.hero-actions .link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  box-sizing:border-box;
+  min-height:42px;
+  font-size:14px;
+  font-weight:500;
+  line-height:1.2;
+  margin:0;
+}
+.hero-actions .btn{
+  padding:10px 18px;
+}
+.hero-actions .link{
+  padding:10px 0;
+  height:auto;
+  align-self:center;
+}
 .hero-loc{ font-size:14px; color:var(--ink-soft); margin-top:16px; }
 .hero-loc + .hero-loc{ margin-top:6px; }
 
@@ -848,6 +884,7 @@ strong.brand-yc{
 .making-grid h3{ font-size:16px; margin-bottom:10px; font-weight:600; }
 .making-grid p{ font-size:14.5px; color:var(--ink-soft); margin:0; max-width:36ch; line-height:1.6; }
 .making-grid{ margin-top:32px; align-items:start; gap:var(--grid-gap); width:100%; }
+
 /* —— About: journey trail —— */
 .journey{
   margin-top:clamp(32px,4.5vw,48px);
@@ -1578,10 +1615,12 @@ strong.brand-yc{
   background:var(--bg);
   backdrop-filter:none;
   -webkit-backdrop-filter:none;
-  border-bottom:1px solid var(--line);
+  /* Museum underline — full viewport width */
+  border-bottom:3px solid #0A0A0A;
 }
 :root[data-theme="dark"] .site-header{
   background:var(--bg);
+  border-bottom-color:#FFF;
 }
 .site-header .wrap{
   display:flex;
@@ -1716,53 +1755,60 @@ main.cs-page > .section:first-of-type,
 }
 .site-header nav{
   display:flex;
-  flex-wrap:wrap;
-  gap:clamp(10px,1.8vw,28px);
-  align-items:center;
+  flex-wrap:nowrap;
+  gap:2px;
+  align-items:stretch;
+  align-self:stretch;
   justify-content:flex-end;
   min-width:0;
+  border-bottom:none;
 }
 .site-header nav a{
   font-size:13px;
   font-weight:500;
   color:var(--muted);
-  padding:6px 10px;
+  padding:0 12px;
   border:none;
   border-radius:0;
   background:transparent;
   text-decoration:none;
   white-space:nowrap;
   flex-shrink:0;
+  display:inline-flex;
+  align-items:center;
+  box-sizing:border-box;
 }
 .site-header nav a:hover{
   color:var(--ink);
   background:transparent;
 }
-/* Design Museum active — solid yellow block, hard edges, dark type */
+/* Active tab — solid block flush with the underline */
 .site-header nav a.active,
 .site-header nav a[aria-current="page"]{
-  background:#FFE600;
-  color:#111;
+  background:#0A0A0A;
+  color:#FFF;
   border:none;
   border-radius:0;
-  padding:6px 10px;
-  display:inline-flex;
-  align-items:center;
   width:fit-content;
   max-width:100%;
-  box-sizing:border-box;
 }
 .site-header nav a.active:hover,
 .site-header nav a[aria-current="page"]:hover{
-  background:#FFE600;
-  color:#111;
+  background:#0A0A0A;
+  color:#FFF;
 }
 :root[data-theme="dark"] .site-header nav a.active,
 :root[data-theme="dark"] .site-header nav a[aria-current="page"],
 :root[data-theme="dark"] .site-header nav a.active:hover,
 :root[data-theme="dark"] .site-header nav a[aria-current="page"]:hover{
-  background:#FFE600;
-  color:#111;
+  background:#FFF;
+  color:#0A0A0A;
+}
+.site-header nav .theme-toggle{
+  align-self:center;
+  margin-left:10px;
+  flex-shrink:0;
+  padding:0 4px;
 }
 .nav-toggle{
   display:none;
@@ -1856,25 +1902,27 @@ main.cs-page > .section:first-of-type,
 .music-toggle{
   position:fixed; right:1.25rem; bottom:1.25rem; z-index:60;
   width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center;
-  background:var(--bg); border:1px solid var(--line); color:var(--ink);
+  background:#0A0A0A; border:1px solid #0A0A0A; color:#FFF;
   cursor:pointer; opacity:1; border-radius:0;
   box-shadow:none;
   backdrop-filter:none;
   transition:background .15s ease, color .15s ease, border-color .15s ease;
 }
 .music-toggle:hover{
-  background:var(--ink); color:var(--bg); border-color:var(--ink);
+  background:#0A0A0A; color:#FFF; border-color:#0A0A0A;
+  opacity:.85;
   transform:none;
 }
 .music-toggle svg{ width:18px; height:18px; pointer-events:none; }
 .music-toggle svg[hidden],
 .music-toggle svg.is-hidden{ display:none !important; }
 :root[data-theme="dark"] .music-toggle{
-  background:var(--bg); color:var(--ink); border-color:var(--line);
+  background:#FFF; color:#0A0A0A; border-color:#FFF;
   box-shadow:none;
 }
 :root[data-theme="dark"] .music-toggle:hover{
-  background:var(--ink); color:var(--bg); border-color:var(--ink);
+  background:#FFF; color:#0A0A0A; border-color:#FFF;
+  opacity:.85;
 }
 
 .skills-marquee{
@@ -1907,7 +1955,55 @@ main.cs-page > .section:first-of-type,
   .skills-marquee{ overflow:visible; }
 }
 
-/* Collapse earlier so yellow active + links don’t overflow mid widths */
+/* Favourite movies & series — poster runner (Articles) */
+.fav-media{
+  padding-block:clamp(28px,4vw,48px);
+  border-top:1px solid var(--line);
+  background:var(--bg);
+  background-image:none;
+  overflow:hidden;
+}
+.fav-media .page-intro--sub{
+  margin-bottom:clamp(18px,2.5vw,28px);
+}
+.fav-media .page-intro--sub h2{
+  font-size:clamp(22px,2.8vw,32px);
+  margin:0;
+}
+.fav-media__marquee{
+  overflow:hidden;
+  width:100%;
+  cursor:grab;
+  touch-action:pan-y;
+  /* never show a horizontal scrollbar */
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+.fav-media__marquee::-webkit-scrollbar{ display:none; width:0; height:0; }
+.fav-media__marquee.is-dragging{ cursor:grabbing; }
+.fav-media__marquee .marquee__track{
+  display:flex;
+  width:max-content;
+  gap:12px;
+  align-items:stretch;
+  animation:none; /* driven by js/fav-media.js */
+  will-change:transform;
+}
+.fav-media__poster{
+  display:block;
+  flex:0 0 auto;
+  height:clamp(180px,22vw,220px);
+  width:auto;
+  object-fit:cover;
+  border-radius:0;
+  border:1px solid var(--border-hard);
+  background:var(--surface);
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+
+/* Collapse earlier so active tab + links don’t overflow mid widths */
 @media(max-width:900px){
   .site-header nav{ display:none; }
   .site-header nav.open{
@@ -1918,13 +2014,17 @@ main.cs-page > .section:first-of-type,
     right:0;
     flex-direction:column;
     align-items:flex-start;
+    align-self:auto;
     gap:2px;
     background:var(--bg);
     backdrop-filter:none;
-    border-bottom:1px solid var(--line);
+    border-bottom:3px solid #0A0A0A;
     padding:12px var(--gutter) 16px;
     z-index:60;
     box-shadow:none;
+  }
+  :root[data-theme="dark"] .site-header nav.open{
+    border-bottom-color:#FFF;
   }
   .site-header nav.open a{
     display:inline-flex;
@@ -1936,6 +2036,12 @@ main.cs-page > .section:first-of-type,
   .site-header nav.open a[aria-current="page"]{
     width:fit-content;
     max-width:calc(100% - 8px);
+  }
+  .site-header nav.open .theme-toggle{
+    margin-left:0;
+    margin-top:8px;
+    min-height:44px;
+    padding:10px 4px;
   }
   .nav-toggle{ display:inline-flex; align-items:center; justify-content:center; }
 }
@@ -2547,17 +2653,25 @@ main.cs-page > .section:first-of-type,
   font-weight:600;
 }
 .proj-show__cta{
+  display:inline-block;
   font-size:13px;
   font-weight:500;
   color:var(--muted);
   border-bottom:1px solid var(--line-strong);
-  padding-bottom:1px;
-  transition:color .15s ease, border-color .15s ease;
+  border-radius:0;
+  padding:2px 0 1px;
+  transition:color .15s ease, border-color .15s ease, background-color .15s ease, padding .15s ease;
 }
-.proj-show:hover .proj-show__cta{
-  color:var(--ink);
-  border-bottom-color:var(--ink);
-  background:none;
+/* Museum black highlight — CTA hover */
+.proj-show:hover .proj-show__cta,
+.proj-show:focus-visible .proj-show__cta,
+.mw-card:hover .proj-show__cta,
+.mw-card:focus-visible .proj-show__cta{
+  background:#0A0A0A;
+  color:#FFF;
+  border-bottom-color:transparent;
+  border-radius:0;
+  padding:2px 6px 1px;
 }
 .proj-show.is-hidden{ display:none!important; }
 
@@ -2697,19 +2811,20 @@ main > .wrap > .cs-hero,
 .cs-overview{
   display:grid;
   grid-column:2;
-  grid-template-columns:1fr;
-  gap:14px;
-  max-width:34ch;
+  grid-template-columns:1fr 1fr;
+  column-gap:clamp(20px,2.5vw,32px);
+  row-gap:0;
+  max-width:none;
   width:100%;
   margin:0;
   padding-top:2px;
   text-align:left;
   align-self:start;
 }
-/* No cover image — keep meta as a horizontal row */
+/* No cover image — same 2-col meta grid, full width under the lede */
 .cs-hero:not(:has(.cs-hero__cover)) .cs-overview{
   grid-column:1 / -1;
-  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-columns:1fr 1fr;
   max-width:none;
   margin-top:0;
   align-self:stretch;
@@ -2724,8 +2839,11 @@ main.wrap > .section:first-of-type .meta > div,
   border-radius:0;
   padding:12px 0;
   box-shadow:none;
+  min-width:0;
 }
+/* Drop hairline under the last row (handles odd counts in 2-col) */
 .cs-overview__card:last-child,
+.cs-overview__card:nth-last-child(2):nth-child(odd),
 .cs-page .meta > div:last-child,
 main.wrap > .section:first-of-type .meta > div:last-child,
 .druva-meta > div:last-child{
@@ -2756,12 +2874,16 @@ main.wrap > .section:first-of-type .meta .v,
   line-height:1.35;
   color:var(--ink);
 }
-/* Horizontal meta rows (no cover) — keep as a clean grid, not cages */
+/* No-cover heroes share the same card hairlines as covered layouts */
 .cs-hero:not(:has(.cs-hero__cover)) .cs-overview__card{
+  border-bottom:1px solid var(--line);
+  border-top:0;
+  padding:12px 0;
+}
+.cs-hero:not(:has(.cs-hero__cover)) .cs-overview__card:last-child,
+.cs-hero:not(:has(.cs-hero__cover)) .cs-overview__card:nth-last-child(2):nth-child(odd){
   border-bottom:0;
-  padding:0;
-  border-top:1px solid var(--line);
-  padding-top:12px;
+  padding-bottom:0;
 }
 .cs-page .meta,
 main.wrap > .section:first-of-type .meta,
@@ -2866,13 +2988,13 @@ main.cs-page > a.link + .section.cs-hero{
   }
   .cs-overview{
     grid-column:1;
-    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-columns:1fr 1fr;
     max-width:none;
     margin-top:20px;
     align-self:stretch;
   }
   .cs-hero:not(:has(.cs-hero__cover)) .cs-overview{
-    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-columns:1fr 1fr;
   }
   .cs-page .meta,
   main.wrap > .section:first-of-type .meta,
@@ -2882,9 +3004,26 @@ main.cs-page > a.link + .section.cs-hero{
   }
   .cs-hero h1{ max-width:none; }
 }
-@media (max-width:520px){
+@media (max-width:640px){
   .cs-overview,
-  .cs-hero:not(:has(.cs-hero__cover)) .cs-overview,
+  .cs-hero:not(:has(.cs-hero__cover)) .cs-overview{
+    grid-template-columns:1fr;
+    column-gap:0;
+  }
+  /* Single column — only the true last item drops its hairline */
+  .cs-overview__card:nth-last-child(2):nth-child(odd){
+    border-bottom:1px solid var(--line);
+    padding-bottom:12px;
+  }
+  .cs-overview__card:last-child,
+  .cs-hero:not(:has(.cs-hero__cover)) .cs-overview__card:last-child{
+    border-bottom:0;
+    padding-bottom:0;
+  }
+  .cs-hero:not(:has(.cs-hero__cover)) .cs-overview__card:nth-last-child(2):nth-child(odd){
+    border-bottom:1px solid var(--line);
+    padding-bottom:12px;
+  }
   .cs-page .meta,
   main.wrap > .section:first-of-type .meta,
   .druva-meta,
