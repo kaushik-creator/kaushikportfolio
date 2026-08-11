@@ -5,7 +5,7 @@
   const TRACK = ROOT.querySelector(".marquee__track");
   if (!TRACK) return;
 
-  const CACHE = "20260811favmedia6";
+  const CACHE = "20260811favmedia7";
   const SERIES = [
     { file: "big-bang-theory.png", alt: "The Big Bang Theory" },
     { file: "how-i-met-your-mother.png", alt: "How I Met Your Mother" },
@@ -26,6 +26,10 @@
     { file: "amazing-spider-man.png", alt: "The Amazing Spider-Man" },
     { file: "tamasha.png", alt: "Tamasha" },
     { file: "naanum-rowdy-dhaan.png", alt: "Naanum Rowdy Dhaan" },
+    { file: "madras-matinee.png", alt: "Madras Matinee" },
+    { file: "oh-my-kadavule.png", alt: "Oh My Kadavule" },
+    { file: "sila-nerangalil-sila-manidhargal.png", alt: "Sila Nerangalil Sila Manidhargal" },
+    { file: "yaaradi-nee-mohini.png", alt: "Yaaradi Nee Mohini" },
   ];
 
   function shuffle(list) {

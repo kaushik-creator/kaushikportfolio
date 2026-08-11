@@ -8,7 +8,7 @@
   if (!targets.length) return;
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   const DURATION_MS = 350;
   const FRAME_MS = 40;
 
@@ -16,7 +16,11 @@
     return GLYPHS.charAt(Math.floor(Math.random() * GLYPHS.length));
   }
 
-  function scrambleEl(el) {
+  function isKeepChar(ch) {
+    return ch === ' ' || ch === '\u00a0' || ch === '–' || ch === '-' || ch === '—';
+  }
+
+  function scrambleEl(el, delayMs) {
     const finalText = (el.getAttribute('data-title') || el.textContent || '').trim();
     if (!finalText) return;
 
@@ -27,45 +31,54 @@
       return;
     }
 
-    const start = performance.now();
+    function begin() {
+      const start = performance.now();
 
-    function scrambleFrame(now) {
-      const elapsed = now - start;
-      const progress = Math.min(1, elapsed / DURATION_MS);
-      const revealCount = Math.floor(progress * finalText.length);
+      function scrambleFrame(now) {
+        const elapsed = now - start;
+        const progress = Math.min(1, elapsed / DURATION_MS);
+        const revealCount = Math.floor(progress * finalText.length);
 
-      let out = '';
-      for (let i = 0; i < finalText.length; i++) {
-        const ch = finalText.charAt(i);
-        if (ch === ' ' || ch === '\u00a0') {
-          out += ' ';
-        } else if (i < revealCount) {
-          out += ch;
+        let out = '';
+        for (let i = 0; i < finalText.length; i++) {
+          const ch = finalText.charAt(i);
+          if (isKeepChar(ch)) {
+            out += ch;
+          } else if (i < revealCount) {
+            out += ch;
+          } else {
+            out += randomGlyph();
+          }
+        }
+
+        el.textContent = out;
+
+        if (progress < 1) {
+          window.setTimeout(function () {
+            scrambleFrame(performance.now());
+          }, FRAME_MS);
         } else {
-          out += randomGlyph();
+          el.textContent = finalText;
         }
       }
 
-      el.textContent = out;
+      el.textContent = finalText
+        .split('')
+        .map(function (ch) {
+          return isKeepChar(ch) ? ch : randomGlyph();
+        })
+        .join('');
 
-      if (progress < 1) {
-        window.setTimeout(function () {
-          scrambleFrame(performance.now());
-        }, FRAME_MS);
-      } else {
-        el.textContent = finalText;
-      }
+      scrambleFrame(start);
     }
 
-    el.textContent = finalText
-      .split('')
-      .map(function (ch) {
-        return ch === ' ' || ch === '\u00a0' ? ' ' : randomGlyph();
-      })
-      .join('');
-
-    scrambleFrame(start);
+    if (delayMs > 0) window.setTimeout(begin, delayMs);
+    else begin();
   }
 
-  targets.forEach(scrambleEl);
+  targets.forEach(function (el, i) {
+    // Slight stagger so date badges don’t all settle in lockstep
+    const delay = el.classList.contains('li-date') ? 40 + i * 35 : 0;
+    scrambleEl(el, delay);
+  });
 })();
