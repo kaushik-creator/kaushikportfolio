@@ -1478,15 +1478,44 @@ strong.brand-yc{
 :root[data-theme="dark"] .li-logo--dark{ background:#0F1B3D; }
 .li-body{ min-width:0; }
 .li-head{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:16px 24px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  grid-template-areas:
+    "title date"
+    "company date";
+  column-gap:20px;
+  row-gap:4px;
+  align-items:start;
   margin-bottom:0;
 }
-.li-head__main{ min-width:0; flex:1; }
+.li-head .li-title{
+  grid-area:title;
+  margin:0;
+  padding-right:8px;
+}
+.li-head .li-company{
+  grid-area:company;
+  margin:0;
+  padding-right:8px;
+}
+.li-head .li-date{
+  grid-area:date;
+  margin:0;
+  justify-self:end;
+  align-self:start;
+  flex-shrink:0;
+  text-align:right;
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.45;
+  white-space:nowrap;
+  padding-top:3px;
+}
+/* Title-only heads (e.g. Freelancing): date still top-right */
+.li-head:not(:has(.li-company)){
+  grid-template-areas:"title date";
+}
 .li-title{
-  margin:0 0 4px;
   font-family:var(--font-display);
   font-size:17px; font-weight:600; line-height:1.35;
   letter-spacing:-.015em;
@@ -1501,7 +1530,6 @@ strong.brand-yc{
   font-size:0.92em;
 }
 .li-company{
-  margin:0 0 3px;
   font-size:14px; color:var(--ink-soft); line-height:1.45;
 }
 .li-company-link{
@@ -1522,19 +1550,28 @@ strong.brand-yc{
   margin:0;
   font-size:13px; color:var(--muted); line-height:1.5;
 }
-.li-date{
-  margin:0;
-  flex-shrink:0;
-  text-align:right;
-  font-size:13px;
-  color:var(--muted);
-  line-height:1.45;
-  white-space:nowrap;
-  padding-top:2px;
-}
 @media (max-width:640px){
-  .li-head{ flex-direction:column; gap:4px; }
-  .li-date{ text-align:left; white-space:normal; padding-top:0; }
+  .li-head{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "title"
+      "company"
+      "date";
+    row-gap:4px;
+  }
+  .li-head:not(:has(.li-company)){
+    grid-template-areas:
+      "title"
+      "date";
+  }
+  .li-head .li-date{
+    justify-self:start;
+    text-align:left;
+    white-space:normal;
+    padding-top:0;
+  }
+  .li-head .li-title,
+  .li-head .li-company{ padding-right:0; }
 }
 .li-ext{
   display:inline-block;
