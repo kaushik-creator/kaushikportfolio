@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="GUI didn’t make computers more powerful — it made them human. Notes on GUIs as general purpose technology and why usability matters."/>
+<meta name="author" content="Kaushik Dayalan"/>
+<meta name="theme-color" content="#FFFFFF"/>
+<title>GUI didn’t make computers more powerful. It made them human. — Kaushik Dayalan</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="styles/system.css?v=20260811prealign1"/>
+</head>
+<body>
+
+<audio id="bgMusic" loop preload="auto" playsinline>
+  <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
+</audio>
+<button type="button" class="music-toggle" id="musicToggle" aria-label="Play background music" aria-pressed="false" title="Music">
+  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+</button>
+
+<header class="site-header"><div class="wrap">
+  <a href="index.html" class="site-logo">K.</a>
+  <nav id="nav">
+    <a href="index.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="experience.html">Experience</a>
+    <a href="theraxis.html">AI</a>
+    <a href="articles.html" class="active" aria-current="page">Articles</a>
+    <a href="Kaushik_Resume_Updated_v5.pdf?v=20260808" data-resume-trigger>Resume</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
+      <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+</div></header>
+
+<section class="section page-band notes-band" id="notes">
+  <div class="wrap notes-wrap">
+    <div class="notes-guides" aria-hidden="true"></div>
+
+    <div class="notes-stack">
+      <p class="notes-back"><a href="articles.html" class="link">← All Articles</a></p>
+
+      <header class="notes-title">
+        <h1>GUI didn’t make computers more powerful. It made them human.</h1>
+      </header>
+
+      <p class="notes-lede page-lede-mark"><span>Why usability matters — and what inspired me into UX design.</span></p>
+
+      <article class="notes-panel notes-panel--essay notes-essay">
+        <p>GUI didn’t make computers more powerful. It made them human.</p>
+
+        <p>Before GUI, computers mostly meant terminals and commands — great for experts, not for everyday people. Earlier, I thought UI/UX was just designing the fancy interface. It was only after a few years of actually working in it that I understood its real importance.</p>
+
+        <p>GPT stands for General Purpose Technology — broad, foundational technologies that other things get built on top of, like electricity, the internet, or AI models like OpenAI’s ChatGPT, letting ordinary people use them and earn a living from them. What I’d argue is that the GUI is also a general purpose technology, because it’s what lets a regular person actually use a computer to get things done.</p>
+
+        <p>And suddenly, a “normal person” could sit down and do things: learn CAD, use complex software, play games, listen to music, edit photos, write docs — just by clicking what they see. That’s the same reason we can use smartphones, smartwatches, ATMs, kiosks, and car screens without a manual.</p>
+
+        <figure class="notes-figure">
+          <img src="images/jobs-gui-scene.png?v=20260811prealign1" alt="Scene from Jobs — customer with the circuit board, and Jobs asking for user feedback" width="1024" height="410" loading="lazy"/>
+          <figcaption>Scene from Jobs — Customer with the circuit board, and Jobs asking for user feedback.</figcaption>
+        </figure>
+
+        <p>There’s a scene in the movie Jobs that captures this perfectly. Steve Wozniak shows a customer a board full of raw chips and circuits, and the customer pushes back — he wants a usable computer, with a mouse, a display, a monitor, not a pile of bare components. Wozniak’s response is that this is state-of-the-art technology. He’s right about the technology, but he’s missing the point: state-of-the-art means nothing to a regular person if they can’t actually use it. That’s exactly the same tension with UI.</p>
+
+        <p>Strip away the GUI and what’s left is HTML, API calls, and endless lines of code — inaccessible to anyone who isn’t a developer. As a product designer, my job is turning that underlying complexity into an interface a regular person can actually use.</p>
+
+        <p>The internet connected computers. GUI connected humans to computers.</p>
+
+        <p>That tension is what excites me about the role — pushing back on engineers when “it works” isn’t the same as “it’s usable,” and giving PMs the accessibility their customers actually need.</p>
+
+        <p class="notes-attr">-KAUSHIK</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<script src="js/site-footer.js?v=20260809live1"></script>
+<script src="js/system-theme.js"></script>
+<script src="js/site-shell.js?v=20260809nochats"></script>
+<script src="audio/music.js?v=20260809noauto"></script>
+</body>
+</html>

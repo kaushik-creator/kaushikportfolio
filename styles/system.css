@@ -444,6 +444,14 @@ figure figcaption,
 
 /* Hero portrait — B&W duotone + subtle mono glitch */
 .hero-portrait{ position:relative; }
+.hero-portrait__role{
+  margin:.75rem 0 0;
+  text-align:left;
+  width:100%;
+}
+#home .hero-portrait__role.page-lede-mark{
+  margin:.75rem 0 0;
+}
 .hero-glitch{
   position:relative;
   margin:0;
@@ -965,6 +973,13 @@ strong.brand-yc{
   color:var(--ink-soft);
   font-size:clamp(15px,1.35vw,17px);
   line-height:1.45;
+}
+/* Journey secondary line — museum white plate under “How I got here” */
+.timeline__lede.page-lede-mark{
+  max-width:none;
+  color:var(--ink);
+  font-size:clamp(15px,1.5vw,17px);
+  line-height:1.75;
 }
 .timeline__track{
   --tl-dot: 8px;
@@ -1574,13 +1589,14 @@ main.cs-page > .section:first-of-type,
 }
 
 /* Flat content bands — no atmospheric wash
-   Projects / Experience / Education / Notes keep dotted fields (see museum pass) */
+   Projects / Articles / Experience / Education / Notes keep dotted fields (see museum pass) */
 .page-band{
   background:var(--bg);
   background-image:none;
   padding-block:clamp(32px,4.5vw,56px);
 }
 #projects.section,
+#articles.section,
 #experience.section,
 #education.section,
 #notes.section{
@@ -1611,7 +1627,7 @@ main.cs-page > .section:first-of-type,
 #experience .page-intro{
   max-width:none;
 }
-/* Museum yellow highlight — shared lede mark (Home, Projects, Experience, AI, Notes) */
+/* Museum white plate — shared lede mark (Home, Projects, Experience, AI, Notes) */
 .page-lede-mark,
 .notes-lede{
   position:relative;
@@ -1633,9 +1649,9 @@ main.cs-page > .section:first-of-type,
 .page-lede-mark > span,
 .notes-lede > span{
   display:inline;
-  background:#FFE600;
-  color:#111;
-  border:none;
+  background:var(--surface);
+  color:var(--ink);
+  border:1px solid var(--border-hard);
   box-decoration-break:clone;
   -webkit-box-decoration-break:clone;
   padding:.22em .5em;
@@ -1665,19 +1681,41 @@ main.cs-page > .section:first-of-type,
   border-bottom:1px solid var(--line);
 }
 .site-header nav{ display:flex; gap:clamp(14px,2.2vw,28px); align-items:center; }
-.site-header nav a{ font-size:13px; font-weight:500; color:var(--muted); }
-
+.site-header nav a{
+  font-size:13px;
+  font-weight:500;
+  color:var(--muted);
+  padding:6px 10px;
+  border:none;
+  border-radius:0;
+  background:transparent;
+  text-decoration:none;
+}
+.site-header nav a:hover{
+  color:var(--ink);
+  background:transparent;
+}
+/* Design Museum active — solid yellow block, hard edges, dark type */
 .site-header nav a.active,
 .site-header nav a[aria-current="page"]{
-  background:none;
-  color:var(--ink);
-  border-bottom:1px solid var(--ink);
-  padding:6px 0;
+  background:#FFE600;
+  color:#111;
+  border:none;
+  border-radius:0;
+  padding:6px 10px;
 }
-.site-header nav a{ padding:6px 0; border-bottom:1px solid transparent; }
-.site-header nav a:hover{ background:none; color:var(--ink); border-bottom-color:var(--line-strong); }
 .site-header nav a.active:hover,
-.site-header nav a[aria-current="page"]:hover{ background:none; color:var(--ink); border-bottom-color:var(--ink); }
+.site-header nav a[aria-current="page"]:hover{
+  background:#FFE600;
+  color:#111;
+}
+:root[data-theme="dark"] .site-header nav a.active,
+:root[data-theme="dark"] .site-header nav a[aria-current="page"],
+:root[data-theme="dark"] .site-header nav a.active:hover,
+:root[data-theme="dark"] .site-header nav a[aria-current="page"]:hover{
+  background:#FFE600;
+  color:#111;
+}
 
 /* Outlined "tab" buttons (like Schools ⌄ / Directly to ⌄ / Login ⌄):
    thin border, sharp corners, small caret. Use for dropdown-style controls. */
@@ -2015,13 +2053,16 @@ main.cs-page > .section:first-of-type,
 }
 
 /* ============ PROJECTS INDEX PAGE — Design Museum catalog list ============ */
-#projects.section{
+#projects.section,
+#articles.section{
   background-color:var(--bg) !important;
   background-image:var(--dotfield) !important;
   background-size:var(--dotfield-size) !important;
 }
 #projects .page-intro,
-#projects .filter-row{
+#projects .filter-row,
+#articles .page-intro,
+#articles .filter-row{
   position:relative;
   z-index:1;
 }
@@ -2174,10 +2215,16 @@ main.cs-page > .section:first-of-type,
   border:0;
   padding:0;
 }
-/* Match global page H1 (Archivo display) — keep on one line except very small screens */
+/* Match global page H1 (Archivo display) — wrap long article titles */
 .notes-title h1{
   margin:0;
-  white-space:nowrap;
+  white-space:normal;
+  text-wrap:balance;
+}
+.notes-back{
+  position:relative;
+  z-index:1;
+  margin:0;
 }
 .notes-panel{
   position:relative;
@@ -2234,6 +2281,8 @@ main.cs-page > .section:first-of-type,
   display:block;
   border:0;
   border-radius:0;
+}
+.notes-essay .notes-figure > img{
   filter:none !important;
 }
 .notes-essay .notes-figure figcaption{
@@ -2259,12 +2308,6 @@ main.cs-page > .section:first-of-type,
   }
   .notes-guides{
     opacity:.55;
-  }
-}
-@media (max-width:520px){
-  .notes-title h1{
-    white-space:normal;
-    text-wrap:balance;
   }
 }
 @media (max-width:520px){
@@ -3164,7 +3207,7 @@ main.cs-page > a.link + .section.cs-hero{
   position:relative;
   z-index:1;
 }
-.page-band:not(#projects):not(#experience):not(#education):not(#notes),
+.page-band:not(#projects):not(#articles):not(#experience):not(#education):not(#notes),
 #making.section,
 #home,
 .cs-hero,
@@ -3173,8 +3216,9 @@ main.cs-page > a.link + .section.cs-hero{
   background:var(--bg) !important;
   background-image:none !important;
 }
-/* Projects / Experience / Education / Notes keep dotted field + white catalog panel */
+/* Projects / Articles / Experience / Education / Notes keep dotted field + white catalog panel */
 #projects.section,
+#articles.section,
 #experience.section,
 #education.section,
 #notes.section{

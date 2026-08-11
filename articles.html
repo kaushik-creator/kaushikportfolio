@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Articles by Kaushik Dayalan — writing on design, craft, cities, and what makes software human."/>
+<meta name="author" content="Kaushik Dayalan"/>
+<meta name="theme-color" content="#FFFFFF"/>
+<title>Articles — Kaushik Dayalan</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="styles/system.css?v=20260811prealign1"/>
+</head>
+<body>
+
+<audio id="bgMusic" loop preload="auto" playsinline>
+  <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
+</audio>
+<button type="button" class="music-toggle" id="musicToggle" aria-label="Play background music" aria-pressed="false" title="Music">
+  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+</button>
+
+<header class="site-header"><div class="wrap">
+  <a href="index.html" class="site-logo">K.</a>
+  <nav id="nav">
+    <a href="index.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="experience.html">Experience</a>
+    <a href="theraxis.html">AI</a>
+    <a href="articles.html" class="active" aria-current="page">Articles</a>
+    <a href="Kaushik_Resume_Updated_v5.pdf?v=20260808" data-resume-trigger>Resume</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
+      <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+</div></header>
+
+<section class="section page-band" id="articles">
+  <div class="wrap">
+    <div class="page-intro">
+      <h1>Articles</h1>
+      <p class="page-intro__lede page-lede-mark"><span>My thoughts on design, humans, cities, and much more.</span></p>
+    </div>
+
+    <div class="proj-catalog">
+      <div class="proj-stack">
+        <a href="article-gui-human.html" class="proj-show">
+          <div class="proj-show__media">
+            <img src="images/jobs-gui-scene.png?v=20260811prealign1" width="1024" height="410" alt=""/>
+          </div>
+          <div class="proj-show__body">
+            <h2 class="proj-show__title">GUI didn’t make computers more powerful. It made them human.</h2>
+            <p class="proj-show__brief">GUIs as a <strong>general purpose technology</strong> — and why usability matters.</p>
+            <span class="proj-show__cta">Read article →</span>
+          </div>
+        </a>
+
+        <a href="article-chennai-bangalore.html" class="proj-show">
+          <div class="proj-show__media">
+            <img src="images/chennai-central.png?v=20260811prealign1" width="636" height="438" alt=""/>
+          </div>
+          <div class="proj-show__body">
+            <h2 class="proj-show__title">Why Chennai hasn’t grown an IT product ecosystem like Bangalore</h2>
+            <p class="proj-show__brief">Metro status came early — product companies and startup loops went to Bangalore.</p>
+            <span class="proj-show__cta">Read article →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="js/site-footer.js?v=20260809live1"></script>
+<script src="js/system-theme.js"></script>
+<script src="js/site-shell.js?v=20260809nochats"></script>
+<script src="audio/music.js?v=20260809noauto"></script>
+</body>
+</html>
