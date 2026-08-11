@@ -5,14 +5,15 @@
   const TRACK = ROOT.querySelector(".marquee__track");
   if (!TRACK) return;
 
-  const CACHE = "20260811favmedia3";
+  const CACHE = "20260811favmedia6";
   const SERIES = [
     { file: "big-bang-theory.png", alt: "The Big Bang Theory" },
     { file: "how-i-met-your-mother.png", alt: "How I Met Your Mother" },
     { file: "friends.png", alt: "Friends" },
     { file: "silicon-valley.png", alt: "Silicon Valley" },
+    { file: "squid-game.png", alt: "Squid Game" },
+    { file: "black-mirror.png", alt: "Black Mirror" },
   ];
-  const DOGTOOTH = { file: "dogtooth.png", alt: "Dogtooth" };
   const MOVIES = [
     { file: "12-angry-men.png", alt: "12 Angry Men" },
     { file: "mozhi.png", alt: "Mozhi" },
@@ -22,6 +23,9 @@
     { file: "life-is-beautiful.png", alt: "Life Is Beautiful" },
     { file: "life-of-pi.png", alt: "Life of Pi" },
     { file: "the-namesake.png", alt: "The Namesake" },
+    { file: "amazing-spider-man.png", alt: "The Amazing Spider-Man" },
+    { file: "tamasha.png", alt: "Tamasha" },
+    { file: "naanum-rowdy-dhaan.png", alt: "Naanum Rowdy Dhaan" },
   ];
 
   function shuffle(list) {
@@ -35,36 +39,30 @@
     return arr;
   }
 
-  /** Series never adjacent, including wrap (loop seam). Dogtooth always last. */
+  /** Series never adjacent, including wrap (loop seam). */
   function interleaveNoAdjacentSeries(movies, series) {
     const m = shuffle(movies);
     const s = shuffle(series);
-    // +1 slot reserved for Dogtooth at the end
-    const n = m.length + s.length + 1;
+    const n = m.length + s.length;
     const k = s.length;
-    const last = n - 1;
 
     function isValid(positions) {
       const sorted = positions.slice().sort(function (a, b) {
         return a - b;
       });
-      for (let i = 0; i < sorted.length; i++) {
-        if (sorted[i] === last) return false; // last reserved for Dogtooth
-      }
       for (let i = 0; i < sorted.length - 1; i++) {
         if (sorted[i + 1] === sorted[i] + 1) return false;
       }
       if (sorted.length > 1 && sorted[0] === 0 && sorted[sorted.length - 1] === n - 1) {
         return false;
       }
-      // first can't be series if last were series — last is movie, so only block series at 0 when... actually last is movie so wrap OK even if first is series
       return true;
     }
 
     let positions = null;
-    for (let attempt = 0; attempt < 200; attempt++) {
+    for (let attempt = 0; attempt < 400; attempt++) {
       const candidate = shuffle(
-        Array.from({ length: last }, function (_, i) {
+        Array.from({ length: n }, function (_, i) {
           return i;
         })
       ).slice(0, k);
@@ -75,8 +73,12 @@
     }
 
     if (!positions) {
-      positions = [1, 4, 7, 10].filter(function (p) {
-        return p < last;
+      positions = [];
+      for (let i = 0; i < k; i++) {
+        positions.push(Math.min(n - 1, 1 + Math.floor((i * n) / k)));
+      }
+      positions = positions.filter(function (p, idx, arr) {
+        return arr.indexOf(p) === idx;
       });
     }
 
@@ -84,10 +86,9 @@
     const out = new Array(n);
     let mi = 0;
     let si = 0;
-    for (let i = 0; i < last; i++) {
+    for (let i = 0; i < n; i++) {
       out[i] = seriesSet.has(i) ? s[si++] : m[mi++];
     }
-    out[last] = DOGTOOTH;
     return out;
   }
 
