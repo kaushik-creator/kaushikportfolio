@@ -6,7 +6,7 @@
   const FILTERS = SECTION.querySelector(".fav-media__filters");
   if (!GRID || !FILTERS) return;
 
-  const CACHE = "20260813favmedia15";
+  const CACHE = "20260813favmedia16";
   const SERIES = [
     { file: "big-bang-theory.png", alt: "The Big Bang Theory", year: "2007" },
     { file: "how-i-met-your-mother.png", alt: "How I Met Your Mother", year: "2005" },
@@ -43,13 +43,32 @@
     { file: "avatar.png", alt: "Avatar", year: "2009" },
     { file: "inside-out.png", alt: "Inside Out", year: "2015" },
     { file: "kaaka-muttai.png", alt: "Kaaka Muttai", year: "2015" },
+    { file: "if.png", alt: "IF", year: "2024" },
   ];
 
+  function ytSearch(title, kind) {
+    const q = kind === "series" ? title + " TV series" : title + " film";
+    return "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
+  }
+
+  function googleSearch(title, kind) {
+    const q = kind === "series" ? title + " TV series" : title + " movie";
+    return "https://www.google.com/search?q=" + encodeURIComponent(q);
+  }
+
   const ALL = MOVIES.map(function (item) {
-    return Object.assign({}, item, { kind: "movie" });
+    return Object.assign({}, item, {
+      kind: "movie",
+      url: item.url || ytSearch(item.alt, "movie"),
+      google: googleSearch(item.alt, "movie"),
+    });
   }).concat(
     SERIES.map(function (item) {
-      return Object.assign({}, item, { kind: "series" });
+      return Object.assign({}, item, {
+        kind: "series",
+        url: item.url || ytSearch(item.alt, "series"),
+        google: googleSearch(item.alt, "series"),
+      });
     })
   );
 
@@ -92,15 +111,24 @@
     img.height = 450;
 
     const cap = document.createElement("figcaption");
-    const title = document.createElement("span");
+    const title = document.createElement("a");
     title.className = "fav-media__title";
+    title.href = item.url;
+    title.target = "_blank";
+    title.rel = "noopener noreferrer";
     title.textContent = item.alt;
-    const meta = document.createElement("span");
+    title.title = "Open on YouTube";
+
+    const meta = document.createElement("a");
     meta.className = "fav-media__meta";
+    meta.href = item.google;
+    meta.target = "_blank";
+    meta.rel = "noopener noreferrer";
     meta.textContent = item.year + " · " + (item.kind === "series" ? "Series" : "Film");
+    meta.title = "Search on Google";
+
     cap.appendChild(title);
     cap.appendChild(meta);
-
     fig.appendChild(img);
     fig.appendChild(cap);
     return fig;
