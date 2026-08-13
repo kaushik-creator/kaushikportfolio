@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <script src="js/theme-init.js"></script>
-<link rel="stylesheet" href="styles/system.css?v=20260813defines1"/>
+<link rel="stylesheet" href="styles/system.css?v=20260813media2"/>
 </head>
 <body>
 
@@ -93,18 +93,30 @@
         </a>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="section fav-media" aria-label="Movies and series I love">
-  <div class="wrap">
-    <div class="page-intro page-intro--sub">
-      <h2 class="page-lede-mark"><span>Movies and Series I love</span></h2>
+    <div class="page-intro page-intro--sub define-collections-head">
+      <h2 class="page-lede-mark"><span>Movies and Shows</span></h2>
     </div>
-  </div>
-  <div class="marquee fav-media__marquee" role="region" aria-label="Scrolling favourite posters">
-    <div class="marquee__track">
-      <!-- filled by js/fav-media.js — random order, series never adjacent -->
+
+    <div class="proj-catalog">
+      <div class="proj-stack">
+        <a href="movies.html" class="proj-show">
+          <div class="proj-show__media define-mosaic" aria-hidden="true">
+            <img src="images/fav-media/inside-out.png?v=20260813favmedia14" alt="" width="540" height="810" loading="lazy"/>
+            <img src="images/fav-media/avatar.png?v=20260813favmedia14" alt="" width="695" height="1024" loading="lazy"/>
+            <img src="images/fav-media/her.png?v=20260811favmedia7" alt="" width="400" height="600" loading="lazy"/>
+            <img src="images/fav-media/kaaka-muttai.png?v=20260813favmedia14" alt="" width="682" height="1024" loading="lazy"/>
+            <img src="images/fav-media/black-mirror.png?v=20260811favmedia7" alt="" width="400" height="600" loading="lazy"/>
+            <img src="images/fav-media/tourist-family.png?v=20260813favmedia14" alt="" width="682" height="1024" loading="lazy"/>
+          </div>
+          <div class="proj-show__body">
+            <p class="eyebrow">Collection</p>
+            <h2 class="proj-show__title">Movies and Series I love</h2>
+            <p class="proj-show__brief">Films and shows that stayed with me — filter by <strong>movies</strong> or <strong>series</strong>.</p>
+            <span class="proj-show__cta">Open collection →</span>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -114,6 +126,5 @@
 <script src="js/site-shell.js?v=20260809nochats"></script>
 <script src="audio/music.js?v=20260811autoplay2"></script>
 <script src="js/title-scramble.js?v=20260811scrambleDate"></script>
-<script src="js/fav-media.js?v=20260813favmedia13"></script>
 </body>
 </html>

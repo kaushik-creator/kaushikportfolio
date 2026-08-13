@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Movies and Series I love — a collection of films and shows that stayed with Kaushik Dayalan."/>
+<meta name="author" content="Kaushik Dayalan"/>
+<meta name="theme-color" content="#FFFFFF"/>
+<title>Movies and Series I love — Kaushik Dayalan</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="styles/system.css?v=20260813media2"/>
+</head>
+<body>
+
+<audio id="bgMusic" loop preload="auto" playsinline>
+  <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
+</audio>
+<button type="button" class="music-toggle" id="musicToggle" aria-label="Play background music" aria-pressed="false" title="Music">
+  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+</button>
+
+<header class="site-header"><div class="wrap">
+  <a href="index.html" class="site-logo">K.</a>
+  <nav id="nav">
+    <a href="index.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="experience.html">Experience</a>
+    <a href="theraxis.html">AI</a>
+    <a href="articles.html" class="active" aria-current="page">What defines me</a>
+    <a href="Kaushik_Resume_Updated_v5.pdf?v=20260808" data-resume-trigger>Resume</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
+      <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+</div></header>
+
+<section class="section fav-media fav-media--page" aria-label="Movies and series I love">
+  <div class="wrap">
+    <p class="notes-back"><a href="articles.html" class="link">← What defines me</a></p>
+
+    <div class="page-intro">
+      <h1 data-title="Movies and Series I love">Movies and Series I love</h1>
+      <p class="page-intro__lede page-lede-mark"><span>A quiet collection of films and shows that stayed with me.</span></p>
+    </div>
+
+    <div class="filter-row fav-media__filters" role="tablist" aria-label="Media filters">
+      <button class="tab-btn active" type="button" role="tab" data-kind="all" aria-selected="true">All</button>
+      <button class="tab-btn" type="button" role="tab" data-kind="movie" aria-selected="false">Movies</button>
+      <button class="tab-btn" type="button" role="tab" data-kind="series" aria-selected="false">Series</button>
+    </div>
+
+    <div class="fav-media__grid" aria-live="polite"></div>
+  </div>
+</section>
+
+<script src="js/site-footer.js?v=20260809live1"></script>
+<script src="js/system-theme.js"></script>
+<script src="js/site-shell.js?v=20260809nochats"></script>
+<script src="audio/music.js?v=20260811autoplay2"></script>
+<script src="js/title-scramble.js?v=20260811scrambleDate"></script>
+<script src="js/fav-media.js?v=20260813favmedia15"></script>
+</body>
+</html>

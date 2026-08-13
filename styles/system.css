@@ -2029,20 +2029,130 @@ main.cs-page > .section:first-of-type,
   .skills-marquee{ overflow:visible; }
 }
 
-/* Favourite movies & series — poster runner (Articles) */
+/* Favourite movies & series — museum collection grid */
 .fav-media{
   padding-block:clamp(28px,4vw,48px);
   border-top:1px solid var(--line);
   background:var(--bg);
-  background-image:none;
+  background-image:var(--dotfield);
+  background-size:var(--dotfield-size);
   overflow:hidden;
 }
 .fav-media .page-intro--sub{
-  margin-bottom:clamp(18px,2.5vw,28px);
+  margin-bottom:clamp(12px,2vw,18px);
 }
 .fav-media .page-intro--sub h2{
   font-size:clamp(22px,2.8vw,32px);
   margin:0;
+}
+.fav-media__lede{
+  margin:14px 0 0;
+  max-width:42rem;
+  color:var(--ink-soft);
+  font-size:clamp(14px,1.4vw,16px);
+  line-height:1.55;
+}
+.fav-media__filters{
+  margin:0 0 clamp(20px,3vw,28px);
+}
+.fav-media .filter-row .tab-btn{
+  border-radius:0;
+}
+.fav-media__grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(140px, 1fr));
+  gap:clamp(16px,2.2vw,24px) clamp(12px,1.8vw,18px);
+  position:relative;
+  z-index:1;
+}
+@media (min-width:720px){
+  .fav-media__grid{
+    grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+@media (min-width:1100px){
+  .fav-media__grid{
+    grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+.fav-media__item{
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  min-width:0;
+}
+.fav-media__item img{
+  display:block;
+  width:100%;
+  aspect-ratio:2 / 3;
+  height:auto;
+  object-fit:cover;
+  border:1px solid var(--border-hard);
+  background:var(--surface);
+  border-radius:0;
+}
+.fav-media__item figcaption{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  margin:0;
+  padding:0;
+  border:0;
+  color:var(--ink);
+}
+.fav-media__title{
+  font-family:var(--font-display);
+  font-size:clamp(13px,1.2vw,15px);
+  font-weight:700;
+  letter-spacing:-0.02em;
+  line-height:1.25;
+  color:var(--ink);
+}
+.fav-media__meta{
+  font-family:var(--font-body);
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.fav-media--page{
+  border-top:0;
+  padding-block:clamp(32px,4.5vw,56px);
+}
+.fav-media--page .notes-back{
+  margin:0 0 clamp(18px,2.5vw,28px);
+}
+.fav-media--page .page-intro{
+  margin-bottom:clamp(18px,2.5vw,28px);
+}
+.define-collections-head{
+  margin-top:clamp(36px,5vw,56px);
+}
+/* Hard-border poster mosaic — collection preview (not a card collage) */
+.define-mosaic{
+  display:grid !important;
+  grid-template-columns:repeat(3, 1fr);
+  grid-template-rows:repeat(2, 1fr);
+  gap:2px;
+  background:var(--border-hard);
+  border:1px solid var(--border-hard);
+  overflow:hidden;
+  aspect-ratio:16 / 10;
+}
+.define-mosaic img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover;
+  display:block;
+  border:0 !important;
+  filter:none !important;
+  transform:none !important;
+}
+.proj-show:hover .define-mosaic img{
+  opacity:1;
+  transform:none;
 }
 #articles .page-intro--sub{
   margin-bottom:clamp(18px,2.5vw,28px);
@@ -2050,38 +2160,6 @@ main.cs-page > .section:first-of-type,
 #articles .page-intro--sub h2{
   font-size:clamp(22px,2.8vw,32px);
   margin:0;
-}
-.fav-media__marquee{
-  overflow:hidden;
-  width:100%;
-  cursor:grab;
-  touch-action:pan-y;
-  /* never show a horizontal scrollbar */
-  scrollbar-width:none;
-  -ms-overflow-style:none;
-}
-.fav-media__marquee::-webkit-scrollbar{ display:none; width:0; height:0; }
-.fav-media__marquee.is-dragging{ cursor:grabbing; }
-.fav-media__marquee .marquee__track{
-  display:flex;
-  width:max-content;
-  gap:12px;
-  align-items:stretch;
-  animation:none; /* driven by js/fav-media.js */
-  will-change:transform;
-}
-.fav-media__poster{
-  display:block;
-  flex:0 0 auto;
-  height:clamp(180px,22vw,220px);
-  width:auto;
-  object-fit:cover;
-  border-radius:0;
-  border:1px solid var(--border-hard);
-  background:var(--surface);
-  pointer-events:none;
-  user-select:none;
-  -webkit-user-drag:none;
 }
 
 /* Collapse earlier so active tab + links don’t overflow mid widths */

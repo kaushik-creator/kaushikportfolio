@@ -1,42 +1,57 @@
 (function () {
-  const ROOT = document.querySelector(".fav-media__marquee");
-  if (!ROOT) return;
+  const SECTION = document.querySelector(".fav-media");
+  if (!SECTION) return;
 
-  const TRACK = ROOT.querySelector(".marquee__track");
-  if (!TRACK) return;
+  const GRID = SECTION.querySelector(".fav-media__grid");
+  const FILTERS = SECTION.querySelector(".fav-media__filters");
+  if (!GRID || !FILTERS) return;
 
-  const CACHE = "20260813favmedia13";
+  const CACHE = "20260813favmedia15";
   const SERIES = [
-    { file: "big-bang-theory.png", alt: "The Big Bang Theory" },
-    { file: "how-i-met-your-mother.png", alt: "How I Met Your Mother" },
-    { file: "friends.png", alt: "Friends" },
-    { file: "silicon-valley.png", alt: "Silicon Valley" },
-    { file: "squid-game.png", alt: "Squid Game" },
-    { file: "black-mirror.png", alt: "Black Mirror" },
+    { file: "big-bang-theory.png", alt: "The Big Bang Theory", year: "2007" },
+    { file: "how-i-met-your-mother.png", alt: "How I Met Your Mother", year: "2005" },
+    { file: "friends.png", alt: "Friends", year: "1994" },
+    { file: "silicon-valley.png", alt: "Silicon Valley", year: "2014" },
+    { file: "squid-game.png", alt: "Squid Game", year: "2021" },
+    { file: "black-mirror.png", alt: "Black Mirror", year: "2011" },
+    { file: "family-guy.png", alt: "Family Guy", year: "1999" },
+    { file: "galactik-football.png", alt: "Galactik Football", year: "2006" },
+    { file: "dragon-booster.png", alt: "Dragon Booster", year: "2004" },
+    { file: "kick-buttowski.png", alt: "Kick Buttowski", year: "2010" },
   ];
   const MOVIES = [
-    { file: "12-angry-men.png", alt: "12 Angry Men" },
-    { file: "mozhi.png", alt: "Mozhi" },
-    { file: "her.png", alt: "Her" },
-    { file: "the-lunchbox.png", alt: "The Lunchbox" },
-    { file: "jojo-rabbit.png", alt: "Jojo Rabbit" },
-    { file: "life-is-beautiful.png", alt: "Life Is Beautiful" },
-    { file: "life-of-pi.png", alt: "Life of Pi" },
-    { file: "the-namesake.png", alt: "The Namesake" },
-    { file: "amazing-spider-man.png", alt: "The Amazing Spider-Man" },
-    { file: "tamasha.png", alt: "Tamasha" },
-    { file: "naanum-rowdy-dhaan.png", alt: "Naanum Rowdy Dhaan" },
-    { file: "madras-matinee.png", alt: "Madras Matinee" },
-    { file: "oh-my-kadavule.png", alt: "Oh My Kadavule" },
-    { file: "sila-nerangalil-sila-manidhargal.png", alt: "Sila Nerangalil Sila Manidhargal" },
-    { file: "yaaradi-nee-mohini.png", alt: "Yaaradi Nee Mohini" },
-    { file: "the-intern.png", alt: "The Intern" },
-    { file: "free-guy.png", alt: "Free Guy" },
-    { file: "aandavan-kattalai.png", alt: "Aandavan Kattalai" },
-    { file: "nitham-oru-vaanam.png", alt: "Nitham Oru Vaanam" },
-    { file: "tourist-family.png", alt: "Tourist Family" },
-    { file: "avatar.png", alt: "Avatar" },
+    { file: "12-angry-men.png", alt: "12 Angry Men", year: "1957" },
+    { file: "mozhi.png", alt: "Mozhi", year: "2007" },
+    { file: "her.png", alt: "Her", year: "2013" },
+    { file: "the-lunchbox.png", alt: "The Lunchbox", year: "2013" },
+    { file: "jojo-rabbit.png", alt: "Jojo Rabbit", year: "2019" },
+    { file: "life-is-beautiful.png", alt: "Life Is Beautiful", year: "1997" },
+    { file: "life-of-pi.png", alt: "Life of Pi", year: "2012" },
+    { file: "the-namesake.png", alt: "The Namesake", year: "2006" },
+    { file: "amazing-spider-man.png", alt: "The Amazing Spider-Man", year: "2012" },
+    { file: "tamasha.png", alt: "Tamasha", year: "2015" },
+    { file: "naanum-rowdy-dhaan.png", alt: "Naanum Rowdy Dhaan", year: "2015" },
+    { file: "madras-matinee.png", alt: "Madras Matinee", year: "2025" },
+    { file: "oh-my-kadavule.png", alt: "Oh My Kadavule", year: "2020" },
+    { file: "sila-nerangalil-sila-manidhargal.png", alt: "Sila Nerangalil Sila Manidhargal", year: "2022" },
+    { file: "yaaradi-nee-mohini.png", alt: "Yaaradi Nee Mohini", year: "2008" },
+    { file: "the-intern.png", alt: "The Intern", year: "2015" },
+    { file: "free-guy.png", alt: "Free Guy", year: "2021" },
+    { file: "aandavan-kattalai.png", alt: "Aandavan Kattalai", year: "2016" },
+    { file: "nitham-oru-vaanam.png", alt: "Nitham Oru Vaanam", year: "2022" },
+    { file: "tourist-family.png", alt: "Tourist Family", year: "2025" },
+    { file: "avatar.png", alt: "Avatar", year: "2009" },
+    { file: "inside-out.png", alt: "Inside Out", year: "2015" },
+    { file: "kaaka-muttai.png", alt: "Kaaka Muttai", year: "2015" },
   ];
+
+  const ALL = MOVIES.map(function (item) {
+    return Object.assign({}, item, { kind: "movie" });
+  }).concat(
+    SERIES.map(function (item) {
+      return Object.assign({}, item, { kind: "series" });
+    })
+  );
 
   function shuffle(list) {
     const arr = list.slice();
@@ -49,190 +64,68 @@
     return arr;
   }
 
-  /** Series never adjacent, including wrap (loop seam). */
-  function interleaveNoAdjacentSeries(movies, series) {
-    const m = shuffle(movies);
-    const s = shuffle(series);
-    const n = m.length + s.length;
-    const k = s.length;
+  const ORDER = shuffle(ALL);
+  let active = "all";
 
-    function isValid(positions) {
-      const sorted = positions.slice().sort(function (a, b) {
-        return a - b;
-      });
-      for (let i = 0; i < sorted.length - 1; i++) {
-        if (sorted[i + 1] === sorted[i] + 1) return false;
-      }
-      if (sorted.length > 1 && sorted[0] === 0 && sorted[sorted.length - 1] === n - 1) {
-        return false;
-      }
-      return true;
-    }
-
-    let positions = null;
-    for (let attempt = 0; attempt < 400; attempt++) {
-      const candidate = shuffle(
-        Array.from({ length: n }, function (_, i) {
-          return i;
-        })
-      ).slice(0, k);
-      if (isValid(candidate)) {
-        positions = candidate;
-        break;
-      }
-    }
-
-    if (!positions) {
-      positions = [];
-      for (let i = 0; i < k; i++) {
-        positions.push(Math.min(n - 1, 1 + Math.floor((i * n) / k)));
-      }
-      positions = positions.filter(function (p, idx, arr) {
-        return arr.indexOf(p) === idx;
-      });
-    }
-
-    const seriesSet = new Set(positions);
-    const out = new Array(n);
-    let mi = 0;
-    let si = 0;
-    for (let i = 0; i < n; i++) {
-      out[i] = seriesSet.has(i) ? s[si++] : m[mi++];
-    }
-    return out;
+  function setCounts() {
+    const movieCount = MOVIES.length;
+    const seriesCount = SERIES.length;
+    const allBtn = FILTERS.querySelector('[data-kind="all"]');
+    const movieBtn = FILTERS.querySelector('[data-kind="movie"]');
+    const seriesBtn = FILTERS.querySelector('[data-kind="series"]');
+    if (allBtn) allBtn.textContent = "All · " + (movieCount + seriesCount);
+    if (movieBtn) movieBtn.textContent = "Movies · " + movieCount;
+    if (seriesBtn) seriesBtn.textContent = "Series · " + seriesCount;
   }
 
-  function posterEl(item, hidden) {
+  function buildItem(item) {
+    const fig = document.createElement("figure");
+    fig.className = "fav-media__item";
+    fig.dataset.kind = item.kind;
+
     const img = document.createElement("img");
-    img.className = "fav-media__poster";
     img.src = "images/fav-media/" + item.file + "?v=" + CACHE;
-    img.alt = hidden ? "" : item.alt;
-    img.height = 200;
+    img.alt = item.alt;
     img.loading = "lazy";
     img.decoding = "async";
-    if (hidden) img.setAttribute("aria-hidden", "true");
-    img.dataset.kind = SERIES.some(function (s) {
-      return s.file === item.file;
-    })
-      ? "series"
-      : "movie";
-    return img;
+    img.width = 300;
+    img.height = 450;
+
+    const cap = document.createElement("figcaption");
+    const title = document.createElement("span");
+    title.className = "fav-media__title";
+    title.textContent = item.alt;
+    const meta = document.createElement("span");
+    meta.className = "fav-media__meta";
+    meta.textContent = item.year + " · " + (item.kind === "series" ? "Series" : "Film");
+    cap.appendChild(title);
+    cap.appendChild(meta);
+
+    fig.appendChild(img);
+    fig.appendChild(cap);
+    return fig;
   }
 
-  const order = interleaveNoAdjacentSeries(MOVIES, SERIES);
-  TRACK.textContent = "";
-  order.forEach(function (item) {
-    TRACK.appendChild(posterEl(item, false));
-  });
-  // Duplicate for seamless loop
-  order.forEach(function (item) {
-    TRACK.appendChild(posterEl(item, true));
-  });
-
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let offset = 0;
-  let half = 0;
-  let raf = 0;
-  let last = 0;
-  let dragging = false;
-  let dragX = 0;
-  const AUTO_PX_PER_MS = reduceMotion ? 0 : 0.045; // ~45px/s
-  const WHEEL_BOOST = 3.2;
-
-  function measure() {
-    half = TRACK.scrollWidth / 2;
-  }
-
-  function wrapOffset() {
-    if (half <= 0) return;
-    offset = ((offset % half) + half) % half;
-  }
-
-  function paint() {
-    TRACK.style.transform = "translate3d(" + -offset + "px,0,0)";
-  }
-
-  function tick(now) {
-    if (!last) last = now;
-    const dt = Math.min(48, now - last);
-    last = now;
-    if (!ROOT.matches(":hover") && !dragging) {
-      offset += AUTO_PX_PER_MS * dt;
-      wrapOffset();
-      paint();
-    }
-    raf = requestAnimationFrame(tick);
-  }
-
-  function applyDelta(dx) {
-    offset += dx;
-    wrapOffset();
-    paint();
-  }
-
-  // Fast horizontal scrub — trackpad / shift+wheel / touch — no native scrollbar
-  ROOT.addEventListener(
-    "wheel",
-    function (e) {
-      const dx = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.shiftKey ? e.deltaY : 0;
-      if (!dx) return;
-      e.preventDefault();
-      applyDelta(dx * WHEEL_BOOST);
-    },
-    { passive: false }
-  );
-
-  ROOT.addEventListener(
-    "pointerdown",
-    function (e) {
-      if (e.pointerType === "mouse" && e.button !== 0) return;
-      dragging = true;
-      dragX = e.clientX;
-      ROOT.setPointerCapture(e.pointerId);
-      ROOT.classList.add("is-dragging");
-    },
-    { passive: true }
-  );
-  ROOT.addEventListener(
-    "pointermove",
-    function (e) {
-      if (!dragging) return;
-      const dx = dragX - e.clientX;
-      dragX = e.clientX;
-      applyDelta(dx * 1.35);
-    },
-    { passive: true }
-  );
-  function endDrag(e) {
-    if (!dragging) return;
-    dragging = false;
-    ROOT.classList.remove("is-dragging");
-    try {
-      ROOT.releasePointerCapture(e.pointerId);
-    } catch (_) {}
-  }
-  ROOT.addEventListener("pointerup", endDrag);
-  ROOT.addEventListener("pointercancel", endDrag);
-
-  // Kill CSS animation — JS owns motion
-  TRACK.style.animation = "none";
-
-  measure();
-  paint();
-  window.addEventListener("resize", function () {
-    measure();
-    wrapOffset();
-    paint();
-  });
-  // Images may load and change width
-  TRACK.querySelectorAll("img").forEach(function (img) {
-    if (img.complete) return;
-    img.addEventListener("load", function () {
-      measure();
-      wrapOffset();
-      paint();
+  function render() {
+    GRID.textContent = "";
+    ORDER.forEach(function (item) {
+      if (active !== "all" && item.kind !== active) return;
+      GRID.appendChild(buildItem(item));
     });
+  }
+
+  FILTERS.addEventListener("click", function (e) {
+    const btn = e.target.closest("[data-kind]");
+    if (!btn || !FILTERS.contains(btn)) return;
+    active = btn.getAttribute("data-kind") || "all";
+    FILTERS.querySelectorAll("[data-kind]").forEach(function (el) {
+      const on = el === btn;
+      el.classList.toggle("active", on);
+      el.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    render();
   });
 
-  raf = requestAnimationFrame(tick);
+  setCounts();
+  render();
 })();
