@@ -43,7 +43,6 @@
     { file: "avatar.png", alt: "Avatar", year: "2009" },
     { file: "inside-out.png", alt: "Inside Out", year: "2015" },
     { file: "kaaka-muttai.png", alt: "Kaaka Muttai", year: "2015" },
-    { file: "if.png", alt: "IF", year: "2024" },
   ];
 
   function ytSearch(title, kind) {
