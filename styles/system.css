@@ -659,6 +659,7 @@ figure figcaption,
   font-size:15px;
   line-height:1.65;
   color:var(--ink-soft);
+  text-wrap:pretty;
 }
 .hero-lede strong{
   color:var(--ink);
@@ -689,6 +690,7 @@ figure figcaption,
   font-size:15px;
   line-height:1.65;
   color:var(--ink-soft);
+  text-wrap:pretty;
 }
 .hero-looking__body strong{
   color:var(--ink);
@@ -785,6 +787,7 @@ strong.brand-yc{
   font-size:16px;
   line-height:1.55;
   color:rgba(255,255,255,.78);
+  text-wrap:pretty;
 }
 .contact-band__meta{
   margin:0;
@@ -2150,7 +2153,7 @@ a.fav-media__meta:focus-visible{
 .define-collections-head{
   margin-top:clamp(36px,5vw,56px);
 }
-/* Two collection tiles side by side */
+/* Collection tiles */
 .define-pair{
   display:grid;
   grid-template-columns:1fr;
@@ -2161,8 +2164,13 @@ a.fav-media__meta:focus-visible{
 }
 @media (min-width:820px){
   .define-pair{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(2, 1fr);
     align-items:stretch;
+  }
+}
+@media (min-width:1180px){
+  .define-pair{
+    grid-template-columns:repeat(3, 1fr);
   }
 }
 .define-card{
@@ -2233,6 +2241,74 @@ a.fav-media__meta:focus-visible{
 }
 .define-mosaic--yt img{
   object-position:center;
+}
+.define-mosaic--toys img{
+  object-fit:contain;
+  object-position:center;
+  background:var(--surface);
+}
+
+/* Toys collection grid */
+.fav-toys{
+  background:var(--bg);
+  background-image:var(--dotfield);
+  background-size:var(--dotfield-size);
+}
+.fav-toys__grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
+  gap:clamp(16px,2.2vw,24px);
+  position:relative;
+  z-index:1;
+}
+@media (min-width:900px){
+  .fav-toys__grid{
+    grid-template-columns:repeat(3, 1fr);
+  }
+}
+.fav-toys__item{
+  margin:0;
+  min-width:0;
+}
+.fav-toys__card{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  text-decoration:none;
+  color:inherit;
+}
+.fav-toys__card img{
+  display:block;
+  width:100%;
+  aspect-ratio:1;
+  object-fit:contain;
+  object-position:center;
+  border:1px solid var(--border-hard);
+  background:var(--surface);
+}
+.fav-toys__title{
+  font-family:var(--font-display);
+  font-size:clamp(15px,1.4vw,18px);
+  font-weight:700;
+  letter-spacing:-0.02em;
+  line-height:1.25;
+  color:var(--ink);
+  border-bottom:1px solid transparent;
+  width:fit-content;
+}
+.fav-toys__card:hover .fav-toys__title,
+.fav-toys__card:focus-visible .fav-toys__title{
+  border-bottom-color:var(--ink);
+}
+.fav-toys__meta{
+  display:block;
+  margin-top:3px;
+  font-family:var(--font-body);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  color:var(--muted);
 }
 
 /* YouTube collection grid */

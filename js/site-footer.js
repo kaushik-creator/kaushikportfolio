@@ -6,7 +6,7 @@
           '<div class="contact-band">' +
             '<div class="contact-band__intro">' +
               '<h2>Get in touch</h2>' +
-              '<p class="contact-band__lead">Open to <strong>Senior Product Designer</strong> roles in enterprise SaaS and AI-powered products — happy to talk systems, security UX, and AI-assisted design.</p>' +
+              '<p class="contact-band__lead">Looking for a <strong>Senior Product Designer</strong> role in <strong>enterprise SaaS</strong> or <strong>AI-powered products</strong>, and hoping to keep growing my <strong>AI tooling</strong> chops along&nbsp;the&nbsp;way. Ideally somewhere <strong>design</strong> has a real <strong>seat at&nbsp;the&nbsp;table</strong>, alongside <strong>engineering</strong> and&nbsp;<strong>product</strong>.</p>' +
               '<p class="contact-band__meta">Chennai, India · Open to remote</p>' +
             '</div>' +
             '<div class="contact-band__channels" aria-label="Contact channels">' +
