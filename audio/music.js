@@ -353,4 +353,78 @@
     persistMusicState();
     startPlaybackFlow();
   }
+
+  (function setupMusicHint() {
+    const HINT_KEY = 'portfolio_music_hint_dismissed';
+    try {
+      if (localStorage.getItem(HINT_KEY) === '1') return;
+    } catch (_) {}
+
+    if (document.getElementById('musicHint')) return;
+
+    const style = document.createElement('style');
+    style.textContent =
+      '.music-hint{position:fixed;right:1.25rem;bottom:calc(1.25rem + 54px);z-index:90;display:flex;align-items:flex-start;gap:10px;max-width:min(268px,calc(100vw - 2.5rem));padding:14px 12px 14px 16px;background:#0A0A0A;color:#FFF;border:1px solid #0A0A0A;font-family:Inter,system-ui,sans-serif;box-shadow:0 10px 28px rgba(0,0,0,.22);opacity:0;transform:translateY(8px);transition:opacity .28s ease,transform .28s ease;pointer-events:none}' +
+      '.music-hint.is-visible{opacity:1;transform:none;pointer-events:auto}' +
+      '.music-hint__copy{margin:0;font-size:13px;line-height:1.45;font-weight:500;letter-spacing:-0.01em}' +
+      '.music-hint__close{flex:none;width:28px;height:28px;margin:-4px -2px 0 0;border:0;background:transparent;color:inherit;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;opacity:.72}' +
+      '.music-hint__close:hover,.music-hint__close:focus-visible{opacity:1}' +
+      '.music-hint__close:focus-visible{outline:2px solid currentColor;outline-offset:2px}' +
+      '.music-hint::after{content:"";position:absolute;right:14px;bottom:-6px;width:12px;height:12px;background:#0A0A0A;transform:rotate(45deg)}' +
+      ':root[data-theme="dark"] .music-hint{background:#FFF;color:#0A0A0A;border-color:#FFF}' +
+      ':root[data-theme="dark"] .music-hint::after{background:#FFF}' +
+      '.music-toggle.is-hinted{box-shadow:0 0 0 2px #0A0A0A,0 0 0 5px rgba(10,10,10,.18)!important}' +
+      ':root[data-theme="dark"] .music-toggle.is-hinted{box-shadow:0 0 0 2px #FFF,0 0 0 5px rgba(255,255,255,.22)!important}' +
+      '@media (prefers-reduced-motion:reduce){.music-hint,.music-hint.is-visible{transition:none;transform:none}}';
+    document.head.appendChild(style);
+
+    const hint = document.createElement('div');
+    hint.id = 'musicHint';
+    hint.className = 'music-hint';
+    hint.setAttribute('role', 'status');
+    hint.setAttribute('aria-live', 'polite');
+    hint.innerHTML =
+      '<p class="music-hint__copy">Play or pause the music anytime from here.</p>' +
+      '<button type="button" class="music-hint__close" aria-label="Dismiss music tip">' +
+      '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>' +
+      '</button>';
+    document.body.appendChild(hint);
+
+    musicToggle.setAttribute('aria-describedby', 'musicHint');
+
+    const closeBtn = hint.querySelector('.music-hint__close');
+
+    function dismissHint() {
+      hint.classList.remove('is-visible');
+      musicToggle.classList.remove('is-hinted');
+      musicToggle.removeAttribute('aria-describedby');
+      try {
+        localStorage.setItem(HINT_KEY, '1');
+      } catch (_) {}
+      window.setTimeout(function () {
+        if (hint.parentNode) hint.parentNode.removeChild(hint);
+      }, 280);
+    }
+
+    closeBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      dismissHint();
+    });
+
+    musicToggle.addEventListener('click', function () {
+      if (document.getElementById('musicHint')) dismissHint();
+    });
+
+    document.addEventListener('keydown', function onEsc(e) {
+      if (e.key !== 'Escape') return;
+      document.removeEventListener('keydown', onEsc);
+      if (document.getElementById('musicHint')) dismissHint();
+    });
+
+    window.setTimeout(function () {
+      musicToggle.classList.add('is-hinted');
+      hint.classList.add('is-visible');
+    }, 700);
+  })();
 })();
