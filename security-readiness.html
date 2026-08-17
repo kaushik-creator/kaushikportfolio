@@ -69,7 +69,8 @@
   image-rendering:auto;
 }
 .cs-compare .cs-shot,
-.cs-explore .cs-shot{
+.cs-explore .cs-shot,
+.cs-modals .cs-shot{
   width:100%;
 }
 .cs-page .plate{ border:none; background:transparent; padding:0; }
@@ -515,9 +516,9 @@
   <nav id="nav">
     <a href="index.html">About</a>
     <a href="projects.html" class="active" aria-current="page">Projects</a>
+    <a href="theraxis.html">Ai Projects</a>
     <a href="experience.html">Experience</a>
-    <a href="theraxis.html">AI</a>
-    <a href="articles.html">What defines me</a>
+    <a href="articles.html">Beyond Design</a>
     <a href="Kaushik_Resume_Updated_v5.pdf?v=20260808" data-resume-trigger>Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
       <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
@@ -618,7 +619,7 @@
       <div class="cs-span-6">
         <figure class="cs-well">
           <p class="eyebrow" style="margin:0 0 12px;">Shipped</p>
-          <img class="lightbox-trigger cs-shot" src="security-readiness/final-gauge.png?v=20260806hi2" width="1024" height="843" alt="Shipped Security Center with Explore Cyber Resiliency Features button and Cyber Resiliency Readiness Score widget">
+          <img class="lightbox-trigger cs-shot" src="security-readiness/final-gauge.jpg?v=20260817final" width="1024" height="843" alt="Security Center with Explore Cyber Resiliency Features button and Cyber Resiliency Readiness Score widget">
           <div class="cs-final-notes">
             <div class="cs-final-note">
               <span class="cs-final-note__n">01</span>
@@ -944,16 +945,31 @@
       </div>
     </div>
 
-    <div class="cs-sticky-row cs-sticky-row--media-left">
-      <div class="cs-sticky-row__media">
-        <figure class="cs-well">
-          <img class="lightbox-trigger cs-shot" src="security-readiness/feature-modal.png?v=20260806feat5" width="1024" height="511" alt="Subscription for Reports in-context modal over Security Center showing subscribed and unsubscribed report types with Manage Subscription action">
-        </figure>
-      </div>
-      <div class="cs-sticky-row__text">
+    <div class="cs-grid" style="margin-top:56px;">
+      <div class="cs-span-12">
         <p class="eyebrow" style="margin:0 0 8px;">03 · Action</p>
         <h4>Zero-navigation in-context modals</h4>
-        <p>Answers “can I fix it without leaving?” Local modals let admins configure missing settings—Reports, Alerts, and more—without changing routes or losing page state.</p>
+        <p>Answers “can I fix it without leaving?” Local modals let admins configure missing settings — SSO, Alerts, Geofencing, and more — without changing routes or losing page state.</p>
+      </div>
+    </div>
+    <div class="cs-grid cs-modals" style="margin-top:16px;">
+      <div class="cs-span-4">
+        <figure class="cs-well">
+          <img class="lightbox-trigger cs-shot" src="security-readiness/modal-sso.jpg?v=20260817modals" width="1024" height="843" alt="Edit Single Sign-on Settings in-context modal over Security Center, with ID provider URL, certificate, and administrator SSO options">
+          <figcaption><strong>SSO</strong> — configure identity provider settings without leaving Security Center.</figcaption>
+        </figure>
+      </div>
+      <div class="cs-span-4">
+        <figure class="cs-well">
+          <img class="lightbox-trigger cs-shot" src="security-readiness/modal-alerts.jpg?v=20260817modals" width="1024" height="843" alt="New Subscription for Alerts in-context modal over Security Center, with alert type, severity, and category selection">
+          <figcaption><strong>Alerts</strong> — subscribe to the right events without a separate settings page.</figcaption>
+        </figure>
+      </div>
+      <div class="cs-span-4">
+        <figure class="cs-well">
+          <img class="lightbox-trigger cs-shot" src="security-readiness/modal-geofencing.jpg?v=20260817modals" width="1024" height="843" alt="Edit Geofencing Settings in-context modal over Security Center, with public gateway IPs and administrator geofencing controls">
+          <figcaption><strong>Geofencing</strong> — restrict admin access to approved gateway IPs in place.</figcaption>
+        </figure>
       </div>
     </div>
 
@@ -967,8 +983,8 @@
             <button type="button" class="cs-view-toggle__btn" data-view="list" aria-pressed="false">List</button>
           </div>
           <div class="cs-slideshow__stage" style="position:relative;">
-            <img class="lightbox-trigger cs-shot" data-view-panel="gauge" src="security-readiness/final-gauge.png?v=20260806final" width="1024" height="843" alt="Shipped Security Center gauge view with Cyber Resiliency Readiness Score showing concentric Mandatory and Recommended arcs">
-            <img class="lightbox-trigger cs-shot" data-view-panel="list" hidden src="security-readiness/final-list.png?v=20260806final" width="1024" height="843" alt="Shipped Security Center list view with Cyber Resiliency Readiness checklist of Mandatory and Recommended controls">
+            <img class="lightbox-trigger cs-shot is-active" data-view-panel="gauge" src="security-readiness/final-gauge.jpg?v=20260817final" width="1024" height="843" alt="Security Center gauge view with Cyber Resiliency Readiness Score showing 2 of 6 controls and concentric Mandatory and Recommended arcs">
+            <img class="lightbox-trigger cs-shot" data-view-panel="list" hidden src="security-readiness/final-list.jpg?v=20260817final" width="1024" height="843" alt="Security Center list view with Cyber Resiliency Readiness checklist of Mandatory and Recommended controls, 3 of 6 configured">
           </div>
           <p class="cs-slideshow__caption" style="margin-top:12px;"><strong>Gauge ↔ List.</strong> Concentric arcs for scanning; list mode for fixing gaps without leaving the hub.</p>
         </div>
@@ -1137,6 +1153,7 @@ document.addEventListener('DOMContentLoaded',function(){
       panels.forEach(function(panel){
         var on=panel.getAttribute('data-view-panel')===view;
         panel.hidden=!on;
+        panel.classList.toggle('is-active', on);
         panel.setAttribute('aria-hidden', on ? 'false' : 'true');
       });
     }
@@ -1148,7 +1165,7 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 <script src="js/site-footer.js?v=20260814look3"></script>
 <script src="js/system-theme.js"></script>
-<script src="js/site-shell.js?v=20260809nochats"></script>
+<script src="js/site-shell.js?v=20260817nav1"></script>
 <script src="audio/music.js?v=20260814hint1"></script>
 </body>
 </html>

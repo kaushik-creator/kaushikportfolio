@@ -82,7 +82,7 @@
       href: 'theraxis.html',
       name: 'Theraxis',
       desc: 'PRD → design → live web build for therapy centers.',
-      type: 'AI',
+      type: 'Ai Projects',
       tags: ['PRD', 'Cursor'],
       label: 'Child therapy software'
     }
