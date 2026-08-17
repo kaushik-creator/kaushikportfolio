@@ -17,8 +17,8 @@
   var MORE_WORK = [
     {
       href: 'msc-dashboard.html',
-      name: 'MSC Operational Dashboard',
-      desc: 'One overloaded MSP screen split into three job-focused surfaces.',
+      name: 'One Dashboard for MSP Partners',
+      desc: 'See backup failures, storage, and security risk in one place instead of 15+ screens.',
       type: 'Professional',
       tags: ['B2B', 'Dashboard'],
       img: 'project-tiles/msc-800.png',
@@ -26,8 +26,8 @@
     },
     {
       href: 'identity-resilience.html',
-      name: 'Identity Resilience',
-      desc: 'Identity activity table redesigned as a node-based attack graph.',
+      name: 'Identity Activity Graph',
+      desc: 'See what a compromised account did, without reading a long log table.',
       type: 'Professional',
       tags: ['Security', 'Data viz'],
       img: 'identity-resilience/design-frame.png?v=8',
@@ -35,8 +35,8 @@
     },
     {
       href: 'security-readiness.html',
-      name: 'Security Readiness Score',
-      desc: 'Six scattered security settings into one readiness widget and fix path.',
+      name: 'Security Score',
+      desc: 'Fix all missed security settings from one widget.',
       type: 'Professional',
       tags: ['Security', 'Cyber Resiliency'],
       img: 'project-tiles/security-800.png',
@@ -44,8 +44,8 @@
     },
     {
       href: 'druva.html',
-      name: 'Provisioning & Access',
-      desc: 'Self-serve product expansion for MSP partners — no support tickets.',
+      name: 'Self-Serve Provisioning',
+      desc: 'Let partners turn on new products without filing a support ticket.',
       type: 'Professional',
       tags: ['Workflow', 'MSP'],
       img: 'project-tiles/druva-800.png',
@@ -54,8 +54,8 @@
     },
     {
       href: 'harmoney.html',
-      name: 'Harmoney',
-      desc: "Founding design for India's first digital bond trading platform.",
+      name: 'B2B Bond Trading Platform',
+      desc: 'Move bond trading from phone calls to an online platform.',
       type: 'Professional',
       tags: ['Fintech', '0→1'],
       img: 'project-tiles/harmoney-800.png',
@@ -63,8 +63,8 @@
     },
     {
       href: 'mason.html',
-      name: 'ModeMagic',
-      desc: 'Shopify Commerce Award UI that grew weekly active users 8×.',
+      name: 'Shopify Badge Automation',
+      desc: 'Let sellers add promo badges without a developer.',
       type: 'Professional',
       tags: ['App Design', 'Shopify'],
       img: 'project-tiles/mason-800.png',
@@ -72,16 +72,16 @@
     },
     {
       href: 'dashboard.html',
-      name: 'Dashboard',
-      desc: 'How to design a SaaS dashboard — hierarchy, density, and scan paths.',
+      name: 'Dashboard Design for Drone Operations',
+      desc: 'Patterns for tracking many drones at once.',
       type: 'Strategy and Research',
       tags: ['SaaS', 'Framework'],
-      label: 'How to design a dashboard'
+      label: 'Dashboard design for drone operations'
     },
     {
       href: 'theraxis.html',
-      name: 'Theraxis',
-      desc: 'PRD → design → live web build for therapy centers.',
+      name: 'Clinic Management Platform',
+      desc: 'Scheduling, billing, and patients in one tool.',
       type: 'Ai Projects',
       tags: ['PRD', 'Cursor'],
       label: 'Child therapy software'
