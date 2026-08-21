@@ -6,7 +6,7 @@
   const FILTERS = SECTION.querySelector(".fav-media__filters");
   if (!GRID || !FILTERS) return;
 
-  const CACHE = "20260813favmedia16";
+  const CACHE = "20260821favmedia19";
   const SERIES = [
     { file: "big-bang-theory.png", alt: "The Big Bang Theory", year: "2007" },
     { file: "how-i-met-your-mother.png", alt: "How I Met Your Mother", year: "2005" },
@@ -43,6 +43,16 @@
     { file: "avatar.png", alt: "Avatar", year: "2009" },
     { file: "inside-out.png", alt: "Inside Out", year: "2015" },
     { file: "kaaka-muttai.png", alt: "Kaaka Muttai", year: "2015" },
+    { file: "dragon.png", alt: "Dragon", year: "2025" },
+    { file: "chronicles-of-narnia.png", alt: "The Chronicles of Narnia: The Lion, the Witch and the Wardrobe", year: "2005" },
+    { file: "dharma-durai.png", alt: "Dharma Durai", year: "2016" },
+    { file: "raanjhanaa.png", alt: "Raanjhanaa", year: "2013" },
+    { file: "kandukondain-kandukondain.png", alt: "Kandukondain Kandukondain", year: "2000" },
+    { file: "yeh-jawaani-hai-deewani.png", alt: "Yeh Jawaani Hai Deewani", year: "2013" },
+    { file: "my-name-is-khan.png", alt: "My Name Is Khan", year: "2010" },
+    { file: "3-idiots.png", alt: "3 Idiots", year: "2009" },
+    { file: "taare-zameen-par.png", alt: "Taare Zameen Par", year: "2007" },
+    { file: "barfi.png", alt: "Barfi!", year: "2012" },
   ];
 
   function ytSearch(title, kind) {
