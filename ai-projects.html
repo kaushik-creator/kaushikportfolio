@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="YouTube channels I watch — Veritasium, MrBeast, MKBHD, Kurzgesagt, and more."/>
+<meta name="description" content="Ai Projects by Kaushik Dayalan — a Figma plugin for product design workflow, and a clinic management platform."/>
 <meta name="author" content="Kaushik Dayalan"/>
 <meta name="theme-color" content="#FFFFFF"/>
-<title>YouTube I watch — Kaushik Dayalan</title>
+<title>Ai Projects — Kaushik Dayalan</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -29,9 +29,9 @@
   <nav id="nav">
     <a href="index.html">About</a>
     <a href="projects.html">Projects</a>
-    <a href="ai-projects.html">Ai Projects</a>
+    <a href="ai-projects.html" class="active" aria-current="page">Ai Projects</a>
     <a href="experience.html">Experience</a>
-    <a href="articles.html" class="active" aria-current="page">Beyond Design</a>
+    <a href="articles.html">Beyond Design</a>
     <a href="Kaushik_Resume_Updated_v5.pdf?v=20260808" data-resume-trigger>Resume</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
       <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
@@ -43,16 +43,48 @@
   </button>
 </div></header>
 
-<section class="section fav-youtube fav-media--page" aria-label="YouTube channels I watch">
+<section class="section page-band" id="projects">
   <div class="wrap">
-    <p class="notes-back"><a href="articles.html" class="link">← Beyond Design</a></p>
-
     <div class="page-intro">
-      <h1 data-title="YouTube I watch">YouTube I watch</h1>
-      <p class="page-intro__lede page-lede-mark"><span>Channels that teach, entertain, and stay in rotation.</span></p>
+      <h1 data-title="Ai Projects">Ai Projects</h1>
+      <p class="page-intro__lede page-lede-mark"><span>A Figma plugin for product design workflow, and a clinic management platform — both self-initiated.</span></p>
     </div>
 
-    <div class="fav-youtube__grid" aria-live="polite"></div>
+    <div class="proj-catalog">
+      <div class="proj-stack">
+        <a href="design-toolkit.html" class="proj-show">
+          <div class="proj-show__media">
+            <img src="design-toolkit/de-tool-cover.svg" width="1600" height="1200" alt="De-Tool — Figma plugin icon"/>
+          </div>
+          <div class="proj-show__body">
+            <div class="proj-show__tags">
+              <span class="tile__tag tile__tag--type">Ai Projects</span>
+              <span class="tile__tag">Figma Plugin</span>
+              <span class="tile__tag">Gemini</span>
+            </div>
+            <h2 class="proj-show__title">Design Toolkit</h2>
+            <p class="proj-show__brief"><strong>De-Tool</strong> — a Figma plugin that keeps PRDs, edge cases, comments, and copy in <strong>one panel</strong>.</p>
+            <span class="proj-show__cta">View case study →</span>
+          </div>
+        </a>
+
+        <a href="theraxis.html" class="proj-show">
+          <div class="proj-show__media">
+            <img src="theraxis/theraxis-dashboard-live-07.png?v=20260807g" width="1024" height="558" alt="Theraxis Admin Overview"/>
+          </div>
+          <div class="proj-show__body">
+            <div class="proj-show__tags">
+              <span class="tile__tag tile__tag--type">Ai Projects</span>
+              <span class="tile__tag">PRD</span>
+              <span class="tile__tag">Cursor</span>
+            </div>
+            <h2 class="proj-show__title">Clinic Management Platform</h2>
+            <p class="proj-show__brief">Scheduling, billing, and patients in <strong>one tool</strong>.</p>
+            <span class="proj-show__cta">View case study →</span>
+          </div>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -61,6 +93,5 @@
 <script src="js/site-shell.js?v=20260829aitoolkit"></script>
 <script src="audio/music.js?v=20260814hint1"></script>
 <script src="js/title-scramble.js?v=20260811scrambleDate"></script>
-<script src="js/fav-youtube.js?v=20260813youtube4"></script>
 </body>
 </html>

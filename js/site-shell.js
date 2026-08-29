@@ -79,6 +79,15 @@
       label: 'Dashboard design for drone operations'
     },
     {
+      href: 'design-toolkit.html',
+      name: 'Design Toolkit',
+      desc: 'De-Tool — a Figma plugin that keeps PRDs, edge cases, comments, and copy in one panel.',
+      type: 'Ai Projects',
+      tags: ['Figma Plugin', 'Gemini'],
+      img: 'design-toolkit/de-tool-cover.svg',
+      alt: 'De-Tool — Figma plugin icon'
+    },
+    {
       href: 'theraxis.html',
       name: 'Clinic Management Platform',
       desc: 'Scheduling, billing, and patients in one tool.',

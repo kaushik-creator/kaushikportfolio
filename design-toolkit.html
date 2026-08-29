@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Design Toolkit — a Figma plugin Kaushik built to keep PRDs, edge cases, system consistency, copy, and comments inside the canvas."/>
+<meta property="og:title" content="Design Toolkit — Case Study · Kaushik"/>
+<meta property="og:description" content="A personal Figma plugin for the connective work around B2B product design — one panel, eight tools."/>
+<meta name="theme-color" content="#FFFFFF"/>
+<title>Design Toolkit — Case Study · Kaushik</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="styles/system.css?v=20260813yt4"/>
+<style>
+/* Design Toolkit — lean page-local layout (shared cs-* for the rest) */
+/* Full-width text in body sections (keep MSC hero: cover left, meta right) */
+main.wrap .cs-story,
+main.wrap .section:not(.cs-hero){
+  max-width:none;
+  width:100%;
+}
+main.wrap .cs-hero h1,
+main.wrap .cs-hero__lede{
+  max-width:none;
+}
+main.wrap .cs-story > p,
+main.wrap .cs-story > h2,
+main.wrap .section:not(.cs-hero) > p,
+main.wrap .section:not(.cs-hero) > h2,
+main.wrap .dt-tool-detail p,
+main.wrap .dt-try,
+main.wrap .dt-try > p,
+main.wrap .dt-try .note,
+main.wrap .module p{
+  max-width:none;
+  width:100%;
+}
+
+.cs-hero__cover .dt-cover{
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+  aspect-ratio:16/10; width:100%; min-height:240px;
+  background:#0A0A0A; color:#fff; text-align:center; padding:32px;
+  margin:0; border:0; box-sizing:border-box;
+}
+.cs-hero__cover .dt-cover img{
+  width:min(112px,28%); height:auto; display:block; border-radius:22%;
+}
+.cs-hero__cover .dt-cover strong{
+  font-family:var(--font-display); font-weight:700; font-size:clamp(18px,2vw,22px);
+  letter-spacing:-.02em;
+}
+.cs-hero__cover .dt-cover small{
+  font-family:var(--font-body); font-weight:500; font-size:12px; color:rgba(255,255,255,.5);
+}
+
+.dt-friction{
+  display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:28px;
+}
+.dt-friction article{
+  border:1px solid var(--line); background:var(--surface); padding:18px 16px;
+}
+.dt-friction .n{
+  font-family:var(--font-display); font-weight:700; font-size:11px;
+  letter-spacing:.08em; color:var(--muted); margin:0 0 10px;
+}
+.dt-friction h3{ margin:0 0 6px; font-size:15px; font-weight:700; }
+.dt-friction p{ margin:0; font-size:13px; color:var(--ink-soft); line-height:1.45; }
+
+.dt-principles{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
+}
+.dt-principles article{
+  border:1px solid var(--line); background:var(--surface); padding:20px 18px;
+}
+.dt-principles h3{ margin:0 0 6px; font-size:15px; font-weight:700; }
+.dt-principles p{ margin:0; font-size:13.5px; color:var(--ink-soft); line-height:1.45; }
+
+/* Tools — YouTube-style player + playlist in one card */
+.dt-player{
+  display:grid; grid-template-columns:minmax(0,1.5fr) minmax(300px,.5fr);
+  gap:0; align-items:stretch; margin:0 0 16px;
+  border:1px solid var(--line); background:var(--surface); overflow:hidden;
+}
+.dt-player__stage{
+  margin:0; border:0; border-right:1px solid var(--line); background:#0a0a0a; overflow:hidden;
+  position:relative; aspect-ratio:16/9; min-height:280px; align-self:stretch;
+  display:flex; flex-direction:column;
+}
+.dt-player__stage video{
+  display:block; width:100%; flex:1 1 auto; min-height:0;
+  object-fit:contain; background:#0a0a0a; position:relative; z-index:1;
+}
+.dt-player__ph{
+  position:absolute; inset:0; z-index:2;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+  color:rgba(255,255,255,.55); font-family:var(--font-display); font-weight:600;
+  font-size:15px; text-align:center; padding:24px; pointer-events:none;
+}
+.dt-player__ph[hidden]{ display:none !important; }
+.dt-player__ph small{
+  font-family:var(--font-body); font-weight:500; font-size:11px; letter-spacing:.02em;
+  color:rgba(255,255,255,.4);
+}
+.dt-player__play{
+  width:48px; height:48px; border-radius:50%; border:1px solid rgba(255,255,255,.35);
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; color:rgba(255,255,255,.7); margin-bottom:2px;
+}
+.dt-player__seek{
+  position:relative; z-index:3; flex:0 0 auto;
+  display:flex; align-items:center; gap:10px;
+  padding:8px 12px 10px; background:#0a0a0a; border-top:1px solid rgba(255,255,255,.08);
+  user-select:none;
+}
+.dt-player__seek[hidden]{ display:none !important; }
+.dt-player__seek-time{
+  flex:0 0 auto; min-width:7ch;
+  font-size:11px; font-variant-numeric:tabular-nums; color:rgba(255,255,255,.55);
+  font-family:var(--font-body);
+}
+.dt-player__seek-track{
+  position:relative; flex:1 1 auto; height:18px; cursor:pointer;
+  display:flex; align-items:center;
+}
+.dt-player__seek-track::before{
+  content:""; position:absolute; left:0; right:0; height:4px; border-radius:2px;
+  background:rgba(255,255,255,.18);
+}
+.dt-player__seek-fill{
+  position:absolute; left:0; height:4px; border-radius:2px; width:0%;
+  background:#fff; pointer-events:none;
+}
+.dt-player__seek-track:hover::before{ height:6px; }
+.dt-player__seek-track:hover .dt-player__seek-fill{ height:6px; }
+
+.dt-playlist{
+  display:flex; flex-direction:column; gap:0;
+  border:0; background:transparent; overflow:auto; max-height:100%;
+  min-height:280px;
+}
+.dt-playlist__item{
+  display:grid; grid-template-columns:128px 1fr; gap:12px; align-items:center;
+  width:100%; padding:12px 14px; border:0; border-bottom:1px solid var(--line);
+  background:transparent; color:inherit; text-align:left; cursor:pointer;
+  font:inherit;
+}
+.dt-playlist__item:last-child{ border-bottom:0; }
+.dt-playlist__item:hover{ background:var(--surface-2); }
+.dt-playlist__item.is-active{ background:var(--surface-2); }
+.dt-playlist__thumb{
+  width:128px; aspect-ratio:16/10; border:1px solid var(--line); background:var(--bg);
+  display:flex; align-items:center; justify-content:center; overflow:hidden;
+  font-size:11px; font-weight:700; color:var(--muted); letter-spacing:.04em;
+}
+.dt-playlist__thumb img{
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+.dt-playlist__item.is-active .dt-playlist__thumb{
+  border-color:var(--ink); color:var(--ink);
+}
+.dt-playlist__meta{ min-width:0; }
+.dt-playlist__meta strong{
+  display:block; font-size:14px; font-weight:700; line-height:1.3; margin:0 0 4px;
+}
+.dt-playlist__meta .n{
+  font-weight:700; color:var(--muted); letter-spacing:.02em; margin-right:6px;
+}
+.dt-playlist__meta span{
+  display:block; font-size:12.5px; color:var(--ink-soft); line-height:1.35;
+}
+
+.dt-tool-detail{
+  border:1px solid var(--line); background:var(--surface);
+  padding:clamp(18px,2.5vw,24px);
+}
+.dt-tool-detail h3{
+  margin:0 0 16px; font-size:16px; font-weight:700; letter-spacing:-.01em;
+}
+.dt-tool-detail h3 .n{
+  color:var(--muted); font-weight:700; margin-right:8px; letter-spacing:.02em;
+}
+.dt-tool-detail .dt-label{
+  margin:0 0 4px;
+  font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted);
+}
+.dt-tool-detail .dt-label--problem{ color:#c23b3b; }
+.dt-tool-detail .dt-label--solution{ color:#2f8a4e; }
+:root[data-theme="dark"] .dt-tool-detail .dt-label--problem{ color:#f07178; }
+:root[data-theme="dark"] .dt-tool-detail .dt-label--solution{ color:#6bcf8e; }
+.dt-tool-detail .dt-punch{
+  margin:0 0 6px; font-size:14.5px; font-weight:600; color:var(--ink); line-height:1.35;
+}
+.dt-tool-detail .dt-block > p:not(.dt-label):not(.dt-punch){
+  margin:0; font-size:13.5px; color:var(--ink-soft); line-height:1.5;
+}
+.dt-tool-detail .dt-block + .dt-block{
+  margin-top:14px; padding-top:14px; border-top:1px solid var(--line);
+}
+
+.dt-support{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
+}
+
+.dt-try{
+  max-width:520px;
+  border:1px solid var(--line); background:var(--surface);
+  padding:clamp(22px,3vw,28px);
+}
+.dt-try__name{
+  margin:0 0 8px;
+  font-family:var(--font-display); font-size:20px; font-weight:700;
+  letter-spacing:-.02em; color:var(--ink);
+}
+.dt-try__lede{
+  margin:0; font-size:14.5px; color:var(--ink-soft); line-height:1.5;
+  max-width:42ch;
+}
+
+@media(max-width:900px){
+  .dt-friction{ grid-template-columns:1fr 1fr; }
+  .dt-principles,.dt-support{ grid-template-columns:1fr 1fr; }
+  .dt-player{ grid-template-columns:1fr; }
+  .dt-player__stage{ border-right:0; border-bottom:1px solid var(--line); min-height:220px; }
+  .dt-playlist{ max-height:none; min-height:0; }
+}
+@media(max-width:560px){
+  .dt-friction,.dt-principles,.dt-support{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<audio id="bgMusic" loop preload="auto" playsinline>
+  <source src="audio/bittersweet-symphony.mp3?v=20260724" type="audio/mpeg"/>
+</audio>
+<button type="button" class="music-toggle" id="musicToggle" aria-label="Play background music" aria-pressed="false" title="Music">
+  <svg id="musicIconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <svg id="musicIconPlay" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+</button>
+
+<header class="site-header"><div class="wrap">
+  <a href="index.html" class="site-logo">K.</a>
+  <nav id="nav">
+    <a href="index.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="ai-projects.html" class="active" aria-current="page">Ai Projects</a>
+    <a href="experience.html">Experience</a>
+    <a href="articles.html">Beyond Design</a>
+    <a href="Kaushik_Resume_Updated_v5.pdf?v=20260808" data-resume-trigger>Resume</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
+      <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+</div></header>
+
+<main class="wrap">
+  <a href="ai-projects.html" class="link cs-back">← Ai Projects</a>
+
+  <section class="section cs-hero">
+    <p class="eyebrow">Case Study · Ai Projects</p>
+    <h1>Design Toolkit — a Figma plugin for my own workflow</h1>
+    <p class="cs-hero__lede">I built one panel inside Figma for the connective work around enterprise B2B design — PRDs, edge cases, system consistency, copy, and comments — so I stop relying on memory and extra tabs.</p>
+    <div class="cs-hero__cover">
+      <div class="dt-cover">
+        <img src="design-toolkit/de-tool-icon.svg" width="128" height="128" alt="De-Tool plugin icon"/>
+        <strong>De-Tool</strong>
+        <small>Figma plugin</small>
+      </div>
+    </div>
+    <div class="cs-overview">
+      <div class="cs-overview__card"><span class="k">Plugin</span><span class="v">De-Tool</span></div>
+      <div class="cs-overview__card"><span class="k">Role</span><span class="v">Sole designer &amp; builder</span></div>
+      <div class="cs-overview__card"><span class="k">Scope</span><span class="v">Personal Figma plugin from problem to working prototype</span></div>
+      <div class="cs-overview__card"><span class="k">Domain</span><span class="v">B2B product design workflow</span></div>
+      <div class="cs-overview__card"><span class="k">Stack</span><span class="v">Figma Plugin API · Gemini · Figma REST</span></div>
+      <div class="cs-overview__card"><span class="k">Status</span><span class="v">On Figma Community</span></div>
+    </div>
+  </section>
+
+  <section class="section cs-story">
+    <p class="eyebrow">The problem</p>
+    <h2>The slow parts weren’t the design — they were everything around it, and each one pulled me out of Figma.</h2>
+    <p>On detail-dense B2B work, the same five frictions kept showing up. They lived outside the canvas, or depended on me remembering to check. The opportunity was simple: move those checks to where the work already happens.</p>
+    <div class="dt-friction">
+      <article>
+        <div class="n">01</div>
+        <h3>PRD → tasks</h3>
+        <p>I read the whole PRD — and still miss tasks buried in the doc, including micro-tasks.</p>
+      </article>
+      <article>
+        <div class="n">02</div>
+        <h3>Edge cases</h3>
+        <p>Like a lot of designers, I miss empty states, zero states, and error states.</p>
+      </article>
+      <article>
+        <div class="n">03</div>
+        <h3>Consistency</h3>
+        <p>I break a component early while building a card, then forget to fix it later.</p>
+      </article>
+      <article>
+        <div class="n">04</div>
+        <h3>UI copy</h3>
+        <p>In B2B SaaS I sometimes miss non-inclusive or unprofessional wording.</p>
+      </article>
+      <article>
+        <div class="n">05</div>
+        <h3>@-mentions</h3>
+        <p>Mark a comment done in Figma and it disappears — hard to find or revisit later.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">Approach</p>
+    <h2>One panel inside Figma</h2>
+    <p style="color:var(--ink-soft);font-size:15px;line-height:1.55;margin:0;">I didn’t want five separate plugins. One panel, one setup, and I stay on the canvas. Where something is measurable (contrast, variables), I use code. Where it’s judgment (copy, usability), I use the model — and it only suggests, it doesn’t change my file for me.</p>
+  </section>
+
+  <section class="section" id="dtTools">
+    <p class="eyebrow">The tools</p>
+    <h2>What’s in it</h2>
+
+    <div class="dt-player">
+      <figure class="dt-player__stage">
+        <video id="dtVideo" controls playsinline preload="auto" hidden></video>
+        <div class="dt-player__ph" id="dtVideoPh" aria-hidden="true">
+          <span class="dt-player__play">▶</span>
+          <span id="dtVideoPhTitle">Task Generator</span>
+          <small id="dtVideoPhNote">Video placeholder</small>
+        </div>
+        <div class="dt-player__seek" id="dtSeek" hidden>
+          <span class="dt-player__seek-time" id="dtSeekCurrent">0:00</span>
+          <div class="dt-player__seek-track" id="dtSeekTrack" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <span class="dt-player__seek-fill" id="dtSeekFill"></span>
+          </div>
+          <span class="dt-player__seek-time" id="dtSeekDuration">0:00</span>
+        </div>
+      </figure>
+      <div class="dt-playlist" id="dtPlaylist" role="listbox" aria-label="Tools"></div>
+    </div>
+
+    <div class="dt-tool-detail" id="dtToolDetail">
+      <h3 id="dtDetailTitle"><span class="n" id="dtDetailNum">01</span>Task Generator</h3>
+      <div class="dt-block">
+        <p class="dt-label dt-label--problem">Problem</p>
+        <p class="dt-punch" id="dtDetailPunch">I miss tasks buried in the PRD.</p>
+        <p id="dtDetailProblem">I read the full doc, but tasks — and smaller micro-tasks — still sit inside the prose and I skip them.</p>
+      </div>
+      <div class="dt-block">
+        <p class="dt-label dt-label--solution">Solution</p>
+        <p id="dtDetailSolution">Pulls requirements into a checklist on a new page in the file, so I can see what to design without re-reading the whole doc.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">Also</p>
+    <h2>A few extras I use less often</h2>
+    <div class="dt-support">
+      <article class="module">
+        <h3 style="margin-top:0">WCAG Annotator</h3>
+        <p>Checks contrast and target size in code, and marks issues on a copy of the frame.</p>
+      </article>
+      <article class="module">
+        <h3 style="margin-top:0">Usability Annotator</h3>
+        <p>Quick critique notes on the frame — hierarchy, labels, grouping.</p>
+      </article>
+      <article class="module">
+        <h3 style="margin-top:0">Cover Generator</h3>
+        <p>Makes a simple editable cover from the PRD when I need one.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">Status</p>
+    <h2>Built for my own use — published so others can try it</h2>
+    <p style="color:var(--ink-soft);font-size:15px;line-height:1.55;margin:0;">I built this for my own files first. It’s on the Figma Community if you want to run it too — still a working tool, not a polished product. Things break; I’m fixing them as I hit them.</p>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">Try it</p>
+    <h2>How to run it</h2>
+    <div class="dt-try">
+      <p class="dt-try__name">De-Tool</p>
+      <p class="dt-try__lede">I’m still building this for better outputs. The Figma Community link will go here when it’s ready.</p>
+    </div>
+  </section>
+
+  <section class="section more-work">
+    <div class="more-work__head">
+      <span class="eyebrow">More work</span>
+      <a href="projects.html" class="more-work__all">View all work</a>
+    </div>
+    <div class="more-work__scroller" data-more-work></div>
+  </section>
+</main>
+
+<script src="js/site-footer.js?v=20260814look3"></script>
+<script src="js/system-theme.js"></script>
+<script src="js/site-shell.js?v=20260829aitoolkit"></script>
+<script src="audio/music.js?v=20260814hint1"></script>
+<script>
+(function () {
+  var tools = [
+    {
+      id: "task-generator",
+      n: "01",
+      title: "Task Generator",
+      thumb: "design-toolkit/task-generator-thumb.jpg",
+      note: "",
+      src: "design-toolkit/task-generator.mp4",
+      punch: "I miss tasks buried in the PRD.",
+      problem: "I read the full doc, but tasks — and smaller micro-tasks — still sit inside the prose and I skip them.",
+      solution: "Pulls requirements into a checklist on a new page in the file, so I can see what to design without re-reading the whole doc."
+    },
+    {
+      id: "edge-case-checker",
+      n: "02",
+      title: "Edge Case Checker",
+      thumb: "design-toolkit/edge-case-checker-thumb.jpg",
+      note: "",
+      src: "design-toolkit/edge-case-checker.mp4",
+      punch: "I forget empty and error states.",
+      problem: "I design the happy path first. Zero states, empty lists, and error screens often wait until someone else flags them.",
+      solution: "Select a flow and it asks about those states on the actual elements, so I can mark what’s covered and what’s still missing."
+    },
+    {
+      id: "consistency-linter",
+      n: "03",
+      title: "Consistency Linter",
+      thumb: "design-toolkit/consistency-linter-thumb.jpg",
+      note: "",
+      src: "design-toolkit/consistency-linter.mp4",
+      punch: "I break components, then forget.",
+      problem: "When I’m building cards I detach or restyle things early to move fast — and later the file no longer matches the library.",
+      solution: "Checks the file against component and style consistency so I can catch those breaks before handoff."
+    },
+    {
+      id: "copy-evaluator",
+      n: "04",
+      title: "Copy Evaluator",
+      thumb: "design-toolkit/copy-evaluator-thumb.jpg",
+      note: "",
+      src: "design-toolkit/copy-evaluator.mp4",
+      punch: "I miss off wording in the UI.",
+      problem: "In B2B SaaS, copy should stay professional. Non-inclusive or awkward words still slip through when I’m focused on the layout.",
+      solution: "Looks at the real copy on a frame and flags issues, with rewrite suggestions I can take or ignore."
+    },
+    {
+      id: "mentions",
+      n: "05",
+      title: "@-mentions",
+      thumb: "05",
+      note: "Coming soon",
+      src: "",
+      punch: "Done comments vanish in Figma.",
+      problem: "Once a comment is marked completed, it’s hard to find again — going back later feels clumsy.",
+      solution: "Pulls only the comments that mention you into one list, and you can mark each done here when you’ve handled it."
+    }
+  ];
+
+  var playlist = document.getElementById("dtPlaylist");
+  var video = document.getElementById("dtVideo");
+  var ph = document.getElementById("dtVideoPh");
+  var phTitle = document.getElementById("dtVideoPhTitle");
+  var phNote = document.getElementById("dtVideoPhNote");
+  var seek = document.getElementById("dtSeek");
+  var seekTrack = document.getElementById("dtSeekTrack");
+  var seekFill = document.getElementById("dtSeekFill");
+  var seekCurrent = document.getElementById("dtSeekCurrent");
+  var seekDuration = document.getElementById("dtSeekDuration");
+  if (!playlist || !video || !ph) return;
+
+  var active = 0;
+  var seeking = false;
+  var objectUrl = null;
+  var loadToken = 0;
+
+  function escapeHtml(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function formatTime(sec) {
+    if (!isFinite(sec) || sec < 0) sec = 0;
+    var m = Math.floor(sec / 60);
+    var s = Math.floor(sec % 60);
+    return m + ":" + (s < 10 ? "0" : "") + s;
+  }
+
+  function updateSeekUi() {
+    if (!seekFill || !seekCurrent) return;
+    var dur = video.duration || 0;
+    var cur = video.currentTime || 0;
+    var pct = dur > 0 ? (cur / dur) * 100 : 0;
+    seekFill.style.width = pct + "%";
+    seekCurrent.textContent = formatTime(cur);
+    if (seekDuration) seekDuration.textContent = formatTime(dur);
+    if (seekTrack) {
+      seekTrack.setAttribute("aria-valuemax", String(Math.floor(dur) || 0));
+      seekTrack.setAttribute("aria-valuenow", String(Math.floor(cur) || 0));
+    }
+  }
+
+  function seekFromClientX(clientX) {
+    if (!seekTrack || !isFinite(video.duration) || video.duration <= 0) return;
+    var rect = seekTrack.getBoundingClientRect();
+    var ratio = rect.width > 0 ? (clientX - rect.left) / rect.width : 0;
+    if (ratio < 0) ratio = 0;
+    if (ratio > 1) ratio = 1;
+    video.currentTime = ratio * video.duration;
+    updateSeekUi();
+  }
+
+  function renderPlaylist() {
+    playlist.innerHTML = tools.map(function (tool, i) {
+      var label = tool.note === "Coming soon" ? tool.n + " · Soon" : tool.n;
+      var thumbInner = tool.thumb && String(tool.thumb).indexOf(".") !== -1
+        ? '<img src="' + escapeHtml(tool.thumb) + '" alt="" loading="lazy" width="640" height="384"/>'
+        : escapeHtml(tool.thumb || tool.n);
+      return (
+        '<button type="button" class="dt-playlist__item' + (i === active ? " is-active" : "") + '" role="option" aria-selected="' + (i === active ? "true" : "false") + '" data-index="' + i + '">' +
+          '<span class="dt-playlist__thumb" aria-hidden="true">' + thumbInner + "</span>" +
+          '<span class="dt-playlist__meta">' +
+            "<strong><span class=\"n\">" + escapeHtml(label) + "</span>" + escapeHtml(tool.title) + "</strong>" +
+            "<span>" + escapeHtml(tool.punch) + "</span>" +
+          "</span>" +
+        "</button>"
+      );
+    }).join("");
+  }
+
+  function setDetail(tool) {
+    var title = document.getElementById("dtDetailTitle");
+    var punch = document.getElementById("dtDetailPunch");
+    var problem = document.getElementById("dtDetailProblem");
+    var solution = document.getElementById("dtDetailSolution");
+    var label = tool.note === "Coming soon" ? tool.n + " · Soon" : tool.n;
+    if (title) title.innerHTML = '<span class="n">' + escapeHtml(label) + "</span>" + escapeHtml(tool.title);
+    if (punch) punch.textContent = tool.punch;
+    if (problem) problem.textContent = tool.problem;
+    if (solution) solution.textContent = tool.solution;
+  }
+
+  function revokeObjectUrl() {
+    if (objectUrl) {
+      URL.revokeObjectURL(objectUrl);
+      objectUrl = null;
+    }
+  }
+
+  function showPlaceholder(tool) {
+    loadToken += 1;
+    video.pause();
+    revokeObjectUrl();
+    video.removeAttribute("src");
+    video.load();
+    video.hidden = true;
+    ph.hidden = false;
+    if (seek) seek.hidden = true;
+    if (phTitle) phTitle.textContent = tool.title;
+    if (phNote) phNote.textContent = tool.note || "Video placeholder";
+    updateSeekUi();
+  }
+
+  function attachSource(url, autoplay) {
+    video.src = url;
+    video.load();
+    updateSeekUi();
+    if (autoplay) {
+      var playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(function () {});
+      }
+    }
+  }
+
+  function playTool(index, autoplay) {
+    active = index;
+    var tool = tools[active];
+    var token = ++loadToken;
+    renderPlaylist();
+    setDetail(tool);
+
+    if (!tool.src) {
+      showPlaceholder(tool);
+      return;
+    }
+
+    video.pause();
+    revokeObjectUrl();
+    video.hidden = false;
+    ph.hidden = true;
+    if (seek) seek.hidden = false;
+    if (phTitle) phTitle.textContent = tool.title;
+    if (phNote) phNote.textContent = "Loading…";
+    if (tool.thumb && String(tool.thumb).indexOf(".") !== -1) {
+      video.setAttribute("poster", tool.thumb);
+    } else {
+      video.removeAttribute("poster");
+    }
+    updateSeekUi();
+
+    /* Load as a blob so scrubbing works even when the host lacks HTTP Range. */
+    fetch(tool.src)
+      .then(function (res) {
+        if (!res.ok) throw new Error("bad status");
+        return res.blob();
+      })
+      .then(function (blob) {
+        if (token !== loadToken) return;
+        objectUrl = URL.createObjectURL(blob);
+        if (phNote) phNote.textContent = "";
+        attachSource(objectUrl, autoplay);
+      })
+      .catch(function () {
+        if (token !== loadToken) return;
+        if (phNote) phNote.textContent = "";
+        attachSource(tool.src, autoplay);
+      });
+  }
+
+  video.addEventListener("error", function () {
+    if (!tools[active] || !tools[active].src) showPlaceholder(tools[active] || tools[0]);
+  });
+  video.addEventListener("loadedmetadata", updateSeekUi);
+  video.addEventListener("durationchange", updateSeekUi);
+  video.addEventListener("timeupdate", function () {
+    if (!seeking) updateSeekUi();
+  });
+
+  if (seekTrack) {
+    seekTrack.addEventListener("pointerdown", function (e) {
+      if (!isFinite(video.duration) || video.duration <= 0) return;
+      seeking = true;
+      try { seekTrack.setPointerCapture(e.pointerId); } catch (err) {}
+      seekFromClientX(e.clientX);
+      e.preventDefault();
+    });
+    seekTrack.addEventListener("pointermove", function (e) {
+      if (!seeking) return;
+      seekFromClientX(e.clientX);
+    });
+    seekTrack.addEventListener("pointerup", function () {
+      seeking = false;
+    });
+    seekTrack.addEventListener("pointercancel", function () {
+      seeking = false;
+    });
+    seekTrack.addEventListener("keydown", function (e) {
+      if (!isFinite(video.duration) || video.duration <= 0) return;
+      var step = e.shiftKey ? 10 : 5;
+      if (e.key === "ArrowRight" || e.key === "Right") {
+        video.currentTime = Math.min(video.duration, video.currentTime + step);
+        updateSeekUi();
+        e.preventDefault();
+      } else if (e.key === "ArrowLeft" || e.key === "Left") {
+        video.currentTime = Math.max(0, video.currentTime - step);
+        updateSeekUi();
+        e.preventDefault();
+      } else if (e.key === "Home") {
+        video.currentTime = 0;
+        updateSeekUi();
+        e.preventDefault();
+      } else if (e.key === "End") {
+        video.currentTime = video.duration;
+        updateSeekUi();
+        e.preventDefault();
+      }
+    });
+  }
+
+  playlist.addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-index]");
+    if (!btn || !playlist.contains(btn)) return;
+    var index = Number(btn.getAttribute("data-index"));
+    if (Number.isNaN(index) || index === active) return;
+    playTool(index, true);
+  });
+
+  renderPlaylist();
+  playTool(0, false);
+})();
+</script>
+</body>
+</html>
