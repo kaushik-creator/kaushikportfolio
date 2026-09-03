@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <script src="js/theme-init.js"></script>
-<link rel="stylesheet" href="styles/system.css?v=20260903people2"/>
+<link rel="stylesheet" href="styles/system.css?v=20260903people6"/>
 </head>
 <body>
 
@@ -52,6 +52,15 @@
       <p class="page-intro__lede page-lede-mark"><span>Not for fame — for how they carry themselves, and what they leave behind.</span></p>
     </div>
 
+    <div class="fav-people__sort" role="group" aria-label="Sort people">
+      <select class="fav-people__sort-select" id="peopleSortSelect" aria-label="Sort order">
+        <option value="age-asc" selected>Age · oldest first</option>
+        <option value="age-desc">Age · youngest first</option>
+        <option value="name-asc">A – Z</option>
+        <option value="name-desc">Z – A</option>
+      </select>
+    </div>
+
     <div class="fav-people__grid" aria-live="polite"></div>
   </div>
 </section>
@@ -61,6 +70,6 @@
 <script src="js/site-shell.js?v=20260829aitoolkit"></script>
 <script src="audio/music.js?v=20260814hint1"></script>
 <script src="js/title-scramble.js?v=20260811scrambleDate"></script>
-<script src="js/fav-people.js?v=20260903people2"></script>
+<script src="js/fav-people.js?v=20260903people6"></script>
 </body>
 </html>

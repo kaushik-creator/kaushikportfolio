@@ -2472,6 +2472,38 @@ a.fav-media__meta:focus-visible{
   background-image:var(--dotfield);
   background-size:var(--dotfield-size);
 }
+.fav-people__sort{
+  display:flex;
+  justify-content:flex-end;
+  margin:8px 0 8px;
+  position:relative;
+  z-index:1;
+}
+.fav-people__sort-select{
+  appearance:none;
+  -webkit-appearance:none;
+  font-family:var(--font-body);
+  font-size:14px;
+  font-weight:600;
+  color:var(--ink);
+  background:var(--bg);
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:10px 36px 10px 16px;
+  cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 14px center;
+  background-size:12px 7px;
+  transition:border-color .15s ease;
+}
+.fav-people__sort-select:hover{
+  border-color:var(--ink);
+}
+.fav-people__sort-select:focus-visible{
+  outline:2px solid var(--ink);
+  outline-offset:2px;
+}
 .fav-people__grid{
   display:grid;
   grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
