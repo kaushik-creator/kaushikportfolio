@@ -2472,12 +2472,16 @@ a.fav-media__meta:focus-visible{
   background-image:var(--dotfield);
   background-size:var(--dotfield-size);
 }
-.fav-people__sort{
+.fav-people__toolbar{
   display:flex;
   justify-content:flex-end;
-  margin:8px 0 8px;
+  margin:0 0 12px;
   position:relative;
   z-index:1;
+}
+.fav-people__sort{
+  display:flex;
+  flex-shrink:0;
 }
 .fav-people__sort-select{
   appearance:none;
@@ -2541,7 +2545,12 @@ a.fav-media__meta:focus-visible{
   object-position:center top;
   border:1px solid var(--border-hard);
   background:var(--surface-2);
-  transition:opacity 0.15s ease;
+  filter:grayscale(1) contrast(1.15) brightness(1.02);
+  transition:filter 0.3s ease, opacity 0.15s ease;
+}
+.fav-people__card:hover img,
+.fav-people__card:focus-visible img{
+  filter:grayscale(0) contrast(1) brightness(1);
 }
 .fav-people__card:hover img,
 .fav-people__card:focus-visible img{
