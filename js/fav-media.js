@@ -9,7 +9,7 @@
   const EMPTY = SECTION.querySelector(".fav-media__empty");
   if (!GRID || !FILTERS) return;
 
-  const CACHE = "20260903favmedia26";
+  const CACHE = "20260903favmedia27";
 
   const SERIES = [
     { file: "big-bang-theory.png", alt: "The Big Bang Theory", year: "2007", lang: "English", genres: ["Comedy"] },
@@ -78,6 +78,7 @@
     { file: "mandela.png", alt: "Mandela", year: "2021", lang: "Tamil", genres: ["Comedy", "Drama"] },
     { file: "monster.png", alt: "Monster", year: "2019", lang: "Tamil", genres: ["Comedy", "Thriller"] },
     { file: "sarpatta-parambarai.png", alt: "Sarpatta Parambarai", year: "2021", lang: "Tamil", genres: ["Action", "Drama"] },
+    { file: "queen.png", alt: "Queen", year: "2014", lang: "Hindi", genres: ["Comedy", "Drama"] },
   ];
 
   const LANGS = ["English", "Tamil", "Hindi", "Malayalam", "Korean", "Italian"];
